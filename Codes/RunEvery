@@ -1,10 +1,16 @@
 :: ( nHBAPWtA )
 @echo off
 
+
+:: Initialize the loop counter outside of the loop
+set loopCount=0
+
+
+
+
 :loop_start
 
-:: Initialize the loop counter
-set loopCount=0
+
 
 
 
@@ -255,7 +261,7 @@ echo Operation completed.
 set /a loopCount+=1
 
 :: Check if the loop counter has reached 5
-if %loopCount% lss 3 (
+if %loopCount% lss 5 (
     :: If less than 5, go back to the beginning of the script
     goto :loop_start
 ) else (
