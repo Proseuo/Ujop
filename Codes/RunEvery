@@ -261,7 +261,7 @@ echo Operation completed.
 set /a loopCount+=1
 
 :: Check if the loop counter has reached 5
-if %loopCount% lss 5 (
+if %loopCount% lss 20 (
     :: If less than 5, go back to the beginning of the script
     goto :loop_start
 ) else (
