@@ -1,15 +1,12 @@
 :: ( nHBAPWtA )
 @echo off
 
-
-cd /d "%~dp0"
-
 ::ShellHost.exe ---> TSSPrxySHST.exe
 ::RuntimeBroker.exe ---> TSSPrxyRNTM.exe
 ::COM Surrogate.exe ---> SyncHostApp.exe
 ::StartupTaskCaller.exe ---> TSSPrxySTC.exe
 
-
+cd /d "%~dp0"
 
 :: Check Admin Privileges
 net session >nul 2>&1
@@ -36,6 +33,7 @@ goto exit
 )
 
 :RUNADMINHERE
+cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
