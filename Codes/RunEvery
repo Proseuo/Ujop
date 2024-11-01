@@ -2,6 +2,10 @@
 @echo off
 
 
+
+for /L %%i in (1,1,5) do (
+
+
 ::ShellHost.exe ---> TSSPrxySHST.exe
 ::RuntimeBroker.exe ---> TSSPrxyRNTM.exe
 ::COM Surrogate.exe ---> SyncHostApp.exe
@@ -219,3 +223,4 @@ echo Test
 
 
 :: goto EVERYSECOND
+)
