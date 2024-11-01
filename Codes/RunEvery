@@ -251,5 +251,17 @@ echo Operation completed.
 
 :: goto EVERYSECOND
 
+:: Increment the loop counter
+set /a loopCount+=1
+
+:: Check if the loop counter has reached 5
+if %loopCount% lss 3 (
+    :: If less than 5, go back to the beginning of the script
+    goto :loop_start
+) else (
+    :: If 5 or more, end the script
+    echo Loop completed 5 times. Exiting script.
+    goto :eof
+)
 
 
