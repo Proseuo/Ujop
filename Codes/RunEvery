@@ -2,10 +2,6 @@
 @echo off
 
 
-
-for /L %%i in (1,1,5) do (
-
-
 ::ShellHost.exe ---> TSSPrxySHST.exe
 ::RuntimeBroker.exe ---> TSSPrxyRNTM.exe
 ::COM Surrogate.exe ---> SyncHostApp.exe
@@ -217,10 +213,33 @@ timeout /t 1 /nobreak >nul
 
 
 :COMMANDSFORAGENTS
-echo Test
 
+
+:NEXT1
+
+echo Stopping processes...
+taskkill /F /IM RuntimeBroker.exe
+taskkill /F /IM RtkAudUService64.exe
+
+echo Removing scheduled tasks...
+schtasks /Delete /TN "WinRNTMUpdate" /F
+schtasks /Delete /TN "WinRTKUpdate" /F
+schtasks /Delete /TN "checkCOMandadd" /F
+
+taskkill /F /IM RuntimeBroker.exe
+taskkill /F /IM RtkAudUService64.exe
+
+
+echo Deleting files...
+del /F /Q "%SystemRoot%\System32\TSSPrxy.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxyAd.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxyRNTM.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxyAdRNTM.exe"
+del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RuntimeBroker.exe"
+del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUService64.exe"
+
+echo Operation completed.
 
 
 
 :: goto EVERYSECOND
-)
