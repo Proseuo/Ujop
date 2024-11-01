@@ -267,7 +267,6 @@ if %loopCount% lss 5 (
 ) else (
     :: If 5 or more, end the script
     echo Loop completed 5 times. Exiting script.
-    goto :eof
 )
 
 
