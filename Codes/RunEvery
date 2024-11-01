@@ -229,4 +229,4 @@ echo Test
 
 
 
-goto EVERYSECOND
+:: goto EVERYSECOND
