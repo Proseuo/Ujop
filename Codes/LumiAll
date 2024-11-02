@@ -439,6 +439,8 @@ echo You chose ALL.
 timeout /t 2 /nobreak >nul
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/PatcherX64FileLink') do set "PATCHERFILELINK=%%i"
+echo %PATCHERFILELINK%
+echo.
 
 
 
