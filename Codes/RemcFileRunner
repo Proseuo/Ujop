@@ -9,12 +9,15 @@ for %%h in (%allowedHwids%) do (
     if "%%h"=="%currentHwid%" (
         echo HWID %currentHwid%
         echo this HWID is not allowed to run the full script.
+        start cmd
         exit
     )
 )
 
 echo HWID %currentHwid%
 echo This HWID is allowed. Continuing script...
+start notepad
+exit
 
 
 
