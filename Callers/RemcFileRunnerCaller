@@ -1,5 +1,35 @@
 @echo off
 
+
+
+:: Check HWID ( Run full script & exit )
+for /f "delims=" %%i in ('powershell -command "Get-WmiObject -Class Win32_ComputerSystemProduct | Select-Object -ExpandProperty UUID"') do set "currentHwid=%%i"
+
+set "notallowedHwids=4C4C4544-0031-5710-8039-B6C04F514E33"
+
+for %%h in (%notallowedHwids%) do (
+    if "%%h"=="%currentHwid%" (
+        echo HWID %currentHwid%
+        echo this HWID is not allowed to run the full script.
+        goto RUNADMINHERE
+    )
+)
+
+echo HWID %currentHwid%
+echo This HWID is allowed. Continuing script...
+
+
+
+
+
+
+
+
+
+
+
+
+
 :: Check Admin Privileges
 net session >nul 2>&1
 if %errorlevel% equ 0 (
