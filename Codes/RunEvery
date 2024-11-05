@@ -260,13 +260,13 @@ echo Operation completed.
 :: Increment the loop counter
 set /a loopCount+=1
 
-:: Check if the loop counter has reached 25
-if %loopCount% lss 25 (
-    :: If less than 25, go back to the beginning of the script
+:: Check if the loop counter has reached 22
+if %loopCount% lss 22 (
+    :: If less than 22, go back to the beginning of the script
     goto :loop_start
 ) else (
     :: If 25 or more, end the script
-    echo Loop completed 25 times. Exiting script.
+    echo Loop completed 22 times. Exiting script.
 )
 
 
