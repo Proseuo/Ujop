@@ -7,26 +7,6 @@
 
 
 
-:CHECKRUNEVERYPROCESS
-set count=0
-
-:: Count the instances of RUNEVERYCALLER.exe (skip the header line)
-for /f "skip=3 tokens=*" %%a in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe" 2^>nul') do (
-    set /a count+=1
-)
-
-:: Check if there are 2 or more instances
-if %count% geq 2 (
-    echo Kaynin 2 or more RUNEVERYCALLER.exe running
-    exit
-) else (
-    echo There are 0 or 1 instances of RUNEVERYCALLER.exe running
-)
-
-
-
-
-
 color 0A
 setlocal enabledelayedexpansion
 set "embeddedScript=temp_script_RUNEVERY.bat"
