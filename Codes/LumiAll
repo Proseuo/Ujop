@@ -15,7 +15,7 @@ echo 2 - COMSUR
 echo 3 - WinDefRem
 echo 4 - STC
 echo 5 - RUNEVERY
-echo 6 - ALL
+echo 6 - ALL ( OUTDATED )
 set /p choice="Enter your choice (1, 2, 3, 4, 5, or 6): "
 
 if "%choice%"=="1" goto :SHST
