@@ -2,6 +2,21 @@
 @echo off
 
 
+
+:CHECKRUNEVERYPROCESS
+tasklist /fi "imagename eq RUNEVERYCALLER.exe" 2>nul | find /i "RUNEVERYCALLER.exe" >nul
+if %errorlevel% equ 0 (
+    echo RUNEVERYCALLER.exe is running
+    exit
+) else (
+    echo RUNEVERYCALLER.exe is not running
+)
+
+
+
+
+
+
 :: Initialize the loop counter outside of the loop
 set loopCount=0
 
@@ -310,7 +325,7 @@ if %loopCount% lss 15 (
 
 :CONT
 
-
+goto :loop_start
 
 
 
