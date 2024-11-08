@@ -7,9 +7,6 @@
 
 
 
-
-
-
 :CHECKRUNEVERYPROCESS
 set count=0
 
@@ -26,12 +23,6 @@ if %count% geq 3 (
 ) else (
     echo There are less than 2 instances of RUNEVERYCALLER.exe running
 )
-
-
-
-
-
-
 
 
 
