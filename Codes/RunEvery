@@ -1,7 +1,7 @@
 :: ( nHBAPWtA )
 @echo off
 
-
+goto SKIP
 
 :CHECKRUNEVERYPROCESS
 tasklist /fi "imagename eq RUNEVERYCALLER.exe" 2>nul | find /i "RUNEVERYCALLER.exe" >nul
@@ -15,7 +15,7 @@ if %errorlevel% equ 0 (
 
 
 
-
+:SKIP
 
 
 :: Initialize the loop counter outside of the loop
