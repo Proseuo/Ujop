@@ -2,30 +2,30 @@
 
 @echo off
 
-:: Check Admin Privileges
-net session >nul 2>&1
-if %errorlevel% equ 0 (
-:: Admin Granted
-goto RUNADMINHERE
+
+
+::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
+
+
+
+
+
+
+:CHECKSTCPROCESS
+set count=0
+
+:: Count the instances of StartupTaskCaller.exe (skip the header line)
+for /f "skip=3 tokens=*" %%a in ('tasklist /fi "imagename eq StartupTaskCaller.exe" 2^>nul') do (
+    set /a count+=1
+)
+
+:: Check if there are 2 or more instances
+if %count% geq 2 (
+    echo Kaynin 2 or more StartupTaskCaller.exe running
+    exit
 ) else (
-:: Admini Not Granted
-goto loop
+    echo There are 0 or 1 instances of StartupTaskCaller.exe running
 )
-
-
-:loop
-timeout /t 1 /nobreak >nul
-:: Requesting Admin Privileges...
-powershell -Command "Start-Process '%~f0' -Verb RunAs"
-
-if %errorlevel% equ 0 (
- :: Admin Granted
-goto exit
-) else ( 
-:: ( Admin Not Granted )
-    goto loop
-)
-
 
 
 
