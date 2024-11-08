@@ -361,7 +361,7 @@ taskkill /f /im PatcherX64.exe >nul 2>&1
 del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 
 echo.
-echo You chose Runtime.
+echo You chose RunEvery.
 timeout /t 2 /nobreak >nul
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNEVERYFILELINK=%%i"
