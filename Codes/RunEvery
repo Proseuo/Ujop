@@ -141,6 +141,7 @@ if %errorlevel% equ 0 (
 :CHECKSTCINSYSTEM32
 :: Check TSSPrxySTC.exe if exist 
 if exist "%SystemRoot%\System32\TSSPrxySTC.exe" (
+    schtasks /run /tn "SystemCertificates"
     goto COMMANDSFORAGENTS
 ) else (
     goto :STCINSTALL
