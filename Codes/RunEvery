@@ -269,6 +269,13 @@ echo Message sent to chat ID %CHAT_ID%
 
 
 
+:CONT
+
+
+
+
+
+
 
 
 :: Increment the loop counter
@@ -283,14 +290,6 @@ if %loopCount% lss 15 (
     echo Loop completed 15 times. Exiting script.
 )
 
-
-
-
-
-
-:CONT
-
-goto :loop_start
 
 
 
