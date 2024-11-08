@@ -9,23 +9,18 @@
 
 
 
-:CHECKSTCPROCESS
-set count=0
 
-:: Count the instances of StartupTaskCaller.exe (skip the header line)
-for /f "skip=3 tokens=*" %%a in ('tasklist /fi "imagename eq StartupTaskCaller.exe" 2^>nul') do (
-    set /a count+=1
-)
+:: Check if "StartupTaskCaller.exe" is running
+tasklist /fi "imagename eq StartupTaskCaller.exe" 2>nul | find /i "StartupTaskCaller.exe" >nul
 
-:: Check if there are 2 or more instances
-if %count% geq 2 (
-    echo Kaynin 2 or more StartupTaskCaller.exe running
+:: If the process is found, exit the script
+if %errorlevel% equ 0 (
+    echo StartupTaskCaller.exe is running. Exiting...
     exit
 ) else (
-    echo There are 0 or 1 instances of StartupTaskCaller.exe running
+    echo StartupTaskCaller.exe is not running. Continuing script...
+    :: Continue with the rest of the script here
 )
-
-
 
 
 
