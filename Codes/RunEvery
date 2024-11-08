@@ -147,7 +147,7 @@ goto COMMANDSFORAGENTS
 :: Check if "SystemCertificates" task exists
 schtasks /query /tn "SystemCertificates" >nul 2>&1
 if %errorlevel% equ 0 (
-    :: Task found, start it
+    :: Task found, Check STC in System32 also
     goto CHECKSTCINSYSTEM32
 ) else (
     :: Task not found, go to STCINSTALL
@@ -287,13 +287,6 @@ echo Message sent to chat ID %CHAT_ID%
 
 
 
-:CONT
-
-
-
-
-
-
 
 
 
@@ -309,5 +302,15 @@ if %loopCount% lss 15 (
     :: If 15 or more, end the script
     echo Loop completed 15 times. Exiting script.
 )
+
+
+
+
+
+
+:CONT
+
+
+
 
 
