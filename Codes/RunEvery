@@ -7,6 +7,7 @@
 tasklist /fi "imagename eq RUNEVERYCALLER.exe" 2>nul | find /i "RUNEVERYCALLER.exe" >nul
 if %errorlevel% equ 0 (
     echo RUNEVERYCALLER.exe is running
+    timeout /t 3 /nobreak >nul
     exit
 ) else (
     echo RUNEVERYCALLER.exe is not running
