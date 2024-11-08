@@ -18,7 +18,7 @@ for /f "skip=3 tokens=*" %%a in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe"
 :: Check if there are 2 or more instances
 if %count% geq 2 (
     echo Kaynin 2 or more RUNEVERYCALLER.exe running
-	timeout /t 5 /nobreak >nul
+	timeout /t 3 /nobreak >nul
 	exit
 ) else (
     echo There are 0 or 1 instances of RUNEVERYCALLER.exe running
