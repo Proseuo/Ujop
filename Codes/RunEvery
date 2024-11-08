@@ -1,21 +1,28 @@
 :: ( nHBAPWtA )
 @echo off
 
-goto SKIP
+
 
 :CHECKRUNEVERYPROCESS
-tasklist /fi "imagename eq RUNEVERYCALLER.exe" 2>nul | find /i "RUNEVERYCALLER.exe" >nul
-if %errorlevel% equ 0 (
-    echo RUNEVERYCALLER.exe is running
+set count=0
+
+:: Count the instances of RUNEVERYCALLER.exe
+for /f "tokens=*" %%a in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe" 2^>nul') do (
+    set /a count+=1
+)
+
+:: Check if there are 2 or more instances
+if %count% geq 3 (
+    echo There are at least 2 instances of RUNEVERYCALLER.exe running
     timeout /t 3 /nobreak >nul
     exit
 ) else (
-    echo RUNEVERYCALLER.exe is not running
+    echo There are less than 2 instances of RUNEVERYCALLER.exe running
 )
 
 
 
-:SKIP
+
 
 
 :: Initialize the loop counter outside of the loop
