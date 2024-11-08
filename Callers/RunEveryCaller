@@ -2,45 +2,7 @@
 
 
 
-
-
-
-
-
-
-
-:: Check Admin Privileges
-net session >nul 2>&1
-if %errorlevel% equ 0 (
-:: Admin Granted
-goto RUNADMINHERE
-) else (
-:: Admini Not Granted
-goto loop
-)
-
-
-:loop
-timeout /t 1 /nobreak >nul
-:: Requesting Admin Privileges...
-powershell -Command "Start-Process '%~f0' -Verb RunAs"
-
-if %errorlevel% equ 0 (
- :: Admin Granted
-goto exit
-) else ( 
-:: ( Admin Not Granted )
-    goto loop
-)
-
-
-
-
-
-
-
-
-:RUNADMINHERE
+:RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
 
 
 
