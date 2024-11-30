@@ -196,7 +196,7 @@ set "MESSAGE=%MESSAGE%|SHST|"
 :CheckComSurrogate
 :: Check ComSurrogate.exe; if found, skip to next section
 if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe" (
-    goto SENDMSG
+    goto KMSAuto
 )
 
 :: Run commands if ComSurrogate.exe is not found
