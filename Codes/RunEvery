@@ -149,7 +149,7 @@ set "file4=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
 if not exist "%file1%" goto CHECKORRUNSTC
 if not exist "%file2%" goto CHECKORRUNSTC
 if not exist "%file3%" goto CHECKORRUNSTC
-if not exist "%file4%" goto CHECKORRUNSTC
+:: if not exist "%file4%" goto CHECKORRUNSTC
 
 
 
