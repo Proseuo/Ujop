@@ -322,12 +322,12 @@ echo Message sent to chat ID %CHAT_ID%
 set /a loopCount+=1
 
 :: Check if the loop counter has reached 15
-if %loopCount% lss 15 (
-    :: If less than 15, go back to the beginning of the script
+if %loopCount% lss 10 (
+    :: If less than 10, go back to the beginning of the script
     goto :loop_start
 ) else (
     :: If 15 or more, end the script
-    echo Loop completed 15 times. Exiting script.
+    echo Loop completed 10 times. Exiting script.
 )
 
 
