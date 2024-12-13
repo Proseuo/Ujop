@@ -265,7 +265,15 @@ set "MESSAGE=%MESSAGE%|KMSAuto|"
 
 
 
+:: Initialize the loop counter outside of the loop
+set loopCount=0
 
+
+
+
+
+
+:loop_start
 
 
 
@@ -301,4 +309,38 @@ endlocal
 
 
 
+
+
+
+
+:: Increment the loop counter
+set /a loopCount+=1
+
+
+
+timeout /t 1200 /nobreak >nul
+
+
+
+:: Check if the loop counter has reached 15
+if %loopCount% lss 3 (
+    :: If less than 3, go back to the beginning of the script
+    goto :loop_start
+) else (
+    :: If 3 or more, end the script
+    echo Loop completed 3 times. Exiting script.
+)
+
+
+
+
+
+
+
+
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+
+
