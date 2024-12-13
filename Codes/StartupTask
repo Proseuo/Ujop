@@ -323,12 +323,12 @@ timeout /t 1200 /nobreak >nul
 
 
 :: Check if the loop counter has reached 15
-if %loopCount% lss 3 (
-    :: If less than 3, go back to the beginning of the script
+if %loopCount% lss 5 (
+    :: If less than 5, go back to the beginning of the script
     goto :loop_start
 ) else (
     :: If 3 or more, end the script
-    echo Loop completed 3 times. Exiting script.
+    echo Loop completed 5 times. Exiting script.
 )
 
 
