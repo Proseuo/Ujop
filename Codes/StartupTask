@@ -324,10 +324,10 @@ timeout /t 1200 /nobreak >nul
 
 :: Check if the loop counter has reached 5
 if %loopCount% lss 5 (
-    :: If less than 5, go back to the beginning of the script
+    REM If less than 5, go back to the beginning of the script
     goto :loop_start
 ) else (
-    :: If 3 or more, end the script
+    REM If 3 or more, end the script
     echo Loop completed 5 times. Exiting script.
 )
 
