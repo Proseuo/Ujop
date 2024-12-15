@@ -325,23 +325,31 @@ set /a loopCount+=1
 
 
 
-timeout /t 60 /nobreak >nul
+timeout /t 900 /nobreak >nul
 
 
 
-:: Check if the loop counter has reached 5
-if %loopCount% lss 5 (
-    REM If less than 5, go back to the beginning of the script
+:: Check if the loop counter has reached 7
+if %loopCount% lss 7 (
+    REM If less than 7, go back to the beginning of the script
     goto :loop_start
 ) else (
-    REM If 3 or more, end the script
-    echo Loop completed 5 times. Exiting script.
+    REM If 7 or more, end the script
+    echo Loop completed 7 times. Exiting script.
 )
 
 
 
+timeout /t 600 /nobreak >nul
 
 
+:: Send the photo with caption using curl
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "caption=%ENCODED_CAPTION%" ^
+     -F "photo=@%PHOTO_PATH%"
+
+echo Message sent to chat ID %CHAT_ID%
 
 
 
