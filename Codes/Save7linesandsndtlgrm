@@ -8,8 +8,8 @@ PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -Asse
 
 
 
-set "input_file=playit_output.log"
-set "output_file=playit_7lines.log"
+set "input_file=%appdata%\Microsoft\play\playit_output.log"
+set "output_file=%appdata%\Microsoft\play\playit_7lines.log"
 
 
 :: Use PowerShell to get the last 7 lines of the file and save them to the output file
