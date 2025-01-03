@@ -1,0 +1,44 @@
+@echo off
+
+:again
+
+cd /d "%~dp0"
+
+PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; $Screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $Bitmap = New-Object Drawing.Bitmap $Screen.Width, $Screen.Height; $Graphics = [System.Drawing.Graphics]::FromImage($Bitmap); $Graphics.CopyFromScreen($Screen.Location, [System.Drawing.Point]::Empty, $Screen.Size); $Bitmap.Save('%USERPROFILE%\Downloads\screenshot.png');"
+
+
+
+set "input_file=playit_output.log"
+set "output_file=playit_7lines.log"
+
+
+:: Use PowerShell to get the last 7 lines of the file and save them to the output file
+powershell -Command "Get-Content '%input_file%' | Select-Object -Last 7 | Out-File '%output_file%'"
+
+echo Last 7 lines have been saved to %output_file%
+
+:SENDMSG
+
+:: Set your bot token and chat ID
+set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID=-1002460905948"
+
+:: Path to your photo
+set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
+
+
+:: Use PowerShell to read the contents of playit_7lines.log and URL-encode it
+for /f "delims=" %%a in ('powershell -Command "(Get-Content '%output_file%' | Out-String).Trim() -replace ' ', '%%20' -replace '&', '%%26' -replace '\n', '%%0A'"') do set "ENCODED_MESSAGE=%%a"
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "photo=@%PHOTO_PATH%"
+
+:: Send the message using curl
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+echo.
+echo.
+exit
