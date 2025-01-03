@@ -1,5 +1,5 @@
 @echo off
-
+exit
 timeout /t 840 /nobreak
 
 :again
