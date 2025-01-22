@@ -46,4 +46,3 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
 
 echo.
 echo.
-exit
