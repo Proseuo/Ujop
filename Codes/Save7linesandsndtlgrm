@@ -1,6 +1,6 @@
 @echo off
 
-timeout /t 840 /nobreak
+timeout /t 15 /nobreak
 
 :again
 
