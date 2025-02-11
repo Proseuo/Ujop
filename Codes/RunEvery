@@ -338,7 +338,7 @@ if %loopCount% lss 10 (
 
 
 :: Check the value of CheckConnectSend
-if "%CheckConnectSend%"=="0" (
+if "%CheckConnectSend%"=="1" (
     goto SENDCHECK
 ) else (
     goto :EOF
