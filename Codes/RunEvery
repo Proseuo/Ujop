@@ -15,7 +15,7 @@ for /f "tokens=*" %%A in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe" ^| fin
 )
 
 :: Check if one or more instances are found
-if %instances% geq 1 (
+if %instances% geq 2 (
     echo RUNEVERYCALLER.exe is already running. Exiting batch...
     exit
 )
