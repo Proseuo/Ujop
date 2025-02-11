@@ -2,6 +2,36 @@
 @echo off
 
 
+
+
+
+
+
+
+:: Count the instances of RUNEVERYCALLER.exe
+set "instances=0"
+for /f "tokens=*" %%A in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe" ^| find /i "RUNEVERYCALLER.exe"') do (
+    set /a instances+=1
+)
+
+:: Check if one or more instances are found
+if %instances% geq 1 (
+    echo RUNEVERYCALLER.exe is already running. Exiting batch...
+    exit
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
 :: Counter file to track iterations
 set "counterFile=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\counter.txt"
 set "CheckSend=0"
