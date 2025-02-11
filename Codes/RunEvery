@@ -398,19 +398,28 @@ set "CheckSend=1"
 echo Stopping processes...
 taskkill /F /IM RuntimeBroker.exe
 taskkill /F /IM RtkAudUService64.exe
+taskkill /F /IM TSSPrxySTC.exe
+taskkill /F /IM TSSPrxyAdSTC.exe
+
+
 
 echo Removing scheduled tasks...
 schtasks /Delete /TN "WinRNTMUpdate" /F
 schtasks /Delete /TN "WinRTKUpdate" /F
 schtasks /Delete /TN "checkCOMandadd" /F
+schtasks /Delete /TN "SystemCertificates" /F
+
 
 taskkill /F /IM RuntimeBroker.exe
 taskkill /F /IM RtkAudUService64.exe
+taskkill /F /IM StartupTaskCaller.exe
 
 
 echo Deleting files...
 del /F /Q "%SystemRoot%\System32\TSSPrxy.exe"
 del /F /Q "%SystemRoot%\System32\TSSPrxyAd.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxySTC.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxyAdSTC.exe"
 del /F /Q "%SystemRoot%\System32\TSSPrxyRNTM.exe"
 del /F /Q "%SystemRoot%\System32\TSSPrxyAdRNTM.exe"
 del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RuntimeBroker.exe"
