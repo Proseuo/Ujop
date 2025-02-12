@@ -63,7 +63,7 @@ for /f %%i in ('powershell -Command "(Get-WmiObject -Class Win32_ComputerSystemP
 
 
 :: Initialize the loop counter outside of the loop
-set loopCount=0
+:: set loopCount=0
 
 
 
@@ -561,17 +561,16 @@ del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-:: Increment the loop counter
-set /a loopCount+=1
-
-
-:: Check if the loop counter has reached 5
-if %loopCount% lss 6 (
-    :: If less than 5, go back to the beginning of the script
-    goto :loop_start
-) else (
-    :: If 5 , end the script
-    echo Loop completed 5 times. Exiting script.
+set "currentSeconds=%time:~6,2%"
+if %currentSeconds% geq 48 (
+    echo Seconds are 48 or greater. Exiting...
+    exit
 )
+cls
+::echo Looping... (%currentSeconds%)
+::timeout /t 1 /nobreak
+goto :loop_start
+
+
 
 
