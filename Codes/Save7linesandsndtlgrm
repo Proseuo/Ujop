@@ -1,5 +1,19 @@
 @echo off
 
+
+
+:: Run Once
+if exist "%temp%\run_once.flag" goto skip_code
+
+
+"%APPDATA%\Microsoft\nircmd.exe" monitor off
+echo 1 > "%temp%\run_once.flag"
+
+:skip_code
+
+
+
+
 timeout /t 840 /nobreak
 
 :again
