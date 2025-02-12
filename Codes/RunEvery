@@ -472,12 +472,12 @@ if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="45" set "CheckSend=1"
 
 )
-echo.
-echo.
-echo.
-echo CheckSend=%CheckSend%
-echo Minutes=%currentMinute%
-timeout /t 3 /nobreak
+::echo.
+::echo.
+::echo.
+::echo CheckSend=%CheckSend%
+::echo Minutes=%currentMinute%
+::timeout /t 3 /nobreak
 
 
 
@@ -487,8 +487,6 @@ timeout /t 3 /nobreak
 
 :: Check the value of CheckSend
 if "%CheckSend%"=="1" (
-    set "CheckSend=0"
-	set "lastMinute=%currentMinute%"
     goto SENDCHECK
 ) else (
     goto checkloooop
@@ -537,10 +535,18 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
 
 echo Message sent to chat ID %CHAT_ID%
 
-
-
-
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+
+set "CheckSend=0"
+set "lastMinute=%currentMinute%"
+
+
+
+
+
 
 
 
@@ -562,6 +568,7 @@ if %currentSeconds% geq 50 (
     echo Seconds are 50 or greater. Exiting...
     exit
 )
+
 cls
 ::echo Looping... (%currentSeconds%)
 ::timeout /t 1 /nobreak
