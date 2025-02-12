@@ -562,8 +562,8 @@ del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 
 set "currentSeconds=%time:~6,2%"
-if %currentSeconds% geq 48 (
-    echo Seconds are 48 or greater. Exiting...
+if %currentSeconds% geq 50 (
+    echo Seconds are 50 or greater. Exiting...
     exit
 )
 cls
