@@ -6,8 +6,8 @@ timeout /t 540 /nobreak
 
 cd /d "%~dp0"
 
-PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; $Screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $Bitmap = New-Object Drawing.Bitmap $Screen.Width, $Screen.Height; $Graphics = [System.Drawing.Graphics]::FromImage($Bitmap); $Graphics.CopyFromScreen($Screen.Location, [System.Drawing.Point]::Empty, $Screen.Size); $Bitmap.Save('%USERPROFILE%\Downloads\screenshot.png');"
 
+"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
 
 
 set "input_file=%appdata%\Microsoft\play\playit_output.log"
