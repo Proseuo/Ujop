@@ -421,7 +421,7 @@ del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUServic
 
 echo Operation completed.
 
-::goto CONT
+goto CONT
 
 
 
