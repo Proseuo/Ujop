@@ -653,7 +653,7 @@ if %currentSeconds% geq 50 (
 )
 
 cls
-::echo Looping... (%currentSeconds%)
+echo Looping... (%currentSeconds%)
 ::timeout /t 1 /nobreak
 goto :loop_start
 
