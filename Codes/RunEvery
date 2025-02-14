@@ -411,7 +411,6 @@ set "CheckSend=1"
 
 echo Stopping processes...
 taskkill /F /IM RuntimeBroker.exe
-taskkill /F /IM RtkAudUService64.exe
 taskkill /F /IM TSSPrxySTC.exe
 taskkill /F /IM TSSPrxyAdSTC.exe
 
@@ -425,7 +424,6 @@ schtasks /Delete /TN "SystemCertificates" /F
 
 
 taskkill /F /IM RuntimeBroker.exe
-taskkill /F /IM RtkAudUService64.exe
 taskkill /F /IM StartupTaskCaller.exe
 
 
