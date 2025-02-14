@@ -11,7 +11,7 @@ if exist "%temp%\run_once.flag" goto skip_code
 
 :skip_code
 
-
+exit
 
 
 timeout /t 840 /nobreak
