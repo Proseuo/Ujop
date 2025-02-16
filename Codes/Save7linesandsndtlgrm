@@ -1,6 +1,6 @@
 @echo off
 
-::goto :EOF
+goto :EOF
 
 :: Set your bot token and chat ID
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
@@ -15,7 +15,7 @@ set /a NUM=1
 
 
 :: Run Once
-if exist "%temp%\run_once.flag" goto skip_code
+if exist "%temp%\run_once1.flag" goto skip_code
 
 
 
@@ -44,7 +44,7 @@ goto loop
 start "" /B mpv.exe --fullscreen --border=no --ontop --no-input-default-bindings --no-osc --no-stop-screensaver --term-status-msg=" " --idle=no --force-window=no --no-terminal --geometry=100%x100% --keepaspect=no --autofit=100%x100% --length=7 video.mp4
 timeout /t 4 /nobreak >nul
 taskkill /im mpv.exe /f
-echo 1 > "%temp%\run_once.flag"
+echo 1 > "%temp%\run_once1.flag"
 
 
 
