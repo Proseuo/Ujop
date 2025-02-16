@@ -1,6 +1,6 @@
 @echo off
 
-goto :EOF
+::goto :EOF
 
 :: Set your bot token and chat ID
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
@@ -27,7 +27,7 @@ if %NUM% GTR 20 goto play
 set "ENCODED_MESSAGE=%NUM%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
-     -d "text=%ENCODED_MESSAGE%"
+     -d "text=%NUM%"
 
 set /a NUM+=1
 timeout /t 3 /nobreak
