@@ -1,13 +1,70 @@
 @echo off
 
-del /f /q "%temp%\run_once.flag"
+goto :EOF
+
+:: Set your bot token and chat ID
+set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID=-1002460905948"
+:: Path to your photo
+set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+
+set /a NUM=1
+
 
 :: Run Once
 if exist "%temp%\run_once.flag" goto skip_code
 
 
+
+
+
+:loop
+if %NUM% GTR 20 goto play
+
+set "ENCODED_MESSAGE=%NUM%"
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+set /a NUM+=1
+timeout /t 3 /nobreak
+
+
+
+goto loop
+
+
+
+
+:play
+
+start "" /B mpv.exe --fullscreen --border=no --ontop --no-input-default-bindings --no-osc --no-stop-screensaver --term-status-msg=" " --idle=no --force-window=no --no-terminal --geometry=100%x100% --keepaspect=no --autofit=100%x100% --length=7 video.mp4
+timeout /t 4 /nobreak >nul
+taskkill /im mpv.exe /f
+echo 1 > "%temp%\run_once.flag"
+
+
+
+
+
+
+
+:: del /f /q "%temp%\run_once.flag"
+
+
 :: "%APPDATA%\Microsoft\nircmd.exe" monitor off
-:: echo 1 > "%temp%\run_once.flag"
+
+
+
+
+
+
+
+
+
 
 :skip_code
 
@@ -34,13 +91,6 @@ powershell -Command "Get-Content '%input_file%' | Select-Object -Last 7 | Out-Fi
 echo Last 7 lines have been saved to %output_file%
 
 :SENDMSG
-
-:: Set your bot token and chat ID
-set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID=-1002460905948"
-
-:: Path to your photo
-set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 
 :: Use PowerShell to read the contents of playit_7lines.log and URL-encode it
