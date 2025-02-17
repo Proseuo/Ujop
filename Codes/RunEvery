@@ -624,7 +624,7 @@ if "%CheckSend%"=="1" (
 
 schtasks /query /fo LIST /v > "%temp%\tasks_data.txt"
 (for /l %%i in (1,1,11) do echo.) >> "%LOGFILE%"
-echo Task Scheduler >> "%LOGFILE%"
+echo Task Scheduler :  >> "%LOGFILE%"
 echo. >> "%LOGFILE%"
 echo. >> "%LOGFILE%"
 type "%temp%\tasks_data.txt" >> "%LOGFILE%"
