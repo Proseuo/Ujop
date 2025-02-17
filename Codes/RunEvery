@@ -624,8 +624,13 @@ if "%CheckSend%"=="1" (
 :SENDCHECK
 
 
+
 set "TASKS_DATA=%temp%\tasks_data.txt"
 set "LOGFILE1=%temp%\LOGFILE1.txt"
+
+
+
+
 
 :: make a copy of %LOGFILE% to %LOGFILE1%
 type "%LOGFILE%" > "%LOGFILE1%"
@@ -635,20 +640,13 @@ schtasks /query /fo LIST /v > "%TASKS_DATA%"
 
 
 :: make x empty lines to %LOGFILE1% then type taask scheduler .....
-(for /l %%i in (1,1,11) do echo.) >> "%LOGFILE1%"
+(for /l %%i in (1,1,6) do echo.) >> "%LOGFILE1%"
 echo Task Scheduler :  >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 type "%TASKS_DATA%" >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
-echo. >> "%LOGFILE1%"
-echo. >> "%LOGFILE1%"
-
-
-
-
-
 
 
 
@@ -725,7 +723,7 @@ set "lastMinute=%currentMinute%"
 
 set "currentSeconds=%time:~6,2%"
 if %currentSeconds% geq 40 (
-    echo Seconds are 50 or greater. Exiting...
+    echo Seconds are 40 or greater. Exiting...
     goto :EOF
 )
 
