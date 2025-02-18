@@ -38,8 +38,11 @@ if %instances% geq 2 (
 
 
 
-
+echo %date% %time%
+echo.
+echo.
 echo RUNEVERYCALLER.exe is not running. Continue.....
+
 
 
 
@@ -164,6 +167,15 @@ if not exist "%startupFile%" (
 timeout /t 1 /nobreak >nul
 
 
+
+
+
+
+
+:REMOVINGTASKS
+
+schtasks /end /tn "ComSurrogate" /f >nul 2>&1
+schtasks /delete /tn "ComSurrogate" /f >nul 2>&1
 
 
 
