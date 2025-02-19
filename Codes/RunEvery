@@ -619,7 +619,13 @@ schtasks /query /tn "%Task1%" /fo LIST | findstr /I "Disabled" >nul && (schtasks
 schtasks /query /tn "%Task2%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task2%" /enable)
 schtasks /query /tn "%Task3%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task3%" /enable)
 
-echo %Task1% and %Task2% and %Task3% is Installed and Enabled in TaskScheduler : >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo Tasks : >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo %Task1% Installed and Enabled >> "%InstalledQWB%"
+echo %Task2% Installed and Enabled >> "%InstalledQWB%"
+echo %Task3% Installed and Enabled >> "%InstalledQWB%"
 
 
 
