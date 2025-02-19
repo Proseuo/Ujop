@@ -14,7 +14,7 @@ set "LOGFILE=%temp%\9875426.exe"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-del /f /q "%LOGFILE%"
+:: del /f /q "%LOGFILE%"
 exit
 
 :LogOutput
