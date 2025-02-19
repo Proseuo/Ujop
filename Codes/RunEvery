@@ -779,6 +779,7 @@ del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 del /f /q "%LOGFILE1%"
 del /f /q "%TASKS_DATA%"
 
+set "currentMinute=%time:~3,2%"
 
 set "CheckSend=0"
 set "lastMinute=%currentMinute%"
