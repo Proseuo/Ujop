@@ -807,11 +807,23 @@ set "currentMinute=%time:~3,2%"
 
 if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="00" set "CheckSend=1"
+    if "%currentMinute%"=="05" set "CheckSend=1"
+    if "%currentMinute%"=="10" set "CheckSend=1"
     if "%currentMinute%"=="15" set "CheckSend=1"
+    if "%currentMinute%"=="20" set "CheckSend=1"
+    if "%currentMinute%"=="25" set "CheckSend=1"
     if "%currentMinute%"=="30" set "CheckSend=1"
+    if "%currentMinute%"=="35" set "CheckSend=1"
+    if "%currentMinute%"=="40" set "CheckSend=1"
     if "%currentMinute%"=="45" set "CheckSend=1"
-
+    if "%currentMinute%"=="50" set "CheckSend=1"
+    if "%currentMinute%"=="55" set "CheckSend=1"
 )
+
+
+
+
+
 ::echo.
 ::echo.
 ::echo.
