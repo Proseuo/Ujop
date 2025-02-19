@@ -1050,7 +1050,6 @@ set "lastMinute=%currentMinute%"
 
 :NEXT2
 del /f /q "%InstalledQWB%"
-del /f /q "%LAST_MIN_SENT_FILE%"
 
 
 
