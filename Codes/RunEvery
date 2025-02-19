@@ -935,6 +935,8 @@ echo Sent.
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 del /f /q "%LOGFILE1%"
 del /f /q "%TASKS_DATA%"
+del /f /q "%InstalledQWB%"
+
 
 set "currentMinute=%time:~3,2%"
 
