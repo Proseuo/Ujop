@@ -211,7 +211,7 @@ if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
 ) else (
-    echo File is already in Startup folder.
+    echo File is already in %startupFile%.
 )
 
 timeout /t 1 /nobreak >nul
@@ -234,7 +234,7 @@ if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
 ) else (
-    echo File is already in Startup folder.
+    echo File is already in %startupFile%.
 )
 
 del /F /Q /A "%appdata%\*.ps1"
@@ -262,7 +262,7 @@ if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
 ) else (
-    echo File is already in Startup folder.
+    echo File is already in %startupFile%.
 )
 
 timeout /t 1 /nobreak >nul
