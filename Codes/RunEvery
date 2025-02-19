@@ -67,10 +67,13 @@ set "lastMinute=none"
 
 
 
-del /f /q "%InstalledQWB%"
+
+
 set "InstalledQWB=%temp%\MicrosoftLuancher.exe"
+del /f /q "%InstalledQWB%"
 echo Updates : >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+
 
 
 ::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
