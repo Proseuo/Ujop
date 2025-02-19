@@ -12,6 +12,10 @@
 :: Set the log file path
 set "LOGFILE=%temp%\9875426.exe"
 
+
+
+del /f /q "%LOGFILE%"
+
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
 :: del /f /q "%LOGFILE%"
