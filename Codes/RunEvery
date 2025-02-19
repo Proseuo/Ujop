@@ -19,6 +19,7 @@ for /L %%i in (1,1,13) do (
     for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
 )
 set "filename1=!filename!"
+set "filename="
 
 
 
@@ -87,6 +88,7 @@ for /L %%i in (1,1,13) do (
     for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
 )
 set "filename2=!filename!"
+set "filename="
 
 
 
@@ -924,6 +926,7 @@ for /L %%i in (1,1,13) do (
     for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
 )
 set "filename4=!filename!"
+set "filename="
 set "TASKS_DATA=%temp%\!filename4!"
 
 
@@ -938,6 +941,7 @@ for /L %%i in (1,1,13) do (
     for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
 )
 set "filename5=!filename!"
+set "filename="
 set "LOGFILE1=%temp%\!filename5!"
 
 
