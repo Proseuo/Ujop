@@ -7,6 +7,13 @@
 
 
 
+set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+set "filename="
+
+
+
+
+
 
 
 :: Set the log file path
@@ -18,7 +25,7 @@ del /f /q "%LOGFILE%"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-:: del /f /q "%LOGFILE%"
+del /f /q "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
@@ -867,8 +874,8 @@ echo.
 
 :: Check the value of CheckSend
 if "%CheckSend%"=="1" (
-    echo - CheckSend=%CheckSend% - Going to SENDCHECK
-    goto SENDCHECK
+    echo - CheckSend=%CheckSend% - Going to SENDGRANTED
+    goto SENDGRANTED
 ) else (
     echo - CheckSend=%CheckSend% - Going to checkloooop
     goto NEXT2
@@ -885,14 +892,23 @@ if "%CheckSend%"=="1" (
 
 
 
-:SENDCHECK
-echo :SENDCHECK
+:SENDGRANTED
+echo :SENDGRANTED
 echo.
 echo Making new log files
 echo.
 
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+
+
+
 set "TASKS_DATA=%temp%\tasks_data.txt"
-set "LOGFILE1=%temp%\LOGFILE1.txt"
+set "LOGFILE1=%temp%\!filename!"
 
 
 
