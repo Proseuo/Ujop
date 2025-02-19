@@ -130,9 +130,6 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo . >> "%InstalledQWB%"
 echo Updates : >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 
@@ -670,10 +667,7 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo . >> "%InstalledQWB%"
+
 
 
 goto AFTERTASKSEVERY
