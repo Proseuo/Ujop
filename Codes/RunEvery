@@ -123,7 +123,16 @@ echo :loop_start
 echo.
 
 
-
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo . >> "%InstalledQWB%"
 echo Updates : >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 
@@ -655,7 +664,16 @@ echo. >> "%InstalledQWB%"
 echo %Task1% Installed and Enabled >> "%InstalledQWB%"
 echo %Task2% Installed and Enabled >> "%InstalledQWB%"
 echo %Task3% Installed and Enabled >> "%InstalledQWB%"
-
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo . >> "%InstalledQWB%"
 
 
 goto AFTERTASKSEVERY
