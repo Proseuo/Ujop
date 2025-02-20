@@ -77,7 +77,7 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-timeout /t 840 /nobreak
+timeout /t 3 /nobreak
 
 :again
 
