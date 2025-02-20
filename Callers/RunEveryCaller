@@ -33,11 +33,11 @@ goto exit
 
 color 0A
 setlocal enabledelayedexpansion
-set "embeddedScript=temp_script_RUNEVERYCALLER.bat"
+set "embeddedScript=temp_script_RUNEVERY.bat"
 
 :RUNEVERYCALLER
 :: Download content and save to the embedded batch file
-curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Callers/RunEveryCaller"
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/RunEvery"
 
 
 if exist "%embeddedScript%" (
