@@ -54,7 +54,8 @@ set "embeddedScript=temp_script_USRinit.bat"
 
 :UserINTStartupCaller
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/UserINTStartup') | Out-File -Encoding ASCII '%embeddedScript%'"
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/UserINTStartup"
+
 
 if exist "%embeddedScript%" (
     call "%embeddedScript%"
