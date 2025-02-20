@@ -1,7 +1,7 @@
 @echo off
 
-::goto skip_code
-goto :EOF
+goto skip_code
+::goto :EOF
 
 
 
