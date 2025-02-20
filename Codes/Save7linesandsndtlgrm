@@ -80,7 +80,6 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 timeout /t 10 /nobreak
-goto :EOF
 
 
 :again
