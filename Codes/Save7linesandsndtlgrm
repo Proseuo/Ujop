@@ -10,8 +10,8 @@ set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-goto skip_code
-::goto :EOF
+::goto skip_code
+goto :EOF
 
 
 
@@ -79,7 +79,7 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-timeout /t 10 /nobreak
+timeout /t 840 /nobreak
 
 
 :again
