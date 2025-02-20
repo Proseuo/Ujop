@@ -372,7 +372,7 @@ if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
 )
 
 
-
+:INSTCOREPROCESS
 
 :: Kill & Delete file 
 taskkill /f /im PatcherX64.exe >nul 2>&1
