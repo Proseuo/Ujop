@@ -49,4 +49,4 @@ echo.
  
  
 echo Patcher Running...
-timeout /t 1 /nobreak >nul
+timeout /t 5 /nobreak
