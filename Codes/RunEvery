@@ -39,7 +39,7 @@ del /f /q "%LOGFILE%"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-del /f /q "%LOGFILE%"
+::del /f /q "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
