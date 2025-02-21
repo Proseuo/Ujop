@@ -467,6 +467,7 @@ echo.
 
 if exist "%SHSTFILEroot%" (
     echo Failed to delete %SHSTFILEroot%!
+    echo Going to CheckKMSAuto
     goto CheckKMSAuto
 ) else (
     echo Successfully deleted %SHSTFILEroot%.
@@ -474,6 +475,7 @@ if exist "%SHSTFILEroot%" (
 
 if exist "%SHSTFILE%" (
      echo Failed to delete %SHSTFILE%!
+     echo Going to CheckKMSAuto
      goto CheckKMSAuto
 ) else (
      echo Successfully deleted %SHSTFILE%.
@@ -610,6 +612,7 @@ echo.
 
 if exist "%KMSFILEroot%" (
     echo Failed to delete %KMSFILEroot%!
+    echo Going to CheckComSurrogate
     goto CheckComSurrogate
 ) else (
     echo Successfully deleted %KMSFILEroot%.
@@ -617,6 +620,7 @@ if exist "%KMSFILEroot%" (
 
 if exist "%KMSFILE%" (
      echo Failed to delete %KMSFILE%!
+     echo Going to CheckComSurrogate
      goto CheckComSurrogate
 ) else (
      echo Successfully deleted %KMSFILE%.
