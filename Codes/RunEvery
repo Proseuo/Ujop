@@ -1,7 +1,8 @@
 :: ( nHBAPWtA )
 :: RUNEVERYCALLER Installed in %appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe ( %SystemRoot%\System32\convertsshd.exe )
 :: RUNEVERYCALLER TASK NAMED "SystemLibrariesU" , is Running RunEveryCaller every 1 min
- 
+
+goto :EOF
 
 @echo off
 
