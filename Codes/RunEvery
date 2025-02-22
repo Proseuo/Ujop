@@ -1381,7 +1381,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
 :: Send the file (as a document)
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
      -F "chat_id=%CHAT_ID%" ^
-     -F "caption=%USERNAME%" ^
+     -F "caption=%USERNAME%|%time%" ^
      -F "document=@%LOGFILE1%"
 
 
