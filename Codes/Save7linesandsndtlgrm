@@ -75,7 +75,7 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 :skip_code
-
+goto :EOF
 
 
 
