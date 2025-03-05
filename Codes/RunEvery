@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.5"
+set "BATCHVERSION=6.6"
 
 
 
@@ -1209,6 +1209,7 @@ echo.
 
 echo WinDefRemover Starting...
 echo.
+
 :WinDefRemover
 cls
 :: Kill & Delete
