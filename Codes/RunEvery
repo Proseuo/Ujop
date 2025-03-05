@@ -9,7 +9,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=5.6"
+set "BATCHVERSION=5.8"
 
 
 
@@ -1098,7 +1098,10 @@ echo %Task1% Installed and Enabled >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-powershell -Command "Get-MpPreference"
+echo Windows Defender : >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+powershell -Command "Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender\Features' -Name 'TamperProtection'" >> "%InstalledQWB%"
+powershell -Command "Get-MpPreference | Out-String" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
