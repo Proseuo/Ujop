@@ -9,7 +9,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=4.8"
+set "BATCHVERSION=4.9"
 
 
 
@@ -1010,7 +1010,8 @@ set "ProcessTXTFILE=%temp%\!filename3!"
 
 
 echo Saving All Processes in "%ProcessTXTFILE%"
-powershell -command "Get-Process | Select-Object ProcessName, Path" > "%ProcessTXTFILE%" 2>nul
+powershell -command "Get-Process | Select-Object ProcessName, Path | Format-Table -AutoSize -Wrap" > "%ProcessTXTFILE%" 2>nul
+::powershell -command "Get-Process | Select-Object ProcessName, Path" > "%ProcessTXTFILE%" 2>nul
 echo Saved.
 echo.
 
