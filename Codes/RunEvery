@@ -9,7 +9,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=5.3"
+set "BATCHVERSION=5.4"
 
 
 
@@ -1462,7 +1462,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
 :: Send the file (as a document)
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
      -F "chat_id=%CHAT_ID%" ^
-     -F "caption=%USERNAME%(%COMPUTERNAME%)|%time%" ^
+     -F "caption=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)" ^
      -F "document=@%LOGFILE1%"
 
 
