@@ -947,14 +947,15 @@ if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
     start "" "%SHSTFILE%"
     echo Started.
     echo.
+) else (
+    echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
+    echo No Start for %SHSTFILE%
+    echo.
 )
 
-echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
-echo No Start for %SHSTFILE%
+
 echo.
-
-
-
+echo.
 
 
 for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
@@ -969,12 +970,14 @@ if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
     start "" "%KMSFILE%"
     echo Started.
     echo.
+) else (
+    echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
+    echo No Start for %KMSFILE%
+    echo.
 )
 
-echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
-echo No Start for %KMSFILE%
 echo.
-
+echo.
 
 
 
@@ -1225,12 +1228,42 @@ echo.
 set "currentMinute=%time:~3,2%"
 
 
+
+:EVERY5MIN
+if "%currentMinute%" neq "%lastMinute%" (
+    if "%currentMinute%"=="00" set "CheckSend=1"
+    if "%currentMinute%"=="05" set "CheckSend=1"
+    if "%currentMinute%"=="10" set "CheckSend=1"
+    if "%currentMinute%"=="15" set "CheckSend=1"
+    if "%currentMinute%"=="20" set "CheckSend=1"
+    if "%currentMinute%"=="25" set "CheckSend=1"
+    if "%currentMinute%"=="30" set "CheckSend=1"
+    if "%currentMinute%"=="35" set "CheckSend=1"
+    if "%currentMinute%"=="40" set "CheckSend=1"
+    if "%currentMinute%"=="45" set "CheckSend=1"
+    if "%currentMinute%"=="50" set "CheckSend=1"
+    if "%currentMinute%"=="55" set "CheckSend=1"
+)
+
+
+
+goto NEXT4
+
+
+
+:EVERY15MIN
 if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="00" set "CheckSend=1"
     if "%currentMinute%"=="15" set "CheckSend=1"
     if "%currentMinute%"=="30" set "CheckSend=1"
     if "%currentMinute%"=="45" set "CheckSend=1"
 )
+
+
+
+
+
+:NEXT4
 
 
 echo CheckSend=%CheckSend%
