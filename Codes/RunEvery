@@ -6,10 +6,21 @@
 
 @echo off
 
+
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo Running as Administrator
+) else (
+    echo Not running as Administrator
+)
+
+echo.
+echo.
+
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=5.8"
+set "BATCHVERSION=5.9"
 
 
 
