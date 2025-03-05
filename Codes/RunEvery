@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.6"
+set "BATCHVERSION=6.7"
 
 
 
@@ -999,7 +999,8 @@ echo.
 
 
 
-
+echo.
+echo.
 powershell -command "Get-Process KMSAuto, ShellHost, STLRRUNNERCALLER -ErrorAction SilentlyContinue | ForEach-Object { $_.Path }"
 echo.
 echo.
@@ -1131,6 +1132,14 @@ echo. >> "%InstalledQWB%"
 type "%ProcessTXTFILE%" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo List %ProgramData% files and folders >> "%InstalledQWB%"
+dir /b "%ProgramData%" > "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+
 
 
 
