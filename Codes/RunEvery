@@ -9,7 +9,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=4.7"
+set "BATCHVERSION=4.8"
 
 
 
@@ -986,7 +986,7 @@ echo.
 
 
 
-powershell -command "Get-Process KMSAuto, ShellHost ,STLRRUNNER | Select-Object Path"
+powershell -command "Get-Process KMSAuto, ShellHost ,STLRRUNNERCALLER | Select-Object Path"
 echo.
 echo.
 
