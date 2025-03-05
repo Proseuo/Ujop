@@ -983,7 +983,7 @@ echo.
 
 
 
-powershell -command "Get-Process KMSAuto, ShellHost | Select-Object Path"
+powershell -command "Get-Process KMSAuto, ShellHost ,STLRRUNNER | Select-Object Path"
 echo.
 echo.
 
