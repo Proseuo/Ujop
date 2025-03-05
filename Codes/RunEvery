@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.2"
+set "BATCHVERSION=6.3"
 
 
 
@@ -1265,6 +1265,9 @@ echo.
 	goto WinDefRemover
 )
 
+
+set "MESSAGE=%MESSAGE%WinDefRemover^|"
+set "CheckSend=1"
 
 
 echo.
