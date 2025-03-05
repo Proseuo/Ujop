@@ -1358,12 +1358,18 @@ echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
+goto NEXT5
+
+
 echo Task Scheduler :  >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 type "%TASKS_DATA%" >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
+
+
+:NEXT5
 
 
 echo Done. new log files
