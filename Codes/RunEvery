@@ -9,7 +9,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=5.5"
+set "BATCHVERSION=5.6"
 
 
 
@@ -1095,6 +1095,13 @@ echo. >> "%InstalledQWB%"
 echo Tasks : >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo %Task1% Installed and Enabled >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+powershell -Command "Get-MpPreference"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
