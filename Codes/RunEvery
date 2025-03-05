@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.0"
+set "BATCHVERSION=6.1"
 
 
 
@@ -48,16 +48,6 @@ exit
 
 
 
-net session >nul 2>&1
-if %errorLevel% == 0 (
-    echo Running as Administrator
-) else (
-    echo Not running as Administrator
-)
-
-echo.
-echo.
-
 
 
 
@@ -80,6 +70,18 @@ if %instances% geq 2 (
 echo %date% %time%
 echo.
 echo.
+
+
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo Running as Administrator
+) else (
+    echo Not running as Administrator
+)
+
+echo.
+echo.
+
 echo RUNEVERYCALLER.exe is not running. Continue.....
 
 
