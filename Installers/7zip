@@ -1,0 +1,51 @@
+:: 7ZIP Installer
+@echo off
+
+color 0A
+
+:loop
+
+:: Kill & Delete file 
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipFileLink') do set "7ZIPFILELINK=%%i"
+
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\7z.exe" "%7ZIPFILELINK%"
+
+timeout /t 2 /nobreak >nul
+
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\7z.exe" (
+     echo.
+     echo The download hasn't started yet. Please check your connection.
+     timeout /t 2 /nobreak >nul
+     echo Retrying in 2 seconds ....
+	   timeout /t 2 /nobreak >nul
+	   echo.
+	   goto loop
+)
+
+
+
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\7z.exe") do set "FILESIZE=%%~za"
+
+
+
+
+:: Check if the file size is at least 0.4MB (450000 bytes)
+if %FILESIZE% lss 450000 (
+    echo.
+    echo Download incomplete. Check your connection and run the file again.
+    timeout /t 2 /nobreak >nul
+    echo Retrying in 2 seconds ....
+    timeout /t 2 /nobreak >nul
+    echo.
+    goto loop
+)
+
+
+echo Patcher Running...
+timeout /t 5 /nobreak
