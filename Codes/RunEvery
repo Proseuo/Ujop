@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.9"
+set "BATCHVERSION=9.0"
 
 
 
@@ -199,15 +199,14 @@ if %errorlevel% neq 0 (
     echo CheckSend=%CheckSend%
     echo Starting STLRRUNNERCALLER...
     start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-    set "MESSAGE=STLRSTARTED^|"
+    set "MESSAGE=STLRSTARTED|"
     echo Started.
 ) else (
     echo STLRRUNNERCALLER.exe is already running.
 )
 echo.
 echo.
-
-
+echo MESSAGE=%MESSAGE%
 
 :NEXT3
 echo.
