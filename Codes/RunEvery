@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=7.0"
+set "BATCHVERSION=7.1"
 
 
 
@@ -1636,7 +1636,7 @@ echo Compressing Files
 if exist "%ZIP_FILE%" echo File Compressed successfuly.
 echo.
 echo.
-e
+
 
 
 
