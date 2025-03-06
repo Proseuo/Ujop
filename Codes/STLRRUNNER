@@ -3,7 +3,7 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=1.3"
+set "BATCHVERSION=1.4"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
