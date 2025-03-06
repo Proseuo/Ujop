@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=7.6"
+set "BATCHVERSION=7.8"
 
 
 
@@ -92,7 +92,7 @@ echo RUNEVERYCALLER.exe is not running. Continue.....
 
 
 
-
+goto NEXT9
 
 
 
@@ -107,7 +107,7 @@ curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBu
 
 
 
-
+:NEXT9
 
 
 
