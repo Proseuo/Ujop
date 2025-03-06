@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.0"
+set "BATCHVERSION=9.1"
 
 
 
@@ -206,7 +206,7 @@ if %errorlevel% neq 0 (
 )
 echo.
 echo.
-echo MESSAGE=%MESSAGE%
+echo CheckSend=%CheckSend% and MESSAGE=%MESSAGE%
 
 :NEXT3
 echo.
