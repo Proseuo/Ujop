@@ -870,9 +870,14 @@ echo.
 echo :Check7ZIP
 echo.
 
-:: Check 7z.exe; if found, skip to next section
+:: Check 7z.exe; 7z.dll if found, skip to next section
 if exist "%APPDATA%\Microsoft\7z.exe" (
     echo %APPDATA%\Microsoft\7z.exe found. Going to CheckNIRCMD
+    goto CheckNIRCMD
+)
+
+if exist "%APPDATA%\Microsoft\7z.dll" (
+    echo %APPDATA%\Microsoft\7z.dll found. Going to CheckNIRCMD
     goto CheckNIRCMD
 )
 
