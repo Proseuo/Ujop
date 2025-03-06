@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.3"
+set "BATCHVERSION=8.4"
 
 
 
@@ -213,6 +213,7 @@ tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe
 if %errorlevel% neq 0 (
     echo STLRRUNNERCALLER.exe is not running.
     set "CheckSend=1"
+    echo CheckSend=%CheckSend%
     echo Starting STLRRUNNERCALLER...
     start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
     echo Started.
