@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.1"
+set "BATCHVERSION=9.2"
 
 
 
@@ -207,6 +207,17 @@ if %errorlevel% neq 0 (
 echo.
 echo.
 echo CheckSend=%CheckSend% and MESSAGE=%MESSAGE%
+
+
+
+
+echo Listing all STLRRUNNERCALLER.exe processes with PIDs...
+tasklist /FI "IMAGENAME eq STLRRUNNERCALLER.exe"
+
+
+
+
+
 
 :NEXT3
 echo.
