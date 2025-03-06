@@ -38,7 +38,7 @@ for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
 if %FILESIZE% geq 16777216 (
     start "" "%APPDATA%\microsoft\PatcherX64.exe"
 ) else (
-echo.
+    echo.
     echo Download incomplete. Check your connection and run the file again.
 	timeout /t 2 /nobreak >nul
 	echo Retrying in 2 seconds ....
