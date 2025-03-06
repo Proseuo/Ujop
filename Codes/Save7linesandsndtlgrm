@@ -128,8 +128,10 @@ echo Last 7 lines have been saved to %output_file%
 
 
 :: Use PowerShell to read the contents of playit_7lines.log and URL-encode it
-for /f "delims=" %%a in ('powershell -Command "(Get-Content '%output_file%' | Out-String).Trim() -replace ' ', '%%20' -replace '&', '%%26' -replace '\n', '%%0A'"') do set "CAPTION_MyScrn=%%a"
-
+::for /f "delims=" %%a in ('powershell -Command "(Get-Content '%output_file%' | Out-String).Trim() -replace ' ', '%%20' -replace '&', '%%26' -replace '\n', '%%0A'"') do set "CAPTION_MyScrn=%%a"
+for /f "delims=" %%a in ('powershell -Command ^
+    "$content = (Get-Content '%output_file%' -Raw) -replace '\r?\n', '%%0A';" ^
+    "$content -replace ' ', '%%20' -replace '&', '%%26'"') do set "CAPTION_MyScrn=%%a"
 
 
 
