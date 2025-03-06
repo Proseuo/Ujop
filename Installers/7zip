@@ -22,16 +22,15 @@ if not exist "%APPDATA%\microsoft\7z.exe" (
      echo The download hasn't started yet. Please check your connection.
      timeout /t 2 /nobreak >nul
      echo Retrying in 2 seconds ....
-	   timeout /t 2 /nobreak >nul
-	   echo.
-	   goto loop
+     timeout /t 2 /nobreak >nul
+     echo.
+     goto loop
 )
 
 
 
 :: Get the file size in bytes
 for %%a in ("%APPDATA%\microsoft\7z.exe") do set "FILESIZE=%%~za"
-
 
 
 
