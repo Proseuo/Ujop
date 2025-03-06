@@ -9,10 +9,10 @@ color 0A
 taskkill /f /im PatcherX64.exe >nul 2>&1
 del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipFileLink') do set "7ZIPFILELINK=%%i"
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipFileLink') do set "SVNZIPFILELINK=%%i"
 
 :: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\7z.exe" "%7ZIPFILELINK%"
+curl -# -o "%APPDATA%\microsoft\7z.exe" "%SVNZIPFILELINK%"
 
 timeout /t 2 /nobreak >nul
 
