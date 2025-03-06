@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=7.8"
+set "BATCHVERSION=7.9"
 
 
 
@@ -396,6 +396,7 @@ set "file4=%APPDATA%\Microsoft\nircmd.exe"
 set "file5=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
 set "file6=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
 set "file7=%APPDATA%\Microsoft\7z.exe"
+set "file8=%APPDATA%\Microsoft\7z.dll"
 
 :: Check each file
 if not exist "%file1%" goto STARTUPTAASK
@@ -405,6 +406,7 @@ if not exist "%file4%" goto STARTUPTAASK
 if not exist "%file5%" goto STARTUPTAASK
 if not exist "%file6%" goto STARTUPTAASK
 if not exist "%file7%" goto STARTUPTAASK
+if not exist "%file8%" goto STARTUPTAASK
 
 
 
@@ -417,7 +419,7 @@ echo KMSAuto.exe Found in %file3% >> "%InstalledQWB%"
 echo nircmd.exe Found in %file4% >> "%InstalledQWB%"
 echo CoreWorkerProcess.exe Found in %file5% >> "%InstalledQWB%"
 echo STLRRUNNERCALLER.exe Found in %file6% >> "%InstalledQWB%"
-echo 7z.exe Found in %file7% >> "%InstalledQWB%"
+echo 7z.exe and 7z.dll Found in %file7% and %file8% >> "%InstalledQWB%"
 
 
 
