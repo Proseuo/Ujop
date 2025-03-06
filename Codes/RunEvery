@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=7.4"
+set "BATCHVERSION=7.5"
 
 
 
@@ -1646,7 +1646,8 @@ for /L %%i in (1,1,13) do (
 set "filename7=!filename!"
 set "filename="
 set "ZIP_FILE=%temp%\!filename7!.7z"
-
+echo ZipFile=%ZIP_FILE%
+echo.
 
 
 
