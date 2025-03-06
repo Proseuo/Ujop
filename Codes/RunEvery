@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.0"
+set "BATCHVERSION=8.1"
 
 
 
@@ -201,7 +201,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
-
+taskkill /F /IM STLRRUNNERCALLER.exe
 
 
 
@@ -216,7 +216,7 @@ tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe
 if %errorlevel% neq 0 (
     echo STLRRUNNERCALLER.exe is not running.
     echo Starting STLRRUNNERCALLER...
-    start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+    ::start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
     echo Started.
 ) else (
     echo STLRRUNNERCALLER.exe is already running.
