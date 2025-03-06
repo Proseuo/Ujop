@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=7.1"
+set "BATCHVERSION=7.2"
 
 
 
@@ -86,6 +86,32 @@ echo.
 echo.
 
 echo RUNEVERYCALLER.exe is not running. Continue.....
+
+
+
+
+
+
+
+
+
+:: Set bot token, chat ID, and message
+set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID=-1002163721260"
+set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%.....|%time%|(v%BATCHVERSION%)"
+
+
+:: URL encode the message by replacing spaces with %20
+set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
+
+:: Send the message using curl
+curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
+     -d "chat_id=%CHAT_ID%" ^
+     -d "text=%ENCODED_MESSAGE%"
+
+
+
+
 
 
 
