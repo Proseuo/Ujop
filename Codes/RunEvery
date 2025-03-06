@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=7.5"
+set "BATCHVERSION=7.6"
 
 
 
@@ -1646,19 +1646,19 @@ for /L %%i in (1,1,13) do (
 set "filename7=!filename!"
 set "filename="
 set "ZIP_FILE=%temp%\!filename7!.7z"
-echo ZipFile=%ZIP_FILE%
+echo ZIP_FILE="%ZIP_FILE%"
 echo.
 
 
 
-set "7zip_PATH=%APPDATA%\microsoft\7z.exe"
+set "SVNzip_PATH=%APPDATA%\microsoft\7z.exe"
 set "Password=VProv7"
 set "File1=%USERPROFILE%\Downloads\screenshot.png"
 set "File2=%LOGFILE1%"
 
 
 echo Compressing Files
-"%7zip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILE%" "%File1%" "%File2%"
+"%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILE%" "%File1%" "%File2%"
 if exist "%ZIP_FILE%" echo File Compressed successfuly.
 echo.
 echo.
