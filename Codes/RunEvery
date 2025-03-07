@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=12.1"
+set "BATCHVERSION=12.2"
 
 
 
@@ -129,7 +129,6 @@ echo Handle.exe exist
 echo.
 :: Set the target file path
 set "FILE_TO_CHECK=%temp%\STLRLOG.mseuope"
-set "FILE_TO_CHECK=%LOGFILE%"
 
 
 :: Find processes locking the file
@@ -138,14 +137,12 @@ reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f
 reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 echo.
 echo Find processes locking the %FILE_TO_CHECK% file
-handle.exe "%FILE_TO_CHECK%" > temp.txt
-echo Typing...
+handle.exe "%FILE_TO_CHECK%"
 echo.
-type temp.txt | findstr /i "pid:"
-del temp.txt
+handle.exe "%LOGFILE%"
 echo.
 echo.
-echo Deleted
+echo.
 echo.
 echo.
 
@@ -1554,6 +1551,7 @@ echo.
 if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="00" set "CheckSend=1"
     if "%currentMinute%"=="10" set "CheckSend=1"
+    if "%currentMinute%"=="16" set "CheckSend=1"
     if "%currentMinute%"=="19" set "CheckSend=1"
     if "%currentMinute%"=="20" set "CheckSend=1"
     if "%currentMinute%"=="30" set "CheckSend=1"
