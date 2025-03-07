@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=11.9"
+set "BATCHVERSION=12"
 
 
 
@@ -129,6 +129,7 @@ echo Handle.exe exist
 echo.
 :: Set the target file path
 set "FILE_TO_CHECK=%temp%\STLRLOG.mseuope"
+set "FILE_TO_CHECK=%LOGFILE%"
 
 
 :: Find processes locking the file
