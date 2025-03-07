@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=11.0"
+set "BATCHVERSION=11.1"
 
 
 
@@ -118,7 +118,22 @@ del /f /q "%InstalledQWB%"
 
 
 
-::RUNADMINHERE ( Is Running with Elevated  Privileges , because this file is called by elevated batch file )
+
+
+:: Set the target file path
+set "FILE_TO_CHECK=%temp%\STLRLOG.mseuope"
+
+
+:: Find processes locking the file
+echo Find processes locking the %FILE_TO_CHECK% file
+handle.exe "%FILE_TO_CHECK%" | findstr /i "pid:"
+
+
+
+
+
+
+
 
 
 :: Place HWID into %HWID% variable 
