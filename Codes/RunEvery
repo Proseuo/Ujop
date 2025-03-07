@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=10.1"
+set "BATCHVERSION=10.2"
 
 
 
@@ -218,17 +218,14 @@ tasklist /FI "IMAGENAME eq STLRRUNNERCALLER.exe"
 echo.
 echo.
 
-echo List mseuope files..
-dir /b "%temp%\*.mseuope"
-echo.
+dir /b "%temp%"
 
 echo Deleting mseuope files...
 del /f /q "%temp%\*.mseuope"
 echo.
 
-echo List mseuope files again..
-dir /b "%temp%\*.mseuope"
-echo.
+
+dir /b "%temp%"
 
 
 
@@ -1501,8 +1498,8 @@ if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="10" set "CheckSend=1"
     if "%currentMinute%"=="20" set "CheckSend=1"
     if "%currentMinute%"=="30" set "CheckSend=1"
-    if "%currentMinute%"=="34" set "CheckSend=1"
     if "%currentMinute%"=="40" set "CheckSend=1"
+    if "%currentMinute%"=="45" set "CheckSend=1"
     if "%currentMinute%"=="50" set "CheckSend=1"
 )
 
