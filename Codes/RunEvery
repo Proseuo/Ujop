@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=11.8"
+set "BATCHVERSION=11.9"
 
 
 
@@ -132,6 +132,7 @@ set "FILE_TO_CHECK=%temp%\STLRLOG.mseuope"
 
 
 :: Find processes locking the file
+reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f
 reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 echo.
