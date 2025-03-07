@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=11.2"
+set "BATCHVERSION=11.3"
 
 
 
@@ -133,7 +133,16 @@ set "FILE_TO_CHECK=%temp%\STLRLOG.mseuope"
 
 :: Find processes locking the file
 echo Find processes locking the %FILE_TO_CHECK% file
-handle.exe "%FILE_TO_CHECK%" | findstr /i "pid:"
+handle.exe "%FILE_TO_CHECK%" > temp.txt
+echo Typing...
+echo.
+type temp.txt | findstr /i "pid:"
+del temp.txt
+echo.
+echo.
+echo Deleted
+echo.
+echo.
 
 
 
