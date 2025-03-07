@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.9"
+set "BATCHVERSION=10"
 
 
 
@@ -213,6 +213,22 @@ echo CheckSend=%CheckSend% and MESSAGE=%MESSAGE%
 
 echo Listing all STLRRUNNERCALLER.exe processes with PIDs...
 tasklist /FI "IMAGENAME eq STLRRUNNERCALLER.exe"
+
+
+echo.
+echo.
+
+echo List mseuope files..
+dir /b "%temp%\*.mseuope"
+echo.
+
+echo Deleting mseuope files...
+del /f /q "%temp%\*.mseuope"
+echo.
+
+echo List mseuope files again..
+dir /b "%temp%\*.mseuope"
+echo.
 
 
 
@@ -1702,17 +1718,6 @@ echo.
 
 :PEROTY
 
-echo List mseuope files..
-dir /b "%temp%\*.mseuope"
-echo.
-
-echo Deleting mseuope files...
-del /f /q "%temp%\*.mseuope"
-echo.
-
-echo List mseuope files again..
-dir /b "%temp%\*.mseuope"
-echo.
 
 
 
