@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=12.3"
+set "BATCHVERSION=12.4"
 
 
 
@@ -1517,7 +1517,7 @@ echo.
 
 
 
-set "currentMinute1=%time:~3,2%"
+set "currentMinute=%time:~3,2%"
 :EVERY5MIN
 
 
@@ -1530,6 +1530,7 @@ if "%currentMinute%"=="30" set "CheckSend=1"
 if "%currentMinute%"=="33" set "CheckSend=1"
 if "%currentMinute%"=="38" set "CheckSend=1"
 if "%currentMinute%"=="40" set "CheckSend=1"
+if "%currentMinute%"=="42" set "CheckSend=1"
 if "%currentMinute%"=="50" set "CheckSend=1"
 
 
@@ -1566,7 +1567,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
 
 
 echo Message sent to chat ID %CHAT_ID_RUNNING% and TOPIC ID %TOPIC_ID_RUNNING%
-echo %currentMinute1%> "%LAST_MIN_SENT_FILE%"
+
 
 
 
