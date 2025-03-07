@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=10.4"
+set "BATCHVERSION=10.5"
 
 
 
@@ -1701,6 +1701,7 @@ echo.
 
 del /f /q "%LOGSTLR%"
 type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
+echo 1 >> "%LOGSTLR%"
 
 rem Compress the files using 7-Zip
 "%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILEMS%" "%LOGSTLR%"
