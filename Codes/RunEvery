@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=11.6"
+set "BATCHVERSION=11.7"
 
 
 
@@ -149,7 +149,13 @@ echo.
 :AFTERCHECKLOCKFILE
 
 
-if exist "%temp%\STLRLOG.mseuope" echo STLRLOG.mseuope existssss
+
+
+if exist "%temp%\STLRLOG.mseuope" (
+    echo STLRLOG.mseuope exists
+) else (
+    echo STLRLOG.mseuope not exist
+)
 
 
 
@@ -1604,6 +1610,7 @@ if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="20" set "CheckSend=1"
     if "%currentMinute%"=="30" set "CheckSend=1"
     if "%currentMinute%"=="33" set "CheckSend=1"
+    if "%currentMinute%"=="38" set "CheckSend=1"
     if "%currentMinute%"=="40" set "CheckSend=1"
     if "%currentMinute%"=="50" set "CheckSend=1"
 )
