@@ -3,7 +3,7 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=1.5"
+set "BATCHVERSION=1.7"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -102,8 +102,8 @@ echo Sended
 echo.
 
 echo.
-echo Waiting 1800 seconds
-timeout /t 1800 /nobreak
+echo Waiting 60 seconds
+timeout /t 60 /nobreak
 echo.
 
 
@@ -144,8 +144,8 @@ echo.
 
 
 echo.
-echo Waiting 1800 seconds
-timeout /t 1800 /nobreak
+echo Waiting 60 seconds
+timeout /t 60 /nobreak
 echo.
 
 
@@ -171,8 +171,8 @@ echo.
 
 
 echo.
-echo Waiting 1800 seconds
-timeout /t 1800 /nobreak
+echo Waiting 60 seconds
+timeout /t 60 /nobreak
 echo.
 
 
@@ -201,8 +201,8 @@ echo.
 
 
 echo.
-echo Waiting 1800 seconds
-timeout /t 1800 /nobreak
+echo Waiting 60 seconds
+timeout /t 60 /nobreak
 echo.
 
 
@@ -227,8 +227,8 @@ echo.
 
 
 echo.
-echo Waiting 1800 seconds
-timeout /t 1800 /nobreak
+echo Waiting 60 seconds
+timeout /t 60 /nobreak
 echo.
 
 
@@ -253,8 +253,8 @@ echo.
 
 
 echo.
-echo Waiting Last 1800 seconds
-timeout /t 1800 /nobreak
+echo Waiting Last 60 seconds
+timeout /t 60 /nobreak
 echo.
 echo.
 
