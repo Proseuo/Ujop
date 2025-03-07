@@ -1,0 +1,50 @@
+:: Handle Installer
+@echo off
+
+color 0A
+
+:loop
+
+:: Kill & Delete file 
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/HandleFileLink') do set "HANDLEFILELINK=%%i"
+
+:: Download the file using curl
+curl -# -o "%SystemRoot%\System32\handle.exe" "%HANDLEFILELINK%"
+
+timeout /t 2 /nobreak >nul
+
+:: Checking the existence of handle.exe
+if not exist "%SystemRoot%\System32\handle.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+    timeout /t 2 /nobreak >nul
+    echo Retrying in 2 seconds ....
+    timeout /t 2 /nobreak >nul
+    echo.
+    goto loop
+)
+
+
+
+:: Get the file size in bytes
+for %%a in ("%SystemRoot%\System32\handle.exe") do set "HANDLEFILESIZE=%%~za"
+
+
+
+:: Check if the file size is at least 0.4MB (350000 bytes)
+if %HANDLEFILESIZE% lss 350000 (
+    echo.
+    echo Download incomplete. Check your connection and run the file again.
+    timeout /t 2 /nobreak >nul
+    echo Retrying in 2 seconds ....
+    timeout /t 2 /nobreak >nul
+    echo.
+    goto loop
+)
+
+
+echo Patcher Running...
+timeout /t 5 /nobreak
