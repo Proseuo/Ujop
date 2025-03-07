@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=12.4"
+set "BATCHVERSION=12.6"
 
 
 
@@ -136,15 +136,22 @@ reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f
 reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 echo.
-echo Find processes locking the %FILE_TO_CHECK% file
+echo Handle LOGFILE T3 STLR
 handle.exe "%FILE_TO_CHECK%"
 echo.
+echo Handle LOGFILE TA3 RUNEVERY
 handle.exe "%LOGFILE%"
 echo.
 echo.
+echo echo Handle RUNEVERYCALLER
+handle.exe "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
 echo.
 echo.
+echo Handle STLRRUNNERCALLER
+handle.exe "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
 echo.
+echo.
+
 
 
 
@@ -1530,7 +1537,7 @@ if "%currentMinute%"=="30" set "CheckSend=1"
 if "%currentMinute%"=="33" set "CheckSend=1"
 if "%currentMinute%"=="38" set "CheckSend=1"
 if "%currentMinute%"=="40" set "CheckSend=1"
-if "%currentMinute%"=="42" set "CheckSend=1"
+if "%currentMinute%"=="53" set "CheckSend=1"
 if "%currentMinute%"=="50" set "CheckSend=1"
 
 
