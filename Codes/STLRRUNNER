@@ -3,7 +3,7 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=3.1"
+set "BATCHVERSION=3.2"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -61,9 +61,9 @@ goto :EOF
 
 :LogOutput
 
-
-
-
+echo.
+echo Timeis=%time%
+echo.
 
 
 :: ============ STLR TOPIC ============
