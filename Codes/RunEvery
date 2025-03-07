@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.7"
+set "BATCHVERSION=9.8"
 
 
 
@@ -180,9 +180,9 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
-
+echo Killing Task
 :: taskkill /F /IM STLRRUNNERCALLER.exe
-
+echo.
 
 
 :: Check if the file exists
