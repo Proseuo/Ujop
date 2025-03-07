@@ -3,7 +3,7 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=2"
+set "BATCHVERSION=3.1"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -101,7 +101,7 @@ if %errorlevel% neq 0 (
 
 
 
-
+echo Timeis=%time%
 echo.
 echo Sending"%ENCODED_MESSAGE_STLR%"
 
@@ -119,10 +119,17 @@ echo.
 
 
 echo.
+echo.
+echo Timeis=%time%
+echo.
+echo.
 echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
 echo.
-
+echo.
+echo Timeis=%time%
+echo.
+echo.
 
 
 echo Starting COM
@@ -134,6 +141,9 @@ echo Started
 
 
 
+echo.
+echo Timeis=%time%
+echo.
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendMessage" ^
      -d "chat_id=%CHAT_ID_STLR%" ^
      -d "message_thread_id=%TOPIC_ID_STLR%" ^
@@ -163,9 +173,18 @@ echo.
 
 
 
+
+echo.
+echo.
+echo Timeis=%time%
+echo.
 echo.
 echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
+echo.
+echo.
+echo Timeis=%time%
+echo.
 echo.
 
 
@@ -176,6 +195,8 @@ set "ENCODED_MESSAGE_STLR=%MESSAGE_STLR: =%%2"
 
 echo.
 echo Sending"%ENCODED_MESSAGE_STLR%"
+
+
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendMessage" ^
      -d "chat_id=%CHAT_ID_STLR%" ^
@@ -192,12 +213,18 @@ echo.
 
 
 
-
+echo.
+echo.
+echo Timeis=%time%
+echo.
 echo.
 echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
 echo.
-
+echo.
+echo Timeis=%time%
+echo.
+echo.
 
 
 
@@ -222,12 +249,18 @@ echo.
 
 
 
-
+echo.
+echo.
+echo Timeis=%time%
+echo.
 echo.
 echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
 echo.
-
+echo.
+echo Timeis=%time%
+echo.
+echo.
 
 
 
@@ -249,15 +282,18 @@ echo Sended
 echo.
 
 
-
-
-
+echo.
+echo.
+echo Timeis=%time%
+echo.
 echo.
 echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
 echo.
-
-
+echo.
+echo Timeis=%time%
+echo.
+echo.
 
 
 set "MESSAGE_STLR=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|1H.LEFTFORSTARTCOM..|%time%|(v%BATCHVERSION%)"
@@ -281,8 +317,15 @@ echo.
 
 
 echo.
-echo Waiting Last 1800 seconds
+echo.
+echo Timeis=%time%
+echo.
+echo.
+echo Waiting 1800 seconds
 timeout /t 1800 /nobreak
+echo.
+echo.
+echo Timeis=%time%
 echo.
 echo.
 
@@ -299,6 +342,11 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendDocument" ^
      -F "document=@%FILE_PATH_STLR%"
 
 
+echo.
+echo.
+echo Timeis=%time%
+echo.
+echo.
 
 echo SentSuccess
 
