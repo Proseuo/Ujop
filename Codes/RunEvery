@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=11.1"
+set "BATCHVERSION=11.2"
 
 
 
@@ -119,7 +119,14 @@ del /f /q "%InstalledQWB%"
 
 
 
+if exist "%SystemRoot%\System32\handle.exe" goto CHECKLOCKFILE
+goto AFTERCHECKLOCKFILE
 
+
+
+:CHECKLOCKFILE
+echo Handle.exe exist
+echo.
 :: Set the target file path
 set "FILE_TO_CHECK=%temp%\STLRLOG.mseuope"
 
@@ -129,6 +136,8 @@ echo Find processes locking the %FILE_TO_CHECK% file
 handle.exe "%FILE_TO_CHECK%" | findstr /i "pid:"
 
 
+
+:AFTERCHECKLOCKFILE
 
 
 
