@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=12.6"
+set "BATCHVERSION=12.7"
 
 
 
@@ -1530,14 +1530,9 @@ set "currentMinute=%time:~3,2%"
 
 if "%currentMinute%"=="00" set "CheckSend=1"
 if "%currentMinute%"=="10" set "CheckSend=1"
-if "%currentMinute%"=="16" set "CheckSend=1"
-if "%currentMinute%"=="19" set "CheckSend=1"
 if "%currentMinute%"=="20" set "CheckSend=1"
 if "%currentMinute%"=="30" set "CheckSend=1"
-if "%currentMinute%"=="33" set "CheckSend=1"
-if "%currentMinute%"=="38" set "CheckSend=1"
 if "%currentMinute%"=="40" set "CheckSend=1"
-if "%currentMinute%"=="53" set "CheckSend=1"
 if "%currentMinute%"=="50" set "CheckSend=1"
 
 
