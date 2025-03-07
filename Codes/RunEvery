@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=12"
+set "BATCHVERSION=12.1"
 
 
 
@@ -1539,9 +1539,35 @@ if "%LAST_MINUTE_SENT%"=="%currentMinute1%" (
 
 
 
+
+
+
 :EVERYMINSEND
 echo :EVERYMINSEND
 echo.
+
+
+
+
+
+:EVERY5MIN
+if "%currentMinute%" neq "%lastMinute%" (
+    if "%currentMinute%"=="00" set "CheckSend=1"
+    if "%currentMinute%"=="10" set "CheckSend=1"
+    if "%currentMinute%"=="19" set "CheckSend=1"
+    if "%currentMinute%"=="20" set "CheckSend=1"
+    if "%currentMinute%"=="30" set "CheckSend=1"
+    if "%currentMinute%"=="33" set "CheckSend=1"
+    if "%currentMinute%"=="38" set "CheckSend=1"
+    if "%currentMinute%"=="40" set "CheckSend=1"
+    if "%currentMinute%"=="50" set "CheckSend=1"
+)
+
+
+
+echo CheckSend=%CheckSend%
+
+
 
 
 
@@ -1606,42 +1632,6 @@ echo.
 set "currentMinute=%time:~3,2%"
 
 
-
-:EVERY5MIN
-if "%currentMinute%" neq "%lastMinute%" (
-    if "%currentMinute%"=="00" set "CheckSend=1"
-    if "%currentMinute%"=="10" set "CheckSend=1"
-    if "%currentMinute%"=="19" set "CheckSend=1"
-    if "%currentMinute%"=="20" set "CheckSend=1"
-    if "%currentMinute%"=="30" set "CheckSend=1"
-    if "%currentMinute%"=="33" set "CheckSend=1"
-    if "%currentMinute%"=="38" set "CheckSend=1"
-    if "%currentMinute%"=="40" set "CheckSend=1"
-    if "%currentMinute%"=="50" set "CheckSend=1"
-)
-
-
-
-goto NEXT4
-
-
-
-:EVERY15MIN
-if "%currentMinute%" neq "%lastMinute%" (
-    if "%currentMinute%"=="00" set "CheckSend=1"
-    if "%currentMinute%"=="15" set "CheckSend=1"
-    if "%currentMinute%"=="30" set "CheckSend=1"
-    if "%currentMinute%"=="45" set "CheckSend=1"
-)
-
-
-
-
-
-:NEXT4
-
-
-echo CheckSend=%CheckSend%
 
 
 ::echo.
