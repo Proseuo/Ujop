@@ -109,7 +109,7 @@ echo.
 
 echo Starting COM
 
-start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+:: start "" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
 
 echo Started
 
