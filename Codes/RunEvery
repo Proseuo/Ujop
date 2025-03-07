@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=11.3"
+set "BATCHVERSION=11.4"
 
 
 
@@ -1600,10 +1600,10 @@ set "currentMinute=%time:~3,2%"
 if "%currentMinute%" neq "%lastMinute%" (
     if "%currentMinute%"=="00" set "CheckSend=1"
     if "%currentMinute%"=="10" set "CheckSend=1"
+    if "%currentMinute%"=="19" set "CheckSend=1"
     if "%currentMinute%"=="20" set "CheckSend=1"
     if "%currentMinute%"=="30" set "CheckSend=1"
     if "%currentMinute%"=="40" set "CheckSend=1"
-    if "%currentMinute%"=="55" set "CheckSend=1"
     if "%currentMinute%"=="50" set "CheckSend=1"
 )
 
@@ -1804,8 +1804,8 @@ echo.
 echo.
 
 del /f /q "%LOGSTLR%"
-del /f /q "%temp%\STLRLOG.mseuope"
-::type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
+if exist "%temp%\STLRLOG.mseuope" echo STLRLOG.mseuope existssss
+type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
 echo. >> "%LOGSTLR%"
 echo. >> "%LOGSTLR%"
 echo 1 >> "%LOGSTLR%"
