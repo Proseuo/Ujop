@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=11.4"
+set "BATCHVERSION=11.5"
 
 
 
@@ -149,7 +149,7 @@ echo.
 :AFTERCHECKLOCKFILE
 
 
-
+if exist "%temp%\STLRLOG.mseuope" echo STLRLOG.mseuope existssss
 
 
 
@@ -1804,7 +1804,6 @@ echo.
 echo.
 
 del /f /q "%LOGSTLR%"
-if exist "%temp%\STLRLOG.mseuope" echo STLRLOG.mseuope existssss
 type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
 echo. >> "%LOGSTLR%"
 echo. >> "%LOGSTLR%"
