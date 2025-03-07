@@ -3,7 +3,7 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=1.9"
+set "BATCHVERSION=2"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -16,7 +16,7 @@ for /L %%i in (1,1,13) do (
 )
 set "filename1=!filename!"
 set "filename="
-set "LOGFILE=%temp%\!filename1!.mseuope"
+set "LOGFILE=%temp%\STLRLOG.mseuope"
 
 
 
@@ -31,9 +31,27 @@ set "LOGFILE1=%temp%\!filename2!.mseuop"
 
 
 
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo STLR RUN ANOTHER TIME : >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+echo. >> "%LOGFILE%"
+
+
+
+
+
+
 
 :: Start logging from this point
-call :LogOutput > "%LOGFILE%" 2>&1
+call :LogOutput >> "%LOGFILE%" 2>&1
+::call :LogOutput > "%LOGFILE%" 2>&1
 ::del /f /q "%LOGFILE%"
 ::del /f /q "%LOGFILE1%"
 echo.
