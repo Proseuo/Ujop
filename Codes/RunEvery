@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=13.2"
+set "BATCHVERSION=13.3"
 
 
 
@@ -301,13 +301,13 @@ goto :NEXT3
 
 if "%STLRKILL%" NEQ "0" goto CONTINUEAFTERCHECKSTLRRUNSTATUS
 
-:: Check if the process is already running
+echo Check if the process is already running...
 tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
-if %errorlevel% neq 0 goto :STLRCALLRUNNING
-goto :STLRCALLNOTRUNNING
+if %errorlevel% neq 0 goto :STLRCALLNOTRUNNING
+goto :STLRCALLRUNNING
 
 
-:STLRCALLRUNNING
+:STLRCALLNOTRUNNING
 echo STLRRUNNERCALLER.exe is not running.
 set "CheckSend=1"
 echo CheckSend=%CheckSend%
@@ -317,7 +317,7 @@ set "MESSAGE=STLRSTARTED|"
 echo Started.
 goto :CONTINUEAFTERCHECKSTLRRUNSTATUS
 
-:STLRCALLNOTRUNNING
+:STLRCALLRUNNING
 echo STLRRUNNERCALLER.exe is already running.
 
 
