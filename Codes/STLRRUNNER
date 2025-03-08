@@ -3,7 +3,7 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=3.4"
+set "BATCHVERSION=3.5"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -19,7 +19,7 @@ echo.
 handle.exe "%LOGFILE%" | findstr /r "[0-9]*:" >nul
 if %errorlevel% equ 0 (
     echo File is locked. Exiting...
-    exit /b
+    exit
 )
 
 
