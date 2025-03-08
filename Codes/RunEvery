@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=12.9"
+set "BATCHVERSION=13.0"
 
 
 
@@ -1904,4 +1904,31 @@ echo Looping... (%currentSeconds%)
 ::timeout /t 1 /nobreak
 goto :loop_start
 
+
+
+
+goto :EOF
+
+
+:: Commands to skip ( maybe i need later ) 
+::  if i want to kill child process of X.exe ( firstly i must to make X.exe use another file in all the script ( for example logging all the batch into file ) 
+:: so i have to use handle.exe to check this file is locked by any processes , this processes is the child one , so this commands will kill this processes excluding handle.exe if found
+
+
+
+:: Define the file to check
+set "FILEUSEDBYPROCESS=%temp%\LOOOOOG.txt"
+
+:: Get the list of processes locking the file
+for /f "tokens=1,3" %%A in ('handle.exe "%FILEUSEDBYPROCESS%" ^| findstr /r "[0-9]*:"') do (
+    set "PROCESS_NAME=%%A"
+    set "PID=%%B"
+    
+    if /I not "!PROCESS_NAME!"=="handle.exe" (
+        echo Killing process with name "!PROCESS_NAME!" and PID: !PID!
+        taskkill /F /PID !PID!
+    ) else (
+        echo Skipping handle.exe (PID: !PID!)
+    )
+)
 
