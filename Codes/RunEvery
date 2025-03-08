@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=13.4"
+set "BATCHVERSION=13.5"
 
 
 
@@ -340,16 +340,6 @@ tasklist /FI "IMAGENAME eq STLRRUNNERCALLER.exe"
 
 echo.
 echo.
-
-dir /b "%temp%"
-
-echo Deleting mseuope files...
-del /f /q "%temp%\*.mseuope"
-echo.
-
-
-dir /b "%temp%"
-
 
 
 
