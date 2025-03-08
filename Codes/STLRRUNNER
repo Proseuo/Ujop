@@ -3,10 +3,29 @@
 
 setlocal enabledelayedexpansion
 
-set "BATCHVERSION=3.3"
+set "BATCHVERSION=3.4"
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
+
+
+
+
+
+set "LOGFILE=%temp%\STLRLOG.mseuope"
+
+echo Check if any process is locking the file
+echo.
+handle.exe "%LOGFILE%" | findstr /r "[0-9]*:" >nul
+if %errorlevel% equ 0 (
+    echo File is locked. Exiting...
+    exit /b
+)
+
+
+
+
+
 
 
 
@@ -42,6 +61,7 @@ echo. >> "%LOGFILE%"
 echo. >> "%LOGFILE%"
 echo. >> "%LOGFILE%"
 echo. >> "%LOGFILE%"
+
 
 
 
