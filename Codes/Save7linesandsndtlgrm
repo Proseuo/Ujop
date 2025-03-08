@@ -23,7 +23,7 @@ set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
 
 
 ::goto skip_code
-::goto :EOF
+goto :EOF
 
 
 
