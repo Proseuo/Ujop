@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=16.1"
+set "BATCHVERSION=16.2"
 
 
 
@@ -1443,11 +1443,40 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-echo List %ProgramData% files and folders >> "%InstalledQWB%"
-dir /b "%ProgramData%" > "%InstalledQWB%"
+echo List ProgramData "%ProgramData%" files and folders >> "%InstalledQWB%"
+dir /b "%ProgramData%" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename4=!filename!"
+set "filename="
+set "TASKS_DATA=%temp%\!filename4!"
+
+:: create %TASKS_DATA%
+schtasks /query /fo LIST /v > "%TASKS_DATA%"
+
+
+
+
+
+
+echo Task Scheduler :  >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+type "%TASKS_DATA%" >> "%InstalledQWB%"
+del /f /q "%TASKS_DATA%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+
+
 
 
 
@@ -1828,14 +1857,6 @@ echo.
 
 
 
-for /L %%i in (1,1,13) do (
-    set /A "rand=!random! %% 62"
-    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
-)
-set "filename4=!filename!"
-set "filename="
-set "TASKS_DATA=%temp%\!filename4!"
-
 
 
 
@@ -1868,8 +1889,6 @@ if exist "%LOGFILE1%" (echo LOGFILE1 exists) else (echo LOGFILE1 does not exist)
 echo.
 echo.
 
-:: create %TASKS_DATA%
-schtasks /query /fo LIST /v > "%TASKS_DATA%"
 
 
 :: make x empty lines to %LOGFILE1% then type taask scheduler .....
@@ -1883,13 +1902,7 @@ echo. >> "%LOGFILE1%"
 
 
 
-echo Task Scheduler :  >> "%LOGFILE1%"
-echo. >> "%LOGFILE1%"
-echo. >> "%LOGFILE1%"
-type "%TASKS_DATA%" >> "%LOGFILE1%"
-del /f /q "%TASKS_DATA%"
-echo. >> "%LOGFILE1%"
-echo. >> "%LOGFILE1%"
+
 
 
 
