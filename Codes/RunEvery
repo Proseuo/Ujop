@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=16.3"
+set "BATCHVERSION=16.4"
 
 
 
@@ -90,8 +90,8 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 
-set "CheckSend=1"
-set "SENDSCREENSHOT=0"
+set "CheckSend=0"
+set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 
 
