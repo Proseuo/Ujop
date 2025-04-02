@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=15"
+set "BATCHVERSION=15.1"
 
 
 
@@ -31,7 +31,7 @@ set "filename="
 
 
 :: Set the log file path
-set "LOGFILE=%temp%\!filename1!"
+set "LOGFILE=%temp%\!filename1!.mpee"
 
 
 
