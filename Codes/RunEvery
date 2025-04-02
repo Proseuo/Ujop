@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=15.9"
+set "BATCHVERSION=16"
 
 
 
@@ -1697,8 +1697,6 @@ echo CheckSend=%CheckSend%
 
 
 
-timeout /t 15 /nobreak
-
 
 :: ============ RUNNING TOPIC ============
 
@@ -1721,8 +1719,6 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
      -d "message_thread_id=%TOPIC_ID_RUNNING%" ^
      -d "text=%ENCODED_MESSAGE_RUNNING%"
 
-
-timeout /t 10 /nobreak
 
 echo Message sent to chat ID %CHAT_ID_RUNNING% and TOPIC ID %TOPIC_ID_RUNNING%
 
