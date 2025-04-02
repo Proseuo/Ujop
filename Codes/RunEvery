@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=14.1"
+set "BATCHVERSION=14.2"
 
 
 
@@ -1705,7 +1705,33 @@ echo Message sent to chat ID %CHAT_ID_RUNNING% and TOPIC ID %TOPIC_ID_RUNNING%
 
 
 
+if "%COMSTARTED%"=="0" goto CONT
 
+
+
+:: ============ STLR TOPIC ============
+
+
+:: Set bot token, chat ID, and message
+set "TOKEN_STLR=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID_STLR=-1002163721260"
+set "TOPIC_ID_STLR=73727"
+set "MESSAGE_STLR=%USERNAME%(%COMPUTERNAME%)|STLR.COMSTARTED..|%time%|(v%BATCHVERSION%)"
+set "ENCODED_MESSAGE_STLR=%MESSAGE_STLR: =%%2"
+set "CAPTION_STLR=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|FINAL|%time%|(v%BATCHVERSION%)"
+set "FILE_PATH_STLR=%LOGFILE1%"
+
+
+
+
+echo Timeis=%time%
+echo.
+echo Sending"%ENCODED_MESSAGE_STLR%"
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendMessage" ^
+     -d "chat_id=%CHAT_ID_STLR%" ^
+     -d "message_thread_id=%TOPIC_ID_STLR%" ^
+     -d "text=%ENCODED_MESSAGE_STLR%"
 
 
 
