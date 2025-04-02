@@ -145,7 +145,7 @@ if not exist "%startupFile%" (
 
 
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%SystemRoot%\System32\convertsshd.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
+for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
 echo MD5 of %SystemRoot%\System32\convertsshd.exe = %RUNEVERYCURRENTMD5%
 echo.
 echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5%
