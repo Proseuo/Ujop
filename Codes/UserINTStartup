@@ -85,7 +85,7 @@ echo.
 
 
 
-set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn1|%time%....."
+set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn1|%MESSAGEEVERY%|%time%....."
 set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 
 
@@ -136,10 +136,7 @@ if not exist "%startupFile%" (
 
 
 if not exist "%startupFile%" goto INSTRUNEVERY
-
-
-
-
+echo %startupFile% Found.
 
 
 
@@ -177,7 +174,8 @@ goto NEXT
 
 
 :INSTRUNEVERY
-
+echo %startupFile% not found.
+echo.
 :: RunEvery Files or Task missing 
 
 
@@ -237,16 +235,7 @@ timeout /t 1 /nobreak >nul
 
 
 
-set "MESSAGEEVERY=%USERNAME%|RUNEVERYINSTALLED...."
-set "ENCODED_MESSAGE=%MESSAGEEVERY: =%%2"
-
-curl -s -X POST "https://api.telegram.org/bot%TOKEN%/sendMessage" ^
-     -d "chat_id=%CHAT_ID%" ^
-     -d "text=%ENCODED_MESSAGE%"
-
-
-
-
+set "MESSAGEEVERY=RUNEVERYINSTALLED...."
 
 
 :NEXT
