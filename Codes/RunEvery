@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=14.9"
+set "BATCHVERSION=15"
 
 
 
@@ -2042,7 +2042,7 @@ del /f /q "%ZIP_FILE%"
 
 
 
-
+timeout /t 10 /nobreak
 echo Going to :EOF
 goto :EOF
 
