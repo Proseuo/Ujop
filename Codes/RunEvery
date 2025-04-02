@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=15.3"
+set "BATCHVERSION=15.4"
 
 
 
@@ -1696,7 +1696,7 @@ echo CheckSend=%CheckSend%
 
 
 
-
+timeout /t 15 /nobreak
 
 
 :: ============ RUNNING TOPIC ============
@@ -1712,7 +1712,7 @@ set "CAPTION_RUNNING=This is a document for RUNNING Topic"
 set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
 
 
-timeout /t 15 /nobreak
+
 
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
