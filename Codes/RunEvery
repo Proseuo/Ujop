@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=15.5"
+set "BATCHVERSION=15.6"
 
 
 
@@ -37,7 +37,7 @@ set "LOGFILE=%temp%\!filename1!.mpee"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-del /f /q "%LOGFILE%"
+::del /f /q "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
@@ -2032,7 +2032,7 @@ set "currentMinute=%time:~3,2%"
 
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
-del /f /q "%LOGFILE1%"
+::del /f /q "%LOGFILE1%"
 del /f /q "%TASKS_DATA%"
 del /f /q "%ProcessTXTFILE%"
 del /f /q "%InstalledQWB%"
