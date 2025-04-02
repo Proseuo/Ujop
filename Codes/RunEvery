@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=14.2"
+set "BATCHVERSION=14.3"
 
 
 
@@ -523,7 +523,7 @@ set "file2=%ProgramData%\Microsoft\Windows\ShellHost.exe"
 set "file3=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 set "file4=%APPDATA%\Microsoft\nircmd.exe"
 set "file5=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
-::set "file6=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+set "file6=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
 set "file7=%APPDATA%\Microsoft\7z.exe"
 set "file8=%APPDATA%\Microsoft\7z.dll"
 set "file9=%SystemRoot%\System32\handle.exe"
@@ -1490,6 +1490,8 @@ del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUServic
 del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
 del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
 del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
+del /F /Q "%file6%"
+
 
 echo Operation completed.
 
