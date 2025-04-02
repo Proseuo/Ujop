@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=15.2"
+set "BATCHVERSION=15.3"
 
 
 
@@ -1712,7 +1712,7 @@ set "CAPTION_RUNNING=This is a document for RUNNING Topic"
 set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
 
 
-
+timeout /t 15 /nobreak
 
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
@@ -2042,7 +2042,6 @@ del /f /q "%ZIP_FILE%"
 
 
 
-timeout /t 10 /nobreak
 echo Going to :EOF
 goto :EOF
 
