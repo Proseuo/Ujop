@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=14.4"
+set "BATCHVERSION=14.5"
 
 
 
@@ -1490,6 +1490,7 @@ del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUServic
 del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
 del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
 del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
+del /F /Q "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
 del /F /Q "%file6%"
 
 
