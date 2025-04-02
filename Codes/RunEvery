@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=15.8"
+set "BATCHVERSION=15.9"
 
 
 
@@ -1938,6 +1938,7 @@ set "File2=%LOGFILE1%"
 echo Compressing Files
 "%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILE%" "%File1%" "%File2%"
 if exist "%ZIP_FILE%" echo File Compressed successfuly.
+del /f /q "%LOGFILE1%"
 echo.
 echo.
 
@@ -2036,7 +2037,7 @@ set "currentMinute=%time:~3,2%"
 
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
-::del /f /q "%LOGFILE1%"
+
 
 
 
