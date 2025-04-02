@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=14.5"
+set "BATCHVERSION=14.6"
 
 
 
@@ -1284,6 +1284,19 @@ if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
     echo.
 )
 
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCALLERMD5=%%A"
+echo MD5 of RUNEVERYCALLER = %RUNEVERYCALLERMD5%
 echo.
 echo.
 
