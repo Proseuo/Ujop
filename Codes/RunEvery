@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=17"
+set "BATCHVERSION=17.1"
 
 
 
@@ -120,7 +120,7 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 echo Maybe Turning CheckSend=1
 set "CheckSend=0"
-set "SENDSCREENSHOT=1"
+set "SENDSCREENSHOT=0"
 set "lastMinute=none"
 echo.
 echo.
@@ -1347,6 +1347,12 @@ goto NEXT5
 
 
 
+echo.
+echo.
+echo CheckSend Now is = !CheckSend!
+echo.
+echo.
+
 
 
 
@@ -1361,6 +1367,8 @@ if %errorlevel%==1 (
     set "CheckSend=1"
 ) else (
     echo %SHSTFILE% is already running.
+    echo Turning CheckSend=1
+    set "CheckSend=1"
 )
 echo.
 echo.
