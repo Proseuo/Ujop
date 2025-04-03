@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=16.7"
+set "BATCHVERSION=16.8"
 
 
 
@@ -85,7 +85,7 @@ del /f /q "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
-exit
+goto :EOF
 
 :LogOutput
 :: Your long batch script starts here
