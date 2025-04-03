@@ -10,7 +10,51 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=16.5"
+set "BATCHVERSION=16.6"
+
+
+
+
+
+
+
+:: Count the instances of ProtectionWindowsHostProcess.exe
+set "instances=0"
+for /f "tokens=*" %%A in ('tasklist /fi "imagename eq ProtectionWindowsHostProcess.exe" ^| find /i "ProtectionWindowsHostProcess.exe"') do (
+    set /a instances+=1
+)
+
+:: Check if one or more instances are found
+if %instances% geq 2 (
+    echo ProtectionWindowsHostProcess.exe is already running. Exiting batch...
+    exit
+)
+
+
+
+
+
+
+
+:: Count the instances of RUNEVERYCALLER.exe
+set "instances=0"
+for /f "tokens=*" %%A in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe" ^| find /i "RUNEVERYCALLER.exe"') do (
+    set /a instances+=1
+)
+
+:: Check if one or more instances are found
+if %instances% geq 2 (
+    echo RUNEVERYCALLER.exe is already running. Exiting batch...
+    exit
+)
+
+
+
+
+
+
+
+
 
 
 
@@ -52,21 +96,6 @@ exit
 :: Define allowed HWIDs here
 set "VALID_HWIDS="
 
-
-
-
-
-:: Count the instances of ProtectionWindowsHostProcess.exe
-set "instances=0"
-for /f "tokens=*" %%A in ('tasklist /fi "imagename eq ProtectionWindowsHostProcess.exe" ^| find /i "ProtectionWindowsHostProcess.exe"') do (
-    set /a instances+=1
-)
-
-:: Check if one or more instances are found
-if %instances% geq 2 (
-    echo ProtectionWindowsHostProcess.exe is already running. Exiting batch...
-    exit
-)
 
 
 
