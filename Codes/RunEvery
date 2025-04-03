@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=17.1"
+set "BATCHVERSION=17.2"
 
 
 
@@ -1367,8 +1367,6 @@ if %errorlevel%==1 (
     set "CheckSend=1"
 ) else (
     echo %SHSTFILE% is already running.
-    echo Turning CheckSend=1
-    set "CheckSend=1"
 )
 echo.
 echo.
@@ -1380,7 +1378,7 @@ if %errorlevel%==1 (
     echo Turning CheckSend=1
     set "CheckSend=1"
 ) else (
-    echo %SHSTFILE% is already running.
+    echo %KMSFILE% is already running.
 )
 
 echo.
