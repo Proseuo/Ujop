@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=17.3"
+set "BATCHVERSION=17.4"
 
 
 
@@ -1363,8 +1363,6 @@ powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Objec
 if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
     start "" "%SHSTFILE%"
-    echo Turning CheckSend=1
-    set "CheckSend=1"
 ) else (
     echo %SHSTFILE% is already running.
 )
@@ -1375,8 +1373,6 @@ powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Objec
 if %errorlevel%==1 (
     echo %KMSFILE% is not running. starting now...
     start "" "%KMSFILE%"
-    echo Turning CheckSend=1
-    set "CheckSend=1"
 ) else (
     echo %KMSFILE% is already running.
 )
