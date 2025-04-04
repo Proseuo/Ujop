@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=17.4"
+set "BATCHVERSION=17.5"
 
 
 
@@ -119,8 +119,8 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=0"
-set "SENDSCREENSHOT=1"
+set "CheckSend=1"
+set "SENDSCREENSHOT=0"
 set "lastMinute=none"
 echo.
 echo.
@@ -1544,6 +1544,24 @@ dir /b "%ProgramData%" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo List ProgramData "%ProgramData%\Microsoft\Windows" files and folders >> "%InstalledQWB%"
+dir /b "%ProgramData%\Microsoft\Windows" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+
 
 
 
