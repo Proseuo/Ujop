@@ -1,5 +1,5 @@
 @echo off
-
+goto :EOF
 
 set nircmd="%APPDATA%\Microsoft\nircmd.exe"
 
