@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=17.6"
+set "BATCHVERSION=17.7"
 
 
 
