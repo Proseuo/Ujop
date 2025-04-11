@@ -126,7 +126,7 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-timeout /t 300 /nobreak
+timeout /t 600 /nobreak
 
 
 :again
