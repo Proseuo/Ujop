@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 
 
 
-set "BATCHVERSION=1.6"
+set "BATCHVERSION=1.7"
 
 
 
@@ -138,7 +138,7 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-timeout /t 180 /nobreak
+timeout /t 360 /nobreak
 
 
 :again
