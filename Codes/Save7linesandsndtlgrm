@@ -126,7 +126,7 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-timeout /t 600 /nobreak
+timeout /t 300 /nobreak
 
 
 :again
@@ -146,14 +146,21 @@ powershell -Command "Get-Content '%input_file%' | Select-Object -Last 7 | Out-Fi
 
 echo Last 7 lines have been saved to %output_file%
 
+
+
+
+
+
+
+
 :SENDMSG
 
 
 :: Use PowerShell to read the contents of playit_7lines.log and URL-encode it
 ::for /f "delims=" %%a in ('powershell -Command "(Get-Content '%output_file%' | Out-String).Trim() -replace ' ', '%%20' -replace '&', '%%26' -replace '\n', '%%0A'"') do set "CAPTION_MyScrn=%%a"
-for /f "delims=" %%a in ('powershell -Command ^
-    "$content = (Get-Content '%output_file%' -Raw) -replace '\r?\n', '%%0A';" ^
-    "$content -replace ' ', '%%20' -replace '&', '%%26'"') do set "CAPTION_MyScrn=%%a"
+::for /f "delims=" %%a in ('powershell -Command ^
+::    "$content = (Get-Content '%output_file%' -Raw) -replace '\r?\n', '%%0A';" ^
+::    "$content -replace ' ', '%%20' -replace '&', '%%26'"') do set "CAPTION_MyScrn=%%a"
 
 
 
