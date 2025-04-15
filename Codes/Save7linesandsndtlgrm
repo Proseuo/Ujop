@@ -150,11 +150,11 @@ cd /d "%~dp0"
 
 
 set "input_file=%appdata%\Microsoft\play\playit_output.log"
-set "output_file=%appdata%\Microsoft\play\playit_7lines.log"
+set "output_file=%appdata%\Microsoft\play\playit_20lines.log"
 
 
-:: Use PowerShell to get the last 7 lines of the file and save them to the output file
-powershell -Command "Get-Content '%input_file%' | Select-Object -Last 7 | Out-File '%output_file%'"
+:: Use PowerShell to get the last 20 lines of the file and save them to the output file
+powershell -Command "Get-Content '%input_file%' | Select-Object -Last 20 | Out-File '%output_file%'"
 
 echo Last 7 lines have been saved to %output_file%
 
