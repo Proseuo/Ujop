@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 
 
 
-set "BATCHVERSION=1.4"
+set "BATCHVERSION=1.5"
 
 
 
@@ -154,7 +154,8 @@ set "output_file=%appdata%\Microsoft\play\playit_20lines.log"
 
 
 :: Use PowerShell to get the last 20 lines of the file and save them to the output file
-powershell -Command "Get-Content '%input_file%' | Select-Object -Last 20 | Out-File '%output_file%'"
+powershell -Command "Get-Content '%input_file%' | Select-Object -Last 20 | Out-File '%output_file%' -Encoding utf8"
+::powershell -Command "Get-Content '%input_file%' | Select-Object -Last 20 | Out-File '%output_file%'"
 
 echo Last 7 lines have been saved to %output_file%
 
@@ -212,7 +213,7 @@ echo. >> "%output_file%"
 echo. >> "%output_file%"
 echo All running processes : >> "%output_file%"
 echo. >> "%output_file%"
-goto SENDMSG
+::goto SENDMSG
 type "%ProcessTXTFILE%" >> "%output_file%"
 del /f /q "%ProcessTXTFILE%"
 echo. >> "%output_file%"
