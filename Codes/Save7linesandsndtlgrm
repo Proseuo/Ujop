@@ -1,5 +1,5 @@
 @echo off
-goto :EOF
+::goto :EOF
 
 
 
@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 
 
 
-set "BATCHVERSION=1.7"
+set "BATCHVERSION=1.8"
 
 
 
