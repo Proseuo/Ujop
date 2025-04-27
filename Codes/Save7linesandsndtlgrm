@@ -1,4 +1,7 @@
 @echo off
+
+if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
+
 ::goto :EOF
 
 
