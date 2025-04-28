@@ -2,18 +2,25 @@
   "software": [
     {
       "name": "IDM 6.42 Build 34",
-      "filename": "IDM6.42Build34Repacked.rar",
-      "url": "https://files.catbox.moe/qgxr1y.rar"
+      "parts": [
+        {
+          "filename": "IDM6.42Build34Repacked.rar",
+          "url": "https://files.catbox.moe/qgxr1y.rar"
+        }
+      ]
     },
     {
       "name": "ClipClip Pro 2.4.5160",
-      "filename": "ClipClipRepacked.rar",
-      "url": "https://files.catbox.moe/lp0sa9.rar"
-    },
-    {
-      "name": "EaseUS Data Recovery Wizard v17.0",
-      "filename": "EaseUS Data Recovery Wizard v17.0.0.0.rar",
-      "url": "https://files.catbox.moe/6prd9x.rar"
-    },
+      "parts": [
+        {
+          "filename": "test.zip",
+          "url": "https://files.catbox.moe/t9cum7.zip"
+        },
+        {
+          "filename": "test.z01",
+          "url": "https://files.catbox.moe/m193v9.z01"
+        }
+      ]
+    }
   ]
 }
