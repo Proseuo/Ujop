@@ -27,5 +27,18 @@
         }
       ]
     }
+    {
+      "name": "4K Video Downloader Plus 25.0.4.0187",
+      "parts": [
+        {
+          "filename": "4K Video Downloader Plus 25.0.4.0187.z01",
+          "url": "https://files.catbox.moe/q9qgwo.z01"
+        },
+        {
+          "filename": "4K Video Downloader Plus 25.0.4.0187.zip",
+          "url": "https://files.catbox.moe/ztjsrv.zip"
+        }
+      ]
+    },
   ]
 }
