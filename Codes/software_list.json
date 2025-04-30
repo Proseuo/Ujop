@@ -15,6 +15,10 @@
         {
           "filename": "ITesttFile.one",
           "url": "https://freetestdata.com/wp-content/uploads/2021/09/1-MB-DOC.doc"
+        },
+        {
+          "filename": "ITesttFile2.one",
+          "url": "https://freetestdata.com/wp-content/uploads/2021/09/1-MB-DOC.doc"
         }
       ]
     },
