@@ -139,5 +139,14 @@
         }
       ]
     },
+    {
+      "name": "Office Tool Plus",
+      "parts": [
+        {
+          "filename": "OfficeToolPlus.rar",
+          "url": "https://files.catbox.moe/1ikwqk.rar"
+        }
+      ]
+    },
   ]
 }
