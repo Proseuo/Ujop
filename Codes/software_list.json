@@ -193,5 +193,32 @@
         }
       ]
     },
+    {
+      "name": "WinRar 7.01",
+      "parts": [
+        {
+          "filename": "WinRar 7.01.exe",
+          "url": "https://files.catbox.moe/7md838.exee"
+        }
+      ]
+    },
+	{
+      "name": "uTorrent 1.2.3.56",
+      "parts": [
+        {
+          "filename": "uTorrent 1.2.3.56.rar",
+          "url": "https://files.catbox.moe/2bbpi3.rare"
+        }
+      ]
+    },
+	{
+      "name": "IObit Driver Booster 10.0.0.65",
+      "parts": [
+        {
+          "filename": "IObit Driver Booster 10.0.0.65.rar",
+          "url": "https://files.catbox.moe/yx0m2y.rare"
+        }
+      ]
+    },
   ]
 }
