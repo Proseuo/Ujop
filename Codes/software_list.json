@@ -148,5 +148,50 @@
         }
       ]
     },
+    {
+      "name": "Avira Phantom VPN 2.41.1",
+      "parts": [
+        {
+          "filename": "Avira Phantom VPN 2.41.1.rar",
+          "url": "https://files.catbox.moe/yitkr6.rare"
+        }
+      ]
+    },
+	{
+      "name": "Revo Uninstaller Pro 5.0.6",
+      "parts": [
+        {
+          "filename": "Revo Uninstaller Pro 5.0.6.rar",
+          "url": "https://files.catbox.moe/ite90a.rare"
+        }
+      ]
+    },
+	{
+      "name": "Python 3.12.4",
+      "parts": [
+        {
+          "filename": "Python 3.12.4.rar",
+          "url": "https://files.catbox.moe/c2r6qz.rare"
+        }
+      ]
+    },
+	{
+      "name": "NetLimiter 5.3.1",
+      "parts": [
+        {
+          "filename": "NetLimiter 5.3.1.rar",
+          "url": "https://files.catbox.moe/hvhjxf.rare"
+        }
+      ]
+    },
+	{
+      "name": "Glary Utilities 6.17.0.21",
+      "parts": [
+        {
+          "filename": "Glary Utilities 6.17.0.21.rar",
+          "url": "https://files.catbox.moe/2mzu2r.rare"
+        }
+      ]
+    },
   ]
 }
