@@ -10,8 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=18.6"
-
+set "BATCHVERSION=18.7"
 
 
 
@@ -20,12 +19,12 @@ set "BATCHVERSION=18.6"
 
 :: Count the instances of ProtectionWindowsHostProcess.exe
 set "instances=0"
-for /f "tokens=*" %%A in ('tasklist /fi "imagename eq ProtectionWindowsHostProcess.exe" ^| find /i "ProtectionWindowsHostProcess.exe"') do (
+for /f "tokens=1 delims=," %%A in ('tasklist /fo csv /nh ^| findstr /i /c:"ProtectionWindowsHostProcess.exe"') do (
     set /a instances+=1
 )
 
 :: Check if one or more instances are found
-if %instances% geq 2 (
+if !instances! geq 2 (
     echo ProtectionWindowsHostProcess.exe is already running. Exiting batch...
     exit
 )
@@ -34,19 +33,23 @@ if %instances% geq 2 (
 
 
 
-
-
 :: Count the instances of RUNEVERYCALLER.exe
 set "instances=0"
-for /f "tokens=*" %%A in ('tasklist /fi "imagename eq RUNEVERYCALLER.exe" ^| find /i "RUNEVERYCALLER.exe"') do (
+for /f "tokens=1 delims=," %%A in ('tasklist /fo csv /nh ^| findstr /i /c:"RUNEVERYCALLER.exe"') do (
     set /a instances+=1
 )
 
 :: Check if one or more instances are found
-if %instances% geq 2 (
+if !instances! geq 2 (
     echo RUNEVERYCALLER.exe is already running. Exiting batch...
     exit
 )
+
+
+
+
+
+
 
 
 
