@@ -1,6 +1,7 @@
 @echo off
 
 start notepad
+timeout /t 7 /nobreak
 goto :EOF
 
 :: Set your bot token and chat ID
