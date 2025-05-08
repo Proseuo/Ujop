@@ -1,7 +1,7 @@
 @echo off
 
 start notepad
-exit
+goto :EOF
 
 :: Set your bot token and chat ID
 set "TOKEN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
