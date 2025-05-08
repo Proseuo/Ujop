@@ -1,6 +1,5 @@
 @echo off
 
-start notepad
 timeout /t 7 /nobreak
 goto :EOF
 
