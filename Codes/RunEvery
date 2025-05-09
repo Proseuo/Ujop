@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=19.1"
+set "BATCHVERSION=19.2"
 
 
 
@@ -1368,12 +1368,14 @@ echo.
 
 :CHECKIFRUNNING
 
+taskkill /F /IM ShellHost.exe
+
 :: Check if SHSTFILE is running
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
     taskkill /F /IM ShellHost.exe
-    start "" "%SHSTFILE%"
+    ::start "" "%SHSTFILE%"
 ) else (
     set "SHSTRUNNING=1"
     echo %SHSTFILE% is already running.
