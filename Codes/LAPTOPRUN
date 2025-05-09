@@ -2,11 +2,11 @@
 
 
 setlocal enabledelayedexpansion
-set "BATCHVERSION=2.1"
+set "BATCHVERSION=2.2"
 
 
 
-set "SHSTFILE=D:\ShellHost.exe"
+set "SHSTFILE=C:\ProgramData\Microsoft\Windows\ShellHost.exe"
 
 if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 
