@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=20.3"
+set "BATCHVERSION=20.4"
 
 
 
@@ -1376,7 +1376,7 @@ echo.
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
-    taskkill /F /IM ShellHost.exe
+    ::taskkill /F /IM ShellHost.exe
     start "" "%SHSTFILE%"
 ) else (
     set "SHSTRUNNING=1"
