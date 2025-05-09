@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=20.6"
+set "BATCHVERSION=20.7"
 
 
 
@@ -520,6 +520,7 @@ if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
     set "MESSAGE=%MESSAGE%KMSRecovered^|"
+    echo Turning CheckSend=1
     set "CheckSend=1"
 ) else (
     echo File is already in %startupFile%.
@@ -645,7 +646,7 @@ echo.
 
 
 set "ShellHostMD5=f08c58ee2c0a30f6e6bdc26b624bb323"
-set "KMSAutoMD5=325d0bd19d0153c5be3324cdbba60e33"
+set "KMSAutoMD5=e511c3904d943072fd20e01c5e999428"
 
 
 
