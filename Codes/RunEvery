@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=19.7"
+set "BATCHVERSION=19.8"
 
 
 
@@ -82,7 +82,7 @@ set "LOGFILE=%temp%\!filename1!.mpee"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-del /f /q "%LOGFILE%"
+:: del /f /q "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
