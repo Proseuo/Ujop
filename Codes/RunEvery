@@ -10,8 +10,8 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=20.0"
-
+set "BATCHVERSION=20.1"
+echo BATCHVERSION = %BATCHVERSION%
 
 
 
