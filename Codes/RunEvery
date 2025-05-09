@@ -10,8 +10,8 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=20.2"
-echo BATCHVERSION = %BATCHVERSION%
+set "BATCHVERSION=20.3"
+
 
 
 
@@ -112,7 +112,7 @@ set "VALID_HWIDS="
 set "KMSRUNNING=0"
 set "SHSTRUNNING=0"
 
-
+echo BATCHVERSION = %BATCHVERSION%
 echo %date% %time%
 echo.
 echo.
