@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=18.9"
+set "BATCHVERSION=19.0"
 
 
 
@@ -1460,9 +1460,17 @@ powershell -Command "Get-Process | Format-Table Name, Id, Path"
 echo.
 echo.
 echo.
-
-
-
+echo.
+echo.
+echo.
+echo powershell wmic haha
+powershell -Command "Get-WmiObject Win32_Process | Select-Object Name, ExecutablePath | Format-Table -AutoSize -Wrap"
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
 
 
 
