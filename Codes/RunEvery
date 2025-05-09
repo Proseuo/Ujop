@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=19.0"
+set "BATCHVERSION=19.1"
 
 
 
@@ -129,7 +129,7 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=1"
+set "CheckSend=0"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo.
@@ -1455,24 +1455,6 @@ powershell -command "Get-Process | Select-Object ProcessName, Path | Format-Tabl
 echo Saved.
 echo.
 echo.
-echo NumberOneHiy
-powershell -Command "Get-Process | Format-Table Name, Id, Path"
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo powershell wmic haha
-powershell -Command "Get-WmiObject Win32_Process | Select-Object Name, ExecutablePath | Format-Table -AutoSize -Wrap"
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
-
-
 
 
 
@@ -1570,22 +1552,6 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%ProcessTXTFILE%" >> "%InstalledQWB%"
 del /f /q "%ProcessTXTFILE%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo All running processes - Using Tasklist - >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-type "%ProcessTXTFILE%" >> "%InstalledQWB%"
-del /f /q "%ProcessTXTFILE%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
-echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
