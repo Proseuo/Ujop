@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=19.6"
+set "BATCHVERSION=19.7"
 
 
 
@@ -103,7 +103,7 @@ set "VALID_HWIDS="
 
 
 curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RUNNING105"
-
+timeout /t 10 /nobreak >nul
 
 
 
