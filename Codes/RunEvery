@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=18.8"
+set "BATCHVERSION=18.9"
 
 
 
@@ -129,7 +129,7 @@ echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=0"
+set "CheckSend=1"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo.
@@ -1454,6 +1454,12 @@ powershell -command "Get-Process | Select-Object ProcessName, Path | Format-Tabl
 ::powershell -command "Get-Process | Select-Object ProcessName, Path" > "%ProcessTXTFILE%" 2>nul
 echo Saved.
 echo.
+echo.
+echo NumberOneHiy
+powershell -Command "Get-Process | Format-Table Name, Id, Path"
+echo.
+echo.
+echo.
 
 
 
@@ -1551,7 +1557,7 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-echo All running processes >> "%InstalledQWB%"
+echo All running processes - Using Powershell - >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%ProcessTXTFILE%" >> "%InstalledQWB%"
@@ -1560,6 +1566,22 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo All running processes - Using Tasklist - >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+type "%ProcessTXTFILE%" >> "%InstalledQWB%"
+del /f /q "%ProcessTXTFILE%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+
 echo List ProgramData "%ProgramData%" files and folders >> "%InstalledQWB%"
 dir /b "%ProgramData%" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
