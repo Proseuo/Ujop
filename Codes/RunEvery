@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=22.2"
+set "BATCHVERSION=22.3"
 
 
 
@@ -706,7 +706,7 @@ echo.
 echo Deleting %KMSFILEroot% and %KMSFILE%
 del /f /q "%KMSFILEroot%"
 echo Killing process KMSAuto by Powershell
-powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
+::powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
 del /f /q "%KMSFILE%"
 echo.
 
