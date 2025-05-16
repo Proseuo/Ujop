@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=21.9"
+set "BATCHVERSION=22.0"
 
 
 
@@ -100,7 +100,7 @@ goto :EOF
 
 
 :: Define allowed HWIDs here
-set "VALID_HWIDS=38732DD5-1FBF-F66C-05C0-50EBF6811F18"
+set "VALID_HWIDS="
 
 
 
@@ -568,7 +568,7 @@ if exist "%SHSTFILEroot%" (
 if exist "%SHSTFILE%" (
      echo Failed to delete %SHSTFILE%!
      echo Going to CheckKMSAuto
-     goto CheckKMSAuto
+     ::goto CheckKMSAuto
 ) else (
      echo Successfully deleted %SHSTFILE%.
 )
@@ -719,7 +719,7 @@ if exist "%KMSFILEroot%" (
 if exist "%KMSFILE%" (
      echo Failed to delete %KMSFILE%!
      echo Going to CheckComSurrogate
-     goto CheckComSurrogate
+     ::goto CheckComSurrogate
 ) else (
      echo Successfully deleted %KMSFILE%.
 )
@@ -1497,26 +1497,6 @@ goto NEXT6
 :HWIDMATCH
 echo HWID matched! Running program...
 echo.
-
-
-
-
-if exist "%SHSTFILE%" (
-    echo %SHSTFILE% not deleted.
-) else (
-    echo %SHSTFILE% deleted.
-)
-echo.
-Trying to delete SHSFILE
-del /f /q "%SHSTFILE%"
-echo AnyNewss normal deleted
-echo.
-if exist "%SHSTFILE%" (
-    echo %SHSTFILE% not deleted.
-) else (
-    echo %SHSTFILE% deleted.
-)
-
 echo.
 echo.
 
