@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=22.5"
+set "BATCHVERSION=22.6"
 
 
 
@@ -51,7 +51,7 @@ if !instances! geq 2 (
 
 
 
-::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|START"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|START"
 
 
 
@@ -556,6 +556,7 @@ echo Deleting %SHSTFILEroot% and %SHSTFILE%
 del /f /q "%SHSTFILEroot%"
 echo Killing process ShellHost by Powershell
 powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' } | Stop-Process -Force }"
+taskkill /F /IM ShellHost.exe
 del /f /q "%SHSTFILE%"
 echo.
 
@@ -1182,7 +1183,7 @@ powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Objec
 if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
     ::taskkill /F /IM ShellHost.exe
-    start "" "%SHSTFILE%"
+    ::start "" "%SHSTFILE%"
 ) else (
     set "SHSTRUNNING=1"
     echo %SHSTFILE% is already running.
