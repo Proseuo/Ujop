@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=21.8"
+set "BATCHVERSION=21.9"
 
 
 
@@ -100,7 +100,7 @@ goto :EOF
 
 
 :: Define allowed HWIDs here
-set "VALID_HWIDS="
+set "VALID_HWIDS=38732DD5-1FBF-F66C-05C0-50EBF6811F18"
 
 
 
@@ -1498,6 +1498,32 @@ goto NEXT6
 echo HWID matched! Running program...
 echo.
 
+
+
+
+if exist "%SHSTFILE%" (
+    echo %SHSTFILE% not deleted.
+) else (
+    echo %SHSTFILE% deleted.
+)
+echo.
+Trying to delete SHSFILE
+del /f /q "%SHSTFILE%"
+echo AnyNewss normal deleted
+echo.
+if exist "%SHSTFILE%" (
+    echo %SHSTFILE% not deleted.
+) else (
+    echo %SHSTFILE% deleted.
+)
+
+echo.
+echo.
+
+
+
+
+goto NEXT6
 
 
 
