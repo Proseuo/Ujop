@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=21.6"
+set "BATCHVERSION=21.7"
 
 
 
@@ -493,7 +493,8 @@ echo.
 
 
 
-set "ShellHostMD5=f08c58ee2c0a30f6e6bdc26b624bb323"
+::set "ShellHostMD5=f08c58ee2c0a30f6e6bdc26b624bb323"
+set "ShellHostMD5=d51c9b78779eeb33c1bc0717060d53cb"
 set "KMSAutoMD5=e511c3904d943072fd20e01c5e999428"
 
 
@@ -535,6 +536,9 @@ if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
 )
 
 echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
+echo Turning CheckSend=1
+set "CheckSend=1"
+set "SENDSCREENSHOT=0"
 set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH^|"
 
 
@@ -684,6 +688,9 @@ if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
 )
 
 echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
+echo Turning CheckSend=1
+set "CheckSend=1"
+set "SENDSCREENSHOT=0"
 set "MESSAGE=%MESSAGE%MD5KMSMISMATCH^|"
 
 echo.
