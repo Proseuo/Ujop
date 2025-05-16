@@ -10,7 +10,7 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=2.2"
+set "BATCHVERSION=3.0"
 
 
 
@@ -144,54 +144,15 @@ echo 1 > "%temp%\run_once1.flag"
 
 
 
-
-:: Check if SHSTFILE is running
-set "SHSTRUNNING=0"
-powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
-if %errorlevel%==1 (
-    echo %SHSTFILE% is not running. starting now...
-    start "" "%SHSTFILE%"
-) else (
-    set "SHSTRUNNING=1"
-    echo %SHSTFILE% is already running.
-)
-
-echo SHST RUNNING is !SHSTRUNNING! and %SHSTRUNNING%
-
-echo.
-echo.
-
-
-
-
-
-:: Check if KMSFILE is running
-set "KMSRUNNING=0"
-powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
-if %errorlevel%==1 (
-    echo %KMSFILE% is not running. starting now...
-    start "" "%KMSFILE%"
-) else (
-    set "KMSRUNNING=1"
-    echo %KMSFILE% is already running.
-)
-
-echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
-
-echo.
-echo.
-
-
-
-
-
-
 timeout /t 1200 /nobreak
+
+
 
 
 :again
 
 cd /d "%~dp0"
+
 
 
 "%nircmd%" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
@@ -322,6 +283,67 @@ echo. >> "%output_file%"
 ::for /f "delims=" %%a in ('powershell -Command ^
 ::    "$content = (Get-Content '%output_file%' -Raw) -replace '\r?\n', '%%0A';" ^
 ::    "$content -replace ' ', '%%20' -replace '&', '%%26'"') do set "CAPTION_MyScrn=%%a"
+
+
+
+
+
+
+
+
+
+
+:: Check if SHSTFILE is running
+set "SHSTRUNNING=0"
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %SHSTFILE% is not running. starting now...
+    start "" "%SHSTFILE%"
+) else (
+    set "SHSTRUNNING=1"
+    echo %SHSTFILE% is already running.
+)
+
+echo SHST RUNNING is !SHSTRUNNING! and %SHSTRUNNING%
+
+echo.
+echo.
+
+
+
+
+
+:: Check if KMSFILE is running
+set "KMSRUNNING=0"
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %KMSFILE% is not running. starting now...
+    start "" "%KMSFILE%"
+) else (
+    set "KMSRUNNING=1"
+    echo %KMSFILE% is already running.
+)
+
+echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
+
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
