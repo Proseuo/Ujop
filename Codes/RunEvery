@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=23.6"
+set "BATCHVERSION=23.7"
 
 
 
@@ -600,6 +600,16 @@ echo Checking for ShellHost...
 set "embeddedScript=%temp%\temp_script_SHST.bat"
 del /f /q "%embeddedScript%"
 
+
+if exist "%embeddedScript%" (
+    echo %embeddedScript% found
+) else (
+    echo %embeddedScript% not found
+)
+
+
+
+
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ShellHost"
 ::attrib +h +s "%embeddedScript%"
@@ -615,6 +625,12 @@ if exist "%embeddedScript%" (
     echo.
     timeout /t 3 /nobreak >nul
     goto SHSTINSTALL
+)
+
+if exist "%embeddedScript%" (
+    echo %embeddedScript% found
+) else (
+    echo %embeddedScript% not found
 )
 
 
