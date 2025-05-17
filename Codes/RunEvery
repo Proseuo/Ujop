@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=25.1"
+set "BATCHVERSION=25.2"
 
 
 
@@ -587,6 +587,12 @@ powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' }
 taskkill /F /IM ShellHost.exe
 del /f /q /a "%SHSTFILE%"
 echo ATTRIB OF SHELLHOST
+attrib "%SHSTFILE%"
+echo REMOVE ATTRIB OF SHELLHOST
+attrib -S -H -R "C:\ProgramData\Microsoft\Windows\ShellHost.exe"
+echo Delete again
+del /f /q /a "%SHSTFILE%"
+echo Trying display attrib again
 attrib "%SHSTFILE%"
 echo.
 
