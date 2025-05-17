@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=22.7"
+set "BATCHVERSION=22.8"
 
 
 
@@ -186,8 +186,15 @@ reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 echo Handle LOGFILE TA3 RUNEVERY
 handle.exe "%LOGFILE%"
 echo.
+echo Handle Process ShellHost 
+handle.exe "%ProgramData%\Microsoft\Windows\ShellHost.exe"
 echo.
-
+echo.
+echo.
+echo Handle Process KMSAuto 
+handle.exe "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+echo.
+echo.
 
 
 
