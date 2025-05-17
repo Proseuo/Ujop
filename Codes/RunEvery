@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=22.9"
+set "BATCHVERSION=23.0"
 
 
 
@@ -1287,7 +1287,7 @@ echo.
 
 
 :: if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
-:: if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 
 
 
