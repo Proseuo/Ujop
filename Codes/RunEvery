@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=25.0"
+set "BATCHVERSION=25.1"
 
 
 
@@ -543,9 +543,16 @@ if exist "%SHSTFILE%" (
 
 
 :CHECKSHSTMD5
+
+for /f "usebackq delims=" %%A in (`powershell -NoProfile -Command "(Get-FileHash -Algorithm MD5 -Path '%SHSTFILE%').Hash.ToLower()"`) do (
+    set "SHSTFILEmd5powershell=%%A"
+)
+
+
 for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
 for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILEroot%" MD5 ^| findstr /V "hash"') do set "SHSTFILErootmd5=%%A"
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
+echo MD5 of %SHSTFILE% Using Powershell = %SHSTFILEmd5powershell%
 echo MD5 of %SHSTFILEroot% = %SHSTFILErootmd5%
 echo.
 echo.
