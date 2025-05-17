@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=25.2"
+set "BATCHVERSION=25.3"
 
 
 
@@ -581,20 +581,22 @@ echo.
 
 
 echo Deleting %SHSTFILEroot% and %SHSTFILE%
-del /f /q /a "%SHSTFILEroot%"
+del /f /a "%SHSTFILEroot%"
 echo Killing process ShellHost by Powershell
 powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' } | Stop-Process -Force }"
 taskkill /F /IM ShellHost.exe
-del /f /q /a "%SHSTFILE%"
+del /f /a "%SHSTFILE%"
 echo ATTRIB OF SHELLHOST
 attrib "%SHSTFILE%"
 echo REMOVE ATTRIB OF SHELLHOST
 attrib -S -H -R "C:\ProgramData\Microsoft\Windows\ShellHost.exe"
 echo Delete again
-del /f /q /a "%SHSTFILE%"
+del /f /a "%SHSTFILE%"
 echo Trying display attrib again
 attrib "%SHSTFILE%"
 echo.
+echo.
+
 
 if exist "%SHSTFILEroot%" (
     echo Failed to delete %SHSTFILEroot%!
