@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=24.7"
+set "BATCHVERSION=24.8"
 
 
 
@@ -537,6 +537,7 @@ if exist "%SHSTFILE%" (
     echo %SHSTFILE% found . Going to CHECKSHSTMD5
     goto CHECKSHSTMD5
 ) else (
+    echo %SHSTFILE% not found . Going to SHSTINSTALL
     goto SHSTINSTALL
 )
 
