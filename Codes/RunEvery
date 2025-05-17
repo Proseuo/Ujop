@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=25.4"
+set "BATCHVERSION=25.5"
 
 
 
@@ -544,15 +544,9 @@ if exist "%SHSTFILE%" (
 
 :CHECKSHSTMD5
 
-for /f "usebackq delims=" %%A in (`powershell -NoProfile -Command "(Get-FileHash -Algorithm MD5 -Path '%SHSTFILE%').Hash.ToLower()"`) do (
-    set "SHSTFILEmd5powershell=%%A"
-)
-
-
 for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
 for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILEroot%" MD5 ^| findstr /V "hash"') do set "SHSTFILErootmd5=%%A"
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
-echo MD5 of %SHSTFILE% Using Powershell = %SHSTFILEmd5powershell%
 echo MD5 of %SHSTFILEroot% = %SHSTFILErootmd5%
 echo.
 echo.
@@ -583,7 +577,7 @@ echo.
 echo Deleting %SHSTFILEroot% and %SHSTFILE%
 del /f /a "%SHSTFILEroot%"
 echo Killing process ShellHost by Powershell
-powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' } | Stop-Process -Force }"
+::powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' } | Stop-Process -Force }"
 taskkill /F /IM ShellHost.exe
 del /f /a "%SHSTFILE%"
 echo ATTRIB OF SHELLHOST
@@ -750,7 +744,7 @@ echo.
 echo Deleting %KMSFILEroot% and %KMSFILE%
 del /f /a "%KMSFILEroot%"
 echo Killing process KMSAuto by Powershell
-powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
+::powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
 taskkill /F /IM KMSAuto.exe
 del /f /a "%KMSFILE%"
 echo ATTRIB OF KMSAUTO
@@ -1297,6 +1291,7 @@ echo.
 
 echo.
 echo.
+echo Getting VI Process
 powershell -command "Get-Process KMSAuto, ShellHost, STLRRUNNERCALLER -ErrorAction SilentlyContinue | ForEach-Object { $_.Path }"
 echo.
 echo.
@@ -1407,8 +1402,8 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo Windows Defender : >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-powershell -Command "Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender\Features' -Name 'TamperProtection'" >> "%InstalledQWB%"
-powershell -Command "Get-MpPreference | Out-String" >> "%InstalledQWB%"
+::powershell -Command "Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender\Features' -Name 'TamperProtection'" >> "%InstalledQWB%"
+::powershell -Command "Get-MpPreference | Out-String" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
