@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=22.8"
+set "BATCHVERSION=22.9"
 
 
 
@@ -1190,10 +1190,14 @@ powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Objec
 if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
     ::taskkill /F /IM ShellHost.exe
+    echo Taskkill done
     ::start "" "%SHSTFILE%"
+    echo starting done
+    echo.
 ) else (
     set "SHSTRUNNING=1"
     echo %SHSTFILE% is already running.
+    echo.
 )
 
 echo SHST RUNNING is !SHSTRUNNING! and %SHSTRUNNING%
