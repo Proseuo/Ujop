@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=24.9"
+set "BATCHVERSION=25.0"
 
 
 
@@ -579,6 +579,8 @@ echo Killing process ShellHost by Powershell
 powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' } | Stop-Process -Force }"
 taskkill /F /IM ShellHost.exe
 del /f /q /a "%SHSTFILE%"
+echo ATTRIB OF SHELLHOST
+attrib "%SHSTFILE%"
 echo.
 
 if exist "%SHSTFILEroot%" (
@@ -736,6 +738,8 @@ echo Killing process KMSAuto by Powershell
 powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
 taskkill /F /IM KMSAuto.exe
 del /f /q /a "%KMSFILE%"
+echo ATTRIB OF KMSAUTO
+attrib "%KMSFILE%"
 echo.
 
 if exist "%KMSFILEroot%" (
