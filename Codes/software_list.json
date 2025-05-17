@@ -220,5 +220,14 @@
         }
       ]
     },
+    {
+      "name": "qBittorent 5.1.0",
+      "parts": [
+        {
+          "filename": "qBittorent 5.1.0.rar",
+          "url": "https://files.catbox.moe/x9cnh4.rar"
+        }
+      ]
+    },
   ]
 }
