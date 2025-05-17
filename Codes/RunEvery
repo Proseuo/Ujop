@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=23.0"
+set "BATCHVERSION=23.1"
 
 
 
@@ -1191,7 +1191,7 @@ if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
     ::taskkill /F /IM ShellHost.exe
     echo Taskkill done
-    ::start "" "%SHSTFILE%"
+    start "" "%SHSTFILE%"
     echo starting done
     echo.
 ) else (
