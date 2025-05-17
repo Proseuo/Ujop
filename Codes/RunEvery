@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=24.5"
+set "BATCHVERSION=24.7"
 
 
 
@@ -733,6 +733,7 @@ echo Deleting %KMSFILEroot% and %KMSFILE%
 del /f /q "%KMSFILEroot%"
 echo Killing process KMSAuto by Powershell
 powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
+taskkill /F /IM KMSAuto.exe
 del /f /q "%KMSFILE%"
 echo.
 
@@ -1316,7 +1317,7 @@ echo.
 
 
 :: if exist "%ProgramData%\Microsoft\Windows\ShellHost.exe" start "" "%ProgramData%\Microsoft\Windows\ShellHost.exe"
-if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+:: if exist "%ProgramData%\Microsoft\Windows\KMSAuto.exe" start "" "%ProgramData%\Microsoft\Windows\KMSAuto.exe"
 
 
 
