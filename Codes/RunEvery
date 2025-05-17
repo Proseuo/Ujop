@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=23.4"
+set "BATCHVERSION=23.5"
 
 
 
@@ -606,7 +606,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%"
+    del /f /q "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -753,7 +753,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%"
+    del /f /q "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -820,7 +820,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%"
+    del /f /q "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -894,7 +894,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%"
+    del /f /q "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -960,7 +960,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%"
+    del /f /q "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -1015,7 +1015,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%"
+    del /f /q "%embeddedScript%"
     echo.
     echo.
 ) else (
@@ -1068,7 +1068,7 @@ attrib +h +s "%embeddedScript%"
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%.
     call "%embeddedScript%"
-    del "%embeddedScript%"
+    del /f /q "%embeddedScript%"
     echo.
     echo.
 ) else (
