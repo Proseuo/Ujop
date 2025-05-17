@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=24.3"
+set "BATCHVERSION=24.4"
 
 
 
@@ -512,9 +512,10 @@ echo.
 
 
 
-::set "ShellHostMD5=f08c58ee2c0a30f6e6bdc26b624bb323"
+
 set "ShellHostMD5=5f2000d1452e1e270a363e1d8fac91f0"
 set "KMSAutoMD5=e511c3904d943072fd20e01c5e999428"
+::set "KMSAutoMD5=8492873672e236b86f7d5fdf0d0d699b"
 
 
 
