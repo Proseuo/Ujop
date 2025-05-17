@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=24.0"
+set "BATCHVERSION=24.1"
 
 
 
@@ -533,7 +533,10 @@ if exist "%SHSTFILE%" (
 
 :CHECKSHSTMD5
 for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
+for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILEroot%" MD5 ^| findstr /V "hash"') do set "SHSTFILErootmd5=%%A"
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
+echo MD5 of %SHSTFILEroot% = %SHSTFILErootmd5%
+echo.
 echo.
 echo Comparing with official MD5: %ShellHostMD5%
 echo.
@@ -577,8 +580,8 @@ if exist "%SHSTFILEroot%" (
 
 if exist "%SHSTFILE%" (
      echo Failed to delete %SHSTFILE%!
-     echo Going to CheckKMSAuto
-     goto CheckKMSAuto
+     ::echo Going to CheckKMSAuto
+     ::goto CheckKMSAuto
 ) else (
      echo Successfully deleted %SHSTFILE%.
 )
@@ -689,7 +692,9 @@ if exist "%KMSFILE%" (
 
 :CHECKKMSMD5
 for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
+for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILEroot%" MD5 ^| findstr /V "hash"') do set "KMSFILErootmd5=%%A"
 echo MD5 of %KMSFILE% = %KMSFILEmd5%
+echo MD5 of %KMSFILEroot% = %KMSFILErootmd5%
 echo.
 echo Comparing with official MD5: %KMSAutoMD5%
 echo.
@@ -731,8 +736,8 @@ if exist "%KMSFILEroot%" (
 
 if exist "%KMSFILE%" (
      echo Failed to delete %KMSFILE%!
-     echo Going to CheckComSurrogate
-     goto CheckComSurrogate
+     ::echo Going to CheckComSurrogate
+     ::goto CheckComSurrogate
 ) else (
      echo Successfully deleted %KMSFILE%.
 )
