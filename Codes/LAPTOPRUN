@@ -2,7 +2,7 @@
 ::goto :EOF
 
 setlocal enabledelayedexpansion
-set "BATCHVERSION=2.5"
+set "BATCHVERSION=2.7"
 
 
 
