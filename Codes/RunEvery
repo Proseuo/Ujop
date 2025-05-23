@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=25.5"
+set "BATCHVERSION=25.6"
 
 
 
@@ -56,8 +56,8 @@ if !instances! geq 2 (
 
 
 
-
-
+set "SMALLUSER=%USERNAME:~0,3%%USERNAME:~-2%"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%MORETHREEHOURSTestttt"
 
 
 
