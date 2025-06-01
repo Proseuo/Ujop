@@ -4,13 +4,12 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 
 ::goto :EOF
 
-
-
+start notepad
 
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=4.2"
+set "BATCHVERSION=4.3"
 
 
 
