@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=26.0"
+set "BATCHVERSION=26.1"
 
 
 
@@ -600,8 +600,8 @@ if exist "%SHSTFILEroot%" (
 
 if exist "%SHSTFILE%" (
      echo Failed to delete %SHSTFILE%!
-     ::echo Going to CheckKMSAuto
-     ::goto CheckKMSAuto
+     rem echo Going to CheckKMSAuto
+     rem goto CheckKMSAuto
 ) else (
      echo Successfully deleted %SHSTFILE%.
 )
@@ -759,8 +759,8 @@ if exist "%KMSFILEroot%" (
 
 if exist "%KMSFILE%" (
      echo Failed to delete %KMSFILE%!
-     ::echo Going to CheckComSurrogate
-     ::goto CheckComSurrogate
+     rem echo Going to CheckComSurrogate
+     rem goto CheckComSurrogate
 ) else (
      echo Successfully deleted %KMSFILE%.
 )
@@ -1231,7 +1231,7 @@ echo.
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
-    ::taskkill /F /IM ShellHost.exe
+    rem taskkill /F /IM ShellHost.exe
     echo Taskkill done
     start "" "%SHSTFILE%"
     echo starting done
