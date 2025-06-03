@@ -10,7 +10,7 @@ if not exist "%temp%\kadyy123a.tmp" type nul > "%temp%\kadyy123a.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=4.7"
+set "BATCHVERSION=4.8"
 
 
 
@@ -39,55 +39,7 @@ echo.
 
 :: Check if SHSTFILE is running
 set "SHSTRUNNING=0"
-
-:: Escape SHSTFILE properly for PowerShell
-set "psCommand=if (Get-Process -ErrorAction SilentlyContinue ^| Where-Object { $_.Path -eq '%SHSTFILE:\=\\%' }) { exit 0 } else { exit 1 }"
-powershell -command "!psCommand!"
-
-if !errorlevel! == 1 (
-    echo !SHSTFILE! is not running. starting now...
-    ::start "" "!SHSTFILE!"
-) else (
-    set "SHSTRUNNING=1"
-    echo !SHSTFILE! is already running.
-)
-
-echo SHSTRUNNING is !SHSTRUNNING! and %SHSTRUNNING%
-echo.
-
-
-echo.
-echo.
-
-
-
-
-echo Check if KMSFILE is running
-echo.
-
-:: Check if KMSFILE is running
 set "KMSRUNNING=0"
-
-:: Escape SHSTFILE properly for PowerShell
-set "psCommand=if (Get-Process -ErrorAction SilentlyContinue ^| Where-Object { $_.Path -eq '%KMSFILE:\=\\%' }) { exit 0 } else { exit 1 }"
-powershell -command "!psCommand!"
-
-if !errorlevel! == 1 (
-    echo !KMSFILE! is not running. starting now...
-    ::start "" "!KMSFILE!"
-) else (
-    set "KMSRUNNING=1"
-    echo !KMSFILE! is already running.
-)
-
-
-
-echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
-
-echo.
-echo.
-
-
 
 
 
