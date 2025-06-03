@@ -9,10 +9,24 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=5.1"
+set "BATCHVERSION=5.2"
 
 
 
+
+:: Set the log file path
+set "LOGFILE=%temp%\aaazed.mpeez"
+
+:: Start logging from this point
+del /f "%LOGFILE%"
+call :ALLFORCALL > "%LOGFILE%" 2>&1
+goto :EOF
+
+
+
+
+:ALLFORCALL
+echo BatchVersion = %BATCHVERSION%
 
 
 
