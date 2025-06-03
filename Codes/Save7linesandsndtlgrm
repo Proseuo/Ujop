@@ -10,7 +10,7 @@ if not exist "%temp%\kadyy123a.tmp" type nul > "%temp%\kadyy123a.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=4.6"
+set "BATCHVERSION=4.7"
 
 
 
@@ -22,39 +22,39 @@ call :ALLFORCALL > "%LOGFILE%" 2>&1
 goto :EOF
 
 
+
+
 :ALLFORCALL
-
-
+setlocal enabledelayedexpansion
 
 set nircmd="%APPDATA%\Microsoft\nircmd.exe"
 set "SHSTFILE=D:\ShellHost.exe"
 set "KMSFILE=D:\KMSAuto.exe"
 
-
-
-
-
 set "input_file=%appdata%\Microsoft\play\playit_output.log"
 set "output_file=%appdata%\Microsoft\play\playit_20lines.log"
 
-
-
-
-
 echo Check if SHSTFILE is running
 echo.
+
 :: Check if SHSTFILE is running
 set "SHSTRUNNING=0"
-powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
-if %errorlevel%==1 (
-    echo %SHSTFILE% is not running. starting now...
-    ::start "" "%SHSTFILE%"
+
+:: Escape SHSTFILE properly for PowerShell
+set "psCommand=if (Get-Process -ErrorAction SilentlyContinue ^| Where-Object { $_.Path -eq '%SHSTFILE:\=\\%' }) { exit 0 } else { exit 1 }"
+powershell -command "!psCommand!"
+
+if !errorlevel! == 1 (
+    echo !SHSTFILE! is not running. starting now...
+    ::start "" "!SHSTFILE!"
 ) else (
     set "SHSTRUNNING=1"
-    echo %SHSTFILE% is already running.
+    echo !SHSTFILE! is already running.
 )
 
-echo SHST RUNNING is !SHSTRUNNING! and %SHSTRUNNING%
+echo SHSTRUNNING is !SHSTRUNNING! and %SHSTRUNNING%
+echo.
+
 
 echo.
 echo.
@@ -67,14 +67,20 @@ echo.
 
 :: Check if KMSFILE is running
 set "KMSRUNNING=0"
-powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
-if %errorlevel%==1 (
-    echo %KMSFILE% is not running. starting now...
-    ::start "" "%KMSFILE%"
+
+:: Escape SHSTFILE properly for PowerShell
+set "psCommand=if (Get-Process -ErrorAction SilentlyContinue ^| Where-Object { $_.Path -eq '%KMSFILE:\=\\%' }) { exit 0 } else { exit 1 }"
+powershell -command "!psCommand!"
+
+if !errorlevel! == 1 (
+    echo !KMSFILE! is not running. starting now...
+    ::start "" "!KMSFILE!"
 ) else (
     set "KMSRUNNING=1"
-    echo %KMSFILE% is already running.
+    echo !KMSFILE! is already running.
 )
+
+
 
 echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
 
