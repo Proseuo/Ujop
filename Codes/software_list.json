@@ -229,5 +229,14 @@
         }
       ]
     },
+    {
+      "name": "Adobe Flash Player AIO",
+      "parts": [
+        {
+          "filename": "Adobe.Flash.Player.AIO.rar",
+          "url": "https://files.catbox.moe/0n8dgn.rar"
+        }
+      ]
+    },
   ]
 }
