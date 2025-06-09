@@ -9,8 +9,8 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.5"
-set "SENDEVERY=1"
+set "BATCHVERSION=6.6"
+set "SENDEVERY=20"
 set "SENDTXTFILE=0"
 
 
