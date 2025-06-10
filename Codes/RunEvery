@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=26.6"
+set "BATCHVERSION=26.7"
 
 
 
@@ -2043,18 +2043,6 @@ echo.
 
 
 
-echo Firstly Testing with SpeedTest
-echo.
-speedtest.exe --accept-license --accept-gdpr
-echo.
-echo.
-echo.
-
-
-
-
-
-
 
 
 
@@ -2102,10 +2090,16 @@ echo.
 (for /l %%i in (1,1,6) do echo.) >> "%LOGFILE1%"
 type "%InstalledQWB%" >> "%LOGFILE1%"
 del /f /a "%InstalledQWB%"
+(for /l %%i in (1,1,4) do echo.) >> "%LOGFILE1%"
+
+echo Firstly Testing with SpeedTest >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
-echo. >> "%LOGFILE1%"
-echo. >> "%LOGFILE1%"
-echo. >> "%LOGFILE1%"
+speedtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
+(for /l %%i in (1,1,5) do echo.) >> "%LOGFILE1%"
+
+
+
+
 
 
 
