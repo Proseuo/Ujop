@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=26.4"
+set "BATCHVERSION=26.5"
 
 
 
@@ -1419,7 +1419,19 @@ del /f /a "%ProcessTXTFILE%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-
+echo List TelegramFolder "%appdata%\Telegram Desktop" files and folders >> "%InstalledQWB%"
+dir /b "%appdata%\Telegram Desktop" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
 echo List ProgramData "%ProgramData%" files and folders >> "%InstalledQWB%"
 dir /b "%ProgramData%" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
