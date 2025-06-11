@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=26.8"
+set "BATCHVERSION=26.9"
 
 
 
@@ -463,7 +463,7 @@ if exist "%file7%" if exist "%file8%" (
     if exist "%file8%" echo 7z.dll Found in %file8% >> "%InstalledQWB%"
 )
 if exist "%file9%" echo handle.exe Found in %file9% >> "%InstalledQWB%"
-if exist "%file10%" echo wudtest.exe SpeedTest Found in %file9% >> "%InstalledQWB%"
+if exist "%file10%" echo wudtest.exe SpeedTest Found in %file10% >> "%InstalledQWB%"
 
 
 
@@ -2094,7 +2094,7 @@ del /f /a "%InstalledQWB%"
 
 echo Firstly Testing with SpeedTest >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
-speedtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
+wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
 (for /l %%i in (1,1,5) do echo.) >> "%LOGFILE1%"
 
 
