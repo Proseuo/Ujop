@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
-timeout /t 20 /nobreak
+timeout /t 70 /nobreak
 
 :: Disable UAC 
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d 0 /f
