@@ -1,9 +1,10 @@
 {
-  "version": "1.7",
+  "version": "3.0",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
 	  "category": "Download Manager",
+	  "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -15,6 +16,7 @@
     {
       "name": "ClipClip Pro 2.4.5160",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -26,6 +28,7 @@
     {
       "name": "EaseUS Data Recovery Wizard v17.0",
 	  "category": "Data Recovery",
+	  "category_order": 25,
       "display": true,
       "parts": [
         {
@@ -37,6 +40,7 @@
     {
       "name": "4K Video Downloader Plus 25.0.4.0187",
 	  "category": "Media Downloader",
+	  "category_order": 12,
       "display": true,
       "parts": [
         {
@@ -51,7 +55,8 @@
     },
     {
       "name": "Windows&Office Activator",
-	  "category": "Activator",
+	  "category": "System Utilities",
+	  "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -63,6 +68,7 @@
     {
       "name": "Optimizer v16.7",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -74,6 +80,7 @@
     {
       "name": "Notedpad++ 8.6.7",
 	  "category": "Code Editor",
+	  "category_order": 22,
       "display": true,
       "parts": [
         {
@@ -85,6 +92,7 @@
 	{
       "name": "Win10 Brightness Slider",
 	  "category": "Windows Tweaks",
+	  "category_order": 1,
       "display": true,
       "parts": [
         {
@@ -96,6 +104,7 @@
 	{
       "name": "IconViewer 3.02",
 	  "category": "Icons Manager",
+	  "category_order": 23,
       "display": true,
       "parts": [
         {
@@ -106,7 +115,8 @@
     },
 	{
       "name": "7zip 2407 x64",
-	  "category": "Compression Tool",
+	  "category": "System Utilities",
+	  "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -118,6 +128,7 @@
 	{
       "name": "Lightshot",
 	  "category": "Screenshots",
+	  "category_order": 18,
       "display": true,
       "parts": [
         {
@@ -129,6 +140,7 @@
 	{
       "name": "AnyDesk",
 	  "category": "Remote Access",
+	  "category_order": 9,
       "display": true,
       "parts": [
         {
@@ -140,6 +152,7 @@
 	{
       "name": "Everything 1.4.1",
 	  "category": "File Search",
+	  "category_order": 21,
       "display": true,
       "parts": [
         {
@@ -151,6 +164,7 @@
 	{
       "name": "Synaptics Killer V6",
 	  "category": "Windows Security",
+	  "category_order": 3,
       "display": true,
       "parts": [
         {
@@ -162,6 +176,7 @@
 	{
       "name": "ImageResizer",
 	  "category": "Image Tool",
+	  "category_order": 19,
       "display": true,
       "parts": [
         {
@@ -173,6 +188,7 @@
     {
       "name": "Office Tool Plus",
 	  "category": "Office",
+	  "category_order": 4,
       "display": true,
       "parts": [
         {
@@ -184,6 +200,7 @@
     {
       "name": "Avira Phantom VPN 2.41.1",
 	  "category": "VPN",
+	  "category_order": 20,
       "display": true,
       "parts": [
         {
@@ -195,6 +212,7 @@
 	{
       "name": "Revo Uninstaller Pro 5.0.6",
 	  "category": "Uninstaller",
+	  "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -206,6 +224,7 @@
 	{
       "name": "Python 3.12.4",
 	  "category": "Programming",
+	  "category_order": 24,
       "display": true,
       "parts": [
         {
@@ -217,6 +236,7 @@
 	{
       "name": "NetLimiter 5.3.1",
 	  "category": "Network Monitor",
+	  "category_order": 7,
       "display": true,
       "parts": [
         {
@@ -228,6 +248,7 @@
 	{
       "name": "Glary Utilities 6.17.0.21",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -238,7 +259,8 @@
     },
     {
       "name": "WinRar 7.01",
-	  "category": "File Archiver",
+	  "category": "System Utilities",
+	  "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -250,6 +272,7 @@
 	{
       "name": "uTorrent 1.2.3.56",
 	  "category": "Download Manager",
+	  "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -261,6 +284,7 @@
 	{
       "name": "IObit Driver Booster 10.0.0.65",
 	  "category": "Driver Updater",
+	  "category_order": 6,
       "display": true,
       "parts": [
         {
@@ -272,6 +296,7 @@
     {
       "name": "qBittorent 5.1.0",
 	  "category": "Download Manager",
+	  "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -283,6 +308,7 @@
     {
       "name": "Random Pass Generator",
 	  "category": "Windows Security",
+	  "category_order": 3,
       "display": true,
       "parts": [
         {
@@ -294,6 +320,7 @@
 	{
       "name": "EasyBCD",
 	  "category": "Boot Manager",
+	  "category_order": 8,
       "display": true,
       "parts": [
         {
@@ -305,6 +332,7 @@
 	{
       "name": "Autorun Organizer 5.41",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -316,6 +344,7 @@
 	{
       "name": "Free File Sync  13.7",
 	  "category": "File Search",
+	  "category_order": 21,
       "display": true,
       "parts": [
         {
@@ -327,6 +356,7 @@
 	{
       "name": "CCleaner 5.76.8269",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -338,6 +368,7 @@
 	{
       "name": "HandBrake 1.9.2",
 	  "category": "Media Encoder",
+	  "category_order": 13,
       "display": true,
       "parts": [
         {
@@ -349,6 +380,7 @@
 	{
       "name": "Audacity 3.0.2",
 	  "category": "Audio Editor",
+	  "category_order": 16,
       "display": true,
       "parts": [
         {
@@ -360,6 +392,7 @@
 	{
       "name": "WinaeroTweaker 1.63.0",
 	  "category": "Windows Tweaks",
+	  "category_order": 1,
       "display": true,
       "parts": [
         {
@@ -371,6 +404,7 @@
 	{
       "name": "ImageGlass Kobe 8.6.7.13",
 	  "category": "Image Tool",
+	  "category_order": 0,
       "display": true,
       "parts": [
         {
@@ -382,6 +416,7 @@
 	{
       "name": "Active File Recovery Professional 15.0.5",
 	  "category": "Data Recovery",
+	  "category_order": 25,
       "display": true,
       "parts": [
         {
@@ -393,6 +428,7 @@
 	{
       "name": "TreeSize 9.2.1.1907",
 	  "category": "File Search",
+	  "category_order": 21,
       "display": true,
       "parts": [
         {
@@ -404,6 +440,7 @@
 	{
       "name": "GOM Player Plus 2.3.57.5321",
 	  "category": "Media Player",
+	  "category_order": 11,
       "display": true,
       "parts": [
         {
@@ -414,6 +451,7 @@
     },
 	"name": "Wondershare UniConverter 13.6.1.18",
 	"category": "Video Converter",
+	"category_order": 14,
     "display": true,
     "parts": [
         {
@@ -429,6 +467,7 @@
 	{
       "name": "Duplicate Cleaner 5.15.0",
 	  "category": "File Search",
+	  "category_order": 21,
       "display": true,
       "parts": [
         {
@@ -440,6 +479,7 @@
 	{
       "name": "YT Downloader 9.11.7",
 	  "category": "Media Downloader",
+	  "category_order": 12,
       "display": true,
       "parts": [
         {
@@ -451,6 +491,7 @@
 	{
       "name": "MiniTool Partition Wizard 12.7",
 	  "category": "Disk Tools",
+	  "category_order": 5,
       "display": true,
       "parts": [
         {
@@ -462,6 +503,7 @@
 	{
       "name": "Windows7Games",
 	  "category": "Games",
+	  "category_order": 26,
       "display": true,
       "parts": [
         {
@@ -473,6 +515,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "Media Player",
+	  "category_order": 11,
       "display": true,
       "parts": [
         {
@@ -484,6 +527,7 @@
 	{
       "name": "Zona Setup",
 	  "category": "Media Streaming",
+	  "category_order": 15,
       "display": true,
       "parts": [
         {
@@ -496,6 +540,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": false,
       "parts": [
         {
@@ -507,6 +552,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": false,
       "parts": [
         {
@@ -518,6 +564,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": false,
       "parts": [
         {
@@ -529,6 +576,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
+	  "category_order": 2,
       "display": false,
       "parts": [
         {
@@ -540,6 +588,7 @@
 	{
       "name": "VLC 3.0.16",
       "category": "System Utilities",
+      "category_order": 2,
       "display": false,
       "parts": [
         {
@@ -551,6 +600,7 @@
 	{
       "name": "VLC 3.0.16",
       "category": "System Utilities",
+      "category_order": 2,
       "display": false,
       "parts": [
         {
@@ -562,6 +612,7 @@
 	{
       "name": "Telegram 3.0.16",
       "category": "Messaging and Chat",
+      "category_order": 17,
       "display": true,
       "parts": [
         {
@@ -573,6 +624,7 @@
 	{
       "name": "WhatsApp Desktop 2-2517",
       "category": "Messaging and Chat",
+      "category_order": 17,
       "display": true,
       "parts": [
         {
@@ -584,6 +636,7 @@
 	{
       "name": "Discord v1.0.9032",
       "category": "Messaging and Chat",
+      "category_order": 17,
       "display": true,
       "parts": [
         {
@@ -595,6 +648,7 @@
 	{
       "name": "FxSound 2 v1.0.5.0",
       "category": "Audio Editor",
+      "category_order": 16,
       "display": true,
       "parts": [
         {
@@ -606,6 +660,7 @@
 	{
       "name": "EagleGet v2.1.6.50",
       "category": "Download Manager",
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -617,6 +672,7 @@
 	{
       "name": "uGet Download Manager - PB",
       "category": "Download Manager",
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -628,6 +684,7 @@
 	{
       "name": "Ashampoo WinOptimizer 28.00.12 Multilingual",
       "category": "System Utilities",
+      "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -638,7 +695,8 @@
     },
 	{
       "name": "CheatEngine75",
-      "category": "Download Manager",
+      "category": "System Utilities",
+      "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -650,6 +708,7 @@
 	{
       "name": "J Downloader 2",
       "category": "Download Manager",
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -661,6 +720,7 @@
 	{
       "name": "Ant Download Manager 2.7.1",
       "category": "Download Manager",
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -672,6 +732,7 @@
 	{
       "name": "K-Lite Codec Pack 18.6.5 Standard",
       "category": "Media Player",
+      "category_order": 11,
       "display": true,
       "parts": [
         {
@@ -683,6 +744,7 @@
 	{
       "name": "TeamViewer 15.40.8.0",
       "category": "Remote Access",
+      "category_order": 9,
       "display": true,
       "parts": [
         {
@@ -694,6 +756,7 @@
 	{
       "name": "Persepolis Download Manager 5.1.1",
       "category": "Download Manager",
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -705,11 +768,108 @@
 	{
       "name": "Format Factory 5.21.0",
       "category": "Video Converter",
+      "category_order": 14,
       "display": true,
       "parts": [
         {
           "filename": "Format Factory 5.21.0.rar",
           "url": "https://files.catbox.moe/ozcm7h.rar"
+        }
+      ]
+    },
+	{
+      "name": "Chrome v137.0.7151.56",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Chrome v137.0.7151.56.exe",
+          "url": "https://f1.812server.xyz/Pro/Google%20Chrome%20137.0.7151.56%20x64.rar"
+        }
+      ]
+    },
+	{
+      "name": "Opera v114.0.5282.154",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Opera.zip",
+          "url": "https://zanjabeel.arfiles.net/Opera_114.0.5282.154_Setup_x64.zip"
+        }
+      ]
+    },
+	{
+      "name": "Brave Browser v1.61.116",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Brave Browser v1.61.116.zip",
+          "url": "https://korkom.arfiles.net/Brave%201.61.116%20x64.zip"
+        }
+      ]
+    },
+	{
+      "name": "Opera GX v102.0.4880.104",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Opera GX v102.0.4880.104.zip",
+          "url": "https://ful.arfiles.net/Opera_GX_102.0.4880.104_Setup.zip"
+        }
+      ]
+    },
+	{
+      "name": "Mozilla Firefox Quantum v139",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Mozilla Firefox Quantum v139.rar",
+          "url": "https://f1.812server.xyz/Pro/Mozilla%20Firefox%20139.0%20x64.rar"
+        }
+      ]
+    },
+	{
+      "name": "Yandex Browser v23.9.2.888",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Yandex Browser v23.9.2.888.zip",
+          "url": "https://ful.arfiles.net/Yandex.Browser.23.9.2.888.zip"
+        }
+      ]
+    },
+	{
+      "name": "Cent Browser v3.5.3.34",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Cent Browser v3.5.3.34.zip",
+          "url": "https://magy.arfiles.net/Cent_Browser_3.5.3.34_x64.zip"
+        }
+      ]
+    },
+	{
+      "name": "Baidu Spark Browser v43.23.1008.106",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Baidu Spark Browser v43.23.1008.106.zip",
+          "url": "https://yansoon.arfiles.net/Baidu%20Browser%20for%20Windows43.23.1008.106.rar"
         }
       ]
     },
