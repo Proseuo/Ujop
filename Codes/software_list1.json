@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.3",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -41,7 +41,7 @@
     {
       "name": "YT Downloader 9.11.7",
       "category": "Media Downloader",
-      "display": false,
+      "display": true,
       "parts": [
         {
           "filename": "YT Downloader 9.11.7.rar",
