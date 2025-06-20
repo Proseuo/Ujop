@@ -1,5 +1,5 @@
 {
-  "version": "1.5",
+  "version": "1.6",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -496,7 +496,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
-      "display": true,
+      "display": false,
       "parts": [
         {
           "filename": "vlc-3.0.16-win64.rar",
@@ -507,7 +507,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
-      "display": true,
+      "display": false,
       "parts": [
         {
           "filename": "vlc-3.0.16-win64.rar",
@@ -518,7 +518,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
-      "display": true,
+      "display": false,
       "parts": [
         {
           "filename": "vlc-3.0.16-win64.rar",
@@ -529,7 +529,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
-      "display": true,
+      "display": false,
       "parts": [
         {
           "filename": "vlc-3.0.16-win64.rar",
@@ -540,7 +540,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
-      "display": true,
+      "display": false,
       "parts": [
         {
           "filename": "vlc-3.0.16-win64.rar",
@@ -551,7 +551,7 @@
 	{
       "name": "VLC 3.0.16",
 	  "category": "System Utilities",
-      "display": true,
+      "display": false,
       "parts": [
         {
           "filename": "vlc-3.0.16-win64.rar",
