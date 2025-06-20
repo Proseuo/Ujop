@@ -3,17 +3,18 @@
     {
       "name": "IDM 6.42 Build 34",
       "category": "Download Manager",
+      "display": true,
       "parts": [
         {
           "filename": "IDM6.42Build34Repacked.rar",
           "url": "https://files.catbox.moe/ars2sd.rar"
         }
-        "display": true
       ]
     },
     {
       "name": "4K Video Downloader Plus 25.0.4.0187",
       "category": "Media Downloader",
+      "display": true,
       "parts": [
         {
           "filename": "4K Video Downloader Plus 25.0.4.0187.part1.rar",
@@ -24,29 +25,28 @@
           "url": "https://files.catbox.moe/cznbbv.rar"
         }
       ]
-      "display": true
-    }
+    },
     {
       "name": "qBittorent 5.1.0",
       "category": "Media Downloader",
+      "display": true,
       "parts": [
         {
           "filename": "qBittorent 5.1.0.rar",
           "url": "https://files.catbox.moe/iz1zay.rar"
         }
       ]
-    "display": true
-    }
+    },
     {
       "name": "YT Downloader 9.11.7",
       "category": "Media Downloader",
+      "display": false,
       "parts": [
         {
           "filename": "YT Downloader 9.11.7.rar",
           "url": "https://files.catbox.moe/q9jo72.rar"
         }
       ]
-      "display": false
     }
   ]
 }
