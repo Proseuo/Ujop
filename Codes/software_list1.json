@@ -1,10 +1,10 @@
 {
-  "version": "2.5",
+  "version": "2.6",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
 	  "category": "Download Manager",
-	  "category_order": 0,
+	  "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -272,7 +272,7 @@
 	{
       "name": "uTorrent 1.2.3.56",
 	  "category": "Download Manager",
-	  "category_order": 0,
+	  "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -296,7 +296,7 @@
     {
       "name": "qBittorent 5.1.0",
 	  "category": "Download Manager",
-	  "category_order": 0,
+	  "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -660,7 +660,7 @@
 	{
       "name": "EagleGet v2.1.6.50",
       "category": "Download Manager",
-      "category_order": 0,
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -672,7 +672,7 @@
 	{
       "name": "uGet Download Manager - PB",
       "category": "Download Manager",
-      "category_order": 0,
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -695,8 +695,8 @@
     },
 	{
       "name": "CheatEngine75",
-      "category": "Download Manager",
-      "category_order": 0,
+      "category": "System Utilities",
+      "category_order": 2,
       "display": true,
       "parts": [
         {
@@ -708,7 +708,7 @@
 	{
       "name": "J Downloader 2",
       "category": "Download Manager",
-      "category_order": 0,
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -720,7 +720,7 @@
 	{
       "name": "Ant Download Manager 2.7.1",
       "category": "Download Manager",
-      "category_order": 0,
+      "category_order": 10,
       "display": true,
       "parts": [
         {
@@ -756,7 +756,7 @@
 	{
       "name": "Persepolis Download Manager 5.1.1",
       "category": "Download Manager",
-      "category_order": 0,
+      "category_order": 10,
       "display": true,
       "parts": [
         {
