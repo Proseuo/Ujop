@@ -1,5 +1,5 @@
 {
-  "version": "2.7",
+  "version": "2.8",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -28,7 +28,7 @@
     {
       "name": "EaseUS Data Recovery Wizard v17.0",
 	  "category": "Data Recovery",
-	  "category_order": 0,
+	  "category_order": 25,
       "display": true,
       "parts": [
         {
@@ -416,7 +416,7 @@
 	{
       "name": "Active File Recovery Professional 15.0.5",
 	  "category": "Data Recovery",
-	  "category_order": 26,
+	  "category_order": 25,
       "display": true,
       "parts": [
         {
@@ -503,7 +503,7 @@
 	{
       "name": "Windows7Games",
 	  "category": "Games",
-	  "category_order": 0,
+	  "category_order": 26,
       "display": true,
       "parts": [
         {
