@@ -1,9 +1,9 @@
 {
-  "version": "1.3",
+  "version": "1.4",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
-      "category": "Download Manager",
+	  "category": "Download Manager",
       "display": true,
       "parts": [
         {
@@ -13,8 +13,30 @@
       ]
     },
     {
+      "name": "ClipClip Pro 2.4.5160",
+	  "category": "Download Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "IClipClipRepacked.rar",
+          "url": "https://files.catbox.moe/hqpotd.rar"
+        }
+      ]
+    },
+    {
+      "name": "EaseUS Data Recovery Wizard v17.0",
+	  "category": "Data Recovery",
+      "display": true,
+      "parts": [
+        {
+          "filename": "EaseUS Data Recovery Wizard v17.0.0.0.rar",
+          "url": "https://files.catbox.moe/rl9xux.rar"
+        }
+      ]
+    },
+    {
       "name": "4K Video Downloader Plus 25.0.4.0187",
-      "category": "Media Downloader",
+	  "category": "Media Downloader",
       "display": true,
       "parts": [
         {
@@ -28,8 +50,228 @@
       ]
     },
     {
+      "name": "Windows&Office Activator",
+	  "category": "Activator",
+      "display": true,
+      "parts": [
+        {
+          "filename": "WinOfficeActivator.rar",
+          "url": "https://files.catbox.moe/2xqrbo.rar"
+        }
+      ]
+    },
+    {
+      "name": "Optimizer v16.7",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Optimizer v16.7.rar",
+          "url": "https://files.catbox.moe/x77kzt.rar"
+        }
+      ]
+    },
+    {
+      "name": "Notedpad++ 8.6.7",
+	  "category": "Code Editor",
+      "display": true,
+      "parts": [
+        {
+          "filename": "npp.8.6.7.Installer.rar",
+          "url": "https://files.catbox.moe/47h8nj.rar"
+        }
+      ]
+    },
+	{
+      "name": "Win10 Brightness Slider",
+	  "category": "Windows Tweaks",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Win10_BrightnessSlider.rar",
+          "url": "https://files.catbox.moe/azy30t.rar"
+        }
+      ]
+    },
+	{
+      "name": "IconViewer 3.02",
+	  "category": "Icons Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "IconViewer.v3.02.rar",
+          "url": "https://files.catbox.moe/b37uff.rar"
+        }
+      ]
+    },
+	{
+      "name": "7zip 2407 x64",
+	  "category": "Compression Tool",
+      "display": true,
+      "parts": [
+        {
+          "filename": "7zip2407.exe",
+          "url": "https://files.catbox.moe/fyg12m.exee"
+        }
+      ]
+    },
+	{
+      "name": "Lightshot",
+	  "category": "Screenshots",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Lightshot.rar",
+          "url": "https://files.catbox.moe/l9h82v.rar"
+        }
+      ]
+    },
+	{
+      "name": "AnyDesk",
+	  "category": "Remote Access",
+      "display": true,
+      "parts": [
+        {
+          "filename": "AnyDesk.rar",
+          "url": "https://files.catbox.moe/8c29pc.rar"
+        }
+      ]
+    },
+	{
+      "name": "Everything 1.4.1",
+	  "category": "File Search",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Everything1.4.1x64.rar",
+          "url": "https://files.catbox.moe/9bnztq.rar"
+        }
+      ]
+    },
+	{
+      "name": "Synaptics Killer V6",
+	  "category": "Windows Security",
+      "display": true,
+      "parts": [
+        {
+          "filename": "SynapticsKillerV6.rar",
+          "url": "https://files.catbox.moe/6sfojx.rar"
+        }
+      ]
+    },
+	{
+      "name": "ImageResizer",
+	  "category": "Image Tool",
+      "display": true,
+      "parts": [
+        {
+          "filename": "ImageResizerSetup3.1.2.rar",
+          "url": "https://files.catbox.moe/8tjzf0.rar"
+        }
+      ]
+    },
+    {
+      "name": "Office Tool Plus",
+	  "category": "Office",
+      "display": true,
+      "parts": [
+        {
+          "filename": "OfficeToolPlus.rar",
+          "url": "https://files.catbox.moe/vs1dpn.rar"
+        }
+      ]
+    },
+    {
+      "name": "Avira Phantom VPN 2.41.1",
+	  "category": "VPN",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Avira Phantom VPN 2.41.1.rar",
+          "url": "https://files.catbox.moe/149apw.rar"
+        }
+      ]
+    },
+	{
+      "name": "Revo Uninstaller Pro 5.0.6",
+	  "category": "Uninstaller",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Revo Uninstaller Pro 5.0.6.rar",
+          "url": "https://files.catbox.moe/tvxsro.rar"
+        }
+      ]
+    },
+	{
+      "name": "Python 3.12.4",
+	  "category": "Programming",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Python 3.12.4.rar",
+          "url": "https://files.catbox.moe/wczf9b.rar"
+        }
+      ]
+    },
+	{
+      "name": "NetLimiter 5.3.1",
+	  "category": "Network Monitor",
+      "display": true,
+      "parts": [
+        {
+          "filename": "NetLimiter 5.3.1.rar",
+          "url": "https://files.catbox.moe/pt8hik.rar"
+        }
+      ]
+    },
+	{
+      "name": "Glary Utilities 6.17.0.21",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Glary Utilities 6.17.0.21.rar",
+          "url": "https://files.catbox.moe/w4ju0h.rar"
+        }
+      ]
+    },
+    {
+      "name": "WinRar 7.01",
+	  "category": "File Archiver",
+      "display": true,
+      "parts": [
+        {
+          "filename": "WinRar 7.01.exe",
+          "url": "https://files.catbox.moe/cc63fu.exee"
+        }
+      ]
+    },
+	{
+      "name": "uTorrent 1.2.3.56",
+	  "category": "Download Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "uTorrent 1.2.3.56.rar",
+          "url": "https://files.catbox.moe/xbu5xy.rar"
+        }
+      ]
+    },
+	{
+      "name": "IObit Driver Booster 10.0.0.65",
+	  "category": "Driver Updater",
+      "display": true,
+      "parts": [
+        {
+          "filename": "IObit Driver Booster 10.0.0.65.rar",
+          "url": "https://files.catbox.moe/1zdap8.rar"
+        }
+      ]
+    },
+    {
       "name": "qBittorent 5.1.0",
-      "category": "Media Downloader",
+	  "category": "Download Manager",
       "display": true,
       "parts": [
         {
@@ -39,8 +281,165 @@
       ]
     },
     {
+      "name": "Random Pass Generator",
+	  "category": "Windows Security",
+      "display": true,
+      "parts": [
+        {
+          "filename": "RandomPassGen.rar",
+          "url": "https://files.catbox.moe/57u139.rar"
+        }
+      ]
+    },
+	{
+      "name": "EasyBCD",
+	  "category": "Boot Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "EasyBCD.rar",
+          "url": "https://files.catbox.moe/sfxkwl.rar"
+        }
+      ]
+    },
+	{
+      "name": "Autorun Organizer 5.41",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Autorun Organizer 5.41.rar",
+          "url": "https://files.catbox.moe/n9lmso.rar"
+        }
+      ]
+    },
+	{
+      "name": "Free File Sync  13.7",
+	  "category": "File Search",
+      "display": true,
+      "parts": [
+        {
+          "filename": "FreeFileSync.v13.7.rar",
+          "url": "https://files.catbox.moe/tng85s.rar"
+        }
+      ]
+    },
+	{
+      "name": "CCleaner 5.76.8269",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "CCleaner 5.76.8269.rar",
+          "url": "https://files.catbox.moe/420xui.rar"
+        }
+      ]
+    },
+	{
+      "name": "HandBrake 1.9.2",
+	  "category": "Media Encoder",
+      "display": true,
+      "parts": [
+        {
+          "filename": "HandBrake-1.9.2.rar",
+          "url": "https://files.catbox.moe/wkhdrx.rar"
+        }
+      ]
+    },
+	{
+      "name": "Audacity 3.0.2",
+	  "category": "Audio Editor",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Audacity 3.0.2.rar",
+          "url": "https://files.catbox.moe/po8l27.rar"
+        }
+      ]
+    },
+	{
+      "name": "WinaeroTweaker 1.63.0",
+	  "category": "Windows Tweaks",
+      "display": true,
+      "parts": [
+        {
+          "filename": "WinaeroTweaker-1.63.0.rar",
+          "url": "https://files.catbox.moe/se7dnk.rar"
+        }
+      ]
+    },
+	{
+      "name": "ImageGlass Kobe 8.6.7.13",
+	  "category": "Image Tool",
+      "display": true,
+      "parts": [
+        {
+          "filename": "ImageGlass_Kobe_8.6.7.13.rar",
+          "url": "https://files.catbox.moe/6aszyq.rar"
+        }
+      ]
+    },
+	{
+      "name": "Active File Recovery Professional 15.0.5",
+	  "category": "Data Recovery",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Active File Recovery Professional 15.0.5.rar",
+          "url": "https://files.catbox.moe/yq49ul.rar"
+        }
+      ]
+    },
+	{
+      "name": "TreeSize 9.2.1.1907",
+	  "category": "File Search",
+      "display": true,
+      "parts": [
+        {
+          "filename": "TreeSize 9.2.1.1907.rar",
+          "url": "https://files.catbox.moe/8zmwcp.rar"
+        }
+      ]
+    },
+	{
+      "name": "GOM Player Plus 2.3.57.5321",
+	  "category": "Media Player",
+      "display": true,
+      "parts": [
+        {
+          "filename": "GOM Player Plus 2.3.57.5321.rar",
+          "url": "https://files.catbox.moe/abpowx.rar"
+        }
+      ]
+    },
+	"name": "Wondershare UniConverter 13.6.1.18",
+	"category": "Video Converter",
+    "display": true,
+    "parts": [
+        {
+          "filename": "Wondershare UniConverter 13.6.1.18.part1.rar",
+          "url": "https://files.catbox.moe/wszbhc.rar"
+        },
+        {
+          "filename": "Wondershare UniConverter 13.6.1.18.part2.rar",
+          "url": "https://files.catbox.moe/ba82xq.rar"
+        }
+      ]
+    },
+	{
+      "name": "Duplicate Cleaner 5.15.0",
+	  "category": "File Search",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Duplicate Cleaner 5.15.0.rar",
+          "url": "https://files.catbox.moe/b7kviy.rar"
+        }
+      ]
+    },
+	{
       "name": "YT Downloader 9.11.7",
-      "category": "Media Downloader",
+	  "category": "Media Downloader",
       "display": true,
       "parts": [
         {
@@ -48,6 +447,50 @@
           "url": "https://files.catbox.moe/q9jo72.rar"
         }
       ]
-    }
+    },
+	{
+      "name": "MiniTool Partition Wizard 12.7",
+	  "category": "Disk Tools",
+      "display": true,
+      "parts": [
+        {
+          "filename": "MiniTool Partition Wizard 12.7.rar",
+          "url": "https://files.catbox.moe/xtku8u.rar"
+        }
+      ]
+    },
+	{
+      "name": "Windows7Games",
+	  "category": "Games",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Windows7Games_for_Windows_11_10_8.rar",
+          "url": "https://files.catbox.moe/ozgn22.rar"
+        }
+      ]
+    },
+	{
+      "name": "VLC 3.0.16",
+	  "category": "Media Player",
+      "display": true,
+      "parts": [
+        {
+          "filename": "vlc-3.0.16-win64.rar",
+          "url": "https://files.catbox.moe/m2i6hh.rar"
+        }
+      ]
+    },
+	{
+      "name": "Zona Setup",
+	  "category": "Media Streaming",
+      "display": true,
+      "parts": [
+        {
+          "filename": "ZonaSetup64.rar",
+          "url": "https://files.catbox.moe/9ba7e8.rar"
+        }
+      ]
+    },
   ]
 }
