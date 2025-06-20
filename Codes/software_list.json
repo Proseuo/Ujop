@@ -301,5 +301,54 @@
         }
       ]
     },
+	{
+      "zame": "Wondershare UniConverter 13.6.1.18",
+      "parts": [
+        {
+          "filename": "Wondershare UniConverter 13.6.1.18.part1.rar",
+          "url": "https://files.catbox.moe/zbeaci.rar"
+        },
+        {
+          "filename": "Wondershare UniConverter 13.6.1.18.part2.rar",
+          "url": "https://files.catbox.moe/ba82xq.rar"
+        }
+      ]
+    },
+	{
+      "name": "ImageGlass Kobe 8.6.7.13",
+      "parts": [
+        {
+          "filename": "ImageGlass_Kobe_8.6.7.13.rar",
+          "url": "https://files.catbox.moe/6aszyq.rar"
+        }
+      ]
+    },
+	{
+      "name": "Active File Recovery Professional 15.0.5",
+      "parts": [
+        {
+          "filename": "Active File Recovery Professional 15.0.5.rar",
+          "url": "https://files.catbox.moe/yq49ul.rar"
+        }
+      ]
+    },
+	{
+      "name": "TreeSize 9.2.1.1907",
+      "parts": [
+        {
+          "filename": "TreeSize 9.2.1.1907.rar",
+          "url": "https://files.catbox.moe/8zmwcp.rar"
+        }
+      ]
+    },
+	{
+      "name": "GOM Player Plus 2.3.57.5321",
+      "parts": [
+        {
+          "filename": "GOM Player Plus 2.3.57.5321.rar",
+          "url": "https://files.catbox.moe/abpowx.rar"
+        }
+      ]
+    },
   ]
 }
