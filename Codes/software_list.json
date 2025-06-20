@@ -1,5 +1,5 @@
 {
-  "version": "1.6",
+  "version": "1.7",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -111,7 +111,7 @@
       "parts": [
         {
           "filename": "7zip2407.exe",
-          "url": "https://files.catbox.moe/fyg12m.exee"
+          "url": "https://www.7-zip.org/a/7z2409-x64.exe"
         }
       ]
     },
@@ -243,7 +243,7 @@
       "parts": [
         {
           "filename": "WinRar 7.01.exe",
-          "url": "https://files.catbox.moe/cc63fu.exee"
+          "url": "https://zanjabeel.arfiles.net/WinRAR%207.01%20x64.exe"
         }
       ]
     },
@@ -539,7 +539,7 @@
     },
 	{
       "name": "VLC 3.0.16",
-	  "category": "System Utilities",
+      "category": "System Utilities",
       "display": false,
       "parts": [
         {
@@ -550,12 +550,166 @@
     },
 	{
       "name": "VLC 3.0.16",
-	  "category": "System Utilities",
+      "category": "System Utilities",
       "display": false,
       "parts": [
         {
           "filename": "vlc-3.0.16-win64.rar",
           "url": "https://files.catbox.moe/m2i6hh.rar"
+        }
+      ]
+    },
+	{
+      "name": "Telegram 3.0.16",
+      "category": "Messaging and Chat",
+      "display": true,
+      "parts": [
+        {
+          "filename": "tsetup-x64.5.15.4.exe",
+          "url": "https://td.telegram.org/tx64/tsetup-x64.5.15.4.exe"
+        }
+      ]
+    },
+	{
+      "name": "WhatsApp Desktop 2-2517",
+      "category": "Messaging and Chat",
+      "display": true,
+      "parts": [
+        {
+          "filename": "whatsapp-desktop-2-2517-4-0.msixbundle",
+          "url": "https://zyne.arfiles.net/whatsapp-desktop-2-2517-4-0.msixbundle"
+        }
+      ]
+    },
+	{
+      "name": "Discord v1.0.9032",
+      "category": "Messaging and Chat",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Discord.1.0.9032.zip",
+          "url": "https://zyne.arfiles.net/Discord.1.0.9032.zip"
+        }
+      ]
+    },
+	{
+      "name": "FxSound 2 v1.0.5.0",
+      "category": "Audio Editor",
+      "display": true,
+      "parts": [
+        {
+          "filename": "FxSound 2 v1.0.5.0.rar",
+          "url": "https://files.catbox.moe/jhmyp3.rar"
+        }
+      ]
+    },
+	{
+      "name": "EagleGet v2.1.6.50",
+      "category": "Download Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "EagleGet v2.1.6.50.rar",
+          "url": "https://files.catbox.moe/ell7jh.rar"
+        }
+      ]
+    },
+	{
+      "name": "uGet Download Manager - PB",
+      "category": "Download Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "uGet Download Manager - PB.rar",
+          "url": "https://files.catbox.moe/1zt9jz.rar"
+        }
+      ]
+    },
+	{
+      "name": "Ashampoo WinOptimizer 28.00.12 Multilingual",
+      "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Ashampoo WinOptimizer 28.00.12 Multilingual.rar",
+          "url": "https://files.catbox.moe/8genxf.rar"
+        }
+      ]
+    },
+	{
+      "name": "CheatEngine75",
+      "category": "Download Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "CheatEngine75.rar",
+          "url": "https://files.catbox.moe/g1i7z5.rar"
+        }
+      ]
+    },
+	{
+      "name": "J Downloader 2",
+      "category": "Download Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "J Downloader 2.rar",
+          "url": "https://files.catbox.moe/9l0qne.rar"
+        }
+      ]
+    },
+	{
+      "name": "Ant Download Manager 2.7.1",
+      "category": "Download Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Ant Download Manager 2.7.1.rar",
+          "url": "https://files.catbox.moe/3p3evs.rar"
+        }
+      ]
+    },
+	{
+      "name": "K-Lite Codec Pack 18.6.5 Standard",
+      "category": "Media Player",
+      "display": true,
+      "parts": [
+        {
+          "filename": "K-Lite.Codec.Pack.18.6.5.Standard",
+          "url": "https://files.catbox.moe/sns5i4.rar"
+        }
+      ]
+    },
+	{
+      "name": "TeamViewer 15.40.8.0",
+      "category": "Remote Access",
+      "display": true,
+      "parts": [
+        {
+          "filename": "TeamViewer 15.40.8.0.rar",
+          "url": "https://files.catbox.moe/dkdrln.rar"
+        }
+      ]
+    },
+	{
+      "name": "Persepolis Download Manager 5.1.1",
+      "category": "Download Manager",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Persepolis Download Manager 5.1.1.rar",
+          "url": "https://files.catbox.moe/c7vgw0.rar"
+        }
+      ]
+    },
+	{
+      "name": "Format Factory 5.21.0",
+      "category": "Video Converter",
+      "display": true,
+      "parts": [
+        {
+          "filename": "Format Factory 5.21.0.rar",
+          "url": "https://files.catbox.moe/ozcm7h.rar"
         }
       ]
     },
