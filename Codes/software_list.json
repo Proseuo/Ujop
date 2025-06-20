@@ -337,5 +337,62 @@
         }
       ]
     },
+	"name": "Wondershare UniConverter 13.6.1.18",
+      "parts": [
+        {
+          "filename": "Wondershare UniConverter 13.6.1.18.part1.rar",
+          "url": "https://files.catbox.moe/wszbhc.rar"
+        },
+        {
+          "filename": "Wondershare UniConverter 13.6.1.18.part2.rar",
+          "url": "https://files.catbox.moe/ba82xq.rar"
+        }
+      ]
+    },
+	{
+      "name": "Duplicate Cleaner 5.15.0",
+      "parts": [
+        {
+          "filename": "Duplicate Cleaner 5.15.0.rar",
+          "url": "https://files.catbox.moe/b7kviy.rar"
+        }
+      ]
+    },
+	{
+      "name": "YT Downloader 9.11.7",
+      "parts": [
+        {
+          "filename": "YT Downloader 9.11.7.rar",
+          "url": "https://files.catbox.moe/q9jo72.rar"
+        }
+      ]
+    },
+	{
+      "name": "MiniTool Partition Wizard 12.7",
+      "parts": [
+        {
+          "filename": "MiniTool Partition Wizard 12.7.rar",
+          "url": "https://files.catbox.moe/xtku8u.rar"
+        }
+      ]
+    },
+	{
+      "name": "Windows7Games",
+      "parts": [
+        {
+          "filename": "Windows7Games_for_Windows_11_10_8.rar",
+          "url": "https://files.catbox.moe/ozgn22.rar"
+        }
+      ]
+    },
+	{
+      "name": "Zona Setup",
+      "parts": [
+        {
+          "filename": "ZonaSetup64.rar",
+          "url": "https://files.catbox.moe/9ba7e8.rar"
+        }
+      ]
+    },
   ]
 }
