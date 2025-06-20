@@ -1,5 +1,5 @@
 {
-  "version": "1.4",
+  "version": "1.5",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -489,6 +489,73 @@
         {
           "filename": "ZonaSetup64.rar",
           "url": "https://files.catbox.moe/9ba7e8.rar"
+        }
+      ]
+    },
+	},
+	{
+      "name": "VLC 3.0.16",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "vlc-3.0.16-win64.rar",
+          "url": "https://files.catbox.moe/m2i6hh.rar"
+        }
+      ]
+    },
+	{
+      "name": "VLC 3.0.16",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "vlc-3.0.16-win64.rar",
+          "url": "https://files.catbox.moe/m2i6hh.rar"
+        }
+      ]
+    },
+	{
+      "name": "VLC 3.0.16",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "vlc-3.0.16-win64.rar",
+          "url": "https://files.catbox.moe/m2i6hh.rar"
+        }
+      ]
+    },
+	{
+      "name": "VLC 3.0.16",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "vlc-3.0.16-win64.rar",
+          "url": "https://files.catbox.moe/m2i6hh.rar"
+        }
+      ]
+    },
+	{
+      "name": "VLC 3.0.16",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "vlc-3.0.16-win64.rar",
+          "url": "https://files.catbox.moe/m2i6hh.rar"
+        }
+      ]
+    },
+	{
+      "name": "VLC 3.0.16",
+	  "category": "System Utilities",
+      "display": true,
+      "parts": [
+        {
+          "filename": "vlc-3.0.16-win64.rar",
+          "url": "https://files.catbox.moe/m2i6hh.rar"
         }
       ]
     },
