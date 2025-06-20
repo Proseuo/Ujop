@@ -1,6 +1,7 @@
 @echo off
 
 if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
+if not exist "%temp%\VersDev1.Piy" type nul > "%temp%\VersDev1.Piy"
 
 ::goto :EOF
 
@@ -9,7 +10,7 @@ if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.7"
+set "BATCHVERSION=6.8"
 set "SENDEVERY=20"
 set "SENDTXTFILE=0"
 
