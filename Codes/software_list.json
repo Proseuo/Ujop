@@ -230,11 +230,74 @@
       ]
     },
     {
-      "name": "Adobe Flash Player AIO",
+      "name": "Random Pass Generator",
       "parts": [
         {
-          "filename": "Adobe.Flash.Player.AIO.rar",
-          "url": "https://files.catbox.moe/0n8dgn.rar"
+          "filename": "RandomPassGen.rar",
+          "url": "https://files.catbox.moe/57u139.rar"
+        }
+      ]
+    },
+	{
+      "name": "EasyBCD",
+      "parts": [
+        {
+          "filename": "EasyBCD.rar",
+          "url": "https://files.catbox.moe/sfxkwl.rar"
+        }
+      ]
+    },
+	{
+      "name": "Autorun Organizer 5.41",
+      "parts": [
+        {
+          "filename": "Autorun Organizer 5.41.rar",
+          "url": "https://files.catbox.moe/n9lmso.rar"
+        }
+      ]
+    },
+	{
+      "name": "Free File Sync  13.7",
+      "parts": [
+        {
+          "filename": "FreeFileSync.v13.7.rar",
+          "url": "https://files.catbox.moe/tng85s.rar"
+        }
+      ]
+    },
+	{
+      "name": "CCleaner 5.76.8269",
+      "parts": [
+        {
+          "filename": "CCleaner 5.76.8269.rar",
+          "url": "https://files.catbox.moe/420xui.rar"
+        }
+      ]
+    },
+	{
+      "name": "HandBrake 1.9.2",
+      "parts": [
+        {
+          "filename": "HandBrake-1.9.2.rar",
+          "url": "https://files.catbox.moe/wkhdrx.rar"
+        }
+      ]
+    },
+	{
+      "name": "Audacity 3.0.2",
+      "parts": [
+        {
+          "filename": "Audacity 3.0.2.rar",
+          "url": "https://files.catbox.moe/po8l27.rar"
+        }
+      ]
+    },
+	{
+      "name": "WinaeroTweaker 1.63.0",
+      "parts": [
+        {
+          "filename": "WinaeroTweaker-1.63.0.rar",
+          "url": "https://files.catbox.moe/se7dnk.rar"
         }
       ]
     },
