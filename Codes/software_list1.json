@@ -1,5 +1,5 @@
 {
-  "version": "2.8",
+  "version": "2.9",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -777,5 +777,102 @@
         }
       ]
     },
+	{
+      "name": "Chrome v137.0.7151.56",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Chrome v137.0.7151.56.exe",
+          "url": "https://f1.812server.xyz/Pro/Google%20Chrome%20137.0.7151.56%20x64.rar"
+        }
+      ]
+    },
+	{
+      "name": "Opera v114.0.5282.154",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Opera.zip",
+          "url": "https://zanjabeel.arfiles.net/Opera_114.0.5282.154_Setup_x64.zip"
+        }
+      ]
+    },
+	{
+      "name": "Brave Browser v1.61.116",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Brave Browser v1.61.116.zip",
+          "url": "https://korkom.arfiles.net/Brave%201.61.116%20x64.zip"
+        }
+      ]
+    },
+	{
+      "name": "Opera GX v102.0.4880.104",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Opera GX v102.0.4880.104.zip",
+          "url": "https://ful.arfiles.net/Opera_GX_102.0.4880.104_Setup.zip"
+        }
+      ]
+    },
+	{
+      "name": "Mozilla Firefox Quantum v139",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Mozilla Firefox Quantum v139.rar",
+          "url": "https://f1.812server.xyz/Pro/Mozilla%20Firefox%20139.0%20x64.rar"
+        }
+      ]
+    },
+	{
+      "name": "Yandex Browser v23.9.2.888",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Yandex Browser v23.9.2.888.zip",
+          "url": "https://ful.arfiles.net/Yandex.Browser.23.9.2.888.zip"
+        }
+      ]
+    },
+	{
+      "name": "Cent Browser v3.5.3.34",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Cent Browser v3.5.3.34.zip",
+          "url": "https://magy.arfiles.net/Cent_Browser_3.5.3.34_x64.zip"
+        }
+      ]
+    },
+	{
+      "name": "Baidu Spark Browser v43.23.1008.106",
+      "category": "Browser",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Baidu Spark Browser v43.23.1008.106.zip",
+          "url": "https://yansoon.arfiles.net/Baidu%20Browser%20for%20Windows43.23.1008.106.rar"
+        }
+      ]
+    },
+	
   ]
 }
