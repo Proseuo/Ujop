@@ -1,5 +1,5 @@
 {
-  "version": "3.0",
+  "version": "3.1",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -870,6 +870,18 @@
         {
           "filename": "Baidu Spark Browser v43.23.1008.106.zip",
           "url": "https://yansoon.arfiles.net/Baidu%20Browser%20for%20Windows43.23.1008.106.rar"
+        }
+      ]
+    },
+	{
+      "name": "Mouse and Keyboard Recorder 3.2.0.8",
+      "category": "System Utilities",
+      "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Mouse and Keyboard Recorder 3.2.0.8.rar",
+          "url": "https://files.catbox.moe/3p8kz5.rar
         }
       ]
     },
