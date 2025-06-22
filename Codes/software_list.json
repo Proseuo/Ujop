@@ -1,5 +1,5 @@
 {
-  "version": "3.2",
+  "version": "3.3",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -21,7 +21,7 @@
       "parts": [
         {
           "filename": "IClipClipRepacked.rar",
-          "url": "https://files.catbox.moe/hqpotd.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/hqpotd.rar"
         }
       ]
     },
@@ -33,7 +33,7 @@
       "parts": [
         {
           "filename": "EaseUS Data Recovery Wizard v17.0.0.0.rar",
-          "url": "https://files.catbox.moe/rl9xux.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/rl9xux.rar"
         }
       ]
     },
@@ -45,11 +45,35 @@
       "parts": [
         {
           "filename": "4K Video Downloader Plus 25.0.4.0187.part1.rar",
-          "url": "https://files.catbox.moe/zbeaci.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/zbeaci.rar"
         },
         {
           "filename": "4K Video Downloader Plus 25.0.4.0187.part2.rar",
           "url": "https://files.catbox.moe/cznbbv.rar"
+        }
+      ]
+    },
+	{
+      "name": "PowerToys 0.91.1",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "PowerToys 0.91.1.part1.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/PowerToys.0.91.1.part1.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part2.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/PowerToys.0.91.1.part2.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part3.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/PowerToys.0.91.1.part3.rar"
+        },
+        {
+          "filename": "PowerToys 0.91.1.part4.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/PowerToys.0.91.1.part4.rar"
         }
       ]
     },
@@ -456,7 +480,7 @@
     "parts": [
         {
           "filename": "Wondershare UniConverter 13.6.1.18.part1.rar",
-          "url": "https://files.catbox.moe/wszbhc.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/wszbhc.rar"
         },
         {
           "filename": "Wondershare UniConverter 13.6.1.18.part2.rar",
@@ -484,7 +508,7 @@
       "parts": [
         {
           "filename": "YT Downloader 9.11.7.rar",
-          "url": "https://files.catbox.moe/q9jo72.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/q9jo72.rar"
         }
       ]
     },
@@ -496,7 +520,7 @@
       "parts": [
         {
           "filename": "MiniTool Partition Wizard 12.7.rar",
-          "url": "https://files.catbox.moe/xtku8u.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/xtku8u.rar"
         }
       ]
     },
@@ -508,7 +532,7 @@
       "parts": [
         {
           "filename": "Windows7Games_for_Windows_11_10_8.rar",
-          "url": "https://files.catbox.moe/ozgn22.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ozgn22.rar"
         }
       ]
     },
@@ -532,80 +556,7 @@
       "parts": [
         {
           "filename": "ZonaSetup64.rar",
-          "url": "https://files.catbox.moe/9ba7e8.rar"
-        }
-      ]
-    },
-	},
-	{
-      "name": "VLC 3.0.16",
-	  "category": "System Utilities",
-	  "category_order": 2,
-      "display": false,
-      "parts": [
-        {
-          "filename": "vlc-3.0.16-win64.rar",
-          "url": "https://files.catbox.moe/m2i6hh.rar"
-        }
-      ]
-    },
-	{
-      "name": "VLC 3.0.16",
-	  "category": "System Utilities",
-	  "category_order": 2,
-      "display": false,
-      "parts": [
-        {
-          "filename": "vlc-3.0.16-win64.rar",
-          "url": "https://files.catbox.moe/m2i6hh.rar"
-        }
-      ]
-    },
-	{
-      "name": "VLC 3.0.16",
-	  "category": "System Utilities",
-	  "category_order": 2,
-      "display": false,
-      "parts": [
-        {
-          "filename": "vlc-3.0.16-win64.rar",
-          "url": "https://files.catbox.moe/m2i6hh.rar"
-        }
-      ]
-    },
-	{
-      "name": "VLC 3.0.16",
-	  "category": "System Utilities",
-	  "category_order": 2,
-      "display": false,
-      "parts": [
-        {
-          "filename": "vlc-3.0.16-win64.rar",
-          "url": "https://files.catbox.moe/m2i6hh.rar"
-        }
-      ]
-    },
-	{
-      "name": "VLC 3.0.16",
-      "category": "System Utilities",
-      "category_order": 2,
-      "display": false,
-      "parts": [
-        {
-          "filename": "vlc-3.0.16-win64.rar",
-          "url": "https://files.catbox.moe/m2i6hh.rar"
-        }
-      ]
-    },
-	{
-      "name": "VLC 3.0.16",
-      "category": "System Utilities",
-      "category_order": 2,
-      "display": false,
-      "parts": [
-        {
-          "filename": "vlc-3.0.16-win64.rar",
-          "url": "https://files.catbox.moe/m2i6hh.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/9ba7e8.rar"
         }
       ]
     },
@@ -749,7 +700,7 @@
       "parts": [
         {
           "filename": "TeamViewer 15.40.8.0.rar",
-          "url": "https://files.catbox.moe/dkdrln.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/dkdrln.rar"
         }
       ]
     },
@@ -761,7 +712,7 @@
       "parts": [
         {
           "filename": "Persepolis Download Manager 5.1.1.rar",
-          "url": "https://files.catbox.moe/c7vgw0.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/c7vgw0.rar"
         }
       ]
     },
@@ -773,13 +724,13 @@
       "parts": [
         {
           "filename": "Format Factory 5.21.0.rar",
-          "url": "https://files.catbox.moe/ozcm7h.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ozcm7h.rar"
         }
       ]
     },
 	{
       "name": "Chrome v137.0.7151.56",
-      "category": "Browsers",
+      "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
@@ -791,7 +742,7 @@
     },
 	{
       "name": "Opera v114.0.5282.154",
-      "category": "Browsers",
+      "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
@@ -803,7 +754,7 @@
     },
 	{
       "name": "Brave Browser v1.61.116",
-      "category": "Browsers",
+      "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
@@ -815,7 +766,7 @@
     },
 	{
       "name": "Opera GX v102.0.4880.104",
-      "category": "Browsers",
+      "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
@@ -827,7 +778,7 @@
     },
 	{
       "name": "Mozilla Firefox Quantum v139",
-      "category": "Browsers",
+      "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
@@ -839,7 +790,7 @@
     },
 	{
       "name": "Yandex Browser v23.9.2.888",
-      "category": "Browsers",
+      "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
@@ -851,7 +802,7 @@
     },
 	{
       "name": "Cent Browser v3.5.3.34",
-      "category": "Browsers",
+      "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
@@ -863,7 +814,7 @@
     },
 	{
       "name": "Baidu Spark Browser v43.23.1008.106",
-      "category": "Browsers",
+      "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
