@@ -1,5 +1,5 @@
 {
-  "version": "3.3",
+  "version": "3.5",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -77,6 +77,54 @@
         }
       ]
     },
+	{
+      "name": "AAAerToysssss 0.91.1",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "PowerToys 0.91.1.part1.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part2.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part3.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part4.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part5.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part6.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part7.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part8.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+		{
+          "filename": "PowerToys 0.91.1.part9.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        },
+        {
+          "filename": "PowerToys 0.91.1.part10.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+        }
+      ]
+    },
     {
       "name": "Windows&Office Activator",
 	  "category": "System Utilities",
@@ -85,7 +133,7 @@
       "parts": [
         {
           "filename": "WinOfficeActivator.rar",
-          "url": "https://files.catbox.moe/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
         }
       ]
     },
