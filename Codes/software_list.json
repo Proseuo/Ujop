@@ -1,5 +1,5 @@
 {
-  "version": "3.5",
+  "version": "3.6",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -81,7 +81,7 @@
       "name": "AAAerToysssss 0.91.1",
 	  "category": "System Utilities",
 	  "category_order": 2,
-      "display": true,
+      "display": false,
       "parts": [
         {
           "filename": "PowerToys 0.91.1.part1.rar",
