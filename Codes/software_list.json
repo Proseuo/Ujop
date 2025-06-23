@@ -1,5 +1,5 @@
 {
-  "version": "3.6",
+  "version": "3.9",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -9,7 +9,7 @@
       "parts": [
         {
           "filename": "IDM6.42Build34Repacked.rar",
-          "url": "https://files.catbox.moe/ars2sd.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/8mz7b7kn.rar"
         }
       ]
     },
@@ -21,7 +21,7 @@
       "parts": [
         {
           "filename": "IClipClipRepacked.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/hqpotd.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/973ya41e.rar"
         }
       ]
     },
@@ -33,7 +33,7 @@
       "parts": [
         {
           "filename": "EaseUS Data Recovery Wizard v17.0.0.0.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/rl9xux.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/7e1ovrjo.rar"
         }
       ]
     },
@@ -47,9 +47,13 @@
           "filename": "4K Video Downloader Plus 25.0.4.0187.part1.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/zbeaci.rar"
         },
-        {
+		{
           "filename": "4K Video Downloader Plus 25.0.4.0187.part2.rar",
-          "url": "https://files.catbox.moe/cznbbv.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/zbeaci.rar"
+        },
+        {
+          "filename": "4K Video Downloader Plus 25.0.4.0187.part3.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/vq7ivm8y.rar"
         }
       ]
     },
@@ -73,7 +77,7 @@
         },
         {
           "filename": "PowerToys 0.91.1.part4.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/PowerToys.0.91.1.part4.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/qicvfpbn.rar"
         }
       ]
     },
@@ -81,7 +85,7 @@
       "name": "AAAerToysssss 0.91.1",
 	  "category": "System Utilities",
 	  "category_order": 2,
-      "display": false,
+      "display": true,
       "parts": [
         {
           "filename": "PowerToys 0.91.1.part1.rar",
@@ -133,7 +137,7 @@
       "parts": [
         {
           "filename": "WinOfficeActivator.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/q10aru2r.rar"
         }
       ]
     },
@@ -145,7 +149,7 @@
       "parts": [
         {
           "filename": "Optimizer v16.7.rar",
-          "url": "https://files.catbox.moe/x77kzt.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/4oygyq4k.rar"
         }
       ]
     },
@@ -157,7 +161,7 @@
       "parts": [
         {
           "filename": "npp.8.6.7.Installer.rar",
-          "url": "https://files.catbox.moe/47h8nj.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/gj6la5at.rar"
         }
       ]
     },
@@ -169,7 +173,7 @@
       "parts": [
         {
           "filename": "Win10_BrightnessSlider.rar",
-          "url": "https://files.catbox.moe/azy30t.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/dp4l7eva.rar"
         }
       ]
     },
@@ -181,7 +185,7 @@
       "parts": [
         {
           "filename": "IconViewer.v3.02.rar",
-          "url": "https://files.catbox.moe/b37uff.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/e3dqbzio.rar"
         }
       ]
     },
@@ -205,7 +209,7 @@
       "parts": [
         {
           "filename": "Lightshot.rar",
-          "url": "https://files.catbox.moe/l9h82v.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/i3ce4ucj.rar"
         }
       ]
     },
@@ -217,7 +221,7 @@
       "parts": [
         {
           "filename": "AnyDesk.rar",
-          "url": "https://files.catbox.moe/8c29pc.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         }
       ]
     },
@@ -229,7 +233,7 @@
       "parts": [
         {
           "filename": "Everything1.4.1x64.rar",
-          "url": "https://files.catbox.moe/9bnztq.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/1obmw4bj.rar"
         }
       ]
     },
@@ -241,7 +245,7 @@
       "parts": [
         {
           "filename": "SynapticsKillerV6.rar",
-          "url": "https://files.catbox.moe/6sfojx.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/9grv3b6z.rar"
         }
       ]
     },
@@ -253,7 +257,7 @@
       "parts": [
         {
           "filename": "ImageResizerSetup3.1.2.rar",
-          "url": "https://files.catbox.moe/8tjzf0.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/hwtz2l7l.rar"
         }
       ]
     },
@@ -265,7 +269,7 @@
       "parts": [
         {
           "filename": "OfficeToolPlus.rar",
-          "url": "https://files.catbox.moe/vs1dpn.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/14k4eqyh.rar"
         }
       ]
     },
@@ -277,7 +281,7 @@
       "parts": [
         {
           "filename": "Avira Phantom VPN 2.41.1.rar",
-          "url": "https://files.catbox.moe/149apw.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/0adppdoa.rar"
         }
       ]
     },
@@ -289,7 +293,7 @@
       "parts": [
         {
           "filename": "Revo Uninstaller Pro 5.0.6.rar",
-          "url": "https://files.catbox.moe/tvxsro.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/dbi7h55d.rar"
         }
       ]
     },
@@ -301,7 +305,7 @@
       "parts": [
         {
           "filename": "Python 3.12.4.rar",
-          "url": "https://files.catbox.moe/wczf9b.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/j2745ngt.rar"
         }
       ]
     },
@@ -313,7 +317,7 @@
       "parts": [
         {
           "filename": "NetLimiter 5.3.1.rar",
-          "url": "https://files.catbox.moe/pt8hik.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/j8lgmesu.rar"
         }
       ]
     },
@@ -325,7 +329,7 @@
       "parts": [
         {
           "filename": "Glary Utilities 6.17.0.21.rar",
-          "url": "https://files.catbox.moe/w4ju0h.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/plb3k41k.rar"
         }
       ]
     },
@@ -349,7 +353,7 @@
       "parts": [
         {
           "filename": "uTorrent 1.2.3.56.rar",
-          "url": "https://files.catbox.moe/xbu5xy.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/kl9cmpvz.rar"
         }
       ]
     },
@@ -361,7 +365,7 @@
       "parts": [
         {
           "filename": "IObit Driver Booster 10.0.0.65.rar",
-          "url": "https://files.catbox.moe/1zdap8.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/1lp75olp.rar"
         }
       ]
     },
@@ -373,7 +377,7 @@
       "parts": [
         {
           "filename": "qBittorent 5.1.0.rar",
-          "url": "https://files.catbox.moe/iz1zay.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/2b2vnygn.rar"
         }
       ]
     },
@@ -385,7 +389,7 @@
       "parts": [
         {
           "filename": "RandomPassGen.rar",
-          "url": "https://files.catbox.moe/57u139.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/8xdrxphf.rar"
         }
       ]
     },
@@ -397,7 +401,7 @@
       "parts": [
         {
           "filename": "EasyBCD.rar",
-          "url": "https://files.catbox.moe/sfxkwl.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/q7jklfc8.rar"
         }
       ]
     },
@@ -409,7 +413,7 @@
       "parts": [
         {
           "filename": "Autorun Organizer 5.41.rar",
-          "url": "https://files.catbox.moe/n9lmso.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/d4zmrrtc.rar"
         }
       ]
     },
@@ -421,7 +425,7 @@
       "parts": [
         {
           "filename": "FreeFileSync.v13.7.rar",
-          "url": "https://files.catbox.moe/tng85s.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/0425wfgm.rar"
         }
       ]
     },
@@ -433,7 +437,7 @@
       "parts": [
         {
           "filename": "CCleaner 5.76.8269.rar",
-          "url": "https://files.catbox.moe/420xui.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ubf5zdg0.rar"
         }
       ]
     },
@@ -445,7 +449,7 @@
       "parts": [
         {
           "filename": "HandBrake-1.9.2.rar",
-          "url": "https://files.catbox.moe/wkhdrx.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/0ejs3936.rar"
         }
       ]
     },
@@ -457,7 +461,7 @@
       "parts": [
         {
           "filename": "Audacity 3.0.2.rar",
-          "url": "https://files.catbox.moe/po8l27.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/lar9z1hi.rar"
         }
       ]
     },
@@ -469,7 +473,7 @@
       "parts": [
         {
           "filename": "WinaeroTweaker-1.63.0.rar",
-          "url": "https://files.catbox.moe/se7dnk.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/h8n6cc80.rar"
         }
       ]
     },
@@ -481,7 +485,7 @@
       "parts": [
         {
           "filename": "ImageGlass_Kobe_8.6.7.13.rar",
-          "url": "https://files.catbox.moe/6aszyq.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/yjwwbfud.rar"
         }
       ]
     },
@@ -493,7 +497,7 @@
       "parts": [
         {
           "filename": "Active File Recovery Professional 15.0.5.rar",
-          "url": "https://files.catbox.moe/yq49ul.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/isxv57h8.rar"
         }
       ]
     },
@@ -505,7 +509,7 @@
       "parts": [
         {
           "filename": "TreeSize 9.2.1.1907.rar",
-          "url": "https://files.catbox.moe/8zmwcp.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/r6mg9c6z.rar"
         }
       ]
     },
@@ -517,7 +521,7 @@
       "parts": [
         {
           "filename": "GOM Player Plus 2.3.57.5321.rar",
-          "url": "https://files.catbox.moe/abpowx.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/x81x9g1i.rar"
         }
       ]
     },
@@ -530,9 +534,13 @@
           "filename": "Wondershare UniConverter 13.6.1.18.part1.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/wszbhc.rar"
         },
-        {
+		{
           "filename": "Wondershare UniConverter 13.6.1.18.part2.rar",
-          "url": "https://files.catbox.moe/ba82xq.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/wszbhc.rar"
+        },
+        {
+          "filename": "Wondershare UniConverter 13.6.1.18.part3.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/j0hzu7m3.rar"
         }
       ]
     },
@@ -544,7 +552,7 @@
       "parts": [
         {
           "filename": "Duplicate Cleaner 5.15.0.rar",
-          "url": "https://files.catbox.moe/b7kviy.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/j7rsmub9.rar"
         }
       ]
     },
@@ -556,7 +564,7 @@
       "parts": [
         {
           "filename": "YT Downloader 9.11.7.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/q9jo72.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/1bd15w68.rar"
         }
       ]
     },
@@ -592,7 +600,7 @@
       "parts": [
         {
           "filename": "vlc-3.0.16-win64.rar",
-          "url": "https://files.catbox.moe/m2i6hh.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/xuph6vc5.rar"
         }
       ]
     },
@@ -652,7 +660,7 @@
       "parts": [
         {
           "filename": "FxSound 2 v1.0.5.0.rar",
-          "url": "https://files.catbox.moe/jhmyp3.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/1l2k0lb0.rar"
         }
       ]
     },
@@ -664,7 +672,7 @@
       "parts": [
         {
           "filename": "EagleGet v2.1.6.50.rar",
-          "url": "https://files.catbox.moe/ell7jh.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/uzy0a81t.rar"
         }
       ]
     },
@@ -676,7 +684,7 @@
       "parts": [
         {
           "filename": "uGet Download Manager - PB.rar",
-          "url": "https://files.catbox.moe/1zt9jz.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/8g91p3yk.rar"
         }
       ]
     },
@@ -688,7 +696,7 @@
       "parts": [
         {
           "filename": "Ashampoo WinOptimizer 28.00.12 Multilingual.rar",
-          "url": "https://files.catbox.moe/8genxf.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/hgtfchog.rar"
         }
       ]
     },
@@ -700,7 +708,7 @@
       "parts": [
         {
           "filename": "CheatEngine75.rar",
-          "url": "https://files.catbox.moe/g1i7z5.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/otm9t3ok.rar"
         }
       ]
     },
@@ -712,7 +720,7 @@
       "parts": [
         {
           "filename": "J Downloader 2.rar",
-          "url": "https://files.catbox.moe/9l0qne.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/g0d9r3zw.rar"
         }
       ]
     },
@@ -724,7 +732,7 @@
       "parts": [
         {
           "filename": "Ant Download Manager 2.7.1.rar",
-          "url": "https://files.catbox.moe/3p3evs.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ewpsr501.rar"
         }
       ]
     },
@@ -736,7 +744,7 @@
       "parts": [
         {
           "filename": "K-Lite.Codec.Pack.18.6.5.Standard",
-          "url": "https://files.catbox.moe/sns5i4.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/sqn10fgu.rar"
         }
       ]
     },
@@ -748,7 +756,7 @@
       "parts": [
         {
           "filename": "TeamViewer 15.40.8.0.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/dkdrln.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/434h0p5g.rar"
         }
       ]
     },
@@ -880,7 +888,7 @@
       "parts": [
         {
           "filename": "Mouse and Keyboard Recorder 3.2.0.8.rar",
-          "url": "https://files.catbox.moe/3p8kz5.rar
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/171nxgam.rar"
         }
       ]
     },
