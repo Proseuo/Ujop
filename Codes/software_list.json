@@ -1,5 +1,5 @@
 {
-  "version": "3.9",
+  "version": "4.0",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -85,47 +85,47 @@
       "name": "AAAerToysssss 0.91.1",
 	  "category": "System Utilities",
 	  "category_order": 2,
-      "display": true,
+      "display": false,
       "parts": [
         {
           "filename": "PowerToys 0.91.1.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
 		{
           "filename": "PowerToys 0.91.1.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
 		{
           "filename": "PowerToys 0.91.1.part3.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
 		{
           "filename": "PowerToys 0.91.1.part4.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
 		{
           "filename": "PowerToys 0.91.1.part5.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
 		{
           "filename": "PowerToys 0.91.1.part6.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
 		{
           "filename": "PowerToys 0.91.1.part7.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
 		{
           "filename": "PowerToys 0.91.1.part8.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
 		{
           "filename": "PowerToys 0.91.1.part9.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         },
         {
           "filename": "PowerToys 0.91.1.part10.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/2xqrbo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
         }
       ]
     },
