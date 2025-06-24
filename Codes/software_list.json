@@ -1,5 +1,5 @@
 {
-  "version": "4.3",
+  "version": "4.4",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -785,14 +785,14 @@
       ]
     },
 	{
-      "name": "Chrome v137.0.7151.56",
+      "name": "Chrome v137.0.7151.120",
       "category": "Browser",
       "category_order": 27,
       "display": true,
       "parts": [
         {
-          "filename": "Chrome v137.0.7151.56.rar",
-          "url": "https://f1.812server.xyz/Pro/Google%20Chrome%20137.0.7151.56%20x64.rar"
+          "filename": "Chrome v137.0.7151.120 Installer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/2h2keekh.rar"
         }
       ]
     },
