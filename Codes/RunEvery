@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=27.4"
+set "BATCHVERSION=27.5"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 
@@ -2261,7 +2261,7 @@ del /f /a "%USERPROFILE%\Downloads\screenshot.jpg"
 echo.
 echo Time= %time%
 echo Calling ended....
-timeout /t 10 /nobreak >nul
+timeout /t 10 /nobreak
 
 
 
