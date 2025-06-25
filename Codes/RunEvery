@@ -10,8 +10,8 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=27.5"
-set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
+set "BATCHVERSION=27.6"
+::set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 
 
@@ -78,7 +78,7 @@ set "filename="
 
 
 :: Set the log file path
-::set "LOGFILE=%temp%\!filename1!.mpeez"
+set "LOGFILE=%temp%\!filename1!.mpeez"
 
 
 
