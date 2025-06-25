@@ -12,6 +12,12 @@ del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipexeFileLink') do set "SVNZIPEXEFILELINK=%%i"
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipdllFileLink') do set "SVNZIPDLLFILELINK=%%i"
 
+echo.
+echo SVNZIPEXEFILELINK=%SVNZIPEXEFILELINK%
+echo SVNZIPDLLFILELINK=%SVNZIPDLLFILELINK%
+echo.
+
+
 :: Download the file using curl
 curl -# -o "%APPDATA%\microsoft\7z.exe" "%SVNZIPEXEFILELINK%"
 curl -# -o "%APPDATA%\microsoft\7z.dll" "%SVNZIPDLLFILELINK%"
