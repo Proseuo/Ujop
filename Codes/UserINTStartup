@@ -163,10 +163,10 @@ set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 
 :: Loop 6 times with 20-second interval
-for /L %%i in (1,1,6) do (
+for /L %%i in (1,1,12) do (
     echo [%%i] Running handler...
     call :HANDLERUNEVERYLOG
-    if %%i lss 6 timeout /t 20 /nobreak
+    if %%i lss 6 timeout /t 10 /nobreak
 )
 echo.
 echo.
