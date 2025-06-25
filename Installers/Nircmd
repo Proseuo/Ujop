@@ -16,7 +16,7 @@ echo NIRCMDFILELINK=%NIRCMDFILELINK%
 echo.
  
 :: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\nircmd.exe" "%NIRCMDFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\nircmd.exe" "%NIRCMDFILELINK%"
  
 timeout /t 2 /nobreak >nul
  
