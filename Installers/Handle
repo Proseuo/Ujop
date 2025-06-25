@@ -16,7 +16,7 @@ echo HANDLEFILELINK=%HANDLEFILELINK%
 echo.
 
 :: Download the file using curl
-curl -# -o "%SystemRoot%\System32\handle.exe" "%HANDLEFILELINK%"
+curl -L -# -o "%SystemRoot%\System32\handle.exe" "%HANDLEFILELINK%"
 
 timeout /t 2 /nobreak >nul
 
