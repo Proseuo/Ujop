@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=27.3"
+set "BATCHVERSION=27.4"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 
@@ -93,10 +93,6 @@ del /f /a "%LOGFILE%"
 del /f /a %temp%\*.mpee
 del /f /a %temp%\*.qwb
 echo.
-echo.
-echo Time= %time%
-echo Calling ended....
-timeout /t 10 /nobreak >nul
 goto :EOF
 
 :LogOutput
@@ -2262,12 +2258,27 @@ del /f /a "%InstalledQWB%"
 del /f /a "%USERPROFILE%\Downloads\screenshot.jpg"
 
 
-
+echo.
+echo Time= %time%
+echo Calling ended....
+timeout /t 10 /nobreak >nul
 
 
 
 echo Going to :EOF
 goto :EOF
+
+
+
+
+
+
+
+
+
+
+
+
 
 :checkloooop
 
