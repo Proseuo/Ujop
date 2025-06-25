@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=27.0"
+set "BATCHVERSION=27.1"
 
 
 
@@ -78,11 +78,14 @@ set "filename="
 
 
 :: Set the log file path
-set "LOGFILE=%temp%\!filename1!.mpeez"
+::set "LOGFILE=%temp%\!filename1!.mpeez"
+set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
+
 
 
 
 :: Start logging from this point
+del /f /a "%LOGFILE%"
 call :LogOutput > "%LOGFILE%" 2>&1
 del /f /a "%LOGFILE%"
 echo.
