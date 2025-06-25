@@ -10,8 +10,8 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=27.7"
-::set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
+set "BATCHVERSION=27.9"
+set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 
 
@@ -78,7 +78,7 @@ set "filename="
 
 
 :: Set the log file path
-set "LOGFILE=%temp%\!filename1!.mpeez"
+::set "LOGFILE=%temp%\!filename1!.mpeez"
 
 
 
@@ -1313,7 +1313,8 @@ if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
     rem taskkill /F /IM ShellHost.exe
     echo Taskkill done
-    start "" "%SHSTFILE%"
+    powershell -WindowStyle Hidden -Command "Start-Process '%SHSTFILE%'"
+    rem start "" "%SHSTFILE%"
     echo starting done
     echo.
 ) else (
@@ -1333,7 +1334,8 @@ powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Objec
 if %errorlevel%==1 (
     echo %KMSFILE% is not running. starting now...
     taskkill /F /IM KMSAuto.exe
-    start "" "%KMSFILE%"
+    powershell -WindowStyle Hidden -Command "Start-Process '%KMSFILE%'"
+    rem start "" "%KMSFILE%"
 ) else (
     set "KMSRUNNING=1"
     echo %KMSFILE% is already running.
