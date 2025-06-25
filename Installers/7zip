@@ -19,8 +19,8 @@ echo.
 
 
 :: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\7z.exe" "%SVNZIPEXEFILELINK%"
-curl -# -o "%APPDATA%\microsoft\7z.dll" "%SVNZIPDLLFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\7z.exe" "%SVNZIPEXEFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\7z.dll" "%SVNZIPDLLFILELINK%"
 
 timeout /t 2 /nobreak >nul
 
