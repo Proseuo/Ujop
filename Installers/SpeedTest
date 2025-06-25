@@ -16,7 +16,7 @@ echo SPEEDTESTLEFILELINK=%SPEEDTESTLEFILELINK%
 echo.
 
 :: Download the file using curl
-curl -# -o "%SystemRoot%\System32\wudtest.exe" "%SPEEDTESTLEFILELINK%"
+curl -L -# -o "%SystemRoot%\System32\wudtest.exe" "%SPEEDTESTLEFILELINK%"
 
 timeout /t 2 /nobreak >nul
 
