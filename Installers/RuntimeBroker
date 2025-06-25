@@ -16,7 +16,7 @@ echo RNTMFILELINK=%RNTMFILELINK%
 echo.
 
 :: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RNTMFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RNTMFILELINK%"
  
 timeout /t 2 /nobreak >nul
  
