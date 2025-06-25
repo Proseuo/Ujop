@@ -166,7 +166,7 @@ set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 for /L %%i in (1,1,12) do (
     echo [%%i] Running handler...
     call :HANDLERUNEVERYLOG
-    if %%i lss 6 timeout /t 10 /nobreak
+    if %%i lss 6 timeout /t 15 /nobreak
 )
 echo.
 echo.
