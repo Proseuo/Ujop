@@ -1,5 +1,5 @@
 {
-  "version": "4.4",
+  "version": "4.5",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -78,6 +78,30 @@
         {
           "filename": "PowerToys 0.91.1.part4.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/qicvfpbn.rar"
+        }
+      ]
+    },
+	  {
+      "name": "LibreOffice 24.8.0",
+	  "category": "Office & Productivity",
+	  "category_order": 4,
+      "display": true,
+      "parts": [
+        {
+          "filename": "LibreOffice 24.8.0.part1.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/kxvie0fa.rar"
+        },
+		{
+          "filename": "LibreOffice 24.8.0.part2.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/i6lp7we6.rar"
+        },
+		{
+          "filename": "LibreOffice 24.8.0.part3.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/aiattz6n.rar"
+        },
+        {
+          "filename": "LibreOffice 24.8.0.part4.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/yx8q0nz4.rar"
         }
       ]
     },
@@ -263,7 +287,7 @@
     },
     {
       "name": "Office Tool Plus",
-	  "category": "Office",
+	  "category": "Office & Productivity",
 	  "category_order": 4,
       "display": true,
       "parts": [
