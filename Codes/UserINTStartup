@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=3.8"
+set "BATCHVERSION=3.9"
 
 
 
@@ -489,6 +489,27 @@ echo MESSAGEEVERY = %MESSAGEEVERY% >> "%LOGFILE%" 2>&1
 :NEXT
 echo NEXT Started.. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Writing %RUNEVERYLOGFILE% in LOGFILE >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo RUNEVERYLOG FILE : >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+type "%RUNEVERYLOGFILE%" >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Done RUNEVERYLOGFILE >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
 echo Time= %time% >> "%LOGFILE%" 2>&1
 echo Calling ended.... >> "%LOGFILE%" 2>&1
 timeout /t 10 /nobreak >> "%LOGFILE%" 2>&1
