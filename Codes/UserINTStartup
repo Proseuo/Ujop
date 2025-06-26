@@ -11,7 +11,7 @@ cd /d "%~dp0"
 
 set "BATCHVERSION=2.6"
 echo BATCHVERSION=%BATCHVERSION%
-timeout /t 70 /nobreak
+timeout /t 60 /nobreak
 
 :: Disable UAC 
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d 0 /f
