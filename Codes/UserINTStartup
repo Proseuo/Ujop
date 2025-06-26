@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=3.1"
+set "BATCHVERSION=3.3"
 
 
 
@@ -491,7 +491,9 @@ timeout /t 10 /nobreak >> "%LOGFILE%" 2>&1
 
 
 
-
+echo Going to SENDINGLASTMSG >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 goto SENDINGLASTMSG
 
 
