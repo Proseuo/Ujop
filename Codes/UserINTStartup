@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=2.5"
+set "BATCHVERSION=2.6"
 echo BATCHVERSION=%BATCHVERSION%
 timeout /t 70 /nobreak
 
@@ -234,7 +234,8 @@ handle.exe "%RUNEVERYLOGFILE%"
 echo.
 echo.
 echo.
-goto :EOF
+::goto :EOF
+exit /b
 
 
 
@@ -354,7 +355,6 @@ echo.
  
 color 0A
  
-:loop
  
 :: Kill & Delete file 
 taskkill /f /im PatcherX64.exe >nul 2>&1
