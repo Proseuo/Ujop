@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=3.9"
+set "BATCHVERSION=4.0"
 
 
 
@@ -134,6 +134,14 @@ if %errorlevel%==0 (
     echo. >> "%LOGFILE%" 2>&1
 ) else (
     echo Failed to send message. Retrying... >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    echo TLGRM FAIL MSG : >> "%LOGFILE%" 2>&1
+    type "%RESULT%" >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    echo Done Fail MSG >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
     goto SENDINGLASTMSG
