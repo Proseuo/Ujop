@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=3.0"
+set "BATCHVERSION=3.1"
 
 
 
@@ -122,7 +122,7 @@ set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" -F "chat_id=%CHAT_ID_RUNNING%" -F "message_thread_id=%TOPIC_ID_RUNNING%" -F "caption=%ENCODED_MESSAGE_RUNNING%" -F "document=@%LOGFILE1%" > "%RESULT%"
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" -F "chat_id=%CHAT_ID_RUNNING%" -F "message_thread_id=%TOPIC_ID_RUNNING%" -F "caption=%ENCODED_MESSAGE_RUNNING%" -F "document=@%LOGFILE%" > "%RESULT%"
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -399,6 +399,14 @@ goto NEXT
 
 
 :INSTRUNEVERY
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 echo INSTRUNEVERY Started.. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -471,7 +479,7 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
 set "MESSAGEEVERY=RUNEVERYINSTALLED...."
-
+echo MESSAGEEVERY = %MESSAGEEVERY% >> "%LOGFILE%" 2>&1
 
 :NEXT
 ::
