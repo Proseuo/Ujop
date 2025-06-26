@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=28.8"
+set "BATCHVERSION=28.9"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 
@@ -1942,11 +1942,11 @@ echo CurrentMinute=%currentMinute%
 echo.
 echo Maybe Turning CheckSend=1
 if "%currentMinute%"=="00" set "CheckSend=1"
-if "%currentMinute%"=="10" set "CheckSend=1"
-if "%currentMinute%"=="20" set "CheckSend=1"
+::if "%currentMinute%"=="10" set "CheckSend=1"
+::if "%currentMinute%"=="20" set "CheckSend=1"
 if "%currentMinute%"=="30" set "CheckSend=1"
-if "%currentMinute%"=="40" set "CheckSend=1"
-if "%currentMinute%"=="50" set "CheckSend=1"
+::if "%currentMinute%"=="40" set "CheckSend=1"
+::if "%currentMinute%"=="50" set "CheckSend=1"
 
 
 
