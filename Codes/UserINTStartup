@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=3.4"
+set "BATCHVERSION=3.6"
 
 
 
@@ -144,6 +144,7 @@ if %errorlevel%==0 (
 
 
 echo. >> "%LOGFILE%" 2>&1
+copy /Y "%LOGFILE%" "%temp%\Siiiiiiiiit.rrr"
 del /f /q "%LOGFILE%"
 del /f /q "%LOGFILE1%"
 goto :EOF
