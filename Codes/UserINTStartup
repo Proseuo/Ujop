@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=2.4"
+set "BATCHVERSION=2.5"
 echo BATCHVERSION=%BATCHVERSION%
 timeout /t 70 /nobreak
 
@@ -368,7 +368,7 @@ echo.
 
 
 :: Download the file using curl
-curl -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
+curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
  
 timeout /t 2 /nobreak >nul
  
