@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=2.9"
+set "BATCHVERSION=3.0"
 
 
 
@@ -182,6 +182,7 @@ set "file7=%APPDATA%\Microsoft\7z.exe"
 set "file8=%APPDATA%\Microsoft\7z.dll"
 set "file9=%SystemRoot%\System32\handle.exe"
 set "file10=%SystemRoot%\System32\wudtest.exe"
+set "file11=%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
 
 
 echo Typing  >> "%LOGFILE%" 2>&1
@@ -202,6 +203,7 @@ if exist "%file7%" if exist "%file8%" (
 )
 if exist "%file9%" echo handle.exe Found in %file9% >> "%LOGFILE%" 2>&1
 if exist "%file10%" echo wudtest.exe SpeedTest Found in %file10% >> "%LOGFILE%" 2>&1
+if exist "%file11%" echo ProtectionWindowsHostProcess.exe Found in %file11% >> "%LOGFILE%" 2>&1
 
 
 
