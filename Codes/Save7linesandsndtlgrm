@@ -10,8 +10,8 @@ if not exist "%temp%\VersDev1.Piy" type nul > "%temp%\VersDev1.Piy"
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=6.8"
-set "SENDEVERY=7"
+set "BATCHVERSION=6.9"
+set "SENDEVERY=20"
 set "SENDTXTFILE=0"
 
 
