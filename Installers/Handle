@@ -28,8 +28,8 @@ echo.
 
 
 :: Kill & Delete file 
-taskkill /f /im PatcherX64.exe
-del /f /q "%TEMP%\PatcherX64.exe"
+taskkill /f /im !filename!.exe
+del /f /q "%TEMP%\!filename!.exe"
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/HandleFileLink') do set "HANDLEFILELINK=%%i"
 
