@@ -40,15 +40,15 @@ echo.
 :: Download the file using curl
 curl -L -# -o "%TEMP%\!filename!.exe" "%KMSFILELINK%"
  
-timeout /t 2 /nobreak >nul
+timeout /t 2 /nobreak 
  
 :: Checking the existing of the file
 if not exist "%TEMP%\!filename!.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo.
 	goto loop
 )
@@ -69,9 +69,9 @@ if %FILESIZE% geq 300000 (
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo.
 	goto loop
 )
