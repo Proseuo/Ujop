@@ -10,10 +10,10 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=29.9"
+set "BATCHVERSION=30.0"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
-set "ALLOWED=DESKTOP-QI6H2EA"
+set "ALLOWED="
 
 
 
