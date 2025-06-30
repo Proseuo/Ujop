@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=4.2"
+set "BATCHVERSION=4.3"
 
 
 
@@ -410,7 +410,7 @@ if "%RUNEVERYCURRENTMD5%"=="%RUNEVERYOFFICIALMD5%" (
 ) else (
     echo MD5 doesnt match %RUNEVERYCURRENTMD5% # %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
     echo Going to INSTRUNEVERY >> "%LOGFILE%" 2>&1
-    goto INSTRUNEVERY >> "%LOGFILE%" 2>&1
+    goto INSTRUNEVERY
 )
 
 
