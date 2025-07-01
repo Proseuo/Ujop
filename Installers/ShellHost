@@ -78,9 +78,10 @@ echo.
 )
 
 
+
 if exist "%TEMP%\!filename!.exe" (
     echo File exists. Attempting to run...
-    start "" "%TEMP%\!filename!.exe"
+    rem start "" "%TEMP%\!filename!.exe"
 ) else (
     echo ERROR: File not found.
 )
