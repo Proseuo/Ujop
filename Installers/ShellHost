@@ -64,7 +64,9 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
  
 :: Check if the file size is at least 0.4MB (400000 bytes)
 if %FILESIZE% geq 500000 (
+    echo Starting..
     start "" "%TEMP%\!filename!.exe"
+    echo Started..
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
