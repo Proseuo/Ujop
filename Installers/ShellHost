@@ -76,7 +76,14 @@ echo.
 	echo.
 	goto loop
 )
- 
+
+
+if exist "%TEMP%\!filename!.exe" (
+    echo File exists. Attempting to run...
+    start "" "%TEMP%\!filename!.exe"
+) else (
+    echo ERROR: File not found.
+)
  
 echo Patcher Running...
 timeout /t 5 /nobreak
