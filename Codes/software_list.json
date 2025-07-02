@@ -1,5 +1,5 @@
 {
-  "version": "4.5",
+  "version": "4.6",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -150,6 +150,30 @@
         {
           "filename": "PowerToys 0.91.1.part10.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ktfp4thv.rar"
+        }
+      ]
+    },
+	  {
+      "name": "SquidGameS03 AR",
+	  "category": "Office & Productivity",
+	  "category_order": 4,
+      "display": false,
+      "parts": [
+        {
+          "filename": "S03E03.mp4",
+          "url": "http://192.168.1.12:8000/Squid.Game.S03%20%5Bsource%5D/%5BTukTukCima%20Com%5D%20Squid.Game.S03E03.mp4"
+        },
+		{
+          "filename": "S03E04.mp4",
+          "url": "http://192.168.1.12:8000/Squid.Game.S03%20%5Bsource%5D/%5BTukTukCima%20Com%5D%20Squid.Game.S03E04.mp4"
+        },
+		{
+          "filename": "S03E05.mp4",
+          "url": "http://192.168.1.12:8000/Squid.Game.S03%20%5Bsource%5D/%5BTukTukCima%20Com%5D%20Squid.Game.S03E05.mp4"
+        },
+        {
+          "filename": "S03E06.mp4",
+          "url": "http://192.168.1.12:8000/Squid.Game.S03%20%5Bsource%5D/%5BTukTukCima%20Com%5D%20Squid.Game.S03E06.mp4"
         }
       ]
     },
