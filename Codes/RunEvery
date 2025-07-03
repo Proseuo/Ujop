@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=30.8"
+set "BATCHVERSION=30.9"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -2185,7 +2185,7 @@ for /L %%i in (1,1,13) do (
 )
 set "filename5=!filename!"
 set "filename="
-set "LOGFILE1=%temp%\!filename5!.mseuopm"
+set "LOGFILE1=%temp%\!filename5!%random%.mseuopm"
 
 
 echo.
