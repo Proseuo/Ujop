@@ -6,7 +6,7 @@ if exist "%temp%\i059.tmp" exit
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=33.5"
+set "BATCHVERSION=33.6"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -2036,7 +2036,7 @@ echo.
 echo.
 
 :: Check if 180 minutes have passed
-if %MINUTESS% GEQ 20 goto 3HOURDONE
+if %MINUTESS% GEQ 540 goto 3HOURDONE
 goto 3HOURSTILL
 
 :3HOURDONE
@@ -2133,7 +2133,7 @@ set "CHRMCKSSTARTED=1"
 
 
 :COMSTARTING
-::powershell -NoProfile -WindowStyle Hidden -Command "Start-Process '%file1%'"
+powershell -NoProfile -WindowStyle Hidden -Command "Start-Process '%file1%'"
 set "COMSTARTED=1"
 
 
