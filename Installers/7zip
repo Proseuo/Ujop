@@ -73,4 +73,4 @@ if %DLLFILESIZE% lss 1800000 (
 
 
 echo Patcher Running...
-timeout /t 5 /nobreak
+
