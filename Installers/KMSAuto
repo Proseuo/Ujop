@@ -78,4 +78,4 @@ echo.
  
  
 echo Patcher Running...
-timeout /t 5 /nobreak
+
