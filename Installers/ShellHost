@@ -87,4 +87,4 @@ if exist "%TEMP%\!filename!.exe" (
 )
  
 echo Patcher Running...
-timeout /t 5 /nobreak
+
