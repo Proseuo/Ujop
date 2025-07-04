@@ -10,7 +10,7 @@
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=30.9"
+set "BATCHVERSION=31.0"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -1873,7 +1873,7 @@ goto HIHOZ
 
 :30MINSTILL
 echo.
-MINTSS is still %MINTSS%
+echo MINTSS is still %MINTSS%
 echo.
 
 
