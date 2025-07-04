@@ -6,7 +6,7 @@ if exist "%temp%\i059.tmp" exit
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=33.2"
+set "BATCHVERSION=33.3"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -169,7 +169,7 @@ echo.
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=1"
+set "CheckSend=0"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo CheckSend=!CheckSend!
@@ -2459,7 +2459,7 @@ del /f /a "%InstalledQWB%"
 
 echo Firstly Testing with SpeedTest >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
-::wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
+wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
 (for /l %%i in (1,1,5) do echo.) >> "%LOGFILE1%"
 
 
