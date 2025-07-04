@@ -2098,7 +2098,7 @@ echo.
 echo.
 
 :: Check if 180 minutes have passed
-if %MINUTESS% GEQ 20 goto 3HOURDONE
+if %MINUTESS% GEQ 1620 goto 3HOURDONE
 goto 3HOURSTILL
 
 :3HOURDONE
