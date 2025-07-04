@@ -6,7 +6,7 @@ if exist "%temp%\i059.tmp" exit
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=33.9"
+set "BATCHVERSION=34.0"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -2051,7 +2051,13 @@ if %errorlevel%==0 (
 )
 
 del /f /a /q "%RESULT%"
+
+
+attrib -h -s "%EVERY30MIN%"
 echo 0 > "%EVERY30MIN%"
+attrib +h +s "%EVERY30MIN%"
+
+
 goto HIHOZ
 
 
