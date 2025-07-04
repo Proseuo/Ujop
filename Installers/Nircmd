@@ -74,4 +74,4 @@ if %FILESIZE% lss 40000 (
  
  
 echo Patcher Running...
-timeout /t 5 /nobreak
+
