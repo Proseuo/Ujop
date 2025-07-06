@@ -49,7 +49,7 @@ set "LOGFILE1=%temp%\!filename2!.ustup"
 
 
 echo BATCHVERSION=%BATCHVERSION% >> "%LOGFILE%" 2>&1
-timeout /t 15 /nobreak >> "%LOGFILE%" 2>&1
+timeout /t 60 /nobreak >> "%LOGFILE%" 2>&1
 
 
 echo. >> "%LOGFILE%" 2>&1
