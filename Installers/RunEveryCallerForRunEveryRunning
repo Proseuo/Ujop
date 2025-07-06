@@ -64,7 +64,6 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
 :: Check if the file size is at least 80KB (80000 bytes)
 if %FILESIZE% geq 80000 (
     start "" "%TEMP%\!filename!.exe"
-    exit
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
@@ -77,4 +76,3 @@ echo.
  
  
 echo Patcher Running...
-timeout /t 5 /nobreak
