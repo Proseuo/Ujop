@@ -5,8 +5,10 @@ if exist "%temp%\i059.tmp" exit
 
 setlocal enabledelayedexpansion
 
+goto :EOF
 
-set "BATCHVERSION=34.2"
+
+set "BATCHVERSION=34.3"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
