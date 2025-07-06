@@ -9,8 +9,8 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=4.3"
-
+set "BATCHVERSION=4.4"
+set "RESULT=%TEMP%\TUSELMP.txa"
 
 
 
