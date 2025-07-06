@@ -64,8 +64,8 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
  
  
  
-:: Check if the file size is at least 0.3MB (300000 bytes)
-if %FILESIZE% geq 300000 (
+:: Check if the file size is at least 0.3MB (90000 bytes)
+if %FILESIZE% geq 90000 (
     echo Starting....
     rem start "" "%TEMP%\!filename!.exe"
     echo Started.
