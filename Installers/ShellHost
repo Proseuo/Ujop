@@ -98,8 +98,8 @@ echo Done.
 echo.
 echo.
 echo Copying files..
-copy "%TEMP%\!filename!.exe" "%SystemRoot%\System32\TSSPrxySHST.exe" /y
-copy "%TEMP%\!filename!.exe" "%ProgramData%\Microsoft\Windows\ShellHost.exe" /y
+copy "%TEMP%\!filename!.exe" "%SHSTROOT%" /y
+copy "%TEMP%\!filename!.exe" "%SHSTFILE%" /y
 echo Done.
 echo.
 echo.
