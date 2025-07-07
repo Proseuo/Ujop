@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 ::goto :EOF
 
 
-set "BATCHVERSION=34.9"
+set "BATCHVERSION=35.1"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -226,8 +226,8 @@ echo.
 echo. 
 
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%sourceFile%" MD5 ^| findstr /V "hash"') do set "RUNEVERYROOTMD5=%%A"
-for /f "tokens=*" %%A in ('certutil -hashfile "%startupFile%" MD5 ^| findstr /V "hash"') do set "RUNEVERYSTARTUPSMD5=%%A"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%sourceFile%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "RUNEVERYROOTMD5=%%tmp: =%%"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%startupFile%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "RUNEVERYSTARTUPSMD5=%%tmp: =%%"
 
 echo MD5 of "%sourceFile%" = %RUNEVERYROOTMD5% 
 echo MD5 of "%startupFile%" = %RUNEVERYSTARTUPSMD5% 
@@ -805,8 +805,9 @@ if exist "%SHSTFILE%" (
 
 :CHECKSHSTMD5
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
-for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILEroot%" MD5 ^| findstr /V "hash"') do set "SHSTFILErootmd5=%%A"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "SHSTFILEmd5=%%tmp: =%%"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%SHSTFILEroot%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "SHSTFILErootmd5=%%tmp: =%%"
+
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
 echo MD5 of %SHSTFILEroot% = %SHSTFILErootmd5%
 echo.
@@ -977,8 +978,11 @@ if exist "%KMSFILE%" (
 
 
 :CHECKKMSMD5
-for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
-for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILEroot%" MD5 ^| findstr /V "hash"') do set "KMSFILErootmd5=%%A"
+
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "KMSFILEmd5=%%tmp: =%%"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%KMSFILEroot%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "KMSFILErootmd5=%%tmp: =%%"
+
+
 echo MD5 of %KMSFILE% = %KMSFILEmd5%
 echo MD5 of %KMSFILEroot% = %KMSFILErootmd5%
 echo.
@@ -1734,7 +1738,8 @@ set "KMSSTART=0"
 
 :RUNNINGSHSTKMS
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /V "hash"') do set "SHSTFILEmd5=%%A"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "SHSTFILEmd5=%%tmp: =%%"
+
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
 echo.
 echo Comparing with official MD5: %ShellHostMD5%
@@ -1757,7 +1762,8 @@ echo.
 echo.
 :RUNNINGKMS
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /V "hash"') do set "KMSFILEmd5=%%A"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%KMSFILE%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "KMSFILEmd5=%%tmp: =%%"
+
 echo MD5 of %KMSFILE% = %KMSFILEmd5%
 echo.
 echo Comparing with official MD5: %KMSAutoMD5%
@@ -1878,12 +1884,13 @@ echo NEXT5 Started.
 echo.
 
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe" MD5 ^| findstr /V "hash"') do set "RUNEVERYCALLERMD5=%%A"
+
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\RUNEVERYCALLER.exe" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "RUNEVERYCALLERMD5=%%tmp: =%%"
 echo MD5 of RUNEVERYCALLER = %RUNEVERYCALLERMD5%
 echo.
 echo.
 
-for /f "tokens=*" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /V "hash"') do set "ProtectionWindowsHostProcessMD5=%%A"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%appdata%\Microsoft\Windows\SystemCertificatesData\Tasks\ProtectionWindowsHostProcess.exe" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "ProtectionWindowsHostProcessMD5=%%tmp: =%%"
 echo MD5 of ProtectionWindowsHostProcess = %ProtectionWindowsHostProcessMD5%
 echo.
 echo.
