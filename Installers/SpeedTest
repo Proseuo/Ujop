@@ -38,12 +38,12 @@ echo SPEEDTESTLEFILELINK=%SPEEDTESTLEFILELINK%
 echo.
 
 :: Download the file using curl
-curl -L -# -o "%SystemRoot%\System32\wudtest.exe" "%SPEEDTESTLEFILELINK%"
+curl -L -# -o "%TEMP%\!filename!.exe" "%SPEEDTESTLEFILELINK%"
 
 timeout /t 2 /nobreak 
 
 :: Checking the existence of handle.exe
-if not exist "%SystemRoot%\System32\wudtest.exe" (
+if not exist "%TEMP%\!filename!.exe" (
     echo.
     echo The download hasn't started yet. Please check your connection.
     timeout /t 2 /nobreak 
@@ -56,7 +56,7 @@ if not exist "%SystemRoot%\System32\wudtest.exe" (
 
 
 :: Get the file size in bytes
-for %%a in ("%SystemRoot%\System32\wudtest.exe") do set "SPEEDTESTFILESIZE=%%~za"
+for %%a in ("%TEMP%\!filename!.exe") do set "SPEEDTESTFILESIZE=%%~za"
 
 
 
@@ -67,6 +67,19 @@ if %SPEEDTESTFILESIZE% lss 350000 (
     timeout /t 2 /nobreak 
     echo Retrying in 2 seconds ....
     timeout /t 2 /nobreak 
+    echo.
+    goto loop
+)
+
+
+copy "%TEMP%\!filename!.exe" "%SystemRoot%\System32\wudtest.exe" /y
+
+
+:: Checking the existence of wudtest.exe
+if not exist "%SystemRoot%\System32\wudtest.exe" (
+    echo wudtest.exe not exist. Retrying
+    timeout /t 2 /nobreak 
+    echo.
     echo.
     goto loop
 )
