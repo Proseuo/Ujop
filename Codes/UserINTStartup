@@ -9,9 +9,9 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=7.1"
+set "BATCHVERSION=7.2"
 set "RESULT=%TEMP%\TUSELMP.txa"
-set "RUNEVERYOFFICIALMD5=dc16ca468341d9d048f837cd98602d79"
+set "RUNEVERYOFFICIALMD5=e61120a65311d97840928a691e96b36a"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 ::goto :EOF
