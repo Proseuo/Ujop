@@ -4,6 +4,10 @@
 color 0A
 
 :loop
+echo.
+echo.
+echo.
+echo.
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipexeFileLink') do set "SVNZIPEXEFILELINK=%%i"
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/7zipdllFileLink') do set "SVNZIPDLLFILELINK=%%i"
