@@ -1,5 +1,5 @@
 {
-  "version": "4.7",
+  "version": "4.8",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -89,19 +89,19 @@
       "parts": [
         {
           "filename": "LibreOffice 24.8.0.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/iavj8smk.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/iwyjghpu.rar"
         },
 		{
           "filename": "LibreOffice 24.8.0.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/7okcb1ko.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/4ibz04sz.rar"
         },
 		{
           "filename": "LibreOffice 24.8.0.part3.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/x5f4ssc7.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/lsseu1mj.rar"
         },
         {
           "filename": "LibreOffice 24.8.0.part4.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.2/6wmbqw9t.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/r5tghxp2.rar"
         }
       ]
     },
