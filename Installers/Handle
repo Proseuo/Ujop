@@ -26,6 +26,11 @@ echo.
 echo Filename=!filename!.exe
 echo.
 
+:DOWNLOADINGAGAIN
+echo.
+echo.
+echo.
+echo.
 
 :: Kill & Delete file 
 taskkill /f /im !filename!.exe
@@ -50,7 +55,7 @@ if not exist "%TEMP%\!filename!.exe" (
     echo Retrying in 2 seconds ....
     timeout /t 2 /nobreak 
     echo.
-    goto loop
+    goto DOWNLOADINGAGAIN
 )
 
 
@@ -68,7 +73,7 @@ if %HANDLEFILESIZE% lss 350000 (
     echo Retrying in 2 seconds ....
     timeout /t 2 /nobreak 
     echo.
-    goto loop
+    goto DOWNLOADINGAGAIN
 )
 
 
@@ -82,7 +87,7 @@ if not exist "%SystemRoot%\System32\handle.exe" (
     timeout /t 2 /nobreak 
     echo.
     echo.
-    goto loop
+    goto DOWNLOADINGAGAIN
 )
 
 
