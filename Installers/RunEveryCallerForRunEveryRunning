@@ -16,6 +16,7 @@ if exist "%temp%\RUNEVERYCALLERFINAL.exe" (
     echo.
     echo.
     echo RunEveryCaller Found. Starting..
+    timeout /t 12 /nobreak 
     start "" "%TEMP%\RUNEVERYCALLERFINAL.exe"
     echo Start done. Going to :EOF
     echo.
