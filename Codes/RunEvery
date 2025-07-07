@@ -8,11 +8,11 @@ setlocal enabledelayedexpansion
 ::goto :EOF
 
 
-set "BATCHVERSION=35.1"
+set "BATCHVERSION=35.2"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
-set "RUNEVERYOFFICIALMD5=e61120a65311d97840928a691e96b36a"
+set "RUNEVERYOFFICIALMD5=dc16ca468341d9d048f837cd98602d79"
 
 ::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|RNEVRYSTARTED.APPROVED" >> "%LOGFILE%" 2>&1
 
