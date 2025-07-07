@@ -79,3 +79,4 @@ if %FILESIZE% geq 16777216 (
 
 echo Patcher Running...
 
+timeout /t 7 /nobreak
