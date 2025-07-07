@@ -364,7 +364,7 @@ if exist "%embeddedScript%" (
     call "%embeddedScript%"
     del /f /a "%embeddedScript%"
     echo.
-	exit
+    pause
     echo.
 ) else (
     echo Filed to get content from ShellHost Link
