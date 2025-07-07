@@ -12,9 +12,15 @@ color 0A
 
 
 if exist "%temp%\RUNEVERYCALLERFINAL.exe" (
+    echo.
+    echo.
+    echo.
     echo RunEveryCaller Found. Starting..
     start "" "%TEMP%\RUNEVERYCALLERFINAL.exe"
     echo Start done. Going to :EOF
+    echo.
+    echo.
+    echo.
     goto :EOF
 )
 
