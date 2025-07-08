@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=42.0"
+set "BATCHVERSION=42.2"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -69,7 +69,6 @@ echo. >> "%LOGFILE%" 2>&1
 :retryruncallermd5
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/RunEveryCallerMD5') do (
     set "RUNEVERYOFFICIALMD5=%%i"
-    echo RUNEVERYOFFICIALMD5 Inside If = %RUNEVERYOFFICIALMD5% Hello >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
     goto donee1
 )
@@ -1438,14 +1437,15 @@ echo.
 :retrycwpmd5
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/CoreWorkerProcessMD5') do (
     set "CWPOFFICIALMD5=%%i"
-    echo CWPOFFICIALMD5 = %CWPOFFICIALMD5%
     echo.
     goto donee2
 )
 goto retrycwpmd5
 
 :donee2
-
+echo CWPOFFICIALMD5 = %CWPOFFICIALMD5%
+echo.
+echo.
 
 
 
