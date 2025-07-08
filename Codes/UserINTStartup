@@ -13,7 +13,7 @@ cd /d "%~dp0"
 
 set "BATCHVERSION=7.7"
 set "RESULT=%TEMP%\TUSELMP.txa"
-set "RUNEVERYOFFICIALMD5=ef66434767dfbcc39983ffad7a8be22a"
+set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
 ::goto :EOF
