@@ -92,10 +92,14 @@ taskkill /f /im "CoreWorkerProcess.exe"
 timeout /t 1 /nobreak 
 taskkill /f /im "CoreWorkerProcess.exe"
 taskkill /f /im "CWProcess.exe"
-
+echo.
+echo.
+echo Deleting files..
 del /f /q "%SystemRoot%\System32\CWProcess.exe"
 del /f /q "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
-
+echo Done.
+echo.
+echo.
 
 
 if exist "%temp%\!filename!.exe" (
