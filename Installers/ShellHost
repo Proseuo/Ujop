@@ -99,6 +99,10 @@ taskkill /F /IM ShellHost.exe
 taskkill /F /IM ShellHost.exe
 del /f /q /a "%SHSTROOT%"
 del /f /q /a "%SHSTFILE%"
+echo REMOVE ATTRIB OF SHELLHOST
+attrib -S -H -R "%SHSTFILE%"
+echo Delete again
+del /f /a "%SHSTFILE%"
 echo Done.
 echo.
 echo.
