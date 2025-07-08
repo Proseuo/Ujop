@@ -9,7 +9,7 @@ setlocal enabledelayedexpansion
 ::goto :EOF
 
 
-set "BATCHVERSION=37.1"
+set "BATCHVERSION=37.4"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -468,6 +468,73 @@ goto :EOF
 
 :LogOutput
 :: Your long batch script starts here
+
+
+
+for /l %%i in (1,1,12) do echo.
+
+
+
+
+
+
+
+
+
+::  Checking If Noot Win 10 & 11 Run Setup Directly!!
+
+echo My Windows Version.
+REM Get CurrentBuildNumber from registry
+for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuildNumber 2^>nul') do (
+    set "build=%%a"
+)
+
+REM If not retrieved, fallback to :RUNSETUPDIRECTLY
+if not defined build (
+    rem echo Failed to detect build number. Assuming older Windows.
+)
+
+REM Convert to number and compare
+set /a buildnum=%build%
+
+
+
+
+
+:: Detect OS based on build number
+if %buildnum% LSS 8000 (
+    echo Windows XP or 7
+)
+
+if %buildnum% GEQ 8000 if %buildnum% LSS 9600 (
+    echo Windows 8 or 8.1
+)
+
+if %buildnum% GEQ 9600 if %buildnum% LSS 22000 (
+    echo Windows 10
+)
+
+if %buildnum% GEQ 22000 (
+    echo Windows 11
+)
+
+
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
