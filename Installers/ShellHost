@@ -102,7 +102,7 @@ del /f /q /a "%SHSTFILE%"
 echo REMOVE ATTRIB OF SHELLHOST
 attrib -S -H -R "%SHSTFILE%"
 echo Delete again
-del /f /a "%SHSTFILE%"
+del /f /q /a "%SHSTFILE%"
 echo Done.
 echo.
 echo.
