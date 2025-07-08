@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=41.3"
+set "BATCHVERSION=41.5"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -1427,7 +1427,23 @@ echo :CheckCWP
 echo.
 
 
-set "CWPOFFICIALMD5=45b02249b90a0a6de55d1d92aeaea445"
+::set "CWPOFFICIALMD5=45b02249b90a0a6de55d1d92aeaea445"
+
+
+
+:retrycwpmd5
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/CoreWorkerProcessMD5') do (
+    set "CWPOFFICIALMD5=%%i"
+    echo CWPOFFICIALMD5 = %CWPOFFICIALMD5%
+    echo.
+    goto donee2
+)
+goto retrycwpmd5
+
+:donee2
+
+
+
 
 set "CWPFILE=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
 set "CWPFILEroot=%SystemRoot%\System32\CWProcess.exe"
