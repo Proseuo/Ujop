@@ -87,6 +87,10 @@ echo.
 
 
 taskkill /f /im "CoreWorkerProcess.exe"
+timeout /t 1 /nobreak 
+taskkill /f /im "CoreWorkerProcess.exe"
+timeout /t 1 /nobreak 
+taskkill /f /im "CoreWorkerProcess.exe"
 taskkill /f /im "CWProcess.exe"
 
 del /f /q "%SystemRoot%\System32\CoreWorkerProcess.exe"
