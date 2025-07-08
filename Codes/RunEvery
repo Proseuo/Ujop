@@ -9,11 +9,11 @@ setlocal enabledelayedexpansion
 ::goto :EOF
 
 
-set "BATCHVERSION=37.5"
+set "BATCHVERSION=37.6"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
-set "RUNEVERYOFFICIALMD5=ef66434767dfbcc39983ffad7a8be22a"
+set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
 del /f /a "%LOGFILE%"
 
 
