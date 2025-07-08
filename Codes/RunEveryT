@@ -24,11 +24,22 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=41.2T"
+set "BATCHVERSION=41.3T"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
 ::set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
+
+
+
+del /f /a "%LOGFILE%"
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo BATCHVERSION = %BATCHVERSION% >> "%LOGFILE%" 2>&1
+echo %date% %time% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
 
 :retryruncallermd5
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/RunEveryCallerMD5') do (
@@ -42,13 +53,6 @@ goto retryruncallermd5
 :donee1
 
 
-del /f /a "%LOGFILE%"
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo BATCHVERSION = %BATCHVERSION% >> "%LOGFILE%" 2>&1
-echo %date% %time% >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
 
 ::pause
 ::goto :LOOPRUNEVERY
