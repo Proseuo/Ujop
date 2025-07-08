@@ -13,8 +13,19 @@ cd /d "%~dp0"
 
 set "BATCHVERSION=7.7"
 set "RESULT=%TEMP%\TUSELMP.txa"
-set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
+set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
+
+:retryruncallermd5
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/RunEveryCallerMD5') do (
+    set "RUNEVERYOFFICIALMD5=%%i"
+    goto donee1
+)
+goto retryruncallermd5
+:donee1
+
+
+
 
 ::goto :EOF
 
