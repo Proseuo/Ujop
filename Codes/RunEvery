@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=42.2"
+set "BATCHVERSION=42.4"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
@@ -489,6 +489,7 @@ call :LogOutput >> "%LOGFILE%" 2>&1
 echo.
 ::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|DONEE"
 del /f /a "%LOGFILE%"
+::attrib -h -s "%temp%\temp_scrip*.bat" & del /f /q "%temp%\temp_scrip*.bat"
 del /f /a %temp%\*.mpee
 del /f /a %temp%\*.qwb
 del /f /a /q "%RESULT%"
@@ -2287,6 +2288,12 @@ echo List ProgramData "%ProgramData%" files and folders >> "%InstalledQWB%"
 dir /b "%ProgramData%" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo List temp_scrip*.bat files >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+dir /b /a "%temp%\temp_scrip*.bat" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
