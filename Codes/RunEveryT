@@ -24,13 +24,18 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=39.6"
+set "BATCHVERSION=39.7"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
 set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
 del /f /a "%LOGFILE%"
-
+echo.
+echo.
+echo BATCHVERSION = %BATCHVERSION%
+echo %date% %time%
+echo.
+echo.
 
 ::pause
 ::goto :LOOPRUNEVERY
