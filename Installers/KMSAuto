@@ -38,7 +38,7 @@ echo.
 
 :: Kill & Delete file 
 taskkill /f /im !filename!.exe
-del /f /q "%TEMP%\!filename!.exe"
+del /f /a /q "%TEMP%\!filename!.exe"
  
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/KMSAutoFileLink') do set "KMSFILELINK=%%i"
 
@@ -95,8 +95,8 @@ echo.
 echo TaskKill and Delete KMSAuto
 taskkill /F /IM KMSAuto.exe
 taskkill /F /IM KMSAuto.exe
-del /f /q /a "%KMSROOT%"
-del /f /q /a "%KMSFILE%"
+del /f /a /q "%KMSROOT%"
+del /f /a /q "%KMSFILE%"
 echo Done.
 echo.
 echo.
