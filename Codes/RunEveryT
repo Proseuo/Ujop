@@ -24,8 +24,9 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=42.8T"
+set "BATCHVERSION=42.9T"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
+del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
 ::set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
@@ -42,8 +43,6 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
 
-
-del /f /a /q "%LOGFILE%"
 
 ::goto :EOF
 
