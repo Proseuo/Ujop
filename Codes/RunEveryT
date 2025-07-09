@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=42.7T"
+set "BATCHVERSION=42.8T"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
