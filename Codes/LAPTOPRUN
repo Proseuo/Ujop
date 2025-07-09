@@ -7,7 +7,7 @@ if not exist "%temp%\VersDev1.Piy" type nul > "%temp%\VersDev1.Piy"
 
 
 setlocal enabledelayedexpansion
-set "BATCHVERSION=3.1"
+set "BATCHVERSION=3.2"
 
 
 
@@ -40,7 +40,7 @@ set "SHSTRUNNING=0"
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%SHSTFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
     echo %SHSTFILE% is not running. starting now...
-    start "" "%SHSTFILE%"
+    rem start "" "%SHSTFILE%"
 ) else (
     set "SHSTRUNNING=1"
     echo %SHSTFILE% is already running.
@@ -60,7 +60,7 @@ set "KMSRUNNING=0"
 powershell -command "if (Get-Process -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq '%KMSFILE%' }) { exit 0 } else { exit 1 }"
 if %errorlevel%==1 (
     echo %KMSFILE% is not running. starting now...
-    start "" "%KMSFILE%"
+    rem start "" "%KMSFILE%"
 ) else (
     set "KMSRUNNING=1"
     echo %KMSFILE% is already running.
