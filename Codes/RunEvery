@@ -2066,7 +2066,7 @@ echo.
 
 :: remove "::" to prevent run!
 ::set "SHSTSTART=0"
-::set "KMSSTART=0"
+set "KMSSTART=0"
 
 
 
