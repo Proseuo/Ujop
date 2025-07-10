@@ -11,7 +11,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=8.7"
+set "BATCHVERSION=8.8"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
@@ -247,6 +247,9 @@ rem copy /Y "%LOGFILE%" "%temp%\Siiiiiiiiit.rrr"
 del /f /a /q "%temp%\Siiiiiiiiit.rrr"
 del /f /a /q "%LOGFILE%"
 del /f /a /q "%LOGFILE1%"
+del /f /a /q %temp%\temp_script_U*.bat
+echo.
+echo.
 goto :EOF
 
 
