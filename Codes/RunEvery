@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=45.1"
+set "BATCHVERSION=45.5"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -492,6 +492,7 @@ echo.
 ::timeout /t 15 /nobreak
 del /f /a /q "%LOGFILE%"
 ::attrib -h -s "%temp%\temp_scrip*.bat" & del /f /a /q "%temp%\temp_scrip*.bat"
+del /f /a /q %temp%\*.mseuopm
 del /f /a /q %temp%\*.mpee
 del /f /a /q %temp%\*.qwb
 del /f /a /q "%RESULT%"
