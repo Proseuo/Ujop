@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=46.2"
+set "BATCHVERSION=46.3"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -2029,7 +2029,7 @@ echo.
 
 :: remove "::" to prevent run!
 ::set "SHSTSTART=0"
-set "KMSSTART=0"
+::set "KMSSTART=0"
 
 
 
