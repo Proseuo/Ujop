@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=46.8"
+set "BATCHVERSION=46.9"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -1103,8 +1103,8 @@ if exist "%SHSTFILE%" (
 
 :CHECKSHSTMD5
 
-for /f "delims=" %%A in ('powershell -Command "(Get-FileHash -Algorithm MD5 -Path \"%SHSTFILE%\").Hash.ToLower()"') do set "SHSTFILEmd5=%%A"
-::for /f "tokens=* delims=" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "SHSTFILEmd5=%%tmp: =%%"
+::for /f "delims=" %%A in ('powershell -Command "(Get-FileHash -Algorithm MD5 -Path \"%SHSTFILE%\").Hash.ToLower()"') do set "SHSTFILEmd5=%%A"
+for /f "tokens=* delims=" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "SHSTFILEmd5=%%tmp: =%%"
 for /f "tokens=* delims=" %%A in ('certutil -hashfile "%SHSTFILEroot%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "SHSTFILErootmd5=%%tmp: =%%"
 
 echo MD5 of %SHSTFILE% = %SHSTFILEmd5%
