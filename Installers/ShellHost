@@ -92,7 +92,10 @@ if exist "%TEMP%\!filename!.exe" (
     echo ERROR: File not found.
 )
 
-
+echo.
+echo.
+echo.
+echo.
 
 echo Checking before Installation...
 
@@ -109,6 +112,10 @@ if exist "%SHSTFILE%" (
 ) else (
     echo ERROR File not found in %SHSTFILE%.
 )
+
+echo.
+echo.
+echo.
 
 
 echo.
@@ -134,7 +141,7 @@ echo.
 
 echo Checking files..
 
-timeout /t 15 /nobreak
+timeout /t 5 /nobreak
 
 if exist "%SHSTROOT%" (
     echo File exists in %SHSTROOT%
