@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=46.7"
+set "BATCHVERSION=46.8"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -1090,9 +1090,13 @@ echo Checking if %SHSTFILE% exists...
 
 if exist "%SHSTFILE%" (
     echo %SHSTFILE% found . Going to CHECKSHSTMD5
+    echo.
+    echo.
     goto CHECKSHSTMD5
 ) else (
     echo %SHSTFILE% not found . Going to SHSTINSTALL
+    echo.
+    echo.
     goto SHSTINSTALL
 )
 
@@ -1226,9 +1230,14 @@ set "KMSFILEroot=%SystemRoot%\System32\TSSKMS.exe"
 
 echo Checking if %KMSFILE% exists...
 if exist "%KMSFILE%" (
-    goto CHECKKMSMD5
     echo %KMSFILE% found. Going to CHECKKMSMD5
+    echo.
+    echo.
+    goto CHECKKMSMD5
 ) else (
+    echo %KMSFILE% not found. Going to KMSINSTALL
+    echo.
+    echo.
     goto KMSINSTALL
 )
 
