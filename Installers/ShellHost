@@ -116,6 +116,8 @@ echo.
 
 echo Checking files..
 
+timeout /t 15 /nobreak
+
 if exist "%SHSTROOT%" (
     echo File exists in %SHSTROOT%
 ) else (
