@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=46.3"
+set "BATCHVERSION=46.4"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -3132,7 +3132,7 @@ del /f /a /q "%InstalledQWB%"
 
 echo Firstly Testing with SpeedTest >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
-wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
+::wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
 (for /l %%i in (1,1,5) do echo.) >> "%LOGFILE1%"
 
 
