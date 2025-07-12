@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=48.1"
+set "BATCHVERSION=48.2"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -578,7 +578,7 @@ echo.
 
 
 :: Define allowed HWIDs here
-set "VALID_HWIDS=HWID1 F0AB4D56-D51E-9BB3-2896-D9EE7A3FC551 HWID2"
+set "VALID_HWIDS=HWID1 HWID3 HWID2"
 
 
 
