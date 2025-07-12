@@ -87,10 +87,33 @@ echo.
  
 
 
+echo.
+echo.
+echo.
 
 
 
+echo Checking before installation
 
+
+if exist "%KMSROOT%" (
+    echo File exists in %KMSROOT%
+) else (
+    echo ERROR File not found in %KMSROOT%
+)
+
+
+
+if exist "%KMSFILE%" (
+    echo File exists in %KMSFILE%.
+) else (
+    echo ERROR File not found in %KMSFILE%.
+)
+
+
+
+echo.
+echo.
 echo.
 echo TaskKill and Delete KMSAuto
 taskkill /F /IM KMSAuto.exe
