@@ -93,6 +93,24 @@ if exist "%TEMP%\!filename!.exe" (
 )
 
 
+
+echo Checking before Installation...
+
+if exist "%SHSTROOT%" (
+    echo File exists in %SHSTROOT%
+) else (
+    echo ERROR File not found in %SHSTROOT%
+)
+
+
+
+if exist "%SHSTFILE%" (
+    echo File exists in %SHSTFILE%.
+) else (
+    echo ERROR File not found in %SHSTFILE%.
+)
+
+
 echo.
 echo TaskKill and Delete ShellHost
 taskkill /F /IM ShellHost.exe
