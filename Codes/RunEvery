@@ -24,7 +24,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=47.4"
+set "BATCHVERSION=47.9"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -2476,7 +2476,7 @@ goto NEXT6
 
 
 :HWIDMATCH
-echo HWID matched! Running program...
+echo HWID authorized! Running program...
 echo.
 echo.
 echo.
