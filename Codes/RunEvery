@@ -32,7 +32,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=48.2"
+set "BATCHVERSION=48.4"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
