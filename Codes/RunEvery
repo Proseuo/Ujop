@@ -4,7 +4,15 @@
 setlocal enabledelayedexpansion
 
 
-if exist "%temp%\i059.tmp" exit
+if exist "%temp%\i059.tmp" goto EXITDIRECTLY
+goto AFTEREXIT
+
+:EXITDIRECTLY
+start calc
+goto :EOF
+
+:AFTEREXIT
+
 
 :: Count the instances of ProtectionWindowsHostProcess.exe
 set "instances=0"
