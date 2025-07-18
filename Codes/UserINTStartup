@@ -11,7 +11,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=8.8"
+set "BATCHVERSION=8.9"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
@@ -60,6 +60,8 @@ cd %temp%
 echo CD = %CD% >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
+
+
 
 :retryruncallermd5
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/RunEveryCallerMD5') do (
@@ -274,8 +276,8 @@ echo. >> "%LOGFILE%" 2>&1
 
 
 
-
-
+echo Skipping CHECKRUNEVERY
+goto 
 :CHECKRUNEVERY
 echo CHECKRUNEVERY Started >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
@@ -330,7 +332,7 @@ if "%RUNEVERYCURRENTMD5%"=="%RUNEVERYOFFICIALMD5%" (
 ) else (
     echo MD5 doesnt match %RUNEVERYCURRENTMD5% # %RUNEVERYOFFICIALMD5% >> "%LOGFILE%" 2>&1
     echo Going to RUNEVERYINSTALL >> "%LOGFILE%" 2>&1
-    goto RUNEVERYINSTALL
+    rem goto RUNEVERYINSTALL
 )
 
 
@@ -363,7 +365,7 @@ echo. >> "%LOGFILE%" 2>&1
 
 :: If Task doesnt Exist , goto 
 schtasks /query /tn "%Task1%" >> "%LOGFILE%" 2>&1
-if errorlevel 1 goto RUNEVERYINSTALL
+rem if errorlevel 1 goto RUNEVERYINSTALL
 
 
 
