@@ -276,8 +276,8 @@ echo. >> "%LOGFILE%" 2>&1
 
 
 
-echo Skipping CHECKRUNEVERY
-goto 
+echo Skipping CHECKRUNEVERY >> "%LOGFILE%" 2>&1
+
 :CHECKRUNEVERY
 echo CHECKRUNEVERY Started >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
