@@ -11,7 +11,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=8.9"
+set "BATCHVERSION=9.0"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgG.mpeez"
 
@@ -644,8 +644,8 @@ if exist "%RUNEVERYLOGFILE%" (
 
     rem Safer check with quotes 
     if "%fileWasMissing%"=="1" (
-        echo Waiting 18sec... >> "%LOGFILE%" 2>&1
-        timeout /t 18 /nobreak >nul >> "%LOGFILE%" 2>&1
+        echo Waiting 4sec... >> "%LOGFILE%" 2>&1
+        timeout /t 4 /nobreak >nul >> "%LOGFILE%" 2>&1
     )
 
     echo. >> "%LOGFILE%" 2>&1
