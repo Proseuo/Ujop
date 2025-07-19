@@ -49,7 +49,7 @@ echo.
 taskkill /f /im !filename!.exe
 del /f /a /q "%TEMP%\!filename!.exe"
  
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerForRunEveryRunning') do set "RUNFILELINK=%%i"
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerForRunEveryRunningT') do set "RUNFILELINK=%%i"
 
 echo.
 echo RUNFILELINK=%RUNFILELINK%
