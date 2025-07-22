@@ -11,7 +11,7 @@ cd /d "%~dp0"
 :: Run All your commands here ( will be executed with admin privileges )
 
 
-set "BATCHVERSION=9.4"
+set "BATCHVERSION=9.5"
 set "RESULT=%TEMP%\TUSELMP.txa"
 set "RUNEVERYLOGFILE=%temp%\S1rNsvQgGzesxzSsss.mpeez"
 
@@ -523,83 +523,6 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
-
-
-
-:LOOPRUNEVERY
-echo LOOPRUNEVERY Started.. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-echo [!COUNT!] Running handler... >> "%LOGFILE%" 2>&1
-call :HANDLERUNEVERYLOG
-
-REM Wait 20 seconds only if not the last loop
-if !COUNT! LSS 6 (
-    timeout /t 5 /nobreak >> "%LOGFILE%" 2>&1
-)
-
-set /a COUNT+=1
-if !COUNT! LEQ 6 goto LOOPRUNEVERY
-
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-echo All counts ended. Going to NEXT >> "%LOGFILE%" 2>&1
-goto NEXT
-
-
-
-:HANDLERUNEVERYLOG
-echo HANDLERUNEVERYLOG Started ... >> "%LOGFILE%" 2>&1
-echo Trying Handle RunEvery Log. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=292182" -d "text=%USERNAME%(%COMPUTERNAME%)|(COUNT=%COUNT%)|%time%|v%BATCHVERSION%" >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-:: Accept EULA if not already accepted
-reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted >> "%LOGFILE%" 2>&1
-reg add HKCU\Software\Sysinternals\Handle /v EulaAccepted /t REG_DWORD /d 1 /f >> "%LOGFILE%" 2>&1
-reg query HKCU\Software\Sysinternals\Handle /v EulaAccepted >> "%LOGFILE%" 2>&1
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-echo Handle LOGFILE TA3 RUNEVERY >> "%LOGFILE%" 2>&1
-handle.exe "%RUNEVERYLOGFILE%" >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-::goto :EOF
-exit /b
-
-
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-echo. >> "%LOGFILE%" 2>&1
-
-
-
 
 
 
