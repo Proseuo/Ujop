@@ -80,7 +80,7 @@ echo. >> "%LOGFILE%" 2>&1
 echo. >> "%LOGFILE%" 2>&1
 
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=292182" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedNow(0)|%time%|v%BATCHVERSION%"
+::curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -d "chat_id=-1002163721260" -d "message_thread_id=292182" -d "text=%USERNAME%(%COMPUTERNAME%)|LoggedNow(0)|%time%|v%BATCHVERSION%"
 timeout /t 10 /nobreak >> "%LOGFILE%" 2>&1
 
 
