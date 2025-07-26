@@ -1,7 +1,7 @@
 @echo off
 
 if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
-if not exist "%temp%\VersDev1.Piy" type nul > "%temp%\VersDev1.Piy"
+::if not exist "%temp%\VersDev1.Piy" type nul > "%temp%\VersDev1.Piy"
 
 ::goto :EOF
 
