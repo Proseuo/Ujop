@@ -11,7 +11,7 @@ setlocal enabledelayedexpansion
 
 
 set "BATCHVERSION=6.9"
-set "SENDEVERY=20"
+set "SENDEVERY=10"
 set "SENDTXTFILE=0"
 
 
