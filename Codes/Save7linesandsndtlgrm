@@ -13,6 +13,7 @@ if not exist "%temp%\exita.tmp" echo 777 > "%temp%\exita.tmp"
 
 for /f "usebackq delims=" %%A in ("%f%") do (
     if "%%A"=="1" (
+        timeout /t 5 /nobreak
         goto :EOF
     ) else (
         echo Continue...
@@ -23,7 +24,7 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.5"
+set "BATCHVERSION=8.6"
 set "SENDEVERY=20"
 set "SENDTXTFILE=0"
 
