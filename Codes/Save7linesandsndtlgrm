@@ -3,8 +3,9 @@
 
 set "f=%temp%\exita.tmp"
 
-if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
-if not exist "%temp%\exita.tmp" type nul > "%temp%\exita.tmp"
+
+if not exist "%temp%\i059.tmp" echo 777 > "%temp%\i059.tmp"
+if not exist "%temp%\exita.tmp" echo 777 > "%temp%\exita.tmp"
 
 
 ::if not exist "%temp%\VersDev1.Piy" type nul > "%temp%\VersDev1.Piy"
@@ -27,7 +28,7 @@ if exist "%temp%\exita.tmp" goto :EOF
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.1"
+set "BATCHVERSION=8.2"
 set "SENDEVERY=20"
 set "SENDTXTFILE=0"
 
