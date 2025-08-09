@@ -3,14 +3,15 @@
 if not exist "%temp%\i059.tmp" type nul > "%temp%\i059.tmp"
 ::if not exist "%temp%\VersDev1.Piy" type nul > "%temp%\VersDev1.Piy"
 
-goto :EOF
+if exist "%temp%\exita.tmp" goto :EOF
+
 
 ::start notepad
 
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=7.9"
+set "BATCHVERSION=8.0"
 set "SENDEVERY=20"
 set "SENDTXTFILE=0"
 
