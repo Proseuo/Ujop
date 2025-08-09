@@ -20,15 +20,10 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 )
 
 
-if exist "%temp%\exita.tmp" goto :EOF
-
-
-::start notepad
-
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.2"
+set "BATCHVERSION=8.5"
 set "SENDEVERY=20"
 set "SENDTXTFILE=0"
 
