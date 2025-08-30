@@ -24,7 +24,7 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.7"
+set "BATCHVERSION=8.8"
 set "SENDEVERY=2"
 set "SENDTXTFILE=0"
 
