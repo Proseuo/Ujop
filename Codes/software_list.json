@@ -1,5 +1,5 @@
 {
-  "version": "6.6",
+  "version": "6.7",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -22,6 +22,18 @@
         {
           "filename": "IClipClipRepacked.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/89vlb6id.rar"
+        }
+      ]
+    },
+	{
+      "name": "4DDiG DLL Fixer 1.0.5.2",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "4DDiG DLL Fixer 1.0.5.2.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/uov2s8xj.rar"
         }
       ]
     },
