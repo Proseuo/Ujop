@@ -1,5 +1,5 @@
 {
-  "version": "6.8",
+  "version": "6.9",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -68,16 +68,8 @@
       "display": true,
       "parts": [
         {
-          "filename": "4K Video Downloader Plus 25.0.4.0187.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/h46mk9iz.rar"
-        },
-		{
-          "filename": "4K Video Downloader Plus 25.0.4.0187.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/aurb90ox.rar"
-        },
-        {
-          "filename": "4K Video Downloader Plus 25.0.4.0187.part3.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/wcvyyfp5.rar"
+          "filename": "4K Video Downloader Plus 25.0.4.0187.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/atqmkno9.rar"
         }
       ]
     },
@@ -100,20 +92,8 @@
       "display": true,
       "parts": [
         {
-          "filename": "LibreOffice 24.8.0.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/06cmsdme.rar"
-        },
-		{
-          "filename": "LibreOffice 24.8.0.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/e92z6kqd.rar"
-        },
-		{
-          "filename": "LibreOffice 24.8.0.part3.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/wwzulwbf.rar"
-        },
-        {
-          "filename": "LibreOffice 24.8.0.part4.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/f5ylah8f.rar"
+          "filename": "LibreOffice 24.8.0.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/cg1wvm6q.rar"
         }
       ]
     },
@@ -197,7 +177,7 @@
       "parts": [
         {
           "filename": "IconViewer.v3.02.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/bwbuhy0p.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/83ywt3hp.rar"
         }
       ]
     },
@@ -221,7 +201,7 @@
       "parts": [
         {
           "filename": "Lightshot.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/me72g57a.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/rv7ql9m6.rar"
         }
       ]
     },
@@ -269,7 +249,7 @@
       "parts": [
         {
           "filename": "ImageResizerSetup3.1.2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/mup9a7ju.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/juyqhyml.rar"
         }
       ]
     },
@@ -365,7 +345,7 @@
       "parts": [
         {
           "filename": "uTorrent 1.2.3.56.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/t9grottk.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/5cidt3qa.rar"
         }
       ]
     },
@@ -389,7 +369,7 @@
       "parts": [
         {
           "filename": "qBittorent 5.1.0.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/tv85jvcs.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/7gzujf30.rar"
         }
       ]
     },
@@ -449,7 +429,7 @@
       "parts": [
         {
           "filename": "CCleaner 5.76.8269.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/0ykeigxp.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/577pvdfi.rar"
         }
       ]
     },
@@ -461,7 +441,7 @@
       "parts": [
         {
           "filename": "HandBrake-1.9.2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/z4an7eqf.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/dxte0bho.rar"
         }
       ]
     },
@@ -485,7 +465,7 @@
       "parts": [
         {
           "filename": "WinaeroTweaker-1.63.0.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/3god3dc8.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/fc6wnps2.rar"
         }
       ]
     },
@@ -495,13 +475,9 @@
 	  "category_order": 0,
       "display": true,
       "parts": [
-        {
-          "filename": "ImageGlass_Kobe_8.6.7.13.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/u2ycetrc.rar"
-        },
 		{
-          "filename": "ImageGlass_Kobe_8.6.7.13.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/klc7r4l8.rar"
+          "filename": "ImageGlass_Kobe_8.6.7.13.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/acwi7x21.rar"
         }
       ]
     },
@@ -513,7 +489,7 @@
       "parts": [
         {
           "filename": "Active File Recovery Professional 15.0.5.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/4i4g7fqj.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/0lavjmpr.rar"
         }
       ]
     },
@@ -525,7 +501,7 @@
       "parts": [
         {
           "filename": "TreeSize 9.2.1.1907.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/bn0d9hb1.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/9zqn4w4f.rar"
         }
       ]
     },
@@ -537,7 +513,7 @@
       "parts": [
         {
           "filename": "GOM Player Plus 2.3.57.5321.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/m0gfpxga.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/qiyshipj.rar"
         }
       ]
     },
@@ -573,7 +549,7 @@
       "parts": [
         {
           "filename": "YT Downloader 9.11.7.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/pf2qhjq1.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/rigvgflg.rar"
         }
       ]
     },
@@ -583,13 +559,9 @@
 	  "category_order": 5,
       "display": true,
       "parts": [
-        {
-          "filename": "MiniTool Partition Wizard 12.7.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/vrsilstb.rar"
-        },
 		{
-          "filename": "MiniTool Partition Wizard 12.7.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/dcl5z0vz.rar"
+          "filename": "MiniTool Partition Wizard 12.7.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/xyvk6irq.rar"
         }
       ]
     },
@@ -599,13 +571,9 @@
 	  "category_order": 26,
       "display": true,
       "parts": [
-        {
-          "filename": "Windows7Games_for_Windows_11_10_8.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/3z01uzku.rar"
-        },
 		{
-          "filename": "Windows7Games_for_Windows_11_10_8.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/bris7bc8.rar"
+          "filename": "Windows7Games_for_Windows_11_10_8.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/u3i0eowy.rar"
         }
       ]
     },
@@ -627,13 +595,9 @@
 	  "category_order": 15,
       "display": true,
       "parts": [
-        {
-          "filename": "ZonaSetup64.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/16x2ftud.rar"
-        },
 		{
-          "filename": "ZonaSetup64.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/walbx725.rar"
+          "filename": "ZonaSetup64.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/zxr0hynb.rar"
         }
       ]
     },
@@ -681,7 +645,7 @@
       "parts": [
         {
           "filename": "FxSound 2 v1.0.5.0.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/wita5n9u.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/73fmeczi.rar"
         }
       ]
     },
@@ -693,7 +657,7 @@
       "parts": [
         {
           "filename": "EagleGet v2.1.6.50.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/6982qrtd.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/8a71u64q.rar"
         }
       ]
     },
@@ -705,7 +669,7 @@
       "parts": [
         {
           "filename": "uGet Download Manager - PB.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/6optvpc1.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/tfpgxhh7.rar"
         }
       ]
     },
@@ -717,7 +681,7 @@
       "parts": [
         {
           "filename": "Ashampoo WinOptimizer 28.00.12 Multilingual.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/cq1x7t7s.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/80oo8rv9.rar"
         }
       ]
     },
@@ -729,7 +693,7 @@
       "parts": [
         {
           "filename": "CheatEngine75.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/3sas8w26.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/zgt4tsze.rar"
         }
       ]
     },
@@ -741,7 +705,7 @@
       "parts": [
         {
           "filename": "J Downloader 2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/5pasawmi.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/zlo6zweq.rar"
         }
       ]
     },
@@ -753,7 +717,7 @@
       "parts": [
         {
           "filename": "Ant Download Manager 2.7.1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/ozixg4cc.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/77rrrhs5.rar"
         }
       ]
     },
@@ -765,7 +729,7 @@
       "parts": [
         {
           "filename": "K-Lite.Codec.Pack.18.6.5.Standard",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/yjwkuizo.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/byaaa83w.rar"
         }
       ]
     },
@@ -777,7 +741,7 @@
       "parts": [
         {
           "filename": "TeamViewer 15.40.8.0.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/4uokewlw.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/7o2kojuf.rar"
         }
       ]
     },
@@ -787,13 +751,9 @@
       "category_order": 10,
       "display": true,
       "parts": [
-        {
-          "filename": "Persepolis Download Manager 5.1.1.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/hytw3yaw.rar"
-        },
 		{
-          "filename": "Persepolis Download Manager 5.1.1.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/77lprbxz.rar"
+          "filename": "Persepolis Download Manager 5.1.1.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/f7oxn2ek.rar"
         }
       ]
     },
@@ -803,13 +763,9 @@
       "category_order": 14,
       "display": true,
       "parts": [
-        {
-          "filename": "Format Factory 5.21.0.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/8q0yyb22.rar"
-        },
 		{
-          "filename": "Format Factory 5.21.0.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/w55zbato.rar"
+          "filename": "Format Factory 5.21.0.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/a0apbzcq.rar"
         }
       ]
     },
