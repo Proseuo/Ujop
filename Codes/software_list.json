@@ -1,5 +1,5 @@
 {
-  "version": "6.7",
+  "version": "6.8",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -21,7 +21,7 @@
       "parts": [
         {
           "filename": "IClipClipRepacked.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/89vlb6id.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/1t7i00ve.rar"
         }
       ]
     },
@@ -45,7 +45,7 @@
       "parts": [
         {
           "filename": "Stremio 4.4.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/8syik3co.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/m3pba6du.rar"
         }
       ]
     },
@@ -88,20 +88,8 @@
       "display": true,
       "parts": [
         {
-          "filename": "PowerToys 0.91.1.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/itgu2d2m.rar"
-        },
-		{
-          "filename": "PowerToys 0.91.1.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/08wztuo6.rar"
-        },
-		{
-          "filename": "PowerToys 0.91.1.part3.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/7vbv21xv.rar"
-        },
-        {
-          "filename": "PowerToys 0.91.1.part4.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/hda2o6kl.rar"
+          "filename": "PowerToys 0.91.1.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/0gmb7f5j.rar"
         }
       ]
     },
@@ -245,7 +233,7 @@
       "parts": [
         {
           "filename": "AnyDesk.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/5oxhhn7z.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ha0v6f0u.rar"
         }
       ]
     },
@@ -293,7 +281,7 @@
       "parts": [
         {
           "filename": "OfficeToolPlus.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/6u7s65tn.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/o4owr5qi.rar"
         }
       ]
     },
@@ -317,7 +305,7 @@
       "parts": [
         {
           "filename": "Revo Uninstaller Pro 5.0.6.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/t51hxkix.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/812i9eok.rar"
         }
       ]
     },
@@ -341,7 +329,7 @@
       "parts": [
         {
           "filename": "NetLimiter 5.3.1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/eolcvbmu.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ekymseic.rar"
         }
       ]
     },
@@ -389,7 +377,7 @@
       "parts": [
         {
           "filename": "IObit Driver Booster 10.0.0.65.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/a0ypdlf3.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ile4mplj.rar"
         }
       ]
     },
@@ -413,7 +401,7 @@
       "parts": [
         {
           "filename": "RandomPassGen.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/c8jlbb2s.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/6krbpemq.rar"
         }
       ]
     },
@@ -437,7 +425,7 @@
       "parts": [
         {
           "filename": "Autorun Organizer 5.41.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/kgfuqcgs.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/rw51t21d.rar"
         }
       ]
     },
@@ -449,7 +437,7 @@
       "parts": [
         {
           "filename": "FreeFileSync.v13.7.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/r2p0wuz2.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/cpz3n5kd.rar"
         }
       ]
     },
@@ -553,22 +541,15 @@
         }
       ]
     },
+    {
 	"name": "Wondershare UniConverter 13.6.1.18",
 	"category": "Video Converter",
 	"category_order": 14,
     "display": true,
     "parts": [
         {
-          "filename": "Wondershare UniConverter 13.6.1.18.part1.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/j0dzghed.rar"
-        },
-		{
-          "filename": "Wondershare UniConverter 13.6.1.18.part2.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/uv377tre.rar"
-        },
-        {
-          "filename": "Wondershare UniConverter 13.6.1.18.part3.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/7hvuk3co.rar"
+          "filename": "Wondershare UniConverter 13.6.1.18.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/o442takp.rar"
         }
       ]
     },
@@ -580,7 +561,7 @@
       "parts": [
         {
           "filename": "Duplicate Cleaner 5.15.0.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.3/axdbcjpx.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/8cistwny.rar"
         }
       ]
     },
