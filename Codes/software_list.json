@@ -1,5 +1,5 @@
 {
-  "version": "6.9",
+  "version": "7.1",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -772,7 +772,7 @@
 	{
       "name": "Chrome v137.0.7151.120",
       "category": "Browser",
-      "category_order": 27,
+      "category_order": 35,
       "display": true,
       "parts": [
         {
@@ -784,7 +784,7 @@
 	{
       "name": "Opera v114.0.5282.154",
       "category": "Browser",
-      "category_order": 27,
+      "category_order": 35,
       "display": true,
       "parts": [
         {
@@ -796,7 +796,7 @@
 	{
       "name": "Brave Browser v1.61.116",
       "category": "Browser",
-      "category_order": 27,
+      "category_order": 35,
       "display": true,
       "parts": [
         {
@@ -808,7 +808,7 @@
 	{
       "name": "Opera GX v102.0.4880.104",
       "category": "Browser",
-      "category_order": 27,
+      "category_order": 35,
       "display": true,
       "parts": [
         {
@@ -820,7 +820,7 @@
 	{
       "name": "Mozilla Firefox Quantum v139",
       "category": "Browser",
-      "category_order": 27,
+      "category_order": 35,
       "display": true,
       "parts": [
         {
@@ -832,7 +832,7 @@
 	{
       "name": "Yandex Browser v23.9.2.888",
       "category": "Browser",
-      "category_order": 27,
+      "category_order": 35,
       "display": true,
       "parts": [
         {
@@ -844,7 +844,7 @@
 	{
       "name": "Cent Browser v3.5.3.34",
       "category": "Browser",
-      "category_order": 27,
+      "category_order": 35,
       "display": true,
       "parts": [
         {
@@ -856,7 +856,7 @@
 	{
       "name": "Baidu Spark Browser v43.23.1008.106",
       "category": "Browser",
-      "category_order": 27,
+      "category_order": 35,
       "display": true,
       "parts": [
         {
@@ -874,6 +874,198 @@
         {
           "filename": "Mouse and Keyboard Recorder 3.2.0.8.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ne4cehmi.rar"
+        }
+      ]
+    },
+	{
+      "name": "Red Dead Redemption 2 Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Red Dead Redemption 2 Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/jok0z2pt.rar"
+        }
+      ]
+    },
+	{
+      "name": "Call Of Duty Modern Warfare 2 Remastered Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Call Of Duty Modern Warfare 2 Remastered Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/2wmm73bn.rar"
+        }
+      ]
+    },
+	{
+      "name": "Sekiro Shadows Die Twice Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Sekiro Shadows Die Twice Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/fe484m2f.rar"
+        }
+      ]
+    },
+	{
+      "name": "Far Cry 6 Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Far Cry 6 Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/j4423qu5.rar"
+        }
+      ]
+    },
+	{
+      "name": "UNCHARTED Legacy of Thieves Collection Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "UNCHARTED Legacy of Thieves Collection Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/km1vqxzb.rar"
+        }
+      ]
+    },
+	{
+      "name": "Assassins Creed IV Black Flag Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Assassins Creed IV Black Flag Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/1w498jda.rar"
+        }
+      ]
+    },
+	{
+      "name": "Assassins Creed Shadows Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Assassins Creed Shadows Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/0bs0s60u.rar"
+        }
+      ]
+    },
+	{
+      "name": "The Last of Us Part I Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "The Last of Us Part I Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/wsmvict1.rar"
+        }
+      ]
+    },
+	{
+      "name": "Cyberpunk 2077 Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Cyberpunk 2077 Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/7ji719fj.rar"
+        }
+      ]
+    },
+	{
+      "name": "Clair Obscur Expedition 33 Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Clair Obscur Expedition 33 Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/061a7yjh.rar"
+        }
+      ]
+    },
+	{
+      "name": "Silent Hill Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Silent Hill Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/5ghdgm9h.rar"
+        }
+      ]
+    },
+	{
+      "name": "Borderlands 4 Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Borderlands 4 Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/16oe8tov.rar"
+        }
+      ]
+    },
+	{
+      "name": "Black Myth Wukong Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Black Myth Wukong Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/a9pfs56g.rar"
+        }
+      ]
+    },
+	{
+      "name": "Elden Ring Shadow of the Erdtree Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Elden Ring Shadow of the Erdtree Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/l99pkv6i.rar"
+        }
+      ]
+    },
+	{
+      "name": "Resident Evil 4 Trainer",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Resident Evil 4 Trainer.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/foja4s39.rar"
+        }
+      ]
+    },
+	{
+      "name": "MalumMenu v2.5.3 ( AmongUs )",
+      "category": "Games Trainers",
+      "category_order": 27,
+      "display": true,
+      "parts": [
+        {
+          "filename": "MalumMenu v2.5.3.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/foja4s39.rar"
         }
       ]
     },
