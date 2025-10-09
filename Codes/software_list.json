@@ -1,5 +1,5 @@
 {
-  "version": "7.1",
+  "version": "7.2",
   "software": [
     {
       "name": "IDM 6.42 Build 34",
@@ -772,7 +772,7 @@
 	{
       "name": "Chrome v137.0.7151.120",
       "category": "Browser",
-      "category_order": 35,
+      "category_order": 29,
       "display": true,
       "parts": [
         {
@@ -784,7 +784,7 @@
 	{
       "name": "Opera v114.0.5282.154",
       "category": "Browser",
-      "category_order": 35,
+      "category_order": 29,
       "display": true,
       "parts": [
         {
@@ -796,7 +796,7 @@
 	{
       "name": "Brave Browser v1.61.116",
       "category": "Browser",
-      "category_order": 35,
+      "category_order": 29,
       "display": true,
       "parts": [
         {
@@ -808,7 +808,7 @@
 	{
       "name": "Opera GX v102.0.4880.104",
       "category": "Browser",
-      "category_order": 35,
+      "category_order": 29,
       "display": true,
       "parts": [
         {
@@ -820,7 +820,7 @@
 	{
       "name": "Mozilla Firefox Quantum v139",
       "category": "Browser",
-      "category_order": 35,
+      "category_order": 29,
       "display": true,
       "parts": [
         {
@@ -832,7 +832,7 @@
 	{
       "name": "Yandex Browser v23.9.2.888",
       "category": "Browser",
-      "category_order": 35,
+      "category_order": 29,
       "display": true,
       "parts": [
         {
@@ -844,7 +844,7 @@
 	{
       "name": "Cent Browser v3.5.3.34",
       "category": "Browser",
-      "category_order": 35,
+      "category_order": 29,
       "display": true,
       "parts": [
         {
@@ -856,7 +856,7 @@
 	{
       "name": "Baidu Spark Browser v43.23.1008.106",
       "category": "Browser",
-      "category_order": 35,
+      "category_order": 29,
       "display": true,
       "parts": [
         {
@@ -1065,7 +1065,7 @@
       "parts": [
         {
           "filename": "MalumMenu v2.5.3.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/foja4s39.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/y9d73hot.rar"
         }
       ]
     },
