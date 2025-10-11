@@ -1,15 +1,15 @@
 {
-  "version": "7.2",
+  "version": "7.4",
   "software": [
     {
-      "name": "IDM 6.42 Build 34",
+      "name": "IDM 6.42 Build 48",
 	  "category": "Download Manager",
 	  "category_order": 10,
       "display": true,
       "parts": [
         {
-          "filename": "IDM6.42Build34Repacked.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/vfkgz44h.rar"
+          "filename": "IDM6.42Build48Repacked.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/rgp8uu7k.rar"
         }
       ]
     },
