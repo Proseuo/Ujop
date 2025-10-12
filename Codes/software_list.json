@@ -1,5 +1,5 @@
 {
-  "version": "7.4",
+  "version": "7.5",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -10,6 +10,18 @@
         {
           "filename": "IDM6.42Build48Repacked.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/rgp8uu7k.rar"
+        }
+      ]
+    },
+	  {
+      "name": "ChrisTitusTweaker",
+	  "category": "Windows Tweaks",
+	  "category_order": 1,
+      "display": true,
+      "parts": [
+        {
+          "filename": "ChrisTitusTweaker.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/t2xgf1x0.rar"
         }
       ]
     },
