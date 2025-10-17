@@ -1,5 +1,5 @@
 {
-  "version": "7.6",
+  "version": "7.7",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -106,6 +106,18 @@
         {
           "filename": "LibreOffice 24.8.0.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/cg1wvm6q.rar"
+        }
+      ]
+    },
+	  {
+      "name": "Wondershare Filmora 10.1.20.16",
+	  "category": "Video Editor",
+	  "category_order": 16,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Wondershare Filmora 10.1.20.16.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/db235ck2.rar"
         }
       ]
     },
