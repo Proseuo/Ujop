@@ -1,5 +1,5 @@
 {
-  "version": "7.5",
+  "version": "7.6",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -362,14 +362,14 @@
       ]
     },
 	{
-      "name": "IObit Driver Booster 10.0.0.65",
+      "name": "IObit Driver Booster 13.0.0.143",
 	  "category": "Driver Updater",
 	  "category_order": 6,
       "display": true,
       "parts": [
         {
-          "filename": "IObit Driver Booster 10.0.0.65.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ile4mplj.rar"
+          "filename": "IObit Driver Booster 13.0.0.143",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/k3cxxyua.rar"
         }
       ]
     },
