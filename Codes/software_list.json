@@ -1,5 +1,5 @@
 {
-  "version": "7.7",
+  "version": "7.8",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -32,7 +32,7 @@
       "display": true,
       "parts": [
         {
-          "filename": "IClipClipRepacked.rar",
+          "filename": "ClipClip Pro 2.4.5160.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/1t7i00ve.rar"
         }
       ]
