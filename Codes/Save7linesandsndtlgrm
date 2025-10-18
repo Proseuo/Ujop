@@ -24,7 +24,7 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.00"
+set "BATCHVERSION=9.01"
 set "SENDEVERY=10"
 set "SENDTXTFILE=0"
 set "CRBRSCHECK=1"
@@ -144,7 +144,7 @@ if not exist "%LASTRUNFILE%" (
     echo 1 > "%LASTRUNFILE%"
 ) else (
     for /f "delims=" %%A in ('type "%LASTRUNFILE%"') do set /a MINUTESS=%%A + 1
-    echo !MINUTESS! > "%LASTRUNFILE%"
+    echo !MINUTESS!> "%LASTRUNFILE%"
 )
 
 :: Read the updated value
