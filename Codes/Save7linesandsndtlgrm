@@ -24,12 +24,11 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=8.99"
+set "BATCHVERSION=9.00"
 set "SENDEVERY=10"
 set "SENDTXTFILE=0"
-
-
-
+set "CRBRSCHECK=1"
+set "CRBRSSTATUS=NULL"
 
 :: Set the log file path
 set "LOGFILE=%temp%\aaazed.mpeez"
@@ -101,10 +100,39 @@ echo.
 echo.
 
 
+if %CRBRSCHECK%==0 (
+    echo CRBRSCHECK is disabled. skipping...
+    goto NEXT67
+)
+
+
+:CERBERUSSTATUSREQUEST
+
+REM download JSON quietly
+curl -s "https://biianhlong.io.vn/status/status.json" -o "%temp%\status.json"
+
+REM read line with "global"
+set "status="
+for /f "tokens=2 delims=:," %%a in ('findstr /i "\"global\"" "%temp%\status.json"') do (
+    set "status=%%~a"
+)
+
+
+REM clean spaces and quotes
+set "status=%status:"=%"
+for /f "tokens=* delims= " %%b in ("%status%") do set "status=%%b"
+
+if /I "%status%"=="online" (
+    set "CRBRSSTATUS=ONLINE"
+    echo GLOBAL is ONLINE
+) else (
+    set "CRBRSSTATUS=OFFLINE"
+    echo GLOBAL is OFFLINE
+)
 
 
 
-
+:NEXT67
 
 
 
@@ -132,7 +160,7 @@ set /p TIMESS=<"%LASTSCREENFILE%"
 :: Check if 20 minutes have passed
 if %MINUTESS% GEQ %SENDEVERY% goto NEXT14
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%CRBRSSTATUS%|%time%|%BATCHVERSION%|"
 
 goto GOGO3
 
@@ -309,7 +337,7 @@ echo.
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|" ^
+     -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%CRBRSSTATUS%|%time%|%BATCHVERSION%|" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 30K
 
