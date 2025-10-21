@@ -1,5 +1,5 @@
 {
-  "version": "8.0",
+  "version": "8.1",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -10,6 +10,18 @@
         {
           "filename": "IDM6.42Build48Repacked.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/rgp8uu7k.rar"
+        }
+      ]
+    },
+	  {
+      "name": "DLNow Video Downloader 1.54.2025.10.15",
+	  "category": "Media Downloader",
+	  "category_order": 12,
+      "display": true,
+      "parts": [
+        {
+          "filename": "DLNow Video Downloader 1.54.2025.10.15.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/3hioz5tv.rar"
         }
       ]
     },
