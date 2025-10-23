@@ -1,5 +1,5 @@
 {
-  "version": "8.1",
+  "version": "8.2",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -58,6 +58,42 @@
         {
           "filename": "4DDiG DLL Fixer 1.0.5.2.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/uov2s8xj.rar"
+        }
+      ]
+    },
+	  {
+      "name": "PowerISO 9.1",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "PowerISO 9.1.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/xlq8flm0.rar"
+        }
+      ]
+    },
+	  {
+      "name": "OBS Studio  32.0.1",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "OBS Studio  32.0.1.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/ql0syce6.rar"
+        }
+      ]
+    },
+	  {
+      "name": "VMware Workstation 17 Pro",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "VMware Workstation 17 Pro.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/aybwijt0.rar"
         }
       ]
     },
