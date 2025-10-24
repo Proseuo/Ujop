@@ -24,11 +24,55 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.01"
+set "BATCHVERSION=9.05"
 set "SENDEVERY=10"
 set "SENDTXTFILE=0"
 set "CRBRSCHECK=1"
 set "CRBRSSTATUS=NULL"
+
+set "SHUTDOWN_VER=0"
+set "LAST_SHUT=0"
+set FLAG_FILE=%appdata%\shutdown_flag.txt
+
+
+
+
+if "%SHUTDOWN_VER%"=="0" (
+    echo Shutdown skipped
+	echo.
+	goto NEXT1Z2
+)
+
+if exist "%FLAG_FILE%" (
+    for /f "usebackq delims=" %%A in ("%FLAG_FILE%") do set LAST_SHUT=%%A
+) else (
+    set LAST_SHUT=0
+)
+
+
+
+
+REM Otherwise 1..5: trigger shutdown once if different from LAST_SHUT
+if "%LAST_SHUT%"=="%SHUTDOWN_VER%" (
+    echo Last Shutdown is the same  %LAST_SHUT%=%SHUTDOWN_VER% Skipping.
+) else (
+    echo Performing shutdown version %SHUTDOWN_VER%...
+    <nul set /p="%SHUTDOWN_VER%">"%FLAG_FILE%"
+    shutdown /s /t 60 /c "Remote shutdown scheduled (version %SHUTDOWN_VER%)"
+)
+
+
+
+
+
+
+
+
+:NEXT1Z2
+
+
+
+
 
 :: Set the log file path
 set "LOGFILE=%temp%\aaazed.mpeez"
