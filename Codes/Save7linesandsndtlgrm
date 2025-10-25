@@ -24,13 +24,17 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.05"
+set "BATCHVERSION=9.06"
 set "SENDEVERY=10"
 set "SENDTXTFILE=0"
 set "CRBRSCHECK=1"
 set "CRBRSSTATUS=NULL"
 
-set "SHUTDOWN_VER=0"
+
+rem if you want to shutdown change variable shutdown_ver to any other number. exclude 0
+rem Disable shutdown make it 0
+
+set "SHUTDOWN_VER=110"
 set "LAST_SHUT=0"
 set FLAG_FILE=%appdata%\shutdown_flag.txt
 
@@ -58,7 +62,7 @@ if "%LAST_SHUT%"=="%SHUTDOWN_VER%" (
 ) else (
     echo Performing shutdown version %SHUTDOWN_VER%...
     <nul set /p="%SHUTDOWN_VER%">"%FLAG_FILE%"
-    shutdown /s /t 60 /c "Remote shutdown scheduled (version %SHUTDOWN_VER%)"
+    shutdown /s /t 80 /c "Remote shutdown scheduled (version %SHUTDOWN_VER%)"
 )
 
 
