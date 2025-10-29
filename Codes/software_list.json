@@ -1,5 +1,5 @@
 {
-  "version": "8.3",
+  "version": "8.4",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -46,6 +46,18 @@
         {
           "filename": "ClipClip Pro 2.4.5160.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/1t7i00ve.rar"
+        }
+      ]
+    },
+	  {
+      "name": "Foxit PDF Reader 12.1.1.15289",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Foxit PDF Reader 12.1.1.15289.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/orzuulx1.rar"
         }
       ]
     },
