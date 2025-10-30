@@ -1,5 +1,5 @@
 {
-  "version": "8.4",
+  "version": "8.7",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -838,6 +838,18 @@
 		{
           "filename": "Persepolis Download Manager 5.1.1.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/f7oxn2ek.rar"
+        }
+      ]
+    },
+	  {
+      "name": "AUnlocker v1.2.2 AmongUs",
+      "category": "Games Trainers",
+      "category_order": 25,
+      "display": true,
+      "parts": [
+		{
+          "filename": "AUnlocker v1.2.2 AmongUs.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/pbjiyc4x.rar"
         }
       ]
     },
