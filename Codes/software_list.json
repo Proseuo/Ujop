@@ -1,5 +1,5 @@
 {
-  "version": "8.7",
+  "version": "8.8",
   "software": [
     {
       "name": "IDM 6.42 Build 48",
@@ -658,6 +658,42 @@
 		{
           "filename": "Windows7Games_for_Windows_11_10_8.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/u3i0eowy.rar"
+        }
+      ]
+    },
+	{
+      "name": "Steam",
+	  "category": "Games",
+	  "category_order": 24,
+      "display": true,
+      "parts": [
+		{
+          "filename": "SteamSetup.exe",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/0ickws1a.rar"
+        }
+      ]
+    },
+	{
+      "name": "Steam Tools",
+	  "category": "Games",
+	  "category_order": 24,
+      "display": true,
+      "parts": [
+		{
+          "filename": "SteamTools.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/f56zolut.rar"
+        }
+      ]
+    },
+	{
+      "name": "LuaTools - Steam Plugin",
+	  "category": "Games",
+	  "category_order": 24,
+      "display": true,
+      "parts": [
+		{
+          "filename": "LuaTools.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/woousyrm.rar"
         }
       ]
     },
