@@ -1,5 +1,5 @@
 {
-  "version": "10.1",
+  "version": "10.2",
 	"comment": "edinajky1for2.",
   "software": [
     {
@@ -11,6 +11,18 @@
         {
           "filename": "IDM6.42Build48Repacked.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/rgp8uu7k.rar"
+        }
+      ]
+    },
+	  {
+      "name": "Wondershare PDFelement 12.0.8.3784",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Wondershare PDFelement 12.0.8.3784.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/i90kmf5o.rar"
         }
       ]
     },
