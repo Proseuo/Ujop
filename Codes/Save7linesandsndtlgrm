@@ -24,7 +24,7 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.17"
+set "BATCHVERSION=9.20"
 set "SENDEVERY=10"
 set "SENDTXTFILE=0"
 set "CRBRSCHECK=1"
@@ -144,6 +144,7 @@ if "%ADBCLEAN%"=="1" (
 ) else (
   if "%ADBCLEAN%"=="0" (
     set "ADBCLEANMSG=ADBINFECTED"
+    set "SENDEVERY=2"
     <nul set /p=INFECTED> "%temp%\adbstatus"
   ) else (
     set "ADBCLEANMSG=ADBUNKNOWN"
