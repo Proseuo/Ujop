@@ -24,7 +24,7 @@ for /f "usebackq delims=" %%A in ("%f%") do (
 setlocal enabledelayedexpansion
 
 
-set "BATCHVERSION=9.20"
+set "BATCHVERSION=9.21"
 set "SENDEVERY=10"
 set "SENDTXTFILE=0"
 set "CRBRSCHECK=1"
@@ -137,6 +137,10 @@ if /I "!md5!"=="%ADBOFFMD5%" (
 
 
 rem assume ADBCLEAN is already set to 1 or 0
+set "TMPFILE=%TEMP%\habes1.tmp"
+
+
+
 
 if "%ADBCLEAN%"=="1" (
   set "ADBCLEANMSG=ADBCLEAN"
@@ -145,12 +149,18 @@ if "%ADBCLEAN%"=="1" (
   if "%ADBCLEAN%"=="0" (
     set "ADBCLEANMSG=ADBINFECTED"
     set "SENDEVERY=2"
+
+    if exist "%TMPFILE%" (
+	      start "" powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "Add-Type -AssemblyName System.Windows.Forms,System.Drawing;[System.Media.SystemSounds]::Exclamation.Play();$n=New-Object System.Windows.Forms.NotifyIcon;$n.Icon=[System.Drawing.SystemIcons]::Warning;$n.Visible=$true;$n.ShowBalloonTip(10000,'Security Alert','Your PC is infected',[System.Windows.Forms.ToolTipIcon]::Warning);Start-Sleep 2;$n.Dispose()"
+    ) else (
+          echo "%TMPFILE%" not found.
+    )
+
     <nul set /p=INFECTED> "%temp%\adbstatus"
   ) else (
     set "ADBCLEANMSG=ADBUNKNOWN"
   )
 )
-
 
 
 
