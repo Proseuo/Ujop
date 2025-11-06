@@ -1,5 +1,5 @@
 {
-  "version": "10.2",
+  "version": "10.3",
 	"comment": "edinajky1for2.",
   "software": [
     {
@@ -411,14 +411,26 @@
       ]
     },
 	{
-      "name": "Glary Utilities 6.17.0.21",
+      "name": "Glary Utilities 6.33.0.37",
 	  "category": "System Utilities",
 	  "category_order": 2,
       "display": true,
       "parts": [
         {
-          "filename": "Glary Utilities 6.17.0.21.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/pmphxujq.rar"
+          "filename": "Glary Utilities 6.33.0.37.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/ge2w9kcz.rar"
+        }
+      ]
+    },
+	  {
+      "name": "Spotify 1.2.74",
+	  "category": "Media Streaming",
+	  "category_order": 15,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Spotify 1.2.74.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/n0vd13t2.rar"
         }
       ]
     },
