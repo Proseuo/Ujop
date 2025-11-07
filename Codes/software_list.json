@@ -1,5 +1,5 @@
 {
-  "version": "10.4",
+  "version": "10.6",
 	"comment": "edinajky1for2.",
   "software": [
     {
@@ -710,6 +710,18 @@
         }
       ]
     },
+	  {
+      "name": "Project Lightning v3.0",
+	  "category": "Games",
+	  "category_order": 24,
+      "display": true,
+      "parts": [
+		{
+          "filename": "Project Lightning v3.0.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/9galmz3c.rar"
+        }
+      ]
+    },
 	{
       "name": "Steam Tools",
 	  "category": "Games",
@@ -730,7 +742,7 @@
       "parts": [
 		{
           "filename": "LuaTools.rar",
-          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/woousyrm.rar"
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/u98c590i.rar"
         }
       ]
     },
