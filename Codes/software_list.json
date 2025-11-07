@@ -1,5 +1,5 @@
 {
-  "version": "10.3",
+  "version": "10.4",
 	"comment": "edinajky1for2.",
   "software": [
     {
@@ -83,6 +83,18 @@
         {
           "filename": "4DDiG DLL Fixer 1.0.5.2.rar",
           "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.0/uov2s8xj.rar"
+        }
+      ]
+    },
+	  {
+      "name": "Ultraviewer v6.6",
+	  "category": "System Utilities",
+	  "category_order": 2,
+      "display": true,
+      "parts": [
+        {
+          "filename": "Ultraviewer v6.6.rar",
+          "url": "https://github.com/townshipforlim/Sof4Me/releases/download/LastVersionsBig1.1/cpfb6ttu.rar"
         }
       ]
     },
